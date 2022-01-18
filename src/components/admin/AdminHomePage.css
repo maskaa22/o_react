@@ -1,0 +1,15 @@
+.adminHomePage {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+.home-menu {
+    height: 600px;
+    width: 20%;
+    background-color: pink;
+}
+.home-page {
+    height: 600px;
+    width: 80%;
+    background-color: antiquewhite;
+}

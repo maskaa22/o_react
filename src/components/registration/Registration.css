@@ -1,0 +1,15 @@
+.registration {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    align-items: center;
+    background-color: #e8dbdb;
+    border-radius: 20px;
+    padding: 30px;
+    align-self: center;
+    margin-top: 100px;
+}
+.registration_header {
+    font-size: 30px;
+    font-weight: 700;
+}

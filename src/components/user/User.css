@@ -1,0 +1,19 @@
+.user-table {
+    width: 600px;
+    height: 100%;
+    background-color: white;
+}
+.name-table {
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-content: space-between;
+}
+.row-table {
+    background-color: gainsboro;
+    height: 35px;
+    border: 1px solid white;
+}
+.cell-table {
+    width: 50px;
+}
