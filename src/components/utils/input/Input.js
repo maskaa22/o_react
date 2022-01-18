@@ -1,7 +1,9 @@
-import './Input.less'
+import './Input.css'
 export default function Input (props)
 {
     return(
-        <input type={props.type} placeholder={props.placeholder}/>
+        <input value={props.value}
+               onChange={(event) => props.setValue(event.target.value)}
+               type={props.type} placeholder={props.placeholder} className={'input-focus'}/>
     );
 }

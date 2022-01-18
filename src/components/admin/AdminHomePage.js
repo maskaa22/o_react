@@ -1,24 +1,25 @@
 import {useEffect, useState} from "react";
-import {URL} from "../../config";
+
 import Users from "../users/Users";
 import "./AdminHomePage.css"
 import {Link, Route, BrowserRouter as Router, Routes} from "react-router-dom";
 import EditPageAdmin from "../editPage/EditPageAdmin";
 import StockPage from "../stockPage/StockPage";
 import ProductsPage from "../productsPage/ProductsPage";
+import {getUsers} from "../servises/API";
 
 export default function AdminHomePage ()
 {
     const [users, setUsers] = useState([]);
 
-    useEffect(() => {
-        fetch(URL.FETCH_URL)
-            .then(value => value.json())
-            .then(users => setUsers(users))
-    }, []);
+    useEffect(()=> {
+        getUsers().then(respons => {
+            setUsers(respons.data);
+        })
+    } ,[])
 
     return(
-<Router>
+
         <div className={'adminHomePage'}>
             <div className={'home-menu'}>
                 <div><Link to="/edit">Редактировать</Link></div>
@@ -35,6 +36,6 @@ export default function AdminHomePage ()
                 </Routes>
             </div>
         </div>
-</Router>
+
     );
 }

@@ -1,3 +1,5 @@
 module.exports = {
-    FETCH_URL: 'http://localhost:5000/users',
+    USERS_URL: 'http://localhost:5000/users',
+    REGISTER_URL: 'http://localhost:5000/auth/registration',
+    LOGIN_URL: 'http://localhost:5000/auth/login',
 }
