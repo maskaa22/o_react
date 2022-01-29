@@ -6,22 +6,26 @@ import ClientHomePage from "./components/client/ClientHomePage";
 import Registration from "./components/registration/Registration";
 import Autorization from "./components/autorization/Autorization";
 import {useSelector} from "react-redux";
+import ProductsPage from "./components/productsPage/ProductsPage";
 
 function App() {
     const isAuth = useSelector(state => state.user.isAuth)
     const currentUser = useSelector(state => state.user.currentUser)
 
+    // if(!isAuth) {
+    //    return <Autorization/>
+    // }
   return (
-<Router>
+
         <div className={'app'}>
-              <Header/>
+              {/*<Header/>*/}
             <div className={'wrap'}>
                 {
                     !isAuth &&
                     <Routes>
                         <Route path={'/registration'} element={<Registration/>}/>
                         <Route path={'/login'} element={<Autorization/>}/>
-                        {/*<Route path={'/logout'} element={<AdminHomePage/>}/>*/}
+
                     </Routes>
                 }
 
@@ -30,11 +34,12 @@ function App() {
 
             {/*<h1>{isAuth ? `Пользователь - ${currentUser.name} авторизирован`: 'Авторизируйтесь' }</h1>*/}
 
-              <AdminHomePage/>
+              {/*<AdminHomePage/>*/}
             {/*<ClientHomePage/>*/}
+            <ProductsPage/>
 
         </div>
-</Router>
+
   );
 }
 

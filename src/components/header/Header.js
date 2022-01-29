@@ -8,15 +8,17 @@ import {auth} from "../servises/API";
 export default function Header ()
 {
     const isAuth = useSelector(state => state.user.isAuth)
+
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        if(localStorage.getItem('token'))
-        {
-            dispatch(auth())
-        }
+    // useEffect(() => {
+    //     if(localStorage.getItem('token'))
+    //     {
+    //         dispatch(auth())
+    //     }
+    //
+    // }, [])
 
-    }, [])
 
     return(
 
