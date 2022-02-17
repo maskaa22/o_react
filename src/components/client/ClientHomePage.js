@@ -1,6 +1,6 @@
 // import "./ClientHomePage.css"
 import {Link, Route, BrowserRouter as Router, Routes} from "react-router-dom";
-import EditPageClient from "../editPage/EditPageClient";
+import {EditPageClient} from "../editPage";
 import BasketPage from "../basket/BasketPage";
 import ReviewsPage from "../reviews/ReviewsPage";
 

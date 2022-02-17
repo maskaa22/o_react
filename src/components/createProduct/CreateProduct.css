@@ -1,0 +1,81 @@
+.div-btn {
+    display: flex;
+    justify-content: center;
+}
+.big-btn {
+    width: 90%;
+    height: 50px;
+    margin: 20px;
+    border-radius: 5px;
+    color: white;
+    font-weight: 700;
+    font-size: 20px;
+}
+.first {
+    padding-top: 20px;
+}
+
+.close {
+    position: relative;
+    left: 100%;
+    margin: 0;
+    cursor: pointer;
+}
+.close i {
+    color: #500472FF;
+}
+.newInput {
+    width: fit-content;
+}
+h2 {
+    text-align: center;
+    color: #500472FF;
+    font-size: 30px;
+    margin: 0 10px;
+    padding: 15px;
+}
+select {
+    width: 93%;
+    height: 20px;
+    border: none;
+    color: #500472FF;
+    background-color: white;
+    border-bottom: 3px solid #500472FF;
+    outline: none;
+    font-weight: 700;
+}
+
+p {
+    margin: 0;
+}
+
+option {
+    font-weight: 700;
+}
+.position {
+    padding: 5px 0 5px 20px;
+}
+
+.btn-add {
+    width: 93%;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 20px;
+    color: #500472FF;
+}
+.btn-position {
+    padding: 5px 0 0 20px;
+}
+
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    color: #500472FF;
+    margin-left: 5px;
+}

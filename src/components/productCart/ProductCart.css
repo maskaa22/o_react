@@ -1,0 +1,54 @@
+
+/* Поплавок четыре колонки бок о бок */
+.column {
+    float: left;
+    width: 25%;
+    padding: 0 10px;
+    margin-top: 20px
+}
+
+/* Отзывчивые столбцы */
+@media screen and (max-width: 600px) {
+    .column {
+        width: 100%;
+        display: block;
+    //margin-bottom: 20px;
+    }
+}
+
+/* Стиль контейнера карточек */
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    /*background-color: #f1f1f1;*/
+    background-color: #79CBB8FF;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+}
+
+.info_card {
+    padding: 0 10px;
+    color: white;
+}
+.flex_buy {
+    display: flex;
+    justify-content: space-between;
+}
+.buy {
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
+button {
+    border: none;
+    cursor: pointer;
+    background-color: #79CBB8FF;
+}
+.icon_basket {
+    font-size: 20px;
+    color: #500472FF;
+}
+span {
+    font-weight: bold;
+}

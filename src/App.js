@@ -7,6 +7,7 @@ import Registration from "./components/registration/Registration";
 import Autorization from "./components/autorization/Autorization";
 import {useSelector} from "react-redux";
 import ProductsPage from "./components/productsPage/ProductsPage";
+import BasketPage from "./components/basket/BasketPage";
 
 function App() {
     const isAuth = useSelector(state => state.user.isAuth)
@@ -28,7 +29,10 @@ function App() {
 
                     </Routes>
                 }
+                <Routes>
+                    <Route path={'/products'} element={<ProductsPage/>}/>
 
+                </Routes>
 
             </div>
 
@@ -36,7 +40,12 @@ function App() {
 
               {/*<AdminHomePage/>*/}
             {/*<ClientHomePage/>*/}
-            <ProductsPage/>
+            <Routes>
+                <Route path={'/products/basket'} element={<BasketPage/>}/>
+                <Route path={'/admin/*'} element={<AdminHomePage/>}/>
+            </Routes>
+            {/*<ProductsPage/>*/}
+
 
         </div>
 

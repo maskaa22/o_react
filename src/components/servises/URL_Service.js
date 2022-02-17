@@ -58,7 +58,22 @@ export  class UserService {
 }
 export  class ProductService {
 
-    static async users() {
+    static async products() {
         return api.get('/products')
+    }
+    static async product(product_name, title, price,category_id) {
+        return api.post('/products', {product_name, title, price, category_id})
+    }
+}
+export  class CategoryService {
+
+    static async allCategories() {
+        return api.get('/category')
+    }
+    static async createCategories(category_name) {
+        return api.post('/category', {category_name})
+    }
+    static async filtreCategories(checkCategory) {
+        return api.post(`/category/${checkCategory}`, {checkCategory})
     }
 }

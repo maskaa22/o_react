@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {URL} from "../../config";
 
-export default function EditPageClient ()
+export function EditPageClient ()
 {
 
     const [users, setUsers] = useState([]);

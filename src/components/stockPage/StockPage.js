@@ -1,4 +1,4 @@
-export default function StockPage ()
+export function StockPage ()
 {
     return(
         <div>

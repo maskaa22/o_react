@@ -1,27 +1,23 @@
-import {useEffect, useState} from "react";
+import { Link, Route, Routes } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 
-import Users from "../users/Users";
-import "./AdminHomePage.css"
-import {Link, Route, Routes} from "react-router-dom";
-import EditPageAdmin from "../editPage/EditPageAdmin";
-import StockPage from "../stockPage/StockPage";
-import ProductsPage from "../productsPage/ProductsPage";
-import {auth, getUsers} from "../servises/API";
-import {useDispatch, useSelector} from "react-redux";
-import Autorization from "../autorization/Autorization";
-
+import "./AdminHomePage.css";
+import { APIServise } from "../servises";
+import { CreateProduct } from "../createProduct";
+import { EditPageAdmin } from "../editPage";
+import { StockPage } from "../stockPage";
+import { Users } from "../users";
 
 export default function AdminHomePage ()
 {
     const [users, setUsers] = useState([]);
-    const isAuth = useSelector(state => state.user.isAuth)
 
-
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     async function getUser() {
         try {
-            const response = await getUsers();
+            const response = await APIServise.getUsers();
             setUsers(response.data);
         } catch (e) {
             console.log(e);
@@ -31,39 +27,28 @@ export default function AdminHomePage ()
     useEffect(() => {
         if(localStorage.getItem('token'))
         {
-            dispatch(auth())
-            getUser()
-
-            // getUsers().then(respons => {
-            //     setUsers(respons.data); })
+            dispatch(APIServise.auth());
+            getUser();
         }
 
-    }, [])
-
-
-
+    }, []);
 
     return(
-
         <div className={'adminHomePage'}>
             <div className={'home-menu'}>
-                <div><Link to="/edit">Редактировать</Link></div>
-                <div onClick={getUser}><Link to="/users">Клиенты</Link></div>
-                <div><Link to="/stock">Акции</Link></div>
-                <div><Link to="/products">Товары</Link></div>
+                <div><Link to="/admin">Редактировать</Link></div>
+                <div onClick={getUser}><Link to="/admin/users">Клиенты</Link></div>
+                <div><Link to="/admin/stock">Акции</Link></div>
+                <div><Link to="/admin/product">Товары</Link></div>
             </div>
             <div className={'home-page'}>
                 <Routes>
-                    <Route path={'/edit'} element={<EditPageAdmin/>}/>
+                    <Route path={'/'} element={<EditPageAdmin/>}/>
                     <Route path={'/users'} element={<Users items={users}/>}/>
                     <Route path={'/stock'} element={<StockPage/>}/>
-                    <Route path={'/products'} element={<ProductsPage/>}/>
+                    <Route path={'/product'} element={<CreateProduct/>}/>
                 </Routes>
-                {/*{!isAuth && <Autorization/>}*/}
-
             </div>
-
         </div>
-
     );
 }

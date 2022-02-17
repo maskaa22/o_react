@@ -1,6 +1,4 @@
-const SET_USER = 'SET_USER'
-const LOGOUT = 'LOGOUT'
-
+import {SET_USER, LOGOUT} from './actionTypes'
 
 const defaultState = {
     currentUser: {},
@@ -29,7 +27,3 @@ export default function userReducer (state = defaultState, action)
             return state
     }
 }
-
-export const setUser = (user) => ({type: SET_USER, payload: user})
-export const userlogout = () => ({type: LOGOUT})
-

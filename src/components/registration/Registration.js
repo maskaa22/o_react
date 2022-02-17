@@ -1,7 +1,7 @@
 import './Registration.css'
-import Input from "../utils/input/Input";
+import {Input} from "../utils";
 import {useState} from "react";
-import {registration} from "../servises/API";
+import {APIServise} from "../servises";
 export default function Registration ()
 {
     const [name, setName] = useState('');
@@ -15,7 +15,7 @@ export default function Registration ()
             <Input value={email} setValue={setEmail} type={'text'} placeholder={'Введите email'}/>
             <Input value={password} setValue={setPassword} type={'password'} placeholder={'Введите пароль'}/>
 
-            <button className={'registration_btn'} onClick={()=>registration(name, email, password)}>Зарегестрироваться</button>
+            <button className={'registration_btn'} onClick={()=>APIServise.registration(name, email, password)}>Зарегестрироваться</button>
         </div>
     );
 }
