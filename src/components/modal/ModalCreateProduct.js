@@ -2,7 +2,7 @@ import './Modal.css'
 import {Input} from "../utils";
 import {APIServise} from "../servises";
 import {useEffect, useState} from "react";
-export default function ModalCreateProduct ({active, setActive, categories})
+export function ModalCreateProduct ({active, setActive, categories})
 {
 
     const [nameProduct, setNameProduct] = useState('');

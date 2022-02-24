@@ -1,1 +1,1 @@
-export * from './BasketCart'
+export * from './BasketCart';

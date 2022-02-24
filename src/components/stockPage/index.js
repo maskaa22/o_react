@@ -1,1 +1,1 @@
-export * from './StockPage'
+export * from './StockPage';

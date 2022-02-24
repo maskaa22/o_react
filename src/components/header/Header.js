@@ -1,12 +1,12 @@
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
+import "./Header.css";
 import { APIServise } from "../servises";
 import { delFilter } from "../reducers/actionCreators";
-import "./Header.css";
 
 
-export default function Header() {
+export function Header() {
     const isAuth = useSelector(state => state.user.isAuth);
     const dispatch = useDispatch();
 
@@ -26,7 +26,7 @@ export default function Header() {
 
                 <div className={'navbar-logo'}>O_Studio</div>
 
-                <div className={'navbar-header'}><NavLink to={'/home'}>Главная</NavLink></div>
+                <div className={'navbar-header'}><NavLink to={'/'}>Главная</NavLink></div>
                 <div className={'navbar_serveses'}>Услуги
                     <div className={'drop_down__menu'}>
                         <div className={'drop_down__item'}><NavLink to={'/mens_haircut'}>Мужские стрижки</NavLink></div>
@@ -36,7 +36,7 @@ export default function Header() {
                         <div className={'drop_down__item'}><NavLink to={'/hairstyles'}>Причёски</NavLink></div>
                     </div>
                 </div>
-                <div className={''} onClick={() => dispatch(delFilter())}><NavLink to={'/products'}>Товары</NavLink>
+                <div className={''} onClick={() => dispatch(delFilter())}><NavLink to={'products'}>Товары</NavLink>
                 </div>
                 <div className={'navbar-header'}><NavLink to={'/about_as'}>О нас</NavLink></div>
                 <div className={'navbar-header'}><NavLink to={'/contact'}>Контакты</NavLink></div>
@@ -53,7 +53,11 @@ export default function Header() {
                         </div>}
                         {isAuth && <div className={'drop_down__item'}><NavLink to={'/admin'}> Кабинет</NavLink></div>}
                         {isAuth &&
-                        <div className={'drop_down__item'} onClick={() => dispatch(APIServise.logout())}><NavLink to={'/logout'}><i
+                        <div className={'drop_down__item'} onClick={() =>
+                        {
+                            dispatch(APIServise.logout());
+                            localStorage.removeItem('autorization')
+                        }}><NavLink to={'/logout'}><i
                             className="fa fa-sign-out" aria-hidden="true"/> Выход</NavLink></div>}
                     </div>
                 </div>

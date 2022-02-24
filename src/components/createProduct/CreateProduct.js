@@ -1,8 +1,8 @@
-import ModalCreateProduct from '../modal/ModalCreateProduct'
-import ModalCreateCategory from "../modal/ModalCreateCategory";
-import {useState} from "react";
-import './CreateProduct.css'
-import {APIServise} from "../servises";
+import { useState } from "react";
+
+import './CreateProduct.css';
+import { APIServise } from "../servises";
+import { ModalCreateProduct, ModalCreateCategory } from '../modal';
 
 export function CreateProduct ()
 {
@@ -19,8 +19,8 @@ export function CreateProduct ()
             <div className={'div-btn'}>
                 <button className={'big-btn'} onClick={
                     ()=>{
-                        setModalActiveProduct(true)
-                        APIServise.getCategories().then(respons => { setCategories(respons.data) })
+                        setModalActiveProduct(true);
+                        APIServise.getCategories().then(respons => { setCategories(respons.data) });
                     }
                 }>Добавить продукт</button>
             </div>

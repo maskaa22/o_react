@@ -1,0 +1,31 @@
+.paginate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.page {
+    margin: 10px 5px;
+    background-color: white;
+    color: #500472FF;
+    font-size: 20px;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    cursor: pointer;
+    border: 2px solid #79CBB8FF;
+    border-radius: 5px;
+}
+
+.activePage {
+    margin: 10px 5px;
+    background-color: green;
+    color: #500472FF;
+    font-size: 20px;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    cursor: pointer;
+    border: 2px solid #79CBB8FF;
+    border-radius: 5px;
+}
+

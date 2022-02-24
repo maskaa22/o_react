@@ -1,4 +1,4 @@
-export default function ReviewsPage ()
+export function ReviewsPage ()
 {
     return(
         <div>

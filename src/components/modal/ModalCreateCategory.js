@@ -1,8 +1,10 @@
-import './Modal.css'
-import {Input} from "../utils";
 import {useState} from "react";
+
+import './Modal.css'
 import {APIServise} from "../servises";
-export default function ModalCreateCategory ({active, setActive})
+import {Input} from "../utils";
+
+export function ModalCreateCategory ({active, setActive})
 {
     const [nameCategory, setNameCategory] = useState('');
 
@@ -15,15 +17,7 @@ export default function ModalCreateCategory ({active, setActive})
                     <Input value={nameCategory} setValue={setNameCategory} placeholder={'Название категории'}/>
                 </div>
                 <div className={'btn-position'}>
-                    <button className={'btn-add'} onClick={() =>
-                    {
-                        APIServise.createCategory(nameCategory)
-
-                         // ReactDOM.render(
-                         //     <AdminHomePage/>,
-                         //     document.getElementById('root'));
-                    }
-                        }>Создать</button>
+                    <button className={'btn-add'} onClick={() => {APIServise.createCategory(nameCategory)}}>Создать</button>
                 </div>
             </div>
         </div>

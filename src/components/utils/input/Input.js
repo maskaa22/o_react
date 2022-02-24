@@ -1,4 +1,5 @@
-import './Input.css'
+import './Input.css';
+
 export function Input (props)
 {
     return(

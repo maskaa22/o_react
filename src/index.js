@@ -1,22 +1,24 @@
+import {BrowserRouter as Router} from "react-router-dom";
+import {Provider} from "react-redux"
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+import App from './App';
+
+import './index.css';
+import {Header} from "./components/header";
 import {store} from "./components/reducers";
-import {Provider} from "react-redux"
-import Header from "./components/header/Header"
-import {BrowserRouter as Router} from "react-router-dom";
 
 ReactDOM.render(
-    <Provider store={store}>
         <React.StrictMode>
+    <Provider store={store}>
             <Router>
-            <Header/>
-        <App />
-                </Router>
-        </React.StrictMode>
-    </Provider>,
+                <Header/>
+                <App />
+            </Router>
+    </Provider>
+        </React.StrictMode>,
 
   document.getElementById('root')
 );

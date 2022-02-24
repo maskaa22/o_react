@@ -4,7 +4,7 @@ import './BasketPage.css'
 import '../productsPage/ProductsPage.css'
 import { BasketCart } from "../basketCart";
 
-export default function BasketPage ()
+export function BasketPage ()
 {
     const currentProduct = useSelector(state => state.product.currentProduct);
     const price = useSelector(state => state.product.price);
@@ -16,7 +16,7 @@ export default function BasketPage ()
         <div>
             <div className={'row'}>
                 {
-                    currentProduct.map((value, i) => <BasketCart product={value} key={i} pp={i}/>)
+                    currentProduct.map((value, i) => <BasketCart product={value} key={i} price={i}/>)
                 }
             </div>
 

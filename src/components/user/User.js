@@ -1,4 +1,5 @@
-import "./User.css"
+import "./User.css";
+
 export default function User ({item})
 {
     return(

@@ -1,17 +1,25 @@
-import './App.css';
-import Header from "./components/header/Header";
-import AdminHomePage from "./components/admin/AdminHomePage";
-import {Route, BrowserRouter as Router, Routes} from "react-router-dom";
-import ClientHomePage from "./components/client/ClientHomePage";
-import Registration from "./components/registration/Registration";
-import Autorization from "./components/autorization/Autorization";
+import {Route, Routes, useLocation} from "react-router-dom";
 import {useSelector} from "react-redux";
-import ProductsPage from "./components/productsPage/ProductsPage";
-import BasketPage from "./components/basket/BasketPage";
+
+import './App.css';
+import {Header} from "./components/header";
+import {AdminHomePage} from "./components/admin";
+import {ClientHomePage} from "./components/client";
+import {Registration} from "./components/registration";
+import {Autorization} from "./components/autorization";
+import {ProductsPage} from "./components/productsPage";
+import {BasketPage} from "./components/basket";
+import {HomePage} from "./components/home";
+import {AboutAsPage} from "./components/aboutAs";
+import {Contacts} from "./components/contacts";
 
 function App() {
-    const isAuth = useSelector(state => state.user.isAuth)
-    const currentUser = useSelector(state => state.user.currentUser)
+     const isAuth = useSelector(state => state.user.isAuth);
+     // console.log(isAuth);
+    // const currentUser = useSelector(state => state.user.currentUser)
+
+    // const url = useLocation();
+    // console.log(url.pathname);
 
     // if(!isAuth) {
     //    return <Autorization/>
@@ -21,18 +29,15 @@ function App() {
         <div className={'app'}>
               {/*<Header/>*/}
             <div className={'wrap'}>
-                {
-                    !isAuth &&
-                    <Routes>
-                        <Route path={'/registration'} element={<Registration/>}/>
-                        <Route path={'/login'} element={<Autorization/>}/>
+                {/*{*/}
+                {/*    !isAuth &&*/}
+                {/*    <Routes>*/}
+                {/*        <Route path={'/registration'} element={<Registration/>}/>*/}
+                {/*        <Route path={'/login'} element={<Autorization/>}/>*/}
 
-                    </Routes>
-                }
-                <Routes>
-                    <Route path={'/products'} element={<ProductsPage/>}/>
+                {/*    </Routes>*/}
+                {/*}*/}
 
-                </Routes>
 
             </div>
 
@@ -41,14 +46,19 @@ function App() {
               {/*<AdminHomePage/>*/}
             {/*<ClientHomePage/>*/}
             <Routes>
+                <Route path={'/'} element={<HomePage/>} />
+
+                <Route path={'products'} element={<ProductsPage/>} />
+                <Route path={'/about_as'} element={<AboutAsPage/>} />
+                <Route path={'/contact'} element={<Contacts/>} />
                 <Route path={'/products/basket'} element={<BasketPage/>}/>
                 <Route path={'/admin/*'} element={<AdminHomePage/>}/>
+
+                <Route path={'/registration'} element={<Registration/>}/>
+                <Route path={'/login'} element={<Autorization isAuth={isAuth}/>}/>
+                {/*<Route path={'/logout'} element={<Autorization/>}/>*/}
             </Routes>
-            {/*<ProductsPage/>*/}
-
-
         </div>
-
   );
 }
 

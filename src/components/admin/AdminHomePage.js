@@ -9,7 +9,7 @@ import { EditPageAdmin } from "../editPage";
 import { StockPage } from "../stockPage";
 import { Users } from "../users";
 
-export default function AdminHomePage ()
+export function AdminHomePage ()
 {
     const [users, setUsers] = useState([]);
 

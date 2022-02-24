@@ -1,10 +1,10 @@
-import {DEL_PRICE, DEL_PRODUCT, FILTER_PRODUCT, PRICE_PRODUCT, SET_PRODUCT, DEL_FILTER} from "./actionTypes";
+import {DEL_PRICE, DEL_PRODUCT, PRICE_PRODUCT, SET_PRODUCT, DEL_FILTER, SET_FILTER} from "./actionTypes";
 
 const defaultState = {
     currentProduct: [],
     price:[],
     filter: [],
-    filterFlag: false
+    filterFlag: false,
 }
 
 export default function productReducer (state = defaultState, action)
@@ -32,10 +32,9 @@ export default function productReducer (state = defaultState, action)
                 ...state,
                 price: state.price.filter((o, i) => i !== action.payload)
             }
-        case FILTER_PRODUCT:
+        case SET_FILTER:
             return {
                 ...state,
-                filter: action.payload,
                 filterFlag: true
             }
         case DEL_FILTER:
