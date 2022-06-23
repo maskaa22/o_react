@@ -5,7 +5,9 @@ import './ProductsPage.css';
 import {APIServise} from "../servises";
 import {ProductCart} from "../productCart";
 import ProductCategory from "./ProductCategory";
-import {Pagination} from "../pagination";
+import {Pagination, PaginationProductCategory} from "../pagination";
+import {PaginationCategor} from "../pagination/PaginationCategor";
+import {Paginations} from "../pagination/Paginations";
 
 export function ProductsPage ()
 {
@@ -13,9 +15,11 @@ export function ProductsPage ()
     const [categories, setCategories] = useState([]);
     const [paginate, setPaginate] = useState([]);
     const [page, setPage] = useState([]);
+    const [pageFilter, setPageFilter] = useState([]);
     const [productFilter, setProductFilter] = useState([]);
     const [filter, setFilter] = useState([]);
     const [category_id, setCategory_id] = useState([]);
+    const [offset, setOffset] = useState(0);
 
 
     const filterFlag = useSelector(state => state.product.filterFlag);
@@ -26,10 +30,10 @@ export function ProductsPage ()
 
     useEffect(() => {
         dispatch(APIServise.auth());
-        APIServise.getProducts(1, 3).then(respons => {
-            setProducts(respons.data.docs);
-            setPaginate(respons.data)
-        });
+        // APIServise.getProducts(page, 5).then(respons => {
+        //     setProducts(respons.data.docs);
+        //     setPaginate(respons.data)
+        // });
         APIServise.getCategories().then(respons => {
             // console.log(respons.data);
             setCategories(respons.data)
@@ -48,7 +52,10 @@ export function ProductsPage ()
     function thisPage(page) {
          setPage(page);
     }
-      // console.log(category_id);
+    function thisPageFilter(page) {
+        setPageFilter(page);
+    }
+
 
     return(
         <div>
@@ -59,8 +66,11 @@ export function ProductsPage ()
                                                                     category={category}
                                                                     setProductFilter={setProductFilter}
                                                                     setFilter={setFilter}
-                                                                    page={page}
+                                                                    page={pageFilter}
                                                                     setCategory_id={setCategory_id}
+                                                                    offset={offset}
+                                                                    setOffset={setOffset}
+
                         />)
                     }
                 </div>
@@ -77,10 +87,22 @@ export function ProductsPage ()
                 <div className={'product-menu'}/>
                 <div className={'row'}>
                     {!filterFlag &&
-                    <Pagination paginate={paginate} thisPage={thisPage} category_id={category_id} setFilter={setFilter}/>
+                    //<Pagination paginate={paginate} thisPage={thisPage} category_id={category_id} setFilter={setFilter}/>
+                        <PaginationProductCategory
+                        paginate={paginate} thisPage={thisPage}
+                        category_id={category_id} setFilter={setFilter} setOffset={setOffset} offset={offset} />
                     }
                     {filterFlag &&
-                    <Pagination paginate={productFilter} thisPage={thisPage} category_id={category_id} setFilter={setFilter}/>
+                    //<Pagination paginate={productFilter} thisPage={thisPageFilter} category_id={category_id} setFilter={setFilter}/>
+<PaginationProductCategory
+    paginate={productFilter} thisPage={thisPageFilter}
+    category_id={category_id} setFilter={setFilter} setOffset={setOffset} offset={offset} />
+//          <Paginations paginate={productFilter} thisPage={thisPageFilter}
+//                      category_id={category_id} setFilter={setFilter} />
+
+
+
+                        //<PaginationCategor paginate={productFilter} thisPage={thisPageFilter} category_id={category_id} setFilter={setFilter}/>
                     }
                 </div>
             </div>

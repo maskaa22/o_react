@@ -18,7 +18,7 @@ export function BasketCart ({product, price})
                     <div className={'buy'}><button onClick={() => {
                         dispatch(delProduct(product._id));
                         dispatch(delPrice(price));
-                    }}><i className="fa fa-trash-o icon_basket" aria-hidden="true"/>
+                    }}><img className=" icon_basket" src={require('../../icons/icon-recycle.png')}/>
                     </button></div>
                 </div>
             </div>

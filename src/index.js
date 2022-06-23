@@ -10,6 +10,7 @@ import './index.css';
 import {Header} from "./components/header";
 import {store} from "./components/reducers";
 
+
 ReactDOM.render(
         <React.StrictMode>
     <Provider store={store}>

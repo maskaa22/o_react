@@ -41,15 +41,15 @@ export function Header() {
                 <div className={'navbar-header'}><NavLink to={'/about_as'}>О нас</NavLink></div>
                 <div className={'navbar-header'}><NavLink to={'/contact'}>Контакты</NavLink></div>
 
-                <div className={'navbar_serveses'}><i className="fa fa-sign-in" aria-hidden="true"/>
+                <div className={'navbar_serveses'}><img className=" icon_basket" src={require('../../icons/icon-login.png')}/>
                     <div className={'drop_down__menu login_pozition'}>
                         {!isAuth &&
-                        <div className={'drop_down__item'}><NavLink to={'/login'}><i className="fa fa-sign-in"
-                                                                                     aria-hidden="true"/> Вход</NavLink>
+                        <div className={'drop_down__item'}><NavLink to={'/login'}>
+                            <img className=" icon_basket" src={require('../../icons/icon-avatar.png')}/> Вход</NavLink>
                         </div>}
                         {!isAuth &&
-                        <div className={'drop_down__item'}><NavLink to={'/registration'}><i className="fa fa-users"
-                                                                                            aria-hidden="true"/> Регистрация</NavLink>
+                        <div className={'drop_down__item'}><NavLink to={'/registration'}>
+                            <img className=" icon_basket" src={require('../../icons/icon-register.png')}/>Регистрация</NavLink>
                         </div>}
                         {isAuth && <div className={'drop_down__item'}><NavLink to={'/admin'}> Кабинет</NavLink></div>}
                         {isAuth &&
@@ -57,8 +57,8 @@ export function Header() {
                         {
                             dispatch(APIServise.logout());
                             localStorage.removeItem('autorization')
-                        }}><NavLink to={'/logout'}><i
-                            className="fa fa-sign-out" aria-hidden="true"/> Выход</NavLink></div>}
+                        }}><NavLink to={'/logout'}>
+                            <img className=" icon_basket" src={require('../../icons/icon-logout.png')}/> Выход</NavLink></div>}
                     </div>
                 </div>
 

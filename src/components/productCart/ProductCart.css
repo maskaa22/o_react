@@ -48,6 +48,8 @@ button {
 .icon_basket {
     font-size: 20px;
     color: #500472FF;
+    height: 20px;
+    width: 20px;
 }
 span {
     font-weight: bold;

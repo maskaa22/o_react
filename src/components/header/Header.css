@@ -14,7 +14,7 @@
 
 .active {
     border-bottom: 2px solid white;
-    padding: 5px;
+    /*padding: 5px;*/
 }
 a {
     color: white;
