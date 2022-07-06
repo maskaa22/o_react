@@ -8,13 +8,15 @@ import {setCategory} from "../reducers/actionCreators";
 export default function ProductCategory ({category, setProductFilter, setFilter, page, setCategory_id, offset, setOffset})
 {
 
+    let [productCategoryCheck, setProductCategoryCheck] = useState(false);
 
     const dispatch = useDispatch();
 
     return(
         <div className={'padding'}>
-            <div className={'category'}
+            <div className={`category ${productCategoryCheck && 'active'}`}
             onClick={() => {
+                setProductCategoryCheck(productCategoryCheck = !productCategoryCheck);
                 dispatch(APIServise.categoriesFilter(category._id, page, 2)).then(response =>
                 {
                     setOffset(0);
@@ -33,7 +35,7 @@ export default function ProductCategory ({category, setProductFilter, setFilter,
                     setProductFilter(response.data);
                     setFilter(response.data.docs);
                     dispatch(setCategory())
-                })
+                });
             }
             }>
                 {category.category_name}

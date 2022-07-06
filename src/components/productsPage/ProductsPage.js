@@ -5,12 +5,10 @@ import './ProductsPage.css';
 import {APIServise} from "../servises";
 import {ProductCart} from "../productCart";
 import ProductCategory from "./ProductCategory";
-import {Pagination, PaginationProductCategory} from "../pagination";
-import {PaginationCategor} from "../pagination/PaginationCategor";
-import {Paginations} from "../pagination/Paginations";
+import {PaginationProductCategory} from "../pagination";
 
-export function ProductsPage ()
-{
+
+export function ProductsPage() {
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
     const [paginate, setPaginate] = useState([]);
@@ -25,8 +23,7 @@ export function ProductsPage ()
     const filterFlag = useSelector(state => state.product.filterFlag);
 
 
-
-     const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(APIServise.auth());
@@ -50,14 +47,14 @@ export function ProductsPage ()
     }, [page])
 
     function thisPage(page) {
-         setPage(page);
+        setPage(page);
     }
+
     function thisPageFilter(page) {
         setPageFilter(page);
     }
-
-
-    return(
+    
+    return (
         <div>
             <div className={'product-flex'}>
                 <div className={'product-menu'}>
@@ -75,11 +72,11 @@ export function ProductsPage ()
                     }
                 </div>
                 <div className={'row'}>
-                    { !filterFlag &&
-                    products.map(product => <ProductCart key={product._id} product={product}/>)
+                    {!filterFlag &&
+                        products.map(product => <ProductCart key={product._id} product={product}/>)
                     }
-                    { filterFlag &&
-                    filter.map(product => <ProductCart key={product._id} product={product}/>)
+                    {filterFlag &&
+                        filter.map(product => <ProductCart key={product._id} product={product}/>)
                     }
                 </div>
             </div>
@@ -87,22 +84,14 @@ export function ProductsPage ()
                 <div className={'product-menu'}/>
                 <div className={'row'}>
                     {!filterFlag &&
-                    //<Pagination paginate={paginate} thisPage={thisPage} category_id={category_id} setFilter={setFilter}/>
-                        <PaginationProductCategory
+                    <PaginationProductCategory
                         paginate={paginate} thisPage={thisPage}
-                        category_id={category_id} setFilter={setFilter} setOffset={setOffset} offset={offset} />
+                        category_id={category_id} setFilter={setFilter}/>
                     }
                     {filterFlag &&
-                    //<Pagination paginate={productFilter} thisPage={thisPageFilter} category_id={category_id} setFilter={setFilter}/>
-<PaginationProductCategory
-    paginate={productFilter} thisPage={thisPageFilter}
-    category_id={category_id} setFilter={setFilter} setOffset={setOffset} offset={offset} />
-//          <Paginations paginate={productFilter} thisPage={thisPageFilter}
-//                      category_id={category_id} setFilter={setFilter} />
-
-
-
-                        //<PaginationCategor paginate={productFilter} thisPage={thisPageFilter} category_id={category_id} setFilter={setFilter}/>
+                    <PaginationProductCategory
+                        paginate={productFilter} thisPage={thisPageFilter}
+                        category_id={category_id} setFilter={setFilter}/>
                     }
                 </div>
             </div>

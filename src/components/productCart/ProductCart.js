@@ -15,7 +15,8 @@ export function ProductCart({product}) {
                 <div className={'info_card'}>{product.title}</div>
                 <div className={'flex_buy'}>
                     <div className={'info_card'}>{product.price} грн.</div>
-                    <div className={'buy'}><button onClick={() => {
+                    <div className={'buy'} ><button id={'buy'} onClick={() => {
+
                         dispatch(setProduct(product));
                         dispatch(priceProduct(product.price));
                     }}><img className=" icon_basket" src={require('../../icons/add-cart.png')}/>

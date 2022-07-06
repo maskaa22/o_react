@@ -54,3 +54,13 @@ button {
 span {
     font-weight: bold;
 }
+.input-count {
+    width: 30px;
+    border: none;
+    border-bottom: #500472FF solid 3px;
+    margin: 0 3px 0 20px;
+}
+.input-count:focus {
+    outline: none;
+    transform: scale(1.01);
+}

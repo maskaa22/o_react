@@ -24,6 +24,10 @@
     color: #500472;
     cursor: pointer;
 }
+.category:hover,
+.category.active {
+    border-color: red;
+}
 
 .row {
     width: 80%;
