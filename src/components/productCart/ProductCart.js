@@ -1,11 +1,14 @@
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 import './ProductCart.css'
 import {setProduct, priceProduct} from "../reducers/actionCreators";
+import {MdOutlineShoppingCart} from "react-icons/md";
 
 export function ProductCart({product}) {
 
     const dispatch = useDispatch();
+
+    const currentProduct = useSelector(state => state.product.currentProduct);
 
     return (
         <div className="column">
@@ -16,10 +19,18 @@ export function ProductCart({product}) {
                 <div className={'flex_buy'}>
                     <div className={'info_card'}>{product.price} грн.</div>
                     <div className={'buy'} ><button id={'buy'} onClick={() => {
+                        let isInArray = false;
+                        currentProduct.forEach(el => {
+                            if(el._id === product._id)
+                                isInArray = true;
+                        })
+                        if(!isInArray) {
+                            dispatch(setProduct(product));
+                            // dispatch(priceProduct(product.price));
+                        }
 
-                        dispatch(setProduct(product));
-                        dispatch(priceProduct(product.price));
-                    }}><img className=" icon_basket" src={require('../../icons/add-cart.png')}/>
+                    }}>
+                        <MdOutlineShoppingCart className=" icon_basket"/>
                     </button></div>
                 </div>
             </div>

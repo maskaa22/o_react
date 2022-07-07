@@ -28,9 +28,7 @@ export default function productReducer (state = defaultState, action)
         case DEL_PRODUCT:
             return {
                 ...state,
-                //currentProduct: action.payload
-                currentProduct: state.currentProduct.filter(o => o._id !== action.payload._id),
-                //price: state.price.filter(o => o._id !== action.payload)
+                currentProduct: state.currentProduct.filter(o => o._id !== action.payload),
             }
         case DEL_PRICE:
             return {
