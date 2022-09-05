@@ -1,7 +1,12 @@
+.center-table {
+    display: flex;
+    justify-content: center;
+}
 .user-table {
     width: 600px;
     height: 100%;
     background-color: white;
+    border-radius: 5px;
 }
 .name-table {
     height: 40px;
@@ -13,7 +18,18 @@
     background-color: gainsboro;
     height: 35px;
     border: 1px solid white;
+    padding: 5px;
 }
 .cell-table {
     width: 50px;
+}
+.header-table {
+    padding: 10px;
+    font-size: 15px;
+    font-weight: bolder;
+    color: #510c76;
+}
+.btn-ok {
+    border-radius: 5px;
+    height: 20px;
 }

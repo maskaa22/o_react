@@ -9,10 +9,13 @@ export function ModalCreateProduct ({active, setActive, categories})
     const [titleProduct, setTitleProduct] = useState('');
     const [categoryProduct, setCategoryProduct] = useState('');
     const [priceProduct, setPriceProduct] = useState('');
+    const [countProduct, setCountProduct] = useState(1);
+    const [inventoryNumber, setInventoryNumber] = useState('');
 
 
     useEffect(() => {
-        setCategoryProduct('6207f02096c37103ae61321b')
+        setCategoryProduct('6207f02096c37103ae61321b');
+        setCountProduct(1);
     }, [])
 
     function getValue() {
@@ -40,6 +43,8 @@ export function ModalCreateProduct ({active, setActive, categories})
                     </div>
                     <div className={'newInput'}><Input value={priceProduct} setValue={setPriceProduct} placeholder={'Цена товара'}/></div>
 
+                    <div className={'newInput'}><Input value={inventoryNumber} setValue={setInventoryNumber} placeholder={'Инвентарный номер'}/></div>
+
                     <div className={'position'}>
                         <label htmlFor="file-upload" className="custom-file-upload">
                             <i className="fa fa-cloud-upload"/> Загрузить фото товара
@@ -49,7 +54,10 @@ export function ModalCreateProduct ({active, setActive, categories})
 
                     <div className={'btn-position'}>
                         <button className={'btn-add'}
-                                onClick={()=> {APIServise.setProducts(nameProduct, titleProduct, priceProduct, categoryProduct)}}>
+                                onClick={()=> {
+                                    APIServise.setProducts(nameProduct, titleProduct, priceProduct, categoryProduct,
+                                        priceProduct, countProduct, inventoryNumber)
+                                }}>
                             <p>Добавить товар</p>
                         </button>
                     </div>

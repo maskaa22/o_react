@@ -1,0 +1,55 @@
+.full-center {
+    display: flex;
+    justify-content: center;
+}
+.around {
+    display: flex;
+    justify-content: space-around;
+}
+.circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: white;
+    margin: 20px;
+}
+.btn-save {
+    height: 50px;
+    margin: 20px;
+    border-radius: 5px;
+    width: 40%;
+    color: #510c76;
+    font-size: 20px;
+}
+#block_check {
+    height: 5px;
+    /*margin: 0 0 0 20px;*/
+    transition: 1s;
+}
+.position_box {
+    position: relative;
+    left: 20px;
+}
+.input-focus:focus {
+    outline: none;
+    transform: scale(1.01);
+}
+::-webkit-input-placeholder {
+    color: #500472FF;
+    font-weight: 700;
+}
+.last {
+    /*margin-top: 5px;*/
+    position: relative;
+    left: 5px;
+    bottom: 3px;
+}
+.icon_ok {
+    position: relative;
+    left: 10px;
+    color: green;
+    font-size: 20px;
+}
+.notVisible {
+    visibility: hidden;
+}

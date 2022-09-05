@@ -22,11 +22,13 @@ export function Registration ()
 
             <button className={'registration_btn'} onClick={()=>
             {
-                APIServise.registration(name, email, password);
+                APIServise.registration(name, email, password).then(rez => {
+                    if(rez) navigate("/login")
+                })
                 // const autorization = localStorage.getItem('registration');
                 // console.log(autorization);
                 // if(autorization!=null)
-                    navigate("/login");
+                   //navigate("/login");
             }}>Зарегестрироваться</button>
         </div>
     );

@@ -4,10 +4,16 @@ import { useDispatch, useSelector } from "react-redux";
 import "./Header.css";
 import { APIServise } from "../servises";
 import { delFilter } from "../reducers/actionCreators";
+import {useState} from "react";
 
 
 export function Header() {
     const isAuth = useSelector(state => state.user.isAuth);
+    const role = useSelector(state => state.user.role);
+    const currentUser = useSelector(state => state.user.currentUser);
+
+    //const [role, setRole] = useState('');
+
     const dispatch = useDispatch();
 
     //добавление подчёркивание в выбраное меню
@@ -19,6 +25,13 @@ export function Header() {
             links[i].classList.add("active");
         }
     }
+
+    // if(isAuth){
+    //     console.log(currentUser.role);
+    //     // currentUser?.map(user => setRole(user.role))
+    //     // console.log(role);
+    // }
+
 
     return (
         <div className={'header'}>
@@ -51,7 +64,10 @@ export function Header() {
                         <div className={'drop_down__item'}><NavLink to={'/registration'}>
                             <img className=" icon_basket" src={require('../../icons/icon-register.png')}/>Регистрация</NavLink>
                         </div>}
-                        {isAuth && <div className={'drop_down__item'}><NavLink to={'/admin'}> Кабинет</NavLink></div>}
+
+                        {isAuth && role==='admin' && <div className={'drop_down__item'}><NavLink to={'/admin'}> Кабинет</NavLink></div>}
+                        {isAuth && role==='user' && <div className={'drop_down__item'}><NavLink to={`/user`}> Кабинет</NavLink></div>}
+
                         {isAuth &&
                         <div className={'drop_down__item'} onClick={() =>
                         {
@@ -63,7 +79,7 @@ export function Header() {
                 </div>
 
 
-                <div><NavLink to={'/products/basket'}>Корзина</NavLink></div>
+                <div><NavLink to={'/products/orders'}>Корзина</NavLink></div>
 
             </div>
         </div>

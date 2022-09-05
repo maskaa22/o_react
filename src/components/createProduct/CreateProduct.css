@@ -2,6 +2,17 @@
     display: flex;
     justify-content: center;
 }
+.del {
+    visibility: hidden;
+}
+.add {
+    visibility: visible;
+    padding: 10px 20px;
+    border-radius: 12px;
+    background-color: white;
+    width: 300px;
+    height: 200px;
+}
 .big-btn {
     width: 90%;
     height: 50px;

@@ -1,2 +1,1 @@
-export * from './EditPageAdmin';
-export * from './EditPageClient';
+export * from './Edit'

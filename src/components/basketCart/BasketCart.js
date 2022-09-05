@@ -1,23 +1,17 @@
-import {delPrice, delProduct, priceProduct} from "../reducers/actionCreators";
-import {useDispatch, useSelector} from "react-redux";
+import {delProduct} from "../reducers/actionCreators";
+import {useDispatch} from "react-redux";
 import {MdDeleteForever} from "react-icons/md"
-import {BiPlusCircle, BiMinusCircle} from "react-icons/bi"
 
 import '../productCart/ProductCart.css'
-import {useEffect, useState} from "react";
-import {Input} from "../utils";
+import {Count} from "../countProduct";
+import priceFormatter from "../utils/priceFormatter/priceFormatter";
+import {useState} from "react";
 
-export function BasketCart({product, price, countProduct}) {
+export function BasketCart({product, increase, decrease, deleteProduct, changeValue}) {
 
     const dispatch = useDispatch();
+    //console.log(product.count);
 
-    const [count, setCount] = useState(1);
-
-    // useEffect(() => {
-    //     dispatch(priceProduct(product.price*count));
-    // }, []);
-
-    console.log(product.price*count);
 
 
     return (
@@ -26,42 +20,19 @@ export function BasketCart({product, price, countProduct}) {
                 <div><img src={'https://u.makeup.com.ua/g/gl/gla8v5cgd3qy.png'} alt={'шaмпунь'}/></div>
                 <div className={'info_card'}><span>{product.product_name}</span></div>
                 <div className={'flex_buy'}>
-                    <div className={'info_card'}>{product.title}</div>
-                    <div className={'count'}>
-                        <BiMinusCircle onClick={() => {
-                            if (count === 0 || count === 1)
-                            {
-                                setCount(count);
-                                //countProduct(count);
-                            }
-                            else if (count > 0)
-                            {
-                                setCount(count - 1);
-                                //countProduct(count);
-                            }
-                            countProduct(count-1);
-                            //console.log(count);
-
-
-                        }}/>
-                        {count}
-                        <BiPlusCircle onClick={() =>
-                        {
-                            setCount(count + 1);
-                            countProduct(count+1);
-                            
-                        }}/>
+                    <div className={'info'}>
+                        <div className={'info_card'}>{product.title}</div>
                     </div>
-                    {/*<div><input value={count}   type={'number'} placeholder={''} className={'input-count'}*/}
-                    {/*       onChange={(event) => setCount(event.target.value)}/> шт.</div>*/}
+
+                    <Count count={product.count} increase={increase} id={product._id} decrease={decrease} changeValue={changeValue}/>
+
                 </div>
                 <div className={'flex_buy'}>
-                    <div className={'info_card'}>{product.price} грн.</div>
+                    <div className={'info_card'}>{priceFormatter.format(product.totalPrice)} грн.</div>
                     <div className={'buy'}>
                         <button onClick={() => {
-
                             dispatch(delProduct(product._id));
-                            dispatch(delPrice(price));
+                            deleteProduct(product._id);
                         }}>
                             <MdDeleteForever className=" icon_basket"/>
                         </button>

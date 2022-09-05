@@ -16,7 +16,7 @@ import {Contacts} from "./components/contacts";
 function App() {
      const isAuth = useSelector(state => state.user.isAuth);
      // console.log(isAuth);
-    // const currentUser = useSelector(state => state.user.currentUser)
+     const currentUser = useSelector(state => state.user.currentUser)
 
     // const url = useLocation();
     // console.log(url.pathname);
@@ -51,12 +51,13 @@ function App() {
                 <Route path={'products'} element={<ProductsPage/>} />
                 <Route path={'/about_as'} element={<AboutAsPage/>} />
                 <Route path={'/contact'} element={<Contacts/>} />
-                <Route path={'/products/basket'} element={<BasketPage/>}/>
+                <Route path={'/products/orders'} element={<BasketPage/>}/>
                 <Route path={'/admin/*'} element={<AdminHomePage/>}/>
+                <Route path={`/user/*`} element={<ClientHomePage/>}/>
 
                 <Route path={'/registration'} element={<Registration/>}/>
                 <Route path={'/login'} element={<Autorization isAuth={isAuth}/>}/>
-                {/*<Route path={'/logout'} element={<Autorization/>}/>*/}
+                <Route path={'/logout'} element={<Autorization/>}/>
             </Routes>
         </div>
   );

@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import {URL} from "../../config";
+import {archiveOrder} from "./API";
 
 const api = axios.create({
      withCredentials: true,
@@ -53,14 +54,23 @@ export  class UserService {
     static async users() {
         return api.get('/users')
     }
+    static async editAdminData(_id, name, surname, email, phone, oldPassword, number, numberToo) {
+        return api.patch('/users', {_id, name, surname, email, phone, oldPassword, number, numberToo})
+    }
+    static async editClientData() {
+        return api.patch('/users')
+    }
 }
 export  class ProductService {
 
     static async products(page, limit) {
         return api.get('/products', {params: {page, limit}})
     }
-    static async product(product_name, title, price,category_id) {
-        return api.post('/products', {product_name, title, price, category_id})
+    static async product(product_name, title, price,category_id, count, totalPrice, inventoryNumber) {
+        return api.post('/products', {product_name, title, price, category_id, count, totalPrice, inventoryNumber})
+    }
+    static async deleteProduct(inventoryNumber) {
+        return api.delete('/products', {params: {inventoryNumber}})
     }
 }
 export  class CategoryService {
@@ -73,5 +83,42 @@ export  class CategoryService {
     }
     static async filtreCategories(checkCategory, page, limit) {
         return api.post(`/category/${checkCategory}`, {checkCategory}, {params: {page, limit}})
+    }
+}
+export  class OrderService {
+
+    static async orders() {
+        return api.get('/products/orders')
+    }
+    static async ordersByFilter(status) {
+        console.log(status);
+        return api.get('/products/orders_filter', {params: {status}})
+    }
+    static async order(user_id, user_name, cart, status, summa, month) {
+        return api.post('/products/orders', {user_id, user_name, cart, status, summa, month})
+    }
+    static async analyze() {
+        return api.get('/products/order_analyze')
+    }
+    static async getArchiveOrders() {
+        return api.get('/products/archive_order')
+    }
+    static async archiveOrder(_id) {
+        return api.post('/products/archive_order', {_id})
+    }
+    static async deleteArchiveOrder(_id) {
+        return api.delete('/products/archive_order', {params: {_id}})
+    }
+    static async analyzeOrder(month, summa) {
+        return api.post('/products/order_analyze', {month, summa})
+    }
+    static async updateAnalyzeOrder(month, summa) {
+        return api.patch('/products/order_analyze', {month, summa})
+    }
+    static async updateStatus(_id, status) {
+        return api.patch('/products/orders', {_id, status})
+    }
+    static async userById(id) {
+        return api.get(`/products/${id}/orders`)
     }
 }

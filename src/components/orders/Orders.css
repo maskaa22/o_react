@@ -1,0 +1,75 @@
+
+.check_order {
+    /*border: 1px solid #500472;*/
+    padding: 10px;
+    width: 90%;
+    height: 100%;
+    margin: 20px 0 20px 40px;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 20px;
+}
+.center {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.filter {
+    padding: 0;
+}
+.justify-content-around {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+.select_status {
+    width: 20%;
+    margin: 0 0 10px 10px;
+}
+.status{
+    width: 70%;
+    border-radius: 5px;
+    height: 30px;
+    margin-top: 10px;
+}
+.archive {
+    background-color: #500472;
+    color: white;
+}
+.true, .hiden {
+    display: none;
+}
+
+.user {
+    border-bottom: 3px solid #500472;
+}
+.width {
+    width: 90%;
+    text-align: initial;
+}
+.select_value {
+    width: 160px;
+}
+.justify-content-between {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+.end {
+    justify-content: end;
+}
+.ожидаеться {
+    border: 3px solid red;
+}
+.принято {
+    border: 3px solid #500472;
+}
+.обработка {
+    border: 3px solid grey;
+}
+.отправленно {
+    border: 3px solid aqua;
+}
+.готово {
+    border: 3px solid green;
+}

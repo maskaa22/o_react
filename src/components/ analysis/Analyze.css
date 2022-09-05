@@ -1,0 +1,16 @@
+.analyze {
+    border: 1px solid #500472;
+    padding: 10px;
+    width: 90%;
+    height: 100%;
+    margin: 20px 0 20px 40px;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 20px;
+}
+h4 {
+    text-align: center;
+    color: #500472FF;
+    font-size: 15px;
+    margin: 0 10px;
+}

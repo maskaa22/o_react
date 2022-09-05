@@ -63,3 +63,8 @@ span {
     color: #500472FF;
     cursor: pointer;
 }
+.info {
+    display: flex;
+    align-items: center;
+    justify-content: center
+}

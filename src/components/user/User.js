@@ -9,7 +9,7 @@ export default function User ({item})
             <div className={'cell-table'}>{item.name}</div>
             <div className={'cell-table'}>{item.email}</div>
             <div className={'cell-table'}>{item.age}</div>
-            <div className={'cell-table'}><button>OK</button></div>
+            <div className={'cell-table'}><button className={'btn-ok'}>OK</button></div>
         </div>
     );
 }

@@ -5,9 +5,12 @@ import { useDispatch } from "react-redux";
 import "./AdminHomePage.css";
 import { APIServise } from "../servises";
 import { CreateProduct } from "../createProduct";
-import { EditPageAdmin } from "../editPage";
-import { StockPage } from "../stockPage";
+import { Edit } from "../editPage";
 import { Users } from "../users";
+import {Orders} from "../orders";
+import {Analysis} from "../ analysis";
+import {ArchiveOrders} from "../archive";
+
 
 export function AdminHomePage ()
 {
@@ -38,15 +41,19 @@ export function AdminHomePage ()
             <div className={'home-menu'}>
                 <div><Link to="/admin">Редактировать</Link></div>
                 <div onClick={getUser}><Link to="/admin/users">Клиенты</Link></div>
-                <div><Link to="/admin/stock">Акции</Link></div>
                 <div><Link to="/admin/product">Товары</Link></div>
+                <div><Link to="/admin/orders">Заказы</Link></div>
+                <div><Link to="/admin/archive_orders">Архив заказов</Link></div>
+                <div><Link to="/admin/analysis">Отчёты</Link></div>
             </div>
             <div className={'home-page'}>
                 <Routes>
-                    <Route path={'/'} element={<EditPageAdmin/>}/>
+                    <Route path={'/'} element={<Edit/>}/>
                     <Route path={'/users'} element={<Users items={users}/>}/>
-                    <Route path={'/stock'} element={<StockPage/>}/>
                     <Route path={'/product'} element={<CreateProduct/>}/>
+                    <Route path={'/orders'} element={<Orders/>}/>
+                    <Route path={'/archive_orders'} element={<ArchiveOrders/>}/>
+                    <Route path={'/analysis'} element={<Analysis/>}/>
                 </Routes>
             </div>
         </div>
