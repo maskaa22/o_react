@@ -5,6 +5,7 @@ import '../productsPage/ProductsPage.css'
 import { BasketCart } from "../basketCart";
 import {useEffect, useState} from "react";
 import {APIServise} from "../servises";
+import StripeCheckout from 'react-stripe-checkout';
 
 export function BasketPage ()
 {
@@ -99,6 +100,10 @@ export function BasketPage ()
                     {products}
                 </div>
 
+                <div>
+
+                </div>
+
                 <div className={'basket_check'}>
                     <div className={'summa'}>
                         <i className="fa fa-shopping-basket summaProduct" aria-hidden="true"/>
@@ -107,13 +112,13 @@ export function BasketPage ()
                     <div><button className={'check'} onClick={()=> {
 
 
-                        APIServise.setOrder(currentUser.id, currentUser.name, cart, status, summa*count, month);
-                        APIServise.dateAnalizy(month, summa)
-                        // APIServise.analyzeOrder(cart.category_id, cart.count);
 
-                         //console.log(products);//как масив сохранить в базу
-                        // console.log(summa*count);
-                        // console.log(currentUser);
+                        //
+                        // APIServise.setOrder(currentUser.id, currentUser.name, cart, status, summa*count, month);
+                        // APIServise.dateAnalizy(month, summa)
+                        //
+
+
                     }}>Оформить заказ</button></div>
                 </div>
             </div>

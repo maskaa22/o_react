@@ -53,3 +53,16 @@
 .notVisible {
     visibility: hidden;
 }
+.visible {
+    visibility: visible;
+}
+.inp {
+    position: relative;
+    top: 55px;
+    /*visibility: hidden;*/
+}
+.inp-last {
+    position: relative;
+    top: 65px;
+    visibility: visible;
+}

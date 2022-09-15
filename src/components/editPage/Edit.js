@@ -2,8 +2,11 @@ import {Input} from "../utils";
 import {FiCheck} from "react-icons/fi";
 import {APIServise} from "../servises";
 import {useSelector} from "react-redux";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import './EditPage.css'
+
+import {NewPochta} from "../newPochta";
+
 
 
 export function Edit ()
@@ -20,6 +23,10 @@ export function Edit ()
     const [numberToo, setNumberToo] = useState('');
     const [sity, setSity] = useState('');
     const [numberNP, setNumberNP] = useState('');
+    const [visibleSity, setVisibleSity] = useState('hiden');
+    const [visibleNumber, setVisibleNumber] = useState('hiden');
+
+
 
 
     const s_letters = "qwertyuiopasdfghjklzxcvbnm";
@@ -35,7 +42,7 @@ export function Edit ()
         let is_b = false;
         let is_d = false;
 
-        for (var i = 0; i < number.length; i++) {
+        for (let i = 0; i < number.length; i++) {
 
             if (!is_s && s_letters.indexOf(number[i]) !== -1) {
                 is_s = true
@@ -101,6 +108,8 @@ export function Edit ()
         }
     }
 
+
+
     return(
         <div>
             <h2>Редактирование информации</h2>
@@ -140,22 +149,10 @@ export function Edit ()
                     </div>
 
                     { role === 'user' &&
-                        <div className={'full-center'}>
-                            <div className={'newInput'}>
-                                <Input value={sity} setValue={setSity} placeholder={'Город'} type={'text'}/>
-                            </div>
-                        </div>
+                    <NewPochta setSity={setSity} setNumberNP={setNumberNP}
+                               setVisibleSity={setVisibleSity} setVisibleNumber={setVisibleNumber}/>
                     }
-                    { role === 'user' &&
-                        <div className={'full-center'}>
-                            <div className={'newInput'}>
-                                <Input value={numberNP} setValue={setNumberNP} placeholder={'№ отделения НП'} type={'number'}/>
-                            </div>
-                        </div>
-                    }
-
                 </div>
-
 
 
                 <div>
@@ -185,6 +182,14 @@ export function Edit ()
                         <FiCheck className={`icon_ok notVisible`} id={'xx'}/>
                     </div>
 
+                    <div className={'full-center'}>
+                        <div className={`newInput ${visibleSity} inp`}>
+                            <input className="input-focus" value={sity} readOnly={true}/>
+                        </div></div>
+                    <div className={'full-center'}>
+                            <div className={`newInput ${visibleNumber} inp-last`}>
+                            <input className="input-focus" value={numberNP} readOnly={true}/>
+                        </div></div>
 
                 </div>
             </div>
@@ -192,13 +197,16 @@ export function Edit ()
             <div className={'full-center'}>
                 { role==='admin' &&
                     <button className={'btn-save'} onClick={() => {
-                        APIServise.editAdminPage(currentUser._id, name, surname, email, phone, oldPassword, number, numberToo)
-                    }}>Сохранить</button>
+                        // APIServise.editAdminPage(currentUser._id, name, surname, email, phone, oldPassword, number, numberToo)
+                        APIServise.editPage(currentUser._id, name, surname, email, phone, oldPassword, number, numberToo)
+                    }}>Изменить и сохранить</button>
                  }
                 { role === 'user' &&
                     <button className={'btn-save'} onClick={() => {
-                        APIServise.editAdminPage(currentUser._id, name, surname, email, phone, oldPassword, number, numberToo)
-                    }}>Сохранить</button>
+
+                        APIServise.editPage(currentUser._id, name, surname, email, phone, oldPassword, number, numberToo,
+                            sity, numberNP)
+                    }}>Изменить и сохранить</button>
                 }
 
             </div>

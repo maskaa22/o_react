@@ -7,6 +7,7 @@ import {Count} from "../countProduct";
 import priceFormatter from "../utils/priceFormatter/priceFormatter";
 import {useState} from "react";
 
+
 export function BasketCart({product, increase, decrease, deleteProduct, changeValue}) {
 
     const dispatch = useDispatch();

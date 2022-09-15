@@ -57,8 +57,8 @@ export  class UserService {
     static async editAdminData(_id, name, surname, email, phone, oldPassword, number, numberToo) {
         return api.patch('/users', {_id, name, surname, email, phone, oldPassword, number, numberToo})
     }
-    static async editClientData() {
-        return api.patch('/users')
+    static async editData(_id, name, surname, email, phone, oldPassword, number, numberToo, nameSity, nameDepartment) {
+        return api.patch('/users', {_id, name, surname, email, phone, oldPassword, number, numberToo, nameSity, nameDepartment})
     }
 }
 export  class ProductService {
@@ -119,6 +119,6 @@ export  class OrderService {
         return api.patch('/products/orders', {_id, status})
     }
     static async userById(id) {
-        return api.get(`/products/${id}/orders`)
+        return api.get(`/products/orders`)
     }
 }

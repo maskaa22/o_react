@@ -362,10 +362,10 @@ export const deleteProduct = async (number) => {
         });
     }
 };
-export const editAdminPage = async (id, name, surname, email, phone, oldPassword, number, numberToo) => {
+export const editPage = async (id, name, surname, email, phone, oldPassword, number, numberToo, sity, numberNP) => {
     try {
 
-        const response = await UserService.editAdminData(id, name, surname, email, phone, oldPassword, number, numberToo);
+        const response = await UserService.editData(id, name, surname, email, phone, oldPassword, number, numberToo, sity, numberNP);
 
         Swal.fire({
             icon: 'success',
