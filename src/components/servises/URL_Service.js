@@ -54,11 +54,17 @@ export  class UserService {
     static async users() {
         return api.get('/users')
     }
-    static async editAdminData(_id, name, surname, email, phone, oldPassword, number, numberToo) {
-        return api.patch('/users', {_id, name, surname, email, phone, oldPassword, number, numberToo})
-    }
+    // static async editAdminData(_id, name, surname, email, phone, oldPassword, number, numberToo) {
+    //     return api.patch('/users', {_id, name, surname, email, phone, oldPassword, number, numberToo})
+    // }
     static async editData(_id, name, surname, email, phone, oldPassword, number, numberToo, nameSity, nameDepartment) {
         return api.patch('/users', {_id, name, surname, email, phone, oldPassword, number, numberToo, nameSity, nameDepartment})
+    }
+    static async editContactData(_id, name, surname, phone) {
+        return api.patch('/users/contact', {_id, name, surname, phone})
+    }
+    static async editAdressData(_id, nameSity, nameDepartment) {
+        return api.patch('/users/adress', {_id, nameSity, nameDepartment})
     }
 }
 export  class ProductService {
@@ -94,8 +100,8 @@ export  class OrderService {
         console.log(status);
         return api.get('/products/orders_filter', {params: {status}})
     }
-    static async order(user_id, user_name, cart, status, summa, month) {
-        return api.post('/products/orders', {user_id, user_name, cart, status, summa, month})
+    static async order(user_id, user_name, surname, phone, nameSity, nameDepartment, pay, cart, status, summa, month) {
+        return api.post('/products/orders', {user_id, user_name, surname, phone, nameSity, nameDepartment, pay, cart, status, summa, month})
     }
     static async analyze() {
         return api.get('/products/order_analyze')

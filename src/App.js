@@ -12,6 +12,8 @@ import {BasketPage} from "./components/basket";
 import {HomePage} from "./components/home";
 import {AboutAsPage} from "./components/aboutAs";
 import {Contacts} from "./components/contacts";
+import {useState} from "react";
+import {ModalBasket} from "./components/modal";
 
 function App() {
      const isAuth = useSelector(state => state.user.isAuth);
@@ -24,6 +26,9 @@ function App() {
     // if(!isAuth) {
     //    return <Autorization/>
     // }
+
+const activeModalBasket = useSelector(state => state.user.activeModalBasket);
+
   return (
 
         <div className={'app'}>
@@ -51,7 +56,8 @@ function App() {
                 <Route path={'products'} element={<ProductsPage/>} />
                 <Route path={'/about_as'} element={<AboutAsPage/>} />
                 <Route path={'/contact'} element={<Contacts/>} />
-                <Route path={'/products/orders'} element={<BasketPage/>}/>
+                {/*<Route path={'/products/orders'} element={<BasketPage active={activeModalBasket} setActive={setModalActiveBasket}/>}/>*/}
+                {/*<Route path={'/products/orders'} element={<ModalBasket/>}/>*/}
                 <Route path={'/admin/*'} element={<AdminHomePage/>}/>
                 <Route path={`/user/*`} element={<ClientHomePage/>}/>
 

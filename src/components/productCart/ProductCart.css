@@ -47,10 +47,12 @@ button {
 }
 .icon_basket {
     font-size: 20px;
-    color: #500472FF;
     height: 20px;
     width: 20px;
     transition: color, transform 500ms ease;
+}
+.color_purple {
+    color: #500472FF;
 }
 .icon_basket:hover{
     transform: scale(1.5);

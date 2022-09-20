@@ -21,9 +21,9 @@
     border-radius: 12px;
     background-color: white;
     width: 300px;
-
     transform: scale(0.5);
     transition: 0.4s all;
+    color: #510c76;
 }
 .modal-content.active {
     transform: scale(1);

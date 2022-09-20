@@ -33,12 +33,14 @@ export  function NewPochta ({setSity, setNumberNP, setVisibleSity, setVisibleNum
     const handleChangeSity = (event) => {
         setNameSity(event);
         setSity(event)
+
         setValue('visible')
         setVisibleSity('visible')
     };
     const handleChangeDepartment = (event) => {
         setNameDepartment(event);
         setNumberNP(event);
+
         setVisibleNumber('visible')
     };
 

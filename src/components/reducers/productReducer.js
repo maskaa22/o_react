@@ -7,11 +7,13 @@ const defaultState = {
     filter: [],
     filterFlag: false,
     categoryFlag: false,
-    page:1
+    page:1,
+    price: []
 }
 
 export default function productReducer (state = defaultState, action)
 {
+    //console.log(state);
     switch (action.type) {
         case SET_PRODUCT:
 
@@ -19,11 +21,36 @@ export default function productReducer (state = defaultState, action)
                 ...state,
                 currentProduct: [...state.currentProduct, action.payload]
             }
+
         case PRICE_PRODUCT:
             return {
                 ...state,
                 price: [...state.price, action.payload]
             }
+        // case 'DEL_PRICE':
+        //     return {
+        //         ...state,
+        //         price: state.price.filter((o, i) => i !== action.payload)
+        //     }
+        // case 'DEL_PRICE':
+        //     return {
+        //         ...state,
+        //         price: state.price.filter((o, i) => {
+        //             if(i === action.payload.index) {
+        //
+        //                action.payload.k;
+        //
+        //
+        //                 //state.price[i] = action.payload.k;
+        //
+        //             }
+        //         })
+        //     }
+        // case 'UPDATE_PRICE':
+        //     return {
+        //         ...state,
+        //         price: state.price.filter((o, i) => i !== action.payload)
+        //     }
         case DEL_PRODUCT:
             return {
                 ...state,

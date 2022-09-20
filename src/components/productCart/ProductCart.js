@@ -1,7 +1,7 @@
 import {useDispatch, useSelector} from "react-redux";
 
 import './ProductCart.css'
-import {setProduct} from "../reducers/actionCreators";
+import {priceProduct, setProduct} from "../reducers/actionCreators";
 import {MdOutlineShoppingCart} from "react-icons/md";
 
 export function ProductCart({product}) {
@@ -26,10 +26,11 @@ export function ProductCart({product}) {
                         })
                         if(!isInArray) {
                             dispatch(setProduct(product));
+                            dispatch(priceProduct(product.totalPrice));
                         }
 
                     }}>
-                        <MdOutlineShoppingCart className=" icon_basket"/>
+                        <MdOutlineShoppingCart className=" icon_basket color_purple"/>
                     </button></div>
                 </div>
             </div>

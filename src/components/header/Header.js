@@ -3,8 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 
 import "./Header.css";
 import { APIServise } from "../servises";
-import { delFilter } from "../reducers/actionCreators";
+import {delFilter, modalActiveBasket, setUser} from "../reducers/actionCreators";
 import {useState} from "react";
+import {BsBasket2} from "react-icons/bs";
+import {GiExitDoor} from "react-icons/gi";
+import {IoMdExit} from "react-icons/io";
+import {ImUserPlus} from "react-icons/im";
+import {RiMapPinUserFill} from "react-icons/ri";
+import * as React from "react";
+import {store} from "../reducers";
+import {BasketPage} from "../basket";
 
 
 export function Header() {
@@ -32,7 +40,7 @@ export function Header() {
     //     // console.log(role);
     // }
 
-
+    const [activeModalBasket, setModalActiveBasket] = useState(false);
     return (
         <div className={'header'}>
             <div className={'navbar'}>
@@ -54,15 +62,15 @@ export function Header() {
                 <div className={'navbar-header'}><NavLink to={'/about_as'}>О нас</NavLink></div>
                 <div className={'navbar-header'}><NavLink to={'/contact'}>Контакты</NavLink></div>
 
-                <div className={'navbar_serveses'}><img className=" icon_basket" src={require('../../icons/icon-login.png')}/>
+                <div className={'navbar_serveses'}><IoMdExit className=" icon_basket white"/>
                     <div className={'drop_down__menu login_pozition'}>
                         {!isAuth &&
                         <div className={'drop_down__item'}><NavLink to={'/login'}>
-                            <img className=" icon_basket" src={require('../../icons/icon-avatar.png')}/> Вход</NavLink>
+                            <RiMapPinUserFill className=" icon_basket white"/> Вход</NavLink>
                         </div>}
                         {!isAuth &&
                         <div className={'drop_down__item'}><NavLink to={'/registration'}>
-                            <img className=" icon_basket" src={require('../../icons/icon-register.png')}/>Регистрация</NavLink>
+                            <ImUserPlus className=" icon_basket white"/>Регистрация</NavLink>
                         </div>}
 
                         {isAuth && role==='admin' && <div className={'drop_down__item'}><NavLink to={'/admin'}> Кабинет</NavLink></div>}
@@ -74,14 +82,21 @@ export function Header() {
                             dispatch(APIServise.logout());
                             localStorage.removeItem('autorization')
                         }}><NavLink to={'/logout'}>
-                            <img className=" icon_basket" src={require('../../icons/icon-logout.png')}/> Выход</NavLink></div>}
+                            <GiExitDoor className=" icon_basket white"/> Выход</NavLink></div>}
                     </div>
                 </div>
 
 
-                <div><NavLink to={'/products/orders'}>Корзина</NavLink></div>
+                {/*<div onClick={()=> {*/}
+                {/*    store.dispatch(modalActiveBasket());*/}
+                {/*}}><NavLink to={'/products/orders'}><BsBasket2 className=" icon_basket white"/></NavLink></div>*/}
 
+                <div onClick={()=> {
+                    setModalActiveBasket(true)
+                }}><BsBasket2 className=" icon_basket white"/></div>
             </div>
+            <BasketPage active={activeModalBasket} setActive={setModalActiveBasket}/>
+
         </div>
     );
 }

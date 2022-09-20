@@ -3,6 +3,7 @@ import axios from 'axios';
 import {URL} from "../../config";
 import {CategoryService, UserService, ProductService, AuthService, OrderService} from './URL_Service'
 import {filterProduct, setProduct, setUser, setRole, userLogout} from "../reducers/actionCreators";
+import {store} from "../reducers";
 
 const Swal = require('sweetalert2');
 
@@ -12,7 +13,7 @@ export const login = (email, password) => {
         try {
             const response = await AuthService.login(email, password);
 
-//console.log(response.data.user.role);
+// console.log(response.data.user);
             localStorage.setItem('token', response.data.access_token);
             dispatch(setUser(response.data.user));
             dispatch(setRole(response.data.user.role));
@@ -166,10 +167,10 @@ return async dispatch => {
     }
 }
 };
-export const setOrder = async (user_id, user_name, cart, status, summa, month) => {
+export const setOrder = async (user_id, user_name, surname, phone, nameSity, nameDepartment, pay, cart, status, summa, month) => {
     try {
-
-        const response = await OrderService.order(user_id, user_name, cart, status, summa, month);
+console.log(cart);
+        //const response = await OrderService.order(user_id, user_name, surname, phone, nameSity, nameDepartment, pay, cart, status, summa, month);
 
         Swal.fire({
             icon: 'success',
@@ -178,7 +179,7 @@ export const setOrder = async (user_id, user_name, cart, status, summa, month) =
             timer: 3500
         });
 
-        return response.data;
+        return 'response.data';
     } catch (e) {
         Swal.fire({
             title: 'Ошибка!',
@@ -245,12 +246,12 @@ export const dateAnalizy = async (month, summa) => {
 
         const response = await OrderService.analyzeOrder(month, summa);
 
-        Swal.fire({
-            icon: 'success',
-            title: 'Статус изменён',
-            showConfirmButton: false,
-            timer: 3500
-        });
+        // Swal.fire({
+        //     icon: 'success',
+        //     title: 'Статус изменён',
+        //     showConfirmButton: false,
+        //     timer: 3500
+        // });
 
         return response.data;
     } catch (e) {
@@ -366,6 +367,56 @@ export const editPage = async (id, name, surname, email, phone, oldPassword, num
     try {
 
         const response = await UserService.editData(id, name, surname, email, phone, oldPassword, number, numberToo, sity, numberNP);
+
+        Swal.fire({
+            icon: 'success',
+            title: 'Готово',
+            showConfirmButton: false,
+            timer: 3500
+        });
+
+        return response.data;
+    } catch (e) {
+        Swal.fire({
+            title: 'Ошибка!',
+            text: e.response.data.message,
+            icon: 'error',
+            confirmButtonText: 'Ok',
+            confirmButtonColor: '#500472FF'
+        });
+    }
+};
+export const editContactData = async (id, name, surname, phone) => {
+        try {
+
+            const response = await UserService.editContactData(id, name, surname, phone);
+
+            store.dispatch(setUser(response.data));
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Готово',
+                showConfirmButton: false,
+                timer: 3500
+            });
+
+            return response.data;
+        } catch (e) {
+            Swal.fire({
+                title: 'Ошибка!',
+                text: e.response.data.message,
+                icon: 'error',
+                confirmButtonText: 'Ok',
+                confirmButtonColor: '#500472FF'
+            });
+        }
+};
+export const editAdressData = async (id, sity, numberNP) => {
+    try {
+
+        const response = await UserService.editAdressData(id, sity, numberNP);
+
+        store.dispatch(setUser(response.data));
 
         Swal.fire({
             icon: 'success',

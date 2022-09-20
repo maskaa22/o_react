@@ -4,7 +4,7 @@ const defaultState = {
     currentUser: {},
     isAuth: false,
     role: '',
-    isLoading: false
+    isLoading: false,
 }
 
 export default function userReducer (state = defaultState, action)
