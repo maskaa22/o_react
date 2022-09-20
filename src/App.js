@@ -57,7 +57,7 @@ const activeModalBasket = useSelector(state => state.user.activeModalBasket);
                 <Route path={'/about_as'} element={<AboutAsPage/>} />
                 <Route path={'/contact'} element={<Contacts/>} />
                 {/*<Route path={'/products/orders'} element={<BasketPage active={activeModalBasket} setActive={setModalActiveBasket}/>}/>*/}
-                {/*<Route path={'/products/orders'} element={<ModalBasket/>}/>*/}
+                <Route path={'/products/orders'} element={<BasketPage/>}/>
                 <Route path={'/admin/*'} element={<AdminHomePage/>}/>
                 <Route path={`/user/*`} element={<ClientHomePage/>}/>
 

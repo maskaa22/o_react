@@ -24,16 +24,15 @@ export function BasketPage ({active, setActive})
     const currentProduct = useSelector(state => state.product.currentProduct);
     const currentUser = useSelector(state => state.user.currentUser);
 
-   // const [count, setCount] = useState();
-   // const [cart, setCart] = useState(currentProduct);
+    const [count, setCount] = useState();
+    const [cart, setCart] = useState(currentProduct);
     const [status, setStatus] = useState('');
     const [pay, setPay] = useState('');
 
-const cart = currentProduct.concat();
-//console.log(cart);
+
 
     useEffect(() => {
-       // setCount(1);
+        setCount(1);
         setStatus('ожидаеться')
     }, []);
     let [lastCount, setLastCount] = useState(1);
@@ -45,155 +44,115 @@ const cart = currentProduct.concat();
         summa += Number.parseFloat(el.totalPrice)
     })
 
-    // const increase = (id) => {
-    //     setCart((cart) => {
-    //         return cart.map((product) => {
-    //             if (product._id === id) {
-    //                 return {
-    //                     ...product,
-    //                     count: +product.count + 1,
-    //                     totalPrice: (+product.count + 1) * product.price,
-    //                 };
-    //             }
-    //             return product
-    //         })
-    //     })
-    // }
+    const increase = (id) => {
+        setCart((cart) => {
+            return cart.map((product) => {
 
-    // const decrease = (id) => {
-    //     setCart((cart) => {
-    //         console.log(cart);
-    //         return cart.map((product) => {
-    //
-    //             if (product.id === id) {
-    //                 const newCount = product.count - 1 > 1 ? product.count - 1 : 1;
-    //                 return {
-    //                     ...product,
-    //                     count: newCount,
-    //                     totalPrice: newCount * product.price,
-    //                 };
-    //             }
-    //             return product
-    //         })
-    //     })
-    // }
-    // const deleteProduct = (id) => {
-    //     setCart((cart) => cart.filter((product)=> id !== product.id));
-    // }
+                if (product._id === id) {
+                    console.log(product);
+                    return {
+                        ...product,
+                        count: +product.count + 1,
+                        totalPrice: (+product.count + 1) * product.price,
+                    };
+                }
+                return product
+            })
+        })
+    }
 
-    // const changeValue = (id, value) => {
-    //     setCart((cart) => {
-    //         return cart.map((product) => {
-    //             if (product._id === id) {
-    //                 return {
-    //                     ...product,
-    //                     count: value,
-    //                     totalPrice: value * product.price
-    //                 }
-    //             }
-    //             return product
-    //         })
-    //     })
-    // }
+    const decrease = (id) => {
+        setCart((cart) => {
+            console.log(cart);
+            return cart.map((product) => {
 
-    // const products = cart.map((product, i) => {
-    //     return (
-    //         <BasketCart
-    //             product={product}
-    //             key={i}
-    //             deleteProduct={deleteProduct}
-    //             increase={increase}
-    //             decrease={decrease}
-    //             changeValue={changeValue}
-    //         />
-    //     );
-    // })
+                if (product.id === id) {
+                    const newCount = product.count - 1 > 1 ? product.count - 1 : 1;
+                    return {
+                        ...product,
+                        count: newCount,
+                        totalPrice: newCount * product.price,
+                    };
+                }
+                return product
+            })
+        })
+    }
+    const deleteProduct = (id) => {
+        setCart((cart) => cart.filter((product)=> id !== product.id));
+    }
+
+    const changeValue = (id, value) => {
+        setCart((cart) => {
+            return cart.map((product) => {
+                if (product._id === id) {
+                    return {
+                        ...product,
+                        count: value,
+                        totalPrice: value * product.price
+                    }
+                }
+                return product
+            })
+        })
+    }
+
+    const products = cart.map((product, i) => {
+        return (
+            <BasketCart
+                product={product}
+                key={i}
+                deleteProduct={deleteProduct}
+                increase={increase}
+                decrease={decrease}
+                changeValue={changeValue}
+            />
+        );
+    })
 
     const month = new Date().toLocaleString('default', { month: 'long' });
 
 
 
-  //  let [newProduct, setNewProduct] = useState({});
-
-
-
-
     function showCheck() {
         return(
-            <div className={active ? 'modal active': 'modal'} onClick={()=> setActive(false)}>
-                <div className={active ? 'modal_content_basket active': 'modal_content_basket'} onClick={e=>e.stopPropagation()}>
-                    <div className={'close'} onClick={()=> setActive(false)}><i className="fa fa-times" aria-hidden="true"/></div>
+            <div >
+                <div  >
+                    <div/>
 
-                {/*<div className={'roww'}>*/}
-                {/*    {currentProduct.map((product, i) => {*/}
-                {/*        return (*/}
-                {/*            <BasketCart*/}
-                {/*                product={product}*/}
-                {/*                key={i}*/}
-                {/*               // deleteProduct={deleteProduct}*/}
-                {/*                //setNewProduct={setNewProduct}*/}
-                {/*                // increase={increase}*/}
-                {/*                // decrease={decrease}*/}
-                {/*                // changeValue={changeValue}*/}
-                {/*                 setLastCount={setLastCount}*/}
-                {/*                index={i}*/}
-                {/*            />*/}
-                {/*        );*/}
-                {/*    })}*/}
-                {/*</div>*/}
 
-                    <div className={'roww'}>
-                        {cart.map((product, i) => {
-                            return (
-                                <BasketCart
-                                    product={product}
-                                    key={i}
-                                    // deleteProduct={deleteProduct}
-                                    //setNewProduct={setNewProduct}
-                                    // increase={increase}
-                                    // decrease={decrease}
-                                    // changeValue={changeValue}
-                                    setLastCount={setLastCount}
-                                    index={i}
-                                />
-                            );
-                        })}
+                    <div className={'row'}>
+                        {product}
                     </div>
 
-                <InfoForBuy money={summa*lastCount} setPay={setPay}/>
+                    <InfoForBuy money={summa*lastCount} setPay={setPay}/>
 
 
-                <div className={'basket_check flex_space_between btn_last'}>
-                    <div className={'summa'}>
-                        <i className="fa fa-shopping-basket summaProduct" aria-hidden="true"/>
-                        {summa*lastCount} грн.
+                    <div className={'basket_check flex_space_between btn_last'}>
+                        <div className={'summa'}>
+                            <i className="fa fa-shopping-basket summaProduct" aria-hidden="true"/>
+                            {summa*lastCount} грн.
+                        </div>
+                        <div><button className={'check'} onClick={()=> {
+                            // APIServise.setOrder(currentUser.id, currentUser.name, currentUser.surname, currentUser.phone,
+                            //    currentUser.nameSity, currentUser.nameDepartment, pay,
+                            //     currentProduct, setLastCount,
+                            //     //cart,
+                            //     status,
+                            //     //summa*count,
+                            //     summa*lastCount,  month);
+
+                            //APIServise.dateAnalizy(month, summa)
+
+                        }}>Оформить заказ</button></div>
                     </div>
-                    <div><button className={'check'} onClick={()=> {
-
-                        APIServise.setOrder(currentUser.id, currentUser.name, currentUser.surname, currentUser.phone,
-                           currentUser.nameSity, currentUser.nameDepartment, pay,
-                            currentProduct, setLastCount,
-                            //cart,
-                            status,
-                            //summa*count,
-                            summa*lastCount,  month);
-
-                        //APIServise.dateAnalizy(month, summa)
-
-                    }}>Оформить заказ</button></div>
                 </div>
-            </div>
             </div>
         )
     }
-
     function showNothing() {
         return (
-            <div className={active ? 'modal active': 'modal'} onClick={()=> setActive(false)}>
-                <div className={active ? 'modal-content modal_content_basket active': 'modal-content'} onClick={e=>e.stopPropagation()}>
-                    <h1>Товаров нет</h1>
-                </div></div>
-
+                <h1>Товаров нет</h1>
         )
     }
 

@@ -15,7 +15,30 @@ import {store} from "../reducers";
 import {BasketPage} from "../basket";
 
 
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+};
+
 export function Header() {
+
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
+
     const isAuth = useSelector(state => state.user.isAuth);
     const role = useSelector(state => state.user.role);
     const currentUser = useSelector(state => state.user.currentUser);
@@ -86,16 +109,36 @@ export function Header() {
                     </div>
                 </div>
 
+                <div className={'navbar-header'}><NavLink to={'/products/orders'}>
+                    <BsBasket2 className=" icon_basket white"/></NavLink></div>
+
 
                 {/*<div onClick={()=> {*/}
                 {/*    store.dispatch(modalActiveBasket());*/}
                 {/*}}><NavLink to={'/products/orders'}><BsBasket2 className=" icon_basket white"/></NavLink></div>*/}
 
-                <div onClick={()=> {
-                    setModalActiveBasket(true)
-                }}><BsBasket2 className=" icon_basket white"/></div>
+                {/*<div onClick={()=> {*/}
+                {/*    setModalActiveBasket(true)*/}
+                {/*}}><BsBasket2 className=" icon_basket white"/></div>*/}
+
             </div>
-            <BasketPage active={activeModalBasket} setActive={setModalActiveBasket}/>
+            {/*<BasketPage active={activeModalBasket} setActive={setModalActiveBasket}/>*/}
+            {/*<Button onClick={handleOpen}>Open modal</Button>*/}
+            {/*<Modal*/}
+            {/*    open={open}*/}
+            {/*    onClose={handleClose}*/}
+            {/*    aria-labelledby="modal-modal-title"*/}
+            {/*    aria-describedby="modal-modal-description"*/}
+            {/*>*/}
+            {/*    <Box sx={style}>*/}
+            {/*        /!*<Typography id="modal-modal-title" variant="h6" component="h2">*!/*/}
+            {/*        /!*    Text in a modal*!/*/}
+            {/*        /!*</Typography>*!/*/}
+            {/*        <Typography id="modal-modal-description" sx={{ mt: 2 }}>*/}
+            {/*            <BasketPage />*/}
+            {/*        </Typography>*/}
+            {/*    </Box>*/}
+            {/*</Modal>*/}
 
         </div>
     );

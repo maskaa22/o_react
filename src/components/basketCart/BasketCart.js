@@ -9,7 +9,7 @@ import {useEffect, useState} from "react";
 
 
 export function BasketCart({product, deleteProduct, index,
-                               //increase, decrease, changeValue,
+                               increase, decrease, changeValue,
                                setLastCount,
                                //setNewProduct
 }) {
@@ -41,15 +41,17 @@ export function BasketCart({product, deleteProduct, index,
                         <div className={'info_card'}>{product.title}</div>
                     </div>
 
-                    <Count setLastCount={setLastCount} price={product.price} setPrice={setPrice} product={product}
-                           //setNewCount={setNewCount}
-                           //increase={increase} id={product._id} decrease={decrease} changeValue={changeValue}
-                    />
+                    <Count count={product.count} increase={increase} decrease={decrease} id={product._id}  changeValue={changeValue}/>
+
+                    {/*<Count setLastCount={setLastCount} price={product.price} setPrice={setPrice} product={product}*/}
+                    {/*       //setNewCount={setNewCount}*/}
+                    {/*       //increase={increase} id={product._id} decrease={decrease} changeValue={changeValue}*/}
+                    {/*/>*/}
 
                 </div>
                 <div className={'flex_buy'}>
-                    {/*<div className={'info_card'}>{priceFormatter.format(product.totalPrice)} грн.</div>*/}
-                    <div className={'info_card'}>{priceFormatter.format(price)} грн.</div>
+                    <div className={'info_card'}>{priceFormatter.format(product.totalPrice)} грн.</div>
+                    {/*<div className={'info_card'}>{priceFormatter.format(price)} грн.</div>*/}
                     <div className={'buy'}>
                         <button onClick={() => {
                             //dispatch(delProduct(product._id));
