@@ -3,10 +3,11 @@
     justify-content: center;
 }
 .user-table {
-    width: 600px;
+    width: 90%;
     height: 100%;
     background-color: white;
     border-radius: 5px;
+    border: 2px solid #79cbb8;
 }
 .name-table {
     height: 40px;
@@ -27,7 +28,7 @@
     padding: 10px;
     font-size: 15px;
     font-weight: bolder;
-    color: #510c76;
+    color: #47008e;
 }
 .btn-ok {
     border-radius: 5px;

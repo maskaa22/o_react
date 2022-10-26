@@ -1,24 +1,18 @@
-import {useDispatch, useSelector} from "react-redux";
 import * as React from 'react';
+import axios from "axios";
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 import './BasketPage.css'
 import '../productsPage/ProductsPage.css'
-import { BasketCart } from "../basketCart";
-import {useEffect, useState} from "react";
 import {APIServise} from "../servises";
-import StripeCheckout from "react-stripe-checkout";
-import {Input} from "../utils";
-import {NewPochta} from "../newPochta";
-// import StripeCheckout from 'react-stripe-checkout';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import {FiCheckCircle} from "react-icons/fi";
+import {BasketCart} from "../basketCart";
+import {delAllProduct} from "../reducers/actionCreators";
 import {InfoForBuy} from "../infoForBuy";
+import {store} from "../reducers";
 
-export function BasketPage ({active, setActive})
-{
+export function BasketPage({active, setActive}) {
     const dispatch = useDispatch();
 
     const currentProduct = useSelector(state => state.product.currentProduct);
@@ -30,17 +24,14 @@ export function BasketPage ({active, setActive})
     const [pay, setPay] = useState('');
 
 
-
     useEffect(() => {
         setCount(1);
-        setStatus('ожидаеться')
+        setStatus('очікується')
     }, []);
-    let [lastCount, setLastCount] = useState(1);
+    //let [lastCount, setLastCount] = useState(1);
     let summa = 0;
 
-    currentProduct.forEach(el =>
-    {
-        //console.log(el);
+    cart.forEach(el => {
         summa += Number.parseFloat(el.totalPrice)
     })
 
@@ -49,7 +40,7 @@ export function BasketPage ({active, setActive})
             return cart.map((product) => {
 
                 if (product._id === id) {
-                    console.log(product);
+
                     return {
                         ...product,
                         count: +product.count + 1,
@@ -79,7 +70,7 @@ export function BasketPage ({active, setActive})
         })
     }
     const deleteProduct = (id) => {
-        setCart((cart) => cart.filter((product)=> id !== product.id));
+        setCart((cart) => cart.filter((product) => id !== product.id));
     }
 
     const changeValue = (id, value) => {
@@ -97,70 +88,110 @@ export function BasketPage ({active, setActive})
         })
     }
 
-    const products = cart.map((product, i) => {
-        return (
-            <BasketCart
-                product={product}
-                key={i}
-                deleteProduct={deleteProduct}
-                increase={increase}
-                decrease={decrease}
-                changeValue={changeValue}
-            />
-        );
-    })
+    // const products = cart.map((product, i) => {
+    //     return (
+    //         <BasketCart
+    //             product={product}
+    //             key={i}
+    //             deleteProduct={deleteProduct}
+    //             increase={increase}
+    //             decrease={decrease}
+    //             changeValue={changeValue}
+    //
+    //             money={summa*count} setPay={setPay}
+    //         />
+    //     );
+    // })
 
-    const month = new Date().toLocaleString('default', { month: 'long' });
+    const month = new Date().toLocaleString('uk-UA', {month: 'long'});
+    const navigate = useNavigate();
+    const handleCheckout = () => {
+        const url = "http://localhost:5000";
+        axios
+            .post(`${url}/create-checkout-session`, {
+                cart,
+                userId: currentUser._id,
+            })
+            .then((response) => {
+                console.log(response);
+                if (response.data.url) {
+                    window.location.href = response.data.url;
+                }
 
+            })
+            .catch((err) => console.log(err.message));
+    };
 
+    //const [id, setId] = useState([]);
 
     function showCheck() {
-        return(
-            <div >
-                <div  >
+        return (
+            <div>
+                <div>
                     <div/>
 
 
-                    <div className={'row'}>
-                        {product}
+                    <div className={'basket_check btn_last'}>
+                        {/*{products}*/}
+                        {
+                            cart.map((product, i) => {
+                                return (
+                                    <BasketCart
+                                        product={product}
+                                        key={i}
+                                        deleteProduct={deleteProduct}
+                                        increase={increase}
+                                        decrease={decrease}
+                                        changeValue={changeValue}
+
+                                        money={summa * count} setPay={setPay}
+                                    />
+                                );
+                            })
+                        }
                     </div>
 
-                    <InfoForBuy money={summa*lastCount} setPay={setPay}/>
+                    <InfoForBuy money={summa * count} setPay={setPay} cart={cart}/>
 
 
                     <div className={'basket_check flex_space_between btn_last'}>
                         <div className={'summa'}>
                             <i className="fa fa-shopping-basket summaProduct" aria-hidden="true"/>
-                            {summa*lastCount} грн.
+                            {summa * count} грн.
                         </div>
-                        <div><button className={'check'} onClick={()=> {
-                            // APIServise.setOrder(currentUser.id, currentUser.name, currentUser.surname, currentUser.phone,
-                            //    currentUser.nameSity, currentUser.nameDepartment, pay,
-                            //     currentProduct, setLastCount,
-                            //     //cart,
-                            //     status,
-                            //     //summa*count,
-                            //     summa*lastCount,  month);
+                        <div>
+                            <button className={'check'} onClick={() => {
+                                APIServise.setOrder(currentUser.id, currentUser.name, currentUser.surname, currentUser.phone,
+                                    currentUser.nameSity, currentUser.nameDepartment, pay, cart, status, summa * count, month);
+                                if (pay === 'Готівка') {
+                                    navigate("/products")
+                                    store.dispatch(delAllProduct())
+                                }
+                                if (pay !== '' && pay !== 'Готівка') {
+                                    handleCheckout()
+                                }
+                                APIServise.dateAnalizy(month, summa)
 
-                            //APIServise.dateAnalizy(month, summa)
-
-                        }}>Оформить заказ</button></div>
+                            }}>Оформить заказ
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         )
     }
+
     function showNothing() {
         return (
-                <h1>Товаров нет</h1>
+            <h1>Товаров нет</h1>
         )
     }
 
-    return(
+    return (
         <div>
             {
-                currentProduct.length>0?
-                    showCheck():showNothing()
+                currentProduct.length > 0 ?
+                    showCheck() : showNothing()
             }
         </div>
 

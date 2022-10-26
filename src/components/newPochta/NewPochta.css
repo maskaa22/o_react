@@ -27,7 +27,7 @@
     display: inline-block;
     position: absolute;
     top: calc(50% - 9px);
-    right: 19px;
+    right: -10px;
     width: 11px;
     height: 11px;
 }
@@ -39,11 +39,9 @@
     display: block;
     height: 36px;
     width: 100%;
-    padding: 0 16px;
     background: #fff;
-    border: 1px solid transparent;
+    border-bottom: 3px solid #47008e;
     box-shadow: 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.15);
-    border-radius: 3px;
     outline: none;
     font-family: "Noto Sans", sans-serif;
     font-size: 14px;

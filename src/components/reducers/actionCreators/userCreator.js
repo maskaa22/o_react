@@ -1,5 +1,5 @@
-import {SET_USER, LOGOUT, SET_ROLE} from '../actionTypes'
+import {LOGOUT, SET_ROLE, SET_USER} from '../actionTypes'
 
-export const setUser = (user) => ({type: SET_USER, payload: user})
-export const setRole = (role) => ({type: SET_ROLE, payload: role})
 export const userLogout = () => ({type: LOGOUT})
+export const setRole = (role) => ({type: SET_ROLE, payload: role})
+export const setUser = (user) => ({type: SET_USER, payload: user})

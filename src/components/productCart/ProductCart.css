@@ -21,6 +21,7 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     /*background-color: #f1f1f1;*/
     background-color: #79CBB8FF;
+    border-radius: 5px;
 }
 
 img {
@@ -52,7 +53,7 @@ button {
     transition: color, transform 500ms ease;
 }
 .color_purple {
-    color: #500472FF;
+    color: #47008e;
 }
 .icon_basket:hover{
     transform: scale(1.5);
@@ -62,7 +63,7 @@ span {
 }
 .count {
     font-size: 20px;
-    color: #500472FF;
+    color: #47008e;
     cursor: pointer;
 }
 .info {

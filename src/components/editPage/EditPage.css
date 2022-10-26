@@ -18,7 +18,7 @@
     margin: 20px;
     border-radius: 5px;
     width: 40%;
-    color: #510c76;
+    color: #47008e;
     font-size: 20px;
 }
 #block_check {
@@ -35,7 +35,7 @@
     transform: scale(1.01);
 }
 ::-webkit-input-placeholder {
-    color: #500472FF;
+    color: #47008e;
     font-weight: 700;
 }
 .last {
@@ -47,7 +47,7 @@
 .icon_ok {
     position: relative;
     left: 10px;
-    color: green;
+    color: #79cbb8;
     font-size: 20px;
 }
 .notVisible {
@@ -65,4 +65,10 @@
     position: relative;
     top: 65px;
     visibility: visible;
+}
+.border-box {
+    margin: 20px 0 20px 0;
+    border: 3px solid #79cbb8;
+    width: 93%;
+    border-radius: 5px;
 }

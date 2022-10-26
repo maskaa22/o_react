@@ -1,20 +1,18 @@
-import './Orders.css'
 import {useSelector} from "react-redux";
-import {useState} from "react";
 
-export default function Cart ({cart})
-{
+import './Orders.css'
+
+export default function Cart({cart}) {
     const role = useSelector(state => state.user.role);
 
-
-    return(
+    return (
         <div>
             {
-                cart.map(c=>
+                cart.map(c =>
                     <div key={c._id} className={'justify-content-around'}>
                         <div>
-                            {role==='admin' && <li>Инв. № - {c.inventoryNumber}</li>}
-                            {role==='user' && <li>{c.product_name}</li>}
+                            {role === 'admin' && <li>Инв. № - {c.inventoryNumber}</li>}
+                            {role === 'user' && <li>{c.product_name}</li>}
                         </div>
 
                         <div>

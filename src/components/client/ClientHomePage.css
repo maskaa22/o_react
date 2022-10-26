@@ -6,10 +6,11 @@
 .home-menu {
     height: 600px;
     width: 20%;
-    background-color: pink;
+    padding: 15px 0 0 15px;
+    /*background-color: pink;*/
 }
 .home-page {
     height: 600px;
     width: 80%;
-    background-color: antiquewhite;
+    /*background-color: antiquewhite;*/
 }

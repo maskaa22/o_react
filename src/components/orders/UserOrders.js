@@ -1,6 +1,6 @@
-import Cart from "./Cart";
-
 import * as React from "react";
+
+import Cart from "./Cart";
 
 export  function UserOrders ({orders})
 {
@@ -10,9 +10,9 @@ export  function UserOrders ({orders})
             {
                 orders?.map((order, i)=>
                     <div key={order._id} className={`check_order ${order.status}`}>
-                        <div className={'center'}><div>Заказ № {i+1}</div></div>
+                        <div className={'center'}><div>Замовлення № {i+1}</div></div>
                         <Cart cart={order.cart}/>
-                        <div className={'center'}><div className={'width'}>Общая сумма: {order.summa}</div></div>
+                        <div className={'center'}><div className={'width'}>Загальна сума: {order.summa}</div></div>
                         <div className={'center'}><div className={'width justify-content-between'}>Статус: {order.status}
 
                         </div></div>

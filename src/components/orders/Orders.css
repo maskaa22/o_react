@@ -2,7 +2,7 @@
 .check_order {
     /*border: 1px solid #500472;*/
     padding: 10px;
-    width: 90%;
+    width: 93%;
     height: 100%;
     margin: 20px 0 20px 40px;
     border-radius: 5px;
@@ -33,7 +33,7 @@
     margin-top: 10px;
 }
 .archive {
-    background-color: #500472;
+    background-color: #47008e;
     color: white;
 }
 .true, .hiden {
@@ -41,7 +41,7 @@
 }
 
 .user {
-    border-bottom: 3px solid #500472;
+    border-bottom: 3px solid #47008e;
 }
 .width {
     width: 90%;
@@ -49,6 +49,17 @@
 }
 .select_value {
     width: 160px;
+}
+.select_all_border {
+    border: 2px solid #47008e;
+}
+.select_status_label label {
+    color: #47008e;
+    font-weight: bold;
+    font-size: 20px;
+}
+.select_status_color_label label {
+    color: black;
 }
 .justify-content-between {
     display: flex;
@@ -58,18 +69,21 @@
 .end {
     justify-content: end;
 }
-.ожидаеться {
-    border: 3px solid red;
+.color_label {
+    color: #47008e;
 }
-.принято {
-    border: 3px solid #500472;
+.очікується {
+    border: 3px solid #d400cb;
 }
-.обработка {
-    border: 3px solid grey;
+.прийнято {
+    border: 3px solid #5400a8;
 }
-.отправленно {
-    border: 3px solid aqua;
+.обробка {
+    border: 3px solid #648da594;
+}
+.відправлено {
+    border: 3px solid #c489ff;
 }
 .готово {
-    border: 3px solid green;
+    border: 3px solid #79cbb8;
 }

@@ -6,10 +6,28 @@
 .home-menu {
     height: 600px;
     width: 20%;
-    background-color: pink;
+    /*background-color: pink;*/
+    padding-top: 15px;
 }
 .home-page {
     height: 600px;
     width: 80%;
-    background-color: antiquewhite;
+    /*background-color: antiquewhite;*/
+}
+.home_item {
+    width: 100%;
+    padding: 5px;
+    border: 2px solid #47008e;
+    border-radius: 5px;
+    color: #47008e;
+    cursor: pointer;
+    background-color: white;
+    font-size: 15px;
+    text-align: start;
+
+}
+.active-item {
+    border-color: #79CBB8FF;
+    background-color: #79cbb8;
+    color: white;
 }

@@ -1,25 +1,20 @@
-import {useEffect, useState} from "react";
 import * as React from "react";
-import {APIServise} from "../servises"
+import {useEffect, useState} from "react";
+
 import './Analyze.css'
-
-import useCustTooltip from "bx-tooltip";
-import { Chart, Geom, Axis, Tooltip,  Legend, Coord } from "bizcharts";
-
-import {Analys_status_order} from "./Analys_status_order";
-import {Analys_sel_for_kategory} from "./Analys_sel_for_kategory";
 import {Analys_profit} from "./Analys_profit";
+import {Analys_status_order} from "./Analys_status_order";
+import {APIServise} from "../servises"
+import {ELSXFunction} from "../utils/function";
 
-
-export  function Analysis ()
-{
+export function Analysis() {
 
     const [orders, setOrders] = useState();
     const [analyze, setAnalyze] = useState();
 
 
     useEffect(() => {
-        APIServise.getOrders().then(respons => {
+        APIServise.getOrdersByVisualAnaliz().then(respons => {
             setOrders(respons.data)
         });
         APIServise.getAnalyze().then(respons => {
@@ -27,17 +22,35 @@ export  function Analysis ()
         });
     }, []);
 
+    const HeadingAnalyze = [
+        {
+            month: "Місяць",
+            summa: "Сумма"
+        }
+    ];
+    const HeadingOrder = [
+        {
+            status: "Статус",
+            summa: "Сумма"
+        }
+    ];
 
-    return(
+    return (
         <div>
-            <h2>Отчёты</h2>
-
-            <h4>График прибыли по месяцам</h4>
-                <Analys_profit analyze={analyze}/>
+            <h2>Звіти</h2>
 
 
-            <h4>График статусов по суммах заказов</h4>
-                <Analys_status_order data={orders}/>
+            <h4>Графік прибутку по місяцях</h4>
+            <div className={'div_btn_analyz'}>
+                <button className={'btn_analyz'} onClick={() => ELSXFunction(HeadingAnalyze, analyze, 'Звіт прибутку.xlsx')}>Експортувати прибутки в EXEL</button>
+            </div>
+            <Analys_profit analyze={analyze}/>
+
+            <h4>Графік сум заказів по статусах</h4>
+            <div className={'div_btn_analyz'}>
+                <button className={'btn_analyz'} onClick={() => ELSXFunction(HeadingOrder, orders, 'Звіт статусів.xlsx')}>Експортувати статуси в EXEL</button>
+            </div>
+            <Analys_status_order data={orders}/>
         </div>
 
     );

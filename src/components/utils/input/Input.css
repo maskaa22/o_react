@@ -1,11 +1,11 @@
 input {
     border: none;
-    border-bottom: #500472FF solid 3px;
+    border-bottom: #47008e solid 3px;
     background: transparent;
     width: 100%;
     margin: 10px 20px;
     padding: 3px;
-    color: #500472FF;
+    color: #47008e;
     font-weight: 700;
 }
 .input-focus:focus {
@@ -13,7 +13,7 @@ input {
     transform: scale(1.01);
 }
 ::-webkit-input-placeholder {
-    color: #500472FF;
+    color: #47008e;
     font-weight: 700;
 }
 

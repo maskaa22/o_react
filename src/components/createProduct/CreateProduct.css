@@ -14,7 +14,7 @@
     height: 200px;
 }
 .big-btn {
-    width: 90%;
+    width: 93%;
     height: 50px;
     margin: 20px;
     border-radius: 5px;
@@ -33,14 +33,18 @@
     cursor: pointer;
 }
 .close i {
-    color: #500472FF;
+    color: #47008e;
 }
 .newInput {
     width: fit-content;
 }
+.position_relative {
+    position: relative;
+    top: 5px;
+}
 h2 {
     text-align: center;
-    color: #500472FF;
+    color: #47008e;
     font-size: 30px;
     margin: 0 10px;
     padding: 15px;
@@ -49,9 +53,9 @@ select {
     width: 93%;
     height: 20px;
     border: none;
-    color: #500472FF;
+    color: #47008e;
     background-color: white;
-    border-bottom: 3px solid #500472FF;
+    border-bottom: 3px solid #47008e;
     outline: none;
     font-weight: 700;
 }
@@ -66,13 +70,36 @@ option {
 .position {
     padding: 5px 0 5px 20px;
 }
+.select-product {
+    height: 60px;
+    position: relative;
+    bottom: 25px;
+    padding: 0 17px 0 20px;
+}
+.select-product label {
+    color: #47008e;
+    font-weight: bold;
+    font-size: 13px;
+    position: relative;
+    top: 25px;
+    left: 5px;
+}
+.standard {
+    border-bottom: 2px solid #47008e;
 
+}
+.standard:hover {
+    border-bottom: 1px solid #47008e;
+}
+.select_label {
+    color: #47008e;
+}
 .btn-add {
     width: 93%;
     height: 40px;
     border-radius: 5px;
     font-size: 20px;
-    color: #500472FF;
+    color: #47008e;
 }
 .btn-position {
     padding: 5px 0 0 20px;
@@ -87,6 +114,6 @@ input[type="file"] {
     padding: 6px 12px;
     cursor: pointer;
     border-radius: 5px;
-    color: #500472FF;
+    color: #47008e;
     margin-left: 5px;
 }

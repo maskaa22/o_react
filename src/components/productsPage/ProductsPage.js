@@ -3,10 +3,9 @@ import {useDispatch, useSelector} from "react-redux";
 
 import './ProductsPage.css';
 import {APIServise} from "../servises";
+import {PaginationProductCategory} from "../pagination";
 import {ProductCart} from "../productCart";
 import ProductCategory from "./ProductCategory";
-import {PaginationProductCategory} from "../pagination";
-
 
 export function ProductsPage() {
     const [products, setProducts] = useState([]);
@@ -27,6 +26,8 @@ export function ProductsPage() {
 
     useEffect(() => {
         dispatch(APIServise.auth());
+
+
         // APIServise.getProducts(page, 5).then(respons => {
         //     setProducts(respons.data.docs);
         //     setPaginate(respons.data)
@@ -38,7 +39,7 @@ export function ProductsPage() {
     }, [])
 
     useEffect(() => {
-        APIServise.getProducts(page, 5).then(respons => {
+        APIServise.getProducts(page, 8).then(respons => {
             setProducts(respons.data.docs);
             setPaginate(respons.data)
             // console.log(respons.data);
@@ -53,7 +54,29 @@ export function ProductsPage() {
     function thisPageFilter(page) {
         setPageFilter(page);
     }
-    
+
+
+// Get the container and the buttons
+    const container = document.querySelector('.product-menu');
+    const buttons = document.querySelectorAll('.category');
+
+// Add a click listener to the container
+    if (container) {
+        container.addEventListener('click', handleClick, false);
+    }
+
+    function handleClick(e) {
+        const {target} = e;
+
+        // If a button has been clicked
+        if (target.classList.contains('category')) {
+
+            // Clear any active buttons
+            buttons.forEach(button => button.classList.remove('active-menu'));
+            target.classList.add('active-menu');
+        }
+    }
+
     return (
         <div>
             <div className={'product-flex'}>
@@ -68,15 +91,16 @@ export function ProductsPage() {
                                                                     offset={offset}
                                                                     setOffset={setOffset}
 
+
                         />)
                     }
                 </div>
                 <div className={'row'}>
                     {!filterFlag &&
-                        products.map(product => <ProductCart key={product._id} product={product}/>)
+                    products.map(product => <ProductCart key={product._id} product={product}/>)
                     }
                     {filterFlag &&
-                        filter.map(product => <ProductCart key={product._id} product={product}/>)
+                    filter.map(product => <ProductCart key={product._id} product={product}/>)
                     }
                 </div>
             </div>

@@ -10,7 +10,7 @@
 .product-menu {
     /*height: 600px;*/
     width: 20%;
-    padding-top: 15px;
+    padding: 15px 10px 0 15px;
     /*background-color: #a5e3d4;*/
 }
 .padding {
@@ -19,18 +19,22 @@
 .category {
     width: 100%;
     padding: 5px;
-    border: 2px solid #500472;
+    border: 2px solid #47008e;
     border-radius: 5px;
-    color: #500472;
+    color: #47008e;
     cursor: pointer;
+    background-color: white;
+    font-size: 15px;
+    text-align: start;
 }
-.category:hover,
-.category.active {
-    border-color: red;
-}
+/*.category:hover,*/
+/*.category.active {*/
+/*    border-color: red;*/
+/*}*/
 
 .row {
     width: 80%;
+    padding-right: 15px;
 }
 /* Очистить поплавки после столбцов */
 .row:after {
@@ -41,4 +45,9 @@
 
 .disp-blok {
     display: block;
+}
+.active-menu {
+    border-color: #79CBB8FF;
+    background-color: #79cbb8;
+    color: white;
 }

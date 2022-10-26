@@ -1,4 +1,5 @@
 module.exports = {
-    URL: require('./URL'),
-    constants: require('./constants')
+    constants: require('./constants'),
+    functionConstant: require('./functionConstants'),
+    URL: require('./URL')
 };

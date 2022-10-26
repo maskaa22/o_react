@@ -1,9 +1,15 @@
-import './Modal.css'
-import {Input} from "../utils";
-import {APIServise} from "../servises";
+import * as React from 'react';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 import {useEffect, useState} from "react";
-export function ModalCreateProduct ({active, setActive, categories})
-{
+
+import './Modal.css'
+import {APIServise} from "../servises";
+import {Input} from "../utils";
+
+export function ModalCreateProduct({active, setActive, categories}) {
 
     const [nameProduct, setNameProduct] = useState('');
     const [titleProduct, setTitleProduct] = useState('');
@@ -14,7 +20,7 @@ export function ModalCreateProduct ({active, setActive, categories})
 
 
     useEffect(() => {
-        setCategoryProduct('6207f02096c37103ae61321b');
+        //setCategoryProduct('6207f02096c37103ae61321b');
         setCountProduct(1);
     }, [])
 
@@ -24,41 +30,69 @@ export function ModalCreateProduct ({active, setActive, categories})
         setCategoryProduct(value)
     }
 
-    return(
-        <div className={active ? 'modal active': 'modal'} onClick={()=> setActive(false)}>
-            <div className={active ? 'modal-content active': 'modal-content'} onClick={e=>e.stopPropagation()}>
+    //const [age, setAge] = React.useState('');
+
+    const handleChange = (event) => {
+        setCategoryProduct(event.target.value);
+        //console.log(event.target.value);
+    };
+
+
+    return (
+        <div className={active ? 'modal active' : 'modal'} onClick={() => setActive(false)}>
+            <div className={active ? 'modal-content active' : 'modal-content'} onClick={e => e.stopPropagation()}>
                 {/*{children}*/}
                 <div>
-                    <div className={'close'} onClick={()=> setActive(false)}><i className="fa fa-times" aria-hidden="true"/></div>
-                    <h2>Новый товар</h2>
-                    <div className={'newInput'}><Input value={nameProduct} setValue={setNameProduct} placeholder={'Название товара'}/></div>
-                    <div className={'newInput'}><Input value={titleProduct} setValue={setTitleProduct} placeholder={'Краткое описание товара'}/></div>
-                    <div className={'position'}>
+                    <div className={'close'} onClick={() => setActive(false)}><i className="fa fa-times"
+                                                                                 aria-hidden="true"/></div>
+                    <h2>Новий товар</h2>
+                    <div className={'newInput'}><Input value={nameProduct} setValue={setNameProduct}
+                                                       placeholder={'Назва товара'}/></div>
+                    <div className={'newInput position_relative'}><Input value={titleProduct} setValue={setTitleProduct}
+                                                                         placeholder={'Короткий опис товара'}/></div>
 
-                        <select id="select_" onClick={getValue} >
-                            {
-                                categories.map(category => <option  value={category._id} key={category._id}>{category.category_name}</option>)
-                            }
-                        </select>
+                    <div className={'select-product'}>
+                        <FormControl variant="standard" fullWidth>
+                            <InputLabel id="demo-simple-select-standard-label" className={'select_label'}>Виберіть
+                                категорію</InputLabel>
+                            <Select
+                                className={'standard'}
+                                labelId="demo-simple-select-standard-label"
+                                id="demo-simple-select-standard"
+                                value={categoryProduct}
+                                onChange={handleChange}
+                                label="Виберіть категорію"
+                            >
+                                {
+                                    categories.map(category => <MenuItem key={category._id}
+                                                                         value={category._id}>{category.category_name}</MenuItem>)
+                                }
+                            </Select>
+                        </FormControl>
                     </div>
-                    <div className={'newInput'}><Input value={priceProduct} setValue={setPriceProduct} placeholder={'Цена товара'}/></div>
 
-                    <div className={'newInput'}><Input value={inventoryNumber} setValue={setInventoryNumber} placeholder={'Инвентарный номер'}/></div>
+                    <div className={'newInput'}><Input value={priceProduct} setValue={setPriceProduct}
+                                                       placeholder={'Ціна товара'}/></div>
+
+                    <div className={'newInput position_relative'}><Input value={inventoryNumber}
+                                                                         setValue={setInventoryNumber}
+                                                                         placeholder={'Інвентарний номер'}/></div>
+
 
                     <div className={'position'}>
                         <label htmlFor="file-upload" className="custom-file-upload">
-                            <i className="fa fa-cloud-upload"/> Загрузить фото товара
+                            <i className="fa fa-cloud-upload"/> Загрузити фото товара
                         </label>
                         <input id="file-upload" type="file"/>
                     </div>
 
                     <div className={'btn-position'}>
                         <button className={'btn-add'}
-                                onClick={()=> {
+                                onClick={() => {
                                     APIServise.setProducts(nameProduct, titleProduct, priceProduct, categoryProduct,
                                         priceProduct, countProduct, inventoryNumber)
                                 }}>
-                            <p>Добавить товар</p>
+                            <p>Додати товар</p>
                         </button>
                     </div>
                 </div>

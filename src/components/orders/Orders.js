@@ -1,20 +1,15 @@
+import * as React from 'react';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 import {useEffect, useState} from "react";
 
 import './Orders.css'
 import {APIServise} from "../servises";
-import Cart from "./Cart";
-
-import * as React from 'react';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
 import {Order} from "../order";
 
-
-
-export function Orders ()
-{
+export function Orders() {
     const [orders, setOrders] = useState();
     const [filter, setFilter] = React.useState('');
 
@@ -33,21 +28,22 @@ export function Orders ()
         });
     };
 
-    return(
-        <div >
-            <div className={'check_order filter'}>
+    return (
+        <div>
+            <div className={'check_order filter select_status_label'}>
                 <FormControl fullWidth size="small">
-                    <InputLabel id="demo-simple-select-label">Выберите статус</InputLabel>
+                    <InputLabel id="demo-simple-select-label">Виберіть статус</InputLabel>
                     <Select
+                        className={'select_all_border'}
                         id="demo-simple-select"
                         value={filter}
                         onChange={handleChangeFilter}
                     >
-                        <MenuItem value={'все'}>все</MenuItem>
-                        <MenuItem value={'ожидаеться'}>ожидаеться</MenuItem>
-                        <MenuItem value={'принято'}>принято</MenuItem>
-                        <MenuItem value={'обработка'}>обработка</MenuItem>
-                        <MenuItem value={'отправленно'}>отправленно</MenuItem>
+                        <MenuItem value={'все'}>всі</MenuItem>
+                        <MenuItem value={'очікується'}>очікується</MenuItem>
+                        <MenuItem value={'прийнято'}>прийнято</MenuItem>
+                        <MenuItem value={'обробка'}>обробка</MenuItem>
+                        <MenuItem value={'відправлено'}>відправлено</MenuItem>
                         <MenuItem value={'готово'}>готово</MenuItem>
                     </Select>
                 </FormControl>

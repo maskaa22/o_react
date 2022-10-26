@@ -22,7 +22,7 @@
     cursor: pointer;
 }
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus{
-    background-color: #500472FF ;
+    background-color: #47008e ;
     border-color: #79CBB8FF;
     outline: none ;
 }

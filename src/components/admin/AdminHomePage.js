@@ -1,19 +1,18 @@
-import { Link, Route, Routes } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import {Link, Route, Routes} from "react-router-dom";
+import {useEffect, useState} from "react";
+import {useDispatch} from "react-redux";
 
 import "./AdminHomePage.css";
-import { APIServise } from "../servises";
-import { CreateProduct } from "../createProduct";
-import { Edit } from "../editPage";
-import { Users } from "../users";
-import {Orders} from "../orders";
 import {Analysis} from "../ analysis";
+import {APIServise} from "../servises";
 import {ArchiveOrders} from "../archive";
+import {CreateProduct} from "../createProduct";
+import {Edit} from "../editPage";
+import {Orders} from "../orders";
+import {Users} from "../users";
+import {ViewFunction} from "../utils/function";
 
-
-export function AdminHomePage ()
-{
+export function AdminHomePage() {
     const [users, setUsers] = useState([]);
 
     const dispatch = useDispatch();
@@ -28,23 +27,56 @@ export function AdminHomePage ()
     }
 
     useEffect(() => {
-        if(localStorage.getItem('token'))
-        {
+        if (localStorage.getItem('token')) {
             dispatch(APIServise.auth());
             getUser();
         }
 
     }, []);
 
-    return(
+    ViewFunction();
+
+    return (
         <div className={'adminHomePage'}>
             <div className={'home-menu'}>
-                <div><Link to="/admin">Редактировать</Link></div>
-                <div onClick={getUser}><Link to="/admin/users">Клиенты</Link></div>
-                <div><Link to="/admin/product">Товары</Link></div>
-                <div><Link to="/admin/orders">Заказы</Link></div>
-                <div><Link to="/admin/archive_orders">Архив заказов</Link></div>
-                <div><Link to="/admin/analysis">Отчёты</Link></div>
+                <div className={'padding'}>
+                    <div>
+                        <Link to="/admin" className={'color_purple click-item'}>
+                            <button className={'home_item click-item'}>Редагувати</button>
+                        </Link></div>
+                </div>
+                <div className={'padding'}>
+                    <div onClick={getUser}>
+                        <Link to="/admin/users" className={'color_purple click-item'}>
+                            <button className={'home_item click-item'}>Клієнти</button>
+                        </Link></div>
+                </div>
+                <div className={'padding'}>
+                    <div>
+                        <Link to="/admin/product" className={'color_purple click-item'}>
+                            <button className={'home_item click-item'}>Товари</button>
+                        </Link></div>
+                </div>
+                <div className={'padding'}>
+                    <div>
+                        <Link to="/admin/orders" className={'color_purple click-item'}>
+                            <button className={'home_item click-item'}>Замовлення</button>
+                        </Link></div>
+                </div>
+                <div className={'padding'}>
+                    <div>
+                        <Link to="/admin/archive_orders" className={'color_purple click-item'}>
+                            <button className={'home_item click-item'}>Архів замовлень</button>
+                        </Link></div>
+                </div>
+                <div className={'padding'}>
+                    <div>
+                        <Link to="/admin/analysis" className={'color_purple click-item'}>
+                            <button className={'home_item click-item'}>Звіти</button>
+                        </Link></div>
+                </div>
+
+
             </div>
             <div className={'home-page'}>
                 <Routes>

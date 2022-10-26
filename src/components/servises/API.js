@@ -1,32 +1,24 @@
 import axios from 'axios';
 
-import {URL} from "../../config";
 import {CategoryService, UserService, ProductService, AuthService, OrderService} from './URL_Service'
 import {filterProduct, setProduct, setUser, setRole, userLogout} from "../reducers/actionCreators";
 import {store} from "../reducers";
-
-const Swal = require('sweetalert2');
-
+import {SwalFunction} from "../utils/function";
+import {URL} from "../../config";
 
 export const login = (email, password) => {
     return async dispatch => {
         try {
             const response = await AuthService.login(email, password);
 
-// console.log(response.data.user);
             localStorage.setItem('token', response.data.access_token);
             dispatch(setUser(response.data.user));
             dispatch(setRole(response.data.user.role));
 
+
             return response.data.user
         } catch (e) {
-            Swal.fire({
-                title: 'Ошибка!',
-                text: e.response.data.message,
-                icon: 'error',
-                confirmButtonText: 'Ok',
-                confirmButtonColor: '#500472FF'
-            });
+            SwalFunction('Помилка!', e.response.data.message, 'error', 'Ok', true)
         }
     }
 };
@@ -42,32 +34,18 @@ export const auth = () => {
 
             return response.data.user;
         } catch (e) {
-            throw new Error(e.response.data.message)
+            //SwalFunction('Не авторизований', e.response.data.message, 'error', 'Ok', true)//???????????
+            // throw new Error(e.response.data.message)
         }
     }
 };
 export const registration = async (name, email, password) => {
     try {
-        const response =
-            await AuthService.registration(name, email, password);
+        await AuthService.registration(name, email, password);
 
-        // localStorage.setItem('registration', "true");
-
-        Swal.fire({
-            icon: 'success',
-            title: 'Пользователь создан',
-            showConfirmButton: false,
-            timer: 3500
-        });
+        SwalFunction('Користувач створений', '', 'success', 'Ok', false, 3500)
     } catch (e) {
-        // localStorage.setItem('registration', "");
-        Swal.fire({
-            title: 'Ошибка!',
-            text: e.response.data.message,
-            icon: 'error',
-            confirmButtonText: 'Ok',
-            confirmButtonColor: '#500472FF'
-        });
+        SwalFunction('Помилка!', e.response.data.message, 'error', 'Ok', true)
     }
 };
 export const logout = () => {
@@ -75,9 +53,11 @@ export const logout = () => {
         try {
             await AuthService.logout();
 
-             dispatch(userLogout());
+            dispatch(userLogout());
 
         } catch (e) {
+            //Провірить
+            //SwalFunction('Помилка!', e.response.data.message, 'error', 'Ok', true)
             alert(e.response.data.message)
         }
     }
@@ -86,6 +66,8 @@ export const getUsers = async () => {
     try {
         return await UserService.users();
     } catch (e) {
+        //Провірить
+        //SwalFunction('Помилка!', e.response.data.message, 'error', 'Ok', true)
         console.log(e.response.data.message);
     }
 };
@@ -98,6 +80,8 @@ export const getProducts = async (page, limit) => {
 
         return response
     } catch (e) {
+        //Провірить
+        //SwalFunction('Помилка!', e.response.data.message, 'error', 'Ok', true)
         console.log(e.response.data.message);
     }
 };
@@ -105,6 +89,8 @@ export const getCategories = async () => {
     try {
         return await CategoryService.allCategories();
     } catch (e) {
+        //Провірить
+        //SwalFunction('Помилка!', e.response.data.message, 'error', 'Ok', true)
         console.log(e.response.data.message);
     }
 };
@@ -112,88 +98,69 @@ export const createCategory = async (category_name) => {
     try {
         const response = await CategoryService.createCategories(category_name);
 
-        Swal.fire({
-            icon: 'success',
-            title: 'Категория создана',
-            showConfirmButton: false,
-            timer: 3500
-        });
+        SwalFunction('Категорія створена', '', 'success', 'Ok', false, 3500)
 
         return response.data;
     } catch (e) {
-        Swal.fire({
-            title: 'Ошибка!',
-            text: e.response.data.message,
-            icon: 'error',
-            confirmButtonText: 'Ok',
-            confirmButtonColor: '#500472FF'
-        });
+        SwalFunction('Помилка!', e.response.data.message, 'error', 'Ok', true)
     }
 };
 export const setProducts = async (name, tittle, price, category, totalPriceProduct, countProduct, inventoryNumber) => {
     try {
-        // console.log(totalPriceProduct);
-        const response = await ProductService.product(name, tittle, price,  category, countProduct, totalPriceProduct, inventoryNumber);
 
-        Swal.fire({
-            icon: 'success',
-            title: 'Товар добавлен',
-            showConfirmButton: false,
-            timer: 3500
-        });
+        const response = await ProductService.product(name, tittle, price, category, countProduct, totalPriceProduct, inventoryNumber);
+
+        SwalFunction('Товар доданий', '', 'success', 'Ok', false, 3500)
 
         return response.data;
     } catch (e) {
-        Swal.fire({
-            title: 'Ошибка!',
-            text: e.response.data.message,
-            icon: 'error',
-            confirmButtonText: 'Ok',
-            confirmButtonColor: '#500472FF'
-        });
+        SwalFunction('Помилка!', e.response.data.message, 'error', 'Ok', true)
     }
 };
-export const categoriesFilter =  (checkCategory, page, limit) => {
-return async dispatch => {
-    try {
+export const categoriesFilter = (checkCategory, page, limit) => {
+    return async dispatch => {
+        try {
 
-        const response = await CategoryService.filtreCategories(checkCategory, page, limit);
+            const response = await CategoryService.filtreCategories(checkCategory, page, limit);
 
-         dispatch(filterProduct());
+            dispatch(filterProduct());
 
-        return response;
-    } catch (e) {
-        alert(e)
+            return response;
+        } catch (e) {
+            //Провірить
+            //SwalFunction('Помилка!', e.response.data.message, 'error', 'Ok', true)
+            alert(e)
+        }
     }
-}
 };
 export const setOrder = async (user_id, user_name, surname, phone, nameSity, nameDepartment, pay, cart, status, summa, month) => {
     try {
-console.log(cart);
-        //const response = await OrderService.order(user_id, user_name, surname, phone, nameSity, nameDepartment, pay, cart, status, summa, month);
 
-        Swal.fire({
-            icon: 'success',
-            title: 'Заказ отправлен',
-            showConfirmButton: false,
-            timer: 3500
-        });
+        const response = await OrderService.order(user_id, user_name, surname, phone, nameSity, nameDepartment, pay, cart, status, summa, month);
 
-        return 'response.data';
+        SwalFunction('Замовлення відправлено', '', 'success', 'Ok', false, 3500)
+
+
+        return response;
     } catch (e) {
-        Swal.fire({
-            title: 'Ошибка!',
-            text: e.response.data.message,
-            icon: 'error',
-            confirmButtonText: 'Ok',
-            confirmButtonColor: '#500472FF'
-        });
+        SwalFunction('Помилка!', e.response.data.message, 'error', 'Ok', true)
     }
 };
 export const getOrders = async () => {
     try {
         return await OrderService.orders();
     } catch (e) {
+        //Провірить
+        //SwalFunction('Помилка!', e.response.data.message, 'error', 'Ok', true)
+        console.log(e.response.data.message);
+    }
+};
+export const getOrdersByVisualAnaliz = async () => {
+    try {
+        return await OrderService.ordersByVisualAnalis();
+    } catch (e) {
+        //Провірить
+        //SwalFunction('Помилка!', e.response.data.message, 'error', 'Ok', true)
         console.log(e.response.data.message);
     }
 };
@@ -201,6 +168,8 @@ export const getOrdersByFilter = async (status) => {
     try {
         return await OrderService.ordersByFilter(status);
     } catch (e) {
+        //Провірить
+        //SwalFunction('Помилка!', e.response.data.message, 'error', 'Ok', true)
         console.log(e.response.data.message);
     }
 };
@@ -209,28 +178,17 @@ export const updateStatusOrder = async (id, status) => {
 
         const response = await OrderService.updateStatus(id, status);
 
-        Swal.fire({
-            icon: 'success',
-            title: 'Статус изменён',
-            showConfirmButton: false,
-            timer: 3500
-        });
-
         return response.data;
     } catch (e) {
-        Swal.fire({
-            title: 'Ошибка!',
-            text: e.response.data.message,
-            icon: 'error',
-            confirmButtonText: 'Ok',
-            confirmButtonColor: '#500472FF'
-        });
+        SwalFunction('Помилка!', e.response.data.message, 'error', 'Ok', true)
     }
 };
 export const getOrdersById = async (id) => {
     try {
         return await OrderService.userById(id);
     } catch (e) {
+        //Провірить
+        //SwalFunction('Помилка!', e.response.data.message, 'error', 'Ok', true)
         console.log(e.response.data.message);
     }
 };
@@ -238,6 +196,8 @@ export const getAnalyze = async () => {
     try {
         return await OrderService.analyze();
     } catch (e) {
+        //Провірить
+        //SwalFunction('Помилка!', e.response.data.message, 'error', 'Ok', true)
         console.log(e.response.data.message);
     }
 };
@@ -246,22 +206,9 @@ export const dateAnalizy = async (month, summa) => {
 
         const response = await OrderService.analyzeOrder(month, summa);
 
-        // Swal.fire({
-        //     icon: 'success',
-        //     title: 'Статус изменён',
-        //     showConfirmButton: false,
-        //     timer: 3500
-        // });
-
         return response.data;
     } catch (e) {
-        Swal.fire({
-            title: 'Ошибка!',
-            text: e.response.data.message,
-            icon: 'error',
-            confirmButtonText: 'Ok',
-            confirmButtonColor: '#500472FF'
-        });
+        SwalFunction('Помилка!', e.response.data.message, 'error', 'Ok', true)
     }
 };
 export const updateDateAnalizy = async (month, summa) => {
@@ -269,22 +216,9 @@ export const updateDateAnalizy = async (month, summa) => {
 
         const response = await OrderService.updateAnalyzeOrder(month, summa);
 
-        Swal.fire({
-            icon: 'success',
-            title: 'Статус изменён',
-            showConfirmButton: false,
-            timer: 3500
-        });
-
         return response.data;
     } catch (e) {
-        Swal.fire({
-            title: 'Ошибка!',
-            text: e.response.data.message,
-            icon: 'error',
-            confirmButtonText: 'Ok',
-            confirmButtonColor: '#500472FF'
-        });
+        SwalFunction('Помилка!', e.response.data.message, 'error', 'Ok', true)
     }
 };
 export const archiveOrder = async (id) => {
@@ -292,28 +226,19 @@ export const archiveOrder = async (id) => {
 
         const response = await OrderService.archiveOrder(id);
 
-        Swal.fire({
-            icon: 'success',
-            title: 'Готово',
-            showConfirmButton: false,
-            timer: 3500
-        });
+        SwalFunction('Готово', '', 'success', 'Ok', false, 3500)
 
         return response.data;
     } catch (e) {
-        Swal.fire({
-            title: 'Ошибка!',
-            text: e.response.data.message,
-            icon: 'error',
-            confirmButtonText: 'Ok',
-            confirmButtonColor: '#500472FF'
-        });
+        SwalFunction('Помилка!', e.response.data.message, 'error', 'Ok', true)
     }
 };
 export const getArchiveOrders = async () => {
     try {
         return await OrderService.getArchiveOrders();
     } catch (e) {
+        //Провірить
+        //SwalFunction('Помилка!', e.response.data.message, 'error', 'Ok', true)
         console.log(e.response.data.message);
     }
 };
@@ -322,22 +247,9 @@ export const deleteOrder = async (id) => {
 
         const response = await OrderService.deleteArchiveOrder(id);
 
-        Swal.fire({
-            icon: 'success',
-            title: 'Готово',
-            showConfirmButton: false,
-            timer: 3500
-        });
-
         return response.data;
     } catch (e) {
-        Swal.fire({
-            title: 'Ошибка!',
-            text: e.response.data.message,
-            icon: 'error',
-            confirmButtonText: 'Ok',
-            confirmButtonColor: '#500472FF'
-        });
+        SwalFunction('Помилка!', e.response.data.message, 'error', 'Ok', true)
     }
 };
 export const deleteProduct = async (number) => {
@@ -345,71 +257,38 @@ export const deleteProduct = async (number) => {
 
         const response = await ProductService.deleteProduct(number);
 
-        Swal.fire({
-            icon: 'success',
-            title: 'Готово',
-            showConfirmButton: false,
-            timer: 3500
-        });
+        SwalFunction('Готово', '', 'success', 'Ok', false, 3500)
 
         return response.data;
     } catch (e) {
-        Swal.fire({
-            title: 'Ошибка!',
-            text: e.response.data.message,
-            icon: 'error',
-            confirmButtonText: 'Ok',
-            confirmButtonColor: '#500472FF'
-        });
+        SwalFunction('Помилка!', e.response.data.message, 'error', 'Ok', true)
     }
 };
 export const editPage = async (id, name, surname, email, phone, oldPassword, number, numberToo, sity, numberNP) => {
     try {
-
         const response = await UserService.editData(id, name, surname, email, phone, oldPassword, number, numberToo, sity, numberNP);
 
-        Swal.fire({
-            icon: 'success',
-            title: 'Готово',
-            showConfirmButton: false,
-            timer: 3500
-        });
+        SwalFunction('Готово', '', 'success', 'Ok', false, 3500)
 
         return response.data;
     } catch (e) {
-        Swal.fire({
-            title: 'Ошибка!',
-            text: e.response.data.message,
-            icon: 'error',
-            confirmButtonText: 'Ok',
-            confirmButtonColor: '#500472FF'
-        });
+        SwalFunction('Помилка!', e.response.data.message, 'error', 'Ok', true)
     }
 };
 export const editContactData = async (id, name, surname, phone) => {
-        try {
+    try {
 
-            const response = await UserService.editContactData(id, name, surname, phone);
+        const response = await UserService.editContactData(id, name, surname, phone);
 
-            store.dispatch(setUser(response.data));
+        store.dispatch(setUser(response.data));
 
-            Swal.fire({
-                icon: 'success',
-                title: 'Готово',
-                showConfirmButton: false,
-                timer: 3500
-            });
+        SwalFunction('Готово', '', 'success', 'Ok', false, 3500)
 
-            return response.data;
-        } catch (e) {
-            Swal.fire({
-                title: 'Ошибка!',
-                text: e.response.data.message,
-                icon: 'error',
-                confirmButtonText: 'Ok',
-                confirmButtonColor: '#500472FF'
-            });
-        }
+
+        return response.data;
+    } catch (e) {
+        SwalFunction('Помилка!', e.response.data.message, 'error', 'Ok', true)
+    }
 };
 export const editAdressData = async (id, sity, numberNP) => {
     try {
@@ -418,21 +297,11 @@ export const editAdressData = async (id, sity, numberNP) => {
 
         store.dispatch(setUser(response.data));
 
-        Swal.fire({
-            icon: 'success',
-            title: 'Готово',
-            showConfirmButton: false,
-            timer: 3500
-        });
+        SwalFunction('Готово', '', 'success', 'Ok', false, 3500)
+
 
         return response.data;
     } catch (e) {
-        Swal.fire({
-            title: 'Ошибка!',
-            text: e.response.data.message,
-            icon: 'error',
-            confirmButtonText: 'Ok',
-            confirmButtonColor: '#500472FF'
-        });
+        SwalFunction('Помилка!', e.response.data.message, 'error', 'Ok', true)
     }
 };

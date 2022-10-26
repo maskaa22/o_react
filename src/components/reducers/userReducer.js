@@ -1,4 +1,4 @@
-import {SET_USER, LOGOUT, SET_ROLE} from './actionTypes'
+import {LOGOUT, SET_ROLE, SET_USER} from './actionTypes'
 
 const defaultState = {
     currentUser: {},
@@ -7,8 +7,7 @@ const defaultState = {
     isLoading: false,
 }
 
-export default function userReducer (state = defaultState, action)
-{
+export default function userReducer(state = defaultState, action) {
     switch (action.type) {
         case SET_USER:
             return {

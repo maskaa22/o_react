@@ -1,16 +1,29 @@
 .analyze {
-    border: 1px solid #500472;
+    border: 1px solid #47008e;
     padding: 10px;
     width: 90%;
     height: 100%;
-    margin: 20px 0 20px 40px;
+    margin: 20px 0 60px 40px;
     border-radius: 5px;
     font-weight: 700;
     font-size: 20px;
 }
 h4 {
     text-align: center;
-    color: #500472FF;
+    color: #47008e;
     font-size: 15px;
     margin: 0 10px;
+}
+.div_btn_analyz {
+    display: flex;
+    justify-content: end;
+    /* margin-right: 45px; */
+    width: 93%;
+}
+.btn_analyz {
+    width: 20%;
+    border-radius: 5px;
+    height: 30px;
+    margin-top: 10px;
+    color: white;
 }

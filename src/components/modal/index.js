@@ -1,3 +1,2 @@
-export * from './ModalCreateProduct';
 export * from './ModalCreateCategory';
-export * from './ModalBasket'
+export * from './ModalCreateProduct';

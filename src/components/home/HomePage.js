@@ -3,15 +3,14 @@ import {useDispatch} from "react-redux";
 
 import {APIServise} from "../servises";
 
-export function HomePage ()
-{
+export function HomePage() {
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(APIServise.auth());
     }, [])
 
-    return(
+    return (
         <div>
             HomePage
         </div>

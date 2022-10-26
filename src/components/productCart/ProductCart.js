@@ -1,14 +1,16 @@
+import {MdOutlineShoppingCart} from "react-icons/md";
 import {useDispatch, useSelector} from "react-redux";
 
 import './ProductCart.css'
-import {priceProduct, setProduct} from "../reducers/actionCreators";
-import {MdOutlineShoppingCart} from "react-icons/md";
+import {setProduct} from "../reducers/actionCreators";
+import {SwalFunction} from "../utils/function";
 
 export function ProductCart({product}) {
 
     const dispatch = useDispatch();
 
     const currentProduct = useSelector(state => state.product.currentProduct);
+    const isAuth = useSelector(state => state.user.isAuth);
 
     return (
         <div className="column">
@@ -18,20 +20,25 @@ export function ProductCart({product}) {
                 <div className={'info_card'}>{product.title}</div>
                 <div className={'flex_buy'}>
                     <div className={'info_card'}>{product.price} грн.</div>
-                    <div className={'buy'} ><button id={'buy'} onClick={() => {
-                        let isInArray = false;
-                        currentProduct.forEach(el => {
-                            if(el._id === product._id)
-                                isInArray = true;
-                        })
-                        if(!isInArray) {
-                            dispatch(setProduct(product));
-                            dispatch(priceProduct(product.totalPrice));
-                        }
+                    <div className={'buy'}>
+                        <button id={'buy'} onClick={() => {
+                            if (isAuth) {
+                                let isInArray = false;
+                                currentProduct.forEach(el => {
+                                    if (el._id === product._id)
+                                        isInArray = true;
+                                })
+                                if (!isInArray) {
+                                    dispatch(setProduct(product));
+                                    //dispatch(priceProduct(product.totalPrice));
+                                }
+                            } else SwalFunction('Не авторизований', '', 'error', 'Ok', true)
 
-                    }}>
-                        <MdOutlineShoppingCart className=" icon_basket color_purple"/>
-                    </button></div>
+
+                        }}>
+                            <MdOutlineShoppingCart className=" icon_basket color_purple"/>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

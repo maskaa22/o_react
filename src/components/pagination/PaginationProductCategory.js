@@ -1,8 +1,8 @@
+import ReactPaginate from 'react-paginate';
+import {useDispatch, useSelector} from "react-redux";
+
 import './Pagination.css'
 import {APIServise} from "../servises";
-import {useDispatch, useSelector} from "react-redux";
-import ReactPaginate from 'react-paginate';
-//import {delCategory} from "../reducers/actionCreators";
 
 export function PaginationProductCategory({paginate, category_id, setFilter, thisPage}) {
 
@@ -11,7 +11,6 @@ export function PaginationProductCategory({paginate, category_id, setFilter, thi
     const dispatch = useDispatch();
 
     const pageCount = Math.ceil(paginate.total / paginate.limit);
-
 
     function handlePageClick(e) {
 
