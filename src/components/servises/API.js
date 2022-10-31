@@ -39,11 +39,22 @@ export const auth = () => {
         }
     }
 };
-export const registration = async (name, email, password) => {
+export const registration = async (name, email, password, role) => {
     try {
-        await AuthService.registration(name, email, password);
+        await AuthService.registration(name, email, password, role);
 
-        SwalFunction('Користувач створений', '', 'success', 'Ok', false, 3500)
+        if(!role) {
+            SwalFunction('Користувач створений', '', 'success', 'Ok', false, 3500)
+        }
+    } catch (e) {
+        SwalFunction('Помилка!', e.response.data.message, 'error', 'Ok', true)
+    }
+};
+export const deleteUser = async (email) => {
+    try {
+        await AuthService.deleteUser(email);
+
+        //SwalFunction('Користувач видалений', '', 'success', 'Ok', false, 3500)
     } catch (e) {
         SwalFunction('Помилка!', e.response.data.message, 'error', 'Ok', true)
     }
@@ -99,6 +110,17 @@ export const createCategory = async (category_name) => {
         const response = await CategoryService.createCategories(category_name);
 
         SwalFunction('Категорія створена', '', 'success', 'Ok', false, 3500)
+
+        return response.data;
+    } catch (e) {
+        SwalFunction('Помилка!', e.response.data.message, 'error', 'Ok', true)
+    }
+};
+export const sentUser = async (text, userEmail, topic) => {
+    try {
+        const response = await UserService.sentUser(text, userEmail, topic);
+
+            // SwalFunction('Лист відправлено', '', 'success', 'Ok', false, 3500)
 
         return response.data;
     } catch (e) {

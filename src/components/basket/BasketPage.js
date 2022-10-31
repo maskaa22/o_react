@@ -24,6 +24,7 @@ export function BasketPage({active, setActive}) {
     const [pay, setPay] = useState('');
 
 
+
     useEffect(() => {
         setCount(1);
         setStatus('очікується')

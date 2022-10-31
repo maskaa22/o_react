@@ -6,8 +6,8 @@ import './Autorization.css'
 import {APIServise} from "../servises";
 import {Input} from "../utils";
 
-export function Autorization({login}) {
- // console.log(login);
+export function Autorization2({isAuth}) {
+// console.log(isAuth);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -19,9 +19,7 @@ export function Autorization({login}) {
 
 
     return (
-        <div className={'flex'}>
         <div className={'autorization'}>
-
             <div className="autorization_header">Авторизация</div>
             <Input value={email} setValue={setEmail} type={'text'} placeholder={'Введите email'}/>
             <Input value={password} setValue={setPassword} type={'password'} placeholder={'Введите пароль'}/>
@@ -30,8 +28,11 @@ export function Autorization({login}) {
                 dispatch(APIServise.login(email, password)).then(rez => {
                     if (rez) navigate("/")
                 });
-            }}>Ввойти
+
+            }
+
+            }>Ввойти
             </button>
-        </div></div>
+        </div>
     );
 }

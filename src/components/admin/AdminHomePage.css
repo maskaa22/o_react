@@ -10,7 +10,7 @@
     padding-top: 15px;
 }
 .home-page {
-    height: 600px;
+    height: fit-content;
     width: 80%;
     /*background-color: antiquewhite;*/
 }

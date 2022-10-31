@@ -5,30 +5,35 @@ import './Registration.css';
 import {APIServise} from "../servises";
 import {Input} from "../utils";
 
-export function Registration() {
+export function Registration({role, handleClose}) {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const navigate = useNavigate();
 
+    const registrationWithRole = 'Зареєструвати';
+        const registration = 'Зареєструватися'
+
     return (
+        <div className={'flex'}>
         <div className={'registration'}>
-            <div className="registration_header">Регистрация</div>
-            <Input value={name} setValue={setName} type={'text'} placeholder={'Введите имя'}/>
-            <Input value={email} setValue={setEmail} type={'text'} placeholder={'Введите email'}/>
-            <Input value={password} setValue={setPassword} type={'password'} placeholder={'Введите пароль'}/>
+            {
+                role && <button className={'close_del left'} onClick={handleClose}><i className="fa fa-times"
+                                                          aria-hidden="true"/></button>
+            }
+            <div className="registration_header">Реєстрація</div>
+            <Input value={name} setValue={setName} type={'text'} placeholder={"Введіть ім'я"}/>
+            <Input value={email} setValue={setEmail} type={'text'} placeholder={'Введіть email'}/>
+            <Input value={password} setValue={setPassword} type={'password'} placeholder={'Введіть пароль'}/>
 
             <button className={'registration_btn'} onClick={() => {
-                APIServise.registration(name, email, password).then(rez => {
+                APIServise.registration(name, email, password, role).then(rez => {
                     if (rez) navigate("/login")
                 })
-                // const autorization = localStorage.getItem('registration');
-                // console.log(autorization);
-                // if(autorization!=null)
-                //navigate("/login");
-            }}>Зарегестрироваться
+            }}>{role ? registrationWithRole : registration}
+
             </button>
-        </div>
+        </div></div>
     );
 }

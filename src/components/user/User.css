@@ -11,9 +11,12 @@
 }
 .name-table {
     height: 40px;
-    display: flex;
-    justify-content: space-between;
-    align-content: space-between;
+    /*display: flex;*/
+    /*justify-content: space-between;*/
+    /*align-content: space-between;*/
+    display: grid;
+    //grid-template-columns: 150px 170px 150px 170px 50px 50px;
+    grid-template-columns: repeat(4, 3fr) 1fr 1fr;
 }
 .row-table {
     background-color: gainsboro;
@@ -23,14 +26,28 @@
 }
 .cell-table {
     width: 50px;
+
 }
 .header-table {
-    padding: 10px;
+    padding: 10px 0 10px;
     font-size: 15px;
     font-weight: bolder;
     color: #47008e;
+    text-align: center;
+}
+.padding_header_last {
+    padding-right: 55px;
 }
 .btn-ok {
     border-radius: 5px;
     height: 20px;
+}
+.flex-fot-content {
+    display: flex;
+    justify-content: center;
+}
+.centric {
+    width: 90%;
+    margin: 10px 20px 20px;
+    color: white;
 }

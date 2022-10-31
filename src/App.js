@@ -12,6 +12,8 @@ import {HomePage} from "./components/home";
 import NotFound from "./components/payButton/NotFound";
 import {ProductsPage} from "./components/productsPage";
 import {Registration} from "./components/registration";
+import {LoginingForm} from "./components/loginingForm";
+import {useState} from "react";
 
 function App() {
     const isAuth = useSelector(state => state.user.isAuth);
@@ -25,13 +27,13 @@ function App() {
     //    return <Autorization/>
     // }
 
-    const activeModalBasket = useSelector(state => state.user.activeModalBasket);
+    const login = 'login';
 
     return (
 
         <div className={'app'}>
             {/*<Header/>*/}
-            <div className={'wrap'}>
+            {/*<div className={'wrap'}>*/}
                 {/*{*/}
                 {/*    !isAuth &&*/}
                 {/*    <Routes>*/}
@@ -42,7 +44,7 @@ function App() {
                 {/*}*/}
 
 
-            </div>
+            {/*</div>*/}
 
             {/*<h1>{isAuth ? `Пользователь - ${currentUser.name} авторизирован`: 'Авторизируйтесь' }</h1>*/}
 
@@ -59,9 +61,10 @@ function App() {
                 <Route path={'/admin/*'} element={<AdminHomePage/>}/>
                 <Route path={`/user/*`} element={<ClientHomePage/>}/>
 
-                <Route path={'/registration'} element={<Registration/>}/>
-                <Route path={'/login'} element={<Autorization isAuth={isAuth}/>}/>
-                <Route path={'/logout'} element={<Autorization/>}/>
+                {/*<Route path={'/registration'} element={<Registration/>}/>*/}
+                <Route path={'/registration'} element={<LoginingForm/>}/>
+                <Route path={'/login'} element={<LoginingForm login={login}/>}/>
+                {/*<Route path={'/login'} element={<Autorization login={login}/>}/>*/}
                 <Route path={'/*'} element={<NotFound/>}/>
             </Routes>
         </div>

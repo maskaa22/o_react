@@ -4,7 +4,7 @@ import {BsBasket2} from "react-icons/bs";
 import {GiExitDoor} from "react-icons/gi";
 import {ImUserPlus} from "react-icons/im";
 import {IoMdExit} from "react-icons/io";
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import {RiMapPinUserFill} from "react-icons/ri";
 import {useDispatch, useSelector} from "react-redux";
 import {useState} from "react";
@@ -45,6 +45,8 @@ export function Header() {
     // }
 
     const [activeModalBasket, setModalActiveBasket] = useState(false);
+
+    const navigate = useNavigate();
     return (
         <div className={'header'}>
             <div className={'navbar'}>
@@ -86,7 +88,8 @@ export function Header() {
                         <div className={'drop_down__item'} onClick={() => {
                             dispatch(APIServise.logout());
                             localStorage.removeItem('autorization')
-                        }}><NavLink to={'/logout'}>
+                            navigate("/login")
+                        }}><NavLink to={'/login'}>
                             <GiExitDoor className=" icon_basket white"/> Выход</NavLink></div>}
                     </div>
                 </div>

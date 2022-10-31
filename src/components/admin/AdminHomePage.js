@@ -28,7 +28,7 @@ export function AdminHomePage() {
 
     useEffect(() => {
         if (localStorage.getItem('token')) {
-            dispatch(APIServise.auth());
+             dispatch(APIServise.auth());
             getUser();
         }
 

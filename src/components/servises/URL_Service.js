@@ -38,8 +38,12 @@ export class AuthService {
         return api.post('/auth/login', {email, password})
     }
 
-    static async registration(name, email, password) {
-        return api.post('/auth/registration', {name, email, password})
+    static async registration(name, email, password, role) {
+        return api.post('/auth/registration', {name, email, password, role})
+    }
+
+    static async deleteUser(email) {
+        return api.delete('/auth', {params: {email}})
     }
 
     static async logout() {
@@ -172,5 +176,9 @@ export class UserService {
 
     static async editAdressData(_id, nameSity, nameDepartment) {
         return api.patch('/users/adress', {_id, nameSity, nameDepartment})
+    }
+
+    static async sentUser(text, email, topic) {
+        return api.post('/users/send', {text, email, topic})
     }
 }

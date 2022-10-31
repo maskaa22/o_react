@@ -23,8 +23,24 @@
     width: 300px;
     transform: scale(0.5);
     transition: 0.4s all;
-    color: #510c76;
+    color: #47008e;
 }
 .modal-content.active {
     transform: scale(1);
+}
+textarea {
+    border-radius: 5px;
+    width: 93%;
+    margin-bottom: 10px;
+    outline: none;
+    font-size: 14px;
+    border: 1px solid #47008e;
+}
+.flex_start {
+    display: flex;
+    justify-content: flex-start;
+    padding: 0 0 0 10px;
+}
+.margin_right_small {
+    margin-right: 5px;
 }
