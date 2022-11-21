@@ -44,3 +44,20 @@ textarea {
 .margin_right_small {
     margin-right: 5px;
 }
+.create_event {
+    margin-top: 150px;
+    padding: 10px 20px;
+    border-radius: 12px;
+    background-color: white;
+    width: 350px;
+    color: #47008e;
+}
+.h2 {
+    padding: 0 15px 15px;
+}
+.margin_all_select {
+    margin: -5px 10px 10px;
+}
+.input_date_width {
+    width: 117px;
+}

@@ -11,6 +11,7 @@ import {Edit} from "../editPage";
 import {Orders} from "../orders";
 import {Users} from "../users";
 import {ViewFunction} from "../utils/function";
+import {Records} from "../records/Records";
 
 export function AdminHomePage() {
     const [users, setUsers] = useState([]);
@@ -53,6 +54,12 @@ export function AdminHomePage() {
                 </div>
                 <div className={'padding'}>
                     <div>
+                        <Link to="/admin/records" className={'color_purple click-item'}>
+                            <button className={'home_item click-item'}>Записи</button>
+                        </Link></div>
+                </div>
+                <div className={'padding'}>
+                    <div>
                         <Link to="/admin/product" className={'color_purple click-item'}>
                             <button className={'home_item click-item'}>Товари</button>
                         </Link></div>
@@ -82,6 +89,7 @@ export function AdminHomePage() {
                 <Routes>
                     <Route path={'/'} element={<Edit/>}/>
                     <Route path={'/users'} element={<Users items={users}/>}/>
+                    <Route path={'/records'} element={<Records/>}/>
                     <Route path={'/product'} element={<CreateProduct/>}/>
                     <Route path={'/orders'} element={<Orders/>}/>
                     <Route path={'/archive_orders'} element={<ArchiveOrders/>}/>

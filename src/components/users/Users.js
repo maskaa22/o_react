@@ -38,8 +38,8 @@ export function Users({items}) {
             <div className={'center-table'}>
                 <div className={'user-table'}>
                     <div className={'name-table'}>
-                        <div className={'cell-table header-table'}>Ім'я</div>
-                        <div className={'cell-table header-table'}>Пошта</div>
+                        <div className={'cell-table header-table first-record-name'}>Ім'я</div>
+                        <div className={'cell-table header-table name-type position-relative'}>Пошта</div>
                         <div className={'cell-table header-table'}>Телефон</div>
                         <div className={'cell-table header-table'}>Відділення</div>
                         <div className={'cell-table header-table padding_header_last'}>№</div>

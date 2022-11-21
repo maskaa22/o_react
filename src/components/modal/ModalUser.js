@@ -4,8 +4,9 @@ import {Box, Modal} from "@mui/material";
 import {LoginingForm} from "../loginingForm";
 import {DeleteUser} from "../deleteUser";
 import {ModalSendUser} from "./ModalSendUser";
+import {ModalCalendar} from "./ModalCalendar";
 
-export function ModalUser ({openWindow, handleClose, role, send, del, userEmail})
+export function ModalUser ({openWindow, handleClose, role, send, del, userEmail, calendar, date, eventCreateHandler, unix, time})
 {
     return(
         <div>
@@ -24,6 +25,9 @@ export function ModalUser ({openWindow, handleClose, role, send, del, userEmail}
                     }
                     {
                         send && <ModalSendUser handleClose={handleClose} userEmail={userEmail}/>
+                    }
+                    {
+                        calendar && <ModalCalendar handleClose={handleClose} date={date} eventCreateHandler={eventCreateHandler} unix={unix} newTime={time}/>
                     }
                 </Box>
             </Modal>

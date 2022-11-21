@@ -1,0 +1,26 @@
+/*.grid_wrapper {*/
+/*    display: grid;*/
+/*    grid-template-columns: repeat(7, 1fr);*/
+/*    grid-gap: 1px;*/
+/*    background-color: #79cbb8;*/
+/*}*/
+/*.cell_wrapper {*/
+/*    min-width: 140px;*/
+/*    min-height: 80px;*/
+/*    background-color: #5c549f;*/
+/*    color: white;*/
+/*}*/
+/*.cell_wrapper_weekend {*/
+/*    background-color: #706f7f;*/
+/*}*/
+/*.row_in_cell {*/
+/*    display: flex;*/
+/*    justify-content: flex-end;*/
+/*}*/
+/*.day_wrapper {*/
+/*    height: 33px;*/
+/*    width: 33px;*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*}*/

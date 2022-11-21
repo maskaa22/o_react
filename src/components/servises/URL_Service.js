@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import {URL} from "../../config";
+import {createCalendarEvent} from "./API";
 
 const api = axios.create({
     withCredentials: true,
@@ -180,5 +181,20 @@ export class UserService {
 
     static async sentUser(text, email, topic) {
         return api.post('/users/send', {text, email, topic})
+    }
+}
+
+
+export class HomeService {
+
+    static async createCalendarEvent(title, date, description, time) {
+        return api.post('/home', {title, date, description, time})
+    }
+
+    static async getCalendarEvent(startDateQuery, endDateQuery) {
+        return api.get('/home', {params: {startDateQuery, endDateQuery}})
+    }
+    static async getFindEvent(date) {
+        return api.get('/home/find', {params: {date}})
     }
 }

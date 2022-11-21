@@ -14,7 +14,7 @@ export function ModalSendUser ({handleClose, userEmail})
             <div className={'delete_user'}>
                 <button className={'close_del'} onClick={handleClose}><i className="fa fa-times"
                                                                          aria-hidden="true"/></button>
-                <h2>Написати</h2>
+                <h2 className={'h2'}>Написати</h2>
                 <div className={'flex_start'}><div className={'margin_right_small'}>Отримувач:</div> <span>{userEmail}</span></div>
                 <div className={'auto margin_right'}><Input value={topic} setValue={setTopic} placeholder={'Введіть тему'}/></div>
                 <div className={'auto flex'}>

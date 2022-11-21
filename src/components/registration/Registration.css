@@ -25,10 +25,10 @@
     margin-top: 10px;
     height: 30px;
 }
-.flex {
-    display: flex;
-    justify-content: center;
-}
+/*.flex {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*}*/
 .flex_end{
     position: relative;
     left: 210px;
@@ -36,5 +36,6 @@
     background-color: #e8dbdb;
 }
 .left {
-    left: 53%
+    left: 53%;
+    top: -20px;
 }

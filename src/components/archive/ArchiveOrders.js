@@ -1,6 +1,5 @@
 import {useEffect, useState} from "react";
 
-import './ArchiveOrders.css'
 import {APIServise} from "../servises";
 import {Order} from "../order";
 
@@ -14,7 +13,7 @@ export function ArchiveOrders() {
     }, []);
 
     return (
-        <div>
+        <div className={'filter'}>
             <Order orders={orders} del={true} visible={'visible'}/>
         </div>
     );

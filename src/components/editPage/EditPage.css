@@ -67,8 +67,8 @@
     visibility: visible;
 }
 .border-box {
-    margin: 20px 0 20px 0;
+    margin: 26px 0 20px 0;
     border: 3px solid #79cbb8;
-    width: 93%;
+    width: 90%;
     border-radius: 5px;
 }

@@ -1,0 +1,24 @@
+.records {
+    grid-template-columns: repeat(2, 3fr) 2fr 2fr;
+}
+.capitalize {
+    text-transform: capitalize;
+}
+.cell-table-records {
+    width: 150px;
+}
+.cell-table-records-name {
+    width: 10px;
+}
+.first-record-name {
+    padding-left: 15px;
+}
+.name-date {
+    right: 30px;
+}
+.name-type {
+    left: 40px;
+}
+.position-relative {
+    position: relative;
+}

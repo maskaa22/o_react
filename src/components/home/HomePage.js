@@ -1,7 +1,9 @@
 import {useEffect} from "react";
 import {useDispatch} from "react-redux";
 
+import './Home.css'
 import {APIServise} from "../servises";
+import {Calendar} from "../calendar";
 
 export function HomePage() {
     const dispatch = useDispatch();
@@ -11,8 +13,8 @@ export function HomePage() {
     }, [])
 
     return (
-        <div>
-            HomePage
+        <div className={'wrap'}>
+            <Calendar/>
         </div>
     );
 }

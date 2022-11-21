@@ -11,12 +11,9 @@
 }
 .name-table {
     height: 40px;
-    /*display: flex;*/
-    /*justify-content: space-between;*/
-    /*align-content: space-between;*/
     display: grid;
-    //grid-template-columns: 150px 170px 150px 170px 50px 50px;
-    grid-template-columns: repeat(4, 3fr) 1fr 1fr;
+    grid-template-columns: 3fr 4fr 2fr 2fr 1fr 1fr;
+    /*grid-template-columns: repeat(4, 3fr) 1fr 1fr;*/
 }
 .row-table {
     background-color: gainsboro;
@@ -41,6 +38,9 @@
 .btn-ok {
     border-radius: 5px;
     height: 20px;
+
+    position: relative;
+    top: -2px;
 }
 .flex-fot-content {
     display: flex;
