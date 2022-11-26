@@ -12,6 +12,7 @@ import {useState} from "react";
 import "./Header.css";
 import {APIServise} from "../servises";
 import {delFilter} from "../reducers/actionCreators";
+import Logo from "../../images/logo-header.png";
 
 export function Header() {
 
@@ -48,10 +49,14 @@ export function Header() {
 
     const navigate = useNavigate();
     return (
+        <div className={'all-container'}>
         <div className={'header'}>
             <div className={'navbar'}>
 
-                <div className={'navbar-logo'}>O_Studio</div>
+                <div className={'navbar-logo'}>
+                    <img src={Logo} className={'navbar-logo-img'} alt={'Logo'}/>
+                    <p className={'navbar-logo-p'}>Studio</p>
+                </div>
 
                 <div className={'navbar-header'}><NavLink to={'/'}>Главная</NavLink></div>
                 <div className={'navbar_serveses'}>Услуги
@@ -102,6 +107,6 @@ export function Header() {
 
             </div>
 
-        </div>
+        </div></div>
     );
 }

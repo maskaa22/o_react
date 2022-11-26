@@ -1,7 +1,16 @@
 button{
-    border-radius: 5px;
-    height: 30px;
+    border-radius: 1vw;
+    height: 3vw;
+    /*height: 30px;*/
     margin: 2px;
     position: relative;
-    top: 5px;
+    /*top: 5px;*/
+    top: 0.5vw;
+    display: flex;
+    justify-content: center;
+}
+.icon-monitor {
+    height: 3vw;
+    /*transition: color, transform 500ms ease;*/
+    font-size: 2vw;
 }

@@ -16,7 +16,7 @@
     /*grid-template-columns: repeat(4, 3fr) 1fr 1fr;*/
 }
 .row-table {
-    background-color: gainsboro;
+    background-color: #eeebebbd;
     height: 35px;
     border: 1px solid white;
     padding: 5px;

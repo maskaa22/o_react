@@ -1,7 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
 import moment from 'moment'
-
 
 import {getFindEventInRow} from "../../servises/API";
 import {
@@ -54,11 +52,11 @@ const CalendarGrid = ({startDay, today, totalDays, events, openFormHandler, setT
                                     {
                                         events.filter(event => event.date >= dayItem.format('X') && event.date <= dayItem.clone().endOf('day').format('X'))
                                             .map(event => (
-                                                <li key={event.id}>
+                                                <div key={event.id}>
                                                     <EventItemWrapper>
                                                         {event.title} {event.time}
                                                     </EventItemWrapper>
-                                                </li>
+                                                </div>
                                             ))
                                     }
                                 </EventListWrapper>
