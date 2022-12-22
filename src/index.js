@@ -5,19 +5,17 @@ import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 
 import './index.css';
-import App from './App';
-import {Footer} from "./components/footer";
-import {Header} from "./components/header";
+
+
 import {store} from "./components/reducers";
+import {HTML} from "./components/html";
 
 
 ReactDOM.render(
     <React.StrictMode>
         <Provider store={store}>
             <Router>
-                <Header/>
-                <App/>
-                <Footer/>
+                <HTML/>
             </Router>
         </Provider>
     </React.StrictMode>,

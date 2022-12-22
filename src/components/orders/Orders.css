@@ -2,9 +2,9 @@
 .check_order {
     /*border: 1px solid #500472;*/
     padding: 10px;
-    width: 93%;
+    width: 90%;
     height: 100%;
-    margin: 20px 0 20px 43px;
+    margin: 20px auto;
     border-radius: 5px;
     font-weight: 700;
     font-size: 20px;
@@ -16,7 +16,7 @@
 }
 .filter {
     padding: 0;
-    margin-top: 26px;
+    margin: 25px auto;
 }
 .justify-content-around {
     display: flex;
@@ -32,6 +32,8 @@
     border-radius: 5px;
     height: 30px;
     margin-top: 10px;
+    align-items: center;
+    color: white;
 }
 .archive {
     background-color: #47008e;
@@ -42,7 +44,7 @@
 }
 
 .user {
-    border-bottom: 3px solid #47008e;
+    border-bottom: 2px solid #47008e;
 }
 .width {
     width: 90%;
@@ -74,17 +76,36 @@
     color: #47008e;
 }
 .очікується {
-    border: 3px solid #d400cb;
+    border: 2px solid #d400cb;
 }
 .прийнято {
-    border: 3px solid #5400a8;
+    border: 2px solid #5400a8;
 }
 .обробка {
-    border: 3px solid #648da594;
+    border: 2px solid #648da594;
 }
 .відправлено {
-    border: 3px solid #c489ff;
+    border: 2px solid #c489ff;
 }
 .готово {
-    border: 3px solid #79cbb8;
+    border: 2px solid #79cbb8;
+}
+.orders-h2 {
+    display: none;
+}
+.flex-date {
+    display: flex;
+}
+.margin-right-date {
+    margin-right: 5px;
+}
+
+
+@media screen and (max-width: 600px) {
+    .orders-h2 {
+        display: block;
+    }
+    .flex-date {
+        font-size: 3.5vw;
+    }
 }

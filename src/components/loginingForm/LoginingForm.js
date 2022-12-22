@@ -37,9 +37,10 @@ export function LoginingForm ({role, handleClose, login})
                                                                                               aria-hidden="true"/></button>
                     }
                     <div className="form_header">{login ? logining : registring}</div>
-                    { !login && <Input value={name} setValue={setName} type={'text'} placeholder={"Введіть ім'я"}/>}
-                    <Input value={email} setValue={setEmail} type={'text'} placeholder={'Введіть email'}/>
-                    <Input value={password} setValue={setPassword} type={'password'} placeholder={'Введіть пароль'}/>
+                    { !login &&
+                    <Input value={name} setValue={setName} type={'text'} placeholder={"Введіть ім'я"} className={'input-margin'}/>}
+                    <Input value={email} setValue={setEmail} type={'text'} placeholder={'Введіть email'} className={'input-margin'}/>
+                    <Input value={password} setValue={setPassword} type={'password'} placeholder={'Введіть пароль'} className={'input-margin'}/>
 
                     <button className={'form_btn'} onClick={() => {
                         {

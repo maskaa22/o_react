@@ -8,7 +8,10 @@
     background: #79cbb8;
     color: white;
     flex-shrink: 0;
+
+    margin-top: auto;
 }
+
 .footer-flex {
     display: flex;
     justify-content: space-between;
@@ -26,4 +29,9 @@
  }
 .logo {
     margin: 0.5vw 0.5vw 0 0;
+    height: 3vw;
+    width: 3vw;
+}
+.logo-p {
+    font-size: 3vw;
 }

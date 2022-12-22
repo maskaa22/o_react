@@ -2,10 +2,13 @@
  * Main wrapper
  */
 .select-search {
-    width: 225px;
     position: relative;
     font-family: "Nunito Sans", sans-serif;
     box-sizing: border-box;
+    margin: auto 15px;
+}
+.select-search-last {
+    margin-top: 10px;
 }
 
 .select-search *,
@@ -27,7 +30,7 @@
     display: inline-block;
     position: absolute;
     top: calc(50% - 9px);
-    right: -10px;
+    right: 0;
     width: 11px;
     height: 11px;
 }
@@ -211,3 +214,23 @@
     text-align: center;
     color: #888;
 }
+.hidden-n-p {
+    display: none;
+}
+.visible-n-p {
+    display: flex;
+}
+
+@media screen and (min-width: 600px) {
+    .select-search {
+        margin: 10px 0;
+    }
+    .select-search-last {
+        margin-top: -10px;
+    }
+}
+/*@media screen and (max-width: 800px) {*/
+/*    .select-search {*/
+/*        margin: -10px;*/
+/*    }*/
+/*}*/

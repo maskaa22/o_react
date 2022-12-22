@@ -30,6 +30,7 @@ export function Orders() {
 
     return (
         <div>
+            <h2 className={'orders-h2'}>Замовлення</h2>
             <div className={'check_order filter select_status_label'}>
                 <FormControl fullWidth size="small">
                     <InputLabel id="demo-simple-select-label">Виберіть статус</InputLabel>

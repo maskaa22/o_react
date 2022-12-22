@@ -13,8 +13,8 @@ export function DeleteUser ({handleClose})
                 <button className={'close_del'} onClick={handleClose}><i className="fa fa-times"
                                                                         aria-hidden="true"/></button>
                 <h2 className={'h2'}>Видалення</h2>
-                <div className={'newInput'}>
-                    <Input value={emailUser} setValue={setEmailUser} placeholder={'Емеіл користувача'}/>
+                <div className={'newInput input-width'}>
+                    <Input value={emailUser} setValue={setEmailUser} placeholder={'Емеіл користувача'} className={'input-del-user'}/>
                 </div>
                 <div className={'btn-position'}>
                     <button className={'btn-add'} onClick={() => {

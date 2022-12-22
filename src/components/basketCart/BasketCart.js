@@ -11,12 +11,12 @@ export function BasketCart({product, deleteProduct, increase, decrease, changeVa
 
     return (
         <div>
-            <div className="flex_space_between box-shadow border_radius">
-                <div className={'img'}><img src={'https://u.makeup.com.ua/g/gl/gla8v5cgd3qy.png'} alt={'шaмпунь'}/>
+            <div className="grid-column box-shadow border_radius">
+                <div className={'img img-none'}><img src={'https://u.makeup.com.ua/g/gl/gla8v5cgd3qy.png'} alt={'шaмпунь'}/>
                 </div>
                 <div className={'text-center'}><span>{product.product_name}</span></div>
                 {/*Под вопросом нужно или нет*/}
-                <div className={'text-center'}>{product.title}</div>
+                <div className={'text-center text-title'}>{product.title}</div>
 
                 <div className={'text-center'}><span>{priceFormatter.format(product.totalPrice)} грн.</span></div>
                 <Count count={product.count} increase={increase} decrease={decrease} id={product._id}

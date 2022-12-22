@@ -13,8 +13,8 @@ export default function User ({item, setOpenSendUser, userEmail})
             <div className={'cell-table'}>{item.email}</div>
             <div className={'cell-table'}>{item.phone}</div>
             <div className={'cell-table'}>{item.nameSity}</div>
-            <div className={'cell-table'}>{item.nameDepartment}</div>
-            <div className={'cell-table'}><button className={'btn-ok'} onClick={() =>
+            <div className={'cell-table cell-table-last'}>{item.nameDepartment}</div>
+            <div className={'cell-table cell-table-last'}><button className={'btn-ok'} onClick={() =>
             {
                 setOpenSendUser(true);
                 userEmail(item.email)

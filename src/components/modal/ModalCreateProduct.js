@@ -46,10 +46,11 @@ export function ModalCreateProduct({active, setActive, categories}) {
                     <div className={'close'} onClick={() => setActive(false)}><i className="fa fa-times"
                                                                                  aria-hidden="true"/></div>
                     <h2>Новий товар</h2>
-                    <div className={'newInput'}><Input value={nameProduct} setValue={setNameProduct}
-                                                       placeholder={'Назва товара'}/></div>
-                    <div className={'newInput position_relative'}><Input value={titleProduct} setValue={setTitleProduct}
-                                                                         placeholder={'Короткий опис товара'}/></div>
+                        <Input value={nameProduct} setValue={setNameProduct}
+                                          placeholder={'Назва товара'} className={'input-create-product-margin'}/>
+
+                        <Input value={titleProduct} setValue={setTitleProduct}
+                                          placeholder={'Короткий опис товара'} className={'input-create-product-margin'}/>
 
                     <div className={'select-product'}>
                         <FormControl variant="standard" fullWidth>
@@ -71,12 +72,11 @@ export function ModalCreateProduct({active, setActive, categories}) {
                         </FormControl>
                     </div>
 
-                    <div className={'newInput'}><Input value={priceProduct} setValue={setPriceProduct}
-                                                       placeholder={'Ціна товара'}/></div>
+                        <Input value={priceProduct} setValue={setPriceProduct}
+                                                       placeholder={'Ціна товара'} className={'input-create-product-margin'}/>
 
-                    <div className={'newInput position_relative'}><Input value={inventoryNumber}
-                                                                         setValue={setInventoryNumber}
-                                                                         placeholder={'Інвентарний номер'}/></div>
+                        <Input value={inventoryNumber} setValue={setInventoryNumber}
+                                                placeholder={'Інвентарний номер'} className={'input-create-product-margin'}/>
 
 
                     <div className={'position'}>

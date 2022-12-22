@@ -14,11 +14,20 @@
     padding-left: 15px;
 }
 .name-date {
-    right: 30px;
+    right: 60px;
 }
-.name-type {
-    left: 40px;
-}
+/*.name-type {*/
+/*    left: 40px;*/
+/*}*/
 .position-relative {
     position: relative;
+}
+
+@media screen and (max-width: 600px) {
+    .cell-table-records {
+        width: fit-content;
+    }
+    .name-date {
+        right: 30px;
+    }
 }

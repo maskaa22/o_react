@@ -21,8 +21,8 @@ export function Edit() {
     const [numberToo, setNumberToo] = useState('');
     const [sity, setSity] = useState('');
     const [numberNP, setNumberNP] = useState('');
-    const [visibleSity, setVisibleSity] = useState('hiden');
-    const [visibleNumber, setVisibleNumber] = useState('hiden');
+    const [visibleSity, setVisibleSity] = useState('none');
+    const [visibleNumber, setVisibleNumber] = useState('none');
 
     const block_check = document.getElementById('block_check');
 
@@ -47,12 +47,12 @@ export function Edit() {
             <div className={'full-center'}>
                 <div className={'border-box'}>
 
-                    <h2>Редагування інформації</h2>
+                    <h2 className={'edit-h2'}>Редагування інформації</h2>
 
                     <div className={'full-center'}>
                         <img className={'circle'}/>
                     </div>
-                    <div className={'full-center'}>
+                    <div className={'full-center download-foto-margin'}>
                         <label htmlFor="file-upload" className="custom-file-upload">
                             <i className="fa fa-cloud-upload"/> Загрузити фото
                         </label>
@@ -62,24 +62,24 @@ export function Edit() {
                     <div className={'around'}>
                         <div>
 
-                            <div className={'full-center'}>
-                                <div className={'newInput'}>
+                            <div className={'full-center margin-input'}>
+                                <div className={'input-center-full'}>
                                     <Input value={name} setValue={setName} placeholder={"Ім'я"} type={'text'}/>
                                 </div>
                             </div>
-                            <div className={'full-center'}>
-                                <div className={'newInput'}>
+                            <div className={'full-center margin-input'}>
+                                <div className={'input-center-full'}>
                                     <Input value={surname} setValue={setSurname} placeholder={'Прізвище'}
                                            type={'text'}/>
                                 </div>
                             </div>
-                            <div className={'full-center'}>
-                                <div className={'newInput'}>
+                            <div className={'full-center margin-input'}>
+                                <div className={'input-center-full'}>
                                     <Input value={email} setValue={setEmail} placeholder={'Пошта'} type={'email'}/>
                                 </div>
                             </div>
-                            <div className={'full-center'}>
-                                <div className={'newInput'}>
+                            <div className={'full-center margin-input-last'}>
+                                <div className={'input-center-full'}>
                                     <Input value={phone} setValue={setPhone} placeholder={'Телефон'} type={'number'}/>
                                 </div>
                             </div>
@@ -91,15 +91,15 @@ export function Edit() {
                         </div>
 
                         <div>
-                            <div className={'full-center'}>
-                                <div className={'newInput'}>
+                            <div className={'full-center margin-input'}>
+                                <div className={'input-center-full'}>
                                     <Input value={oldPassword} setValue={setOldPassword} placeholder={'Старий пароль'}
                                            type={'password'}/>
                                 </div>
                             </div>
 
-                            <div className={'full-center'}>
-                                <div className={'newInput'}>
+                            <div className={'full-center margin-input'}>
+                                <div className={'input-center-full'}>
                                     <input type="password" id="pass-old" className="input-focus"
                                            placeholder="Новий пароль"
                                            name="password" value={number} onChange={handleClick}
@@ -107,13 +107,13 @@ export function Edit() {
                                 </div>
                             </div>
 
-                            <div className={'full-center position_box'}>
-                                <div className={'newInput'} id="block_check">
+                            <div className={'full-center position_box margin-input'}>
+                                <div className={'input-center-full'} id="block_check">
                                 </div>
                             </div>
 
-                            <div className={'full-center'}>
-                                <div className={'newInput last'}>
+                            <div className={'full-center margin-input'}>
+                                <div className={'input-center-full last'}>
                                     <input type="password" id="pass-new" className="input-focus last"
                                            placeholder="Повторити новий пароль"
                                            name="password" onInput={stylePassword}/>
@@ -121,21 +121,21 @@ export function Edit() {
                                 <FiCheck className={`icon_ok notVisible`} id={'icon'}/>
                             </div>
 
-                            <div className={'full-center'}>
-                                <div className={`newInput ${visibleSity} inp`}>
+                            <div className={`full-center margin-input ${visibleSity}`}>
+                                <div className={`input-center-full ${visibleSity} inp`}>
                                     <input className="input-focus" value={sity} readOnly={true}/>
                                 </div>
                             </div>
-                            <div className={'full-center'}>
-                                <div className={`newInput ${visibleNumber} inp-last`}>
-                                    <input className="input-focus" value={numberNP} readOnly={true}/>
+                            <div className={`full-center margin-input ${visibleNumber}`}>
+                                <div className={`input-center-full ${visibleNumber} inp-last`}>
+                                    <input className="input-focus" value={`Відділення № ${numberNP}`} readOnly={true}/>
                                 </div>
                             </div>
 
                         </div>
                     </div>
 
-                    <div className={'full-center'}>
+                    <div className={'full-center margin-input'}>
                         {role === 'admin' &&
                         <button className={'btn-save'} onClick={() => {
                             // APIServise.editAdminPage(currentUser._id, name, surname, email, phone, oldPassword, number, numberToo)

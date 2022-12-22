@@ -15,29 +15,30 @@ export function ProductCart({product}) {
     return (
         <div className="column">
             <div className={'card'}>
-                <div><img src={'https://u.makeup.com.ua/g/gl/gla8v5cgd3qy.png'} alt={'шaмпунь'}/></div>
-                <div className={'info_card'}><span>{product.product_name}</span></div>
-                <div className={'info_card'}>{product.title}</div>
-                <div className={'flex_buy'}>
-                    <div className={'info_card'}>{product.price} грн.</div>
-                    <div className={'buy'}>
-                        <button id={'buy'} onClick={() => {
-                            if (isAuth) {
-                                let isInArray = false;
-                                currentProduct.forEach(el => {
-                                    if (el._id === product._id)
-                                        isInArray = true;
-                                })
-                                if (!isInArray) {
-                                    dispatch(setProduct(product));
-                                    //dispatch(priceProduct(product.totalPrice));
-                                }
-                            } else SwalFunction('Не авторизований', '', 'error', 'Ok', true)
+                <div className={'top-card'}>
+                    <img src={'https://u.makeup.com.ua/g/gl/gla8v5cgd3qy.png'} alt={'шaмпунь'}/>
+                </div>
+                <div className={'bottom-card'}>
+                    <div className={'info_card'}><span>{product.product_name}</span></div>
+                    <div className={'info_card card-small-size'}>{product.title}</div>
+                    <div className={'flex_buy'}>
+                        <div className={'info_card color_purple'}>{product.price} грн.</div>
+                        <div className={'buy'}>
+                            <MdOutlineShoppingCart className=" " onClick={() => {
+                                if (isAuth) {
+                                    let isInArray = false;
+                                    currentProduct.forEach(el => {
+                                        if (el._id === product._id)
+                                            isInArray = true;
+                                    })
+                                    if (!isInArray) {
+                                        dispatch(setProduct(product));
+                                        //dispatch(priceProduct(product.totalPrice));
+                                    }
+                                } else SwalFunction('Не авторизований', '', 'error', 'Ok', true)
 
-
-                        }}>
-                            <MdOutlineShoppingCart className=" icon_basket color_purple"/>
-                        </button>
+                            }}/>
+                        </div>
                     </div>
                 </div>
             </div>

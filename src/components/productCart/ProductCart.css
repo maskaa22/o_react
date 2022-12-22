@@ -2,18 +2,46 @@
 /* Поплавок четыре колонки бок о бок */
 .column {
     float: left;
-    width: 25%;
+    width: 20%;
     padding: 0 10px;
     margin-top: 20px
 }
 
 /* Отзывчивые столбцы */
+@media screen and (min-width: 800px) {
+    .info_card {
+        font-size: 15px;
+    }
+    .card-small-size {
+        font-size: 12px;
+    }
+}
+@media screen and (max-width: 800px) {
+    .column {
+        width: 50%;
+    }
+    .info_card {
+        font-size: 20px;
+    }
+    .card-small-size {
+        font-size: 15px;
+    }
+}
+
 @media screen and (max-width: 600px) {
     .column {
         width: 100%;
         display: block;
-    //margin-bottom: 20px;
     }
+    .card {
+        width: 60vw;
+        margin: 1vw 5vw;
+    }
+}
+
+.info_card {
+    padding: 0 10px;
+    color: white;
 }
 
 /* Стиль контейнера карточек */
@@ -26,20 +54,31 @@
 
 img {
     width: 100%;
-    height: 100%;
+    height: auto;
 }
 
-.info_card {
-    padding: 0 10px;
-    color: white;
-}
+/*.info_card {*/
+/*    padding: 0 10px;*/
+/*    color: white;*/
+/*    !*font-size: 1.5vw;*!*/
+/*    font-size: 15px;*/
+/*}*/
 .flex_buy {
     display: flex;
     justify-content: space-between;
+    white-space: nowrap;
 }
 .buy {
     padding-right: 10px;
-    padding-bottom: 10px;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    color: white;
+}
+
+.card-image {
+    /*width: 15vw;*/
+    width: 100%;
 }
 button {
     border: none;
@@ -71,3 +110,11 @@ span {
     align-items: center;
     justify-content: center
 }
+
+/*.card {*/
+/*    border: 1px solid #79cbb8;*/
+/*}*/
+/*.card-foto {*/
+/*    width: 4vw;*/
+/*    height: 4vw;*/
+/*}*/

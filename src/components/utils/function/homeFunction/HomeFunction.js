@@ -25,6 +25,7 @@ export function HomeFunction ()
 export function Up () {
     window.addEventListener('scroll', function () {
         const scroll = document.querySelector('.upward');
+        // console.log(scroll);
         if(scroll)
         {
             scroll.classList.toggle('active-scroll', window.scrollY>500);

@@ -13,7 +13,7 @@ export function Footer ()
                 <div className={'footer-flex'}>
                     <div className={'navbar-logo'}>
                         <img src={Logo} className={'navbar-logo-img logo'} alt={'Logo'}/>
-                        <p className={'navbar-logo-p'}>Studio</p>
+                        <p className={'navbar-logo-p logo-p'}>Studio</p>
                     </div>
 
                     <div className={'footer-center'}>

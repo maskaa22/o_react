@@ -16,6 +16,7 @@
     margin: 0;
     cursor: pointer;
     background-color: white;
+    height: fit-content;
 }
 .close_del i {
     color: #47008e;
@@ -26,4 +27,7 @@
 .margin_right {
     margin-right: 30px;
     margin-left: -10px;
+}
+.input-width {
+    width: 100%;
 }

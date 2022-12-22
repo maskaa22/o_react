@@ -33,9 +33,9 @@ export function Records ()
             <div className={'flex-fot-content'}>
                 <div className={'centric'}>
                     <div className={'flex_space_between'}>
-                        <button  className={'btn_analyz'} onClick={() => prevHandler(setToday)}>Назад</button>
-                        <button  className={'btn_analyz'} onClick={() => todayHandler(setToday)}>Зараз</button>
-                        <button className={'btn_analyz'} onClick={() => nextHandler(setToday)}>Вперед</button>
+                        <button  className={'btn_analyz btn-fond-size margin-minus'} onClick={() => prevHandler(setToday)}>Назад</button>
+                        <button  className={'btn_analyz btn-fond-size margin-minus'} onClick={() => todayHandler(setToday)}>Сьогодення</button>
+                        <button className={'btn_analyz btn-fond-size margin-minus'} onClick={() => nextHandler(setToday)}>Вперед</button>
                     </div>
                 </div>
             </div>

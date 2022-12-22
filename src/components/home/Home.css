@@ -81,6 +81,7 @@
     cursor: pointer;
     background-color: #79CBB8FF;
     padding: 0.2vw;
+    color: white;
 }
 .title {
     width: 6ch;
@@ -96,7 +97,6 @@
     /*font-size: 7vw;*/
     white-space: nowrap;
     overflow: hidden;
-    animation: printed-text 5s ease;
 }
 .title-max-size {
     font-size: 10vw;

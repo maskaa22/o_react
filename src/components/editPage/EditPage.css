@@ -4,31 +4,44 @@
 }
 .around {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    width: 100%;
+}
+.margin-input {
+    margin: 15px;
+}
+.margin-input-last {
+    margin-bottom: 0;
 }
 .circle {
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    background-color: white;
-    margin: 20px;
+    background-color: #510c76;
+    margin-bottom: 20px;
+}
+.input-center-full {
+    width: 25vw;
 }
 .btn-save {
-    height: 50px;
+    height: 4vw;
     margin: 20px;
     border-radius: 5px;
     width: 40%;
     color: #47008e;
     font-size: 20px;
+    text-align: center;
+    display: inline;
 }
 #block_check {
     height: 5px;
-    /*margin: 0 0 0 20px;*/
     transition: 1s;
+
+    position: absolute;
+    bottom: 5px;
 }
 .position_box {
     position: relative;
-    left: 20px;
 }
 .input-focus:focus {
     outline: none;
@@ -42,7 +55,8 @@
     /*margin-top: 5px;*/
     position: relative;
     left: 5px;
-    bottom: 3px;
+    bottom: 8px;
+    text-overflow: ellipsis;
 }
 .icon_ok {
     position: relative;
@@ -52,23 +66,84 @@
 }
 .notVisible {
     visibility: hidden;
+    bottom: 5px;
 }
 .visible {
     visibility: visible;
 }
 .inp {
     position: relative;
-    top: 55px;
+    /*top: 20px;*/
+    top: 30px;
     /*visibility: hidden;*/
 }
 .inp-last {
     position: relative;
-    top: 65px;
+    top: 35px;
     visibility: visible;
 }
 .border-box {
-    margin: 26px 0 20px 0;
-    border: 3px solid #79cbb8;
+    margin: 25px auto;
+    border: 2px solid #79cbb8;
     width: 90%;
     border-radius: 5px;
+}
+.none {
+    display: none;
+}
+@media screen and (max-width: 800px) {
+    .border-box {
+        margin: 15px 25px;
+    }
+    .btn-save {
+        height: 6vw;
+        margin: 2vw;
+    }
+    .input-center-full {
+        width: 35vw;
+    }
+}
+@media screen and (max-width: 600px) {
+    .btn-save {
+        height: 7vw;
+        font-size: 4vw;
+        width: fit-content;
+    }
+    .border-box {
+        border: none;
+    }
+    .input-center-full {
+        width: 85vw;
+    }
+    .around {
+        display: block;
+        width: 95%;
+        border: 2px solid #79cbb8;
+        margin: 0 auto;
+        border-radius: 5px;
+    }
+    .download-foto-margin {
+        margin-bottom: 15px;
+    }
+    .margin-input-last {
+        margin: 15px;
+    }
+    .last {
+        left: 0;
+    }
+    .notVisible {
+        font-size: 30px;
+        bottom: 10px;
+        left: 0;
+    }
+    .inp, .inp-last {
+        top: -20px;
+    }
+    .edit-h2 {
+        padding: 0 0 15px;
+    }
+    .circle {
+        width: 150px;
+        height: 150px;
+    }
 }

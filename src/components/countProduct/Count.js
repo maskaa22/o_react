@@ -12,10 +12,10 @@ export function Count({count, increase, id, decrease, changeValue}) {
                 }} type={'number'} className={'count_input'} min={'1'} max={'100'} value={count}/>
             </div>
             <div className={'count_controls'}>
-                <button type={'button'} className={'count_up border_radius'} onClick={() => {
+                <button type={'button'} className={'count_up border_radius color_purple'} onClick={() => {
                     increase(id)
                 }}><FaAngleUp/></button>
-                <button type={'button'} className={'count_down border_radius'} onClick={() => {
+                <button type={'button'} className={'count_down border_radius color_purple'} onClick={() => {
                     decrease(id)
                 }}><FaAngleDown/></button>
             </div>

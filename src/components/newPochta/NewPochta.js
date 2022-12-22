@@ -14,7 +14,7 @@ import {
 export function NewPochta({setSity, setNumberNP, setVisibleSity, setVisibleNumber}) {
     const [nameSity, setNameSity] = useState('');
     const [nameDepartment, setNameDepartment] = useState('');
-    const [value, setValue] = useState('hiden');
+    const [value, setValue] = useState('hidden-n-p');
 
     const sity = {
         apiKey: apiKeyNovaPochta,
@@ -34,7 +34,7 @@ export function NewPochta({setSity, setNumberNP, setVisibleSity, setVisibleNumbe
         setNameSity(event);
         setSity(event)
 
-        setValue('visible')
+        setValue('visible-n-p')
         setVisibleSity('visible')
     };
     const handleChangeDepartment = (event) => {
@@ -48,7 +48,7 @@ export function NewPochta({setSity, setNumberNP, setVisibleSity, setVisibleNumbe
     return (
         <div>
             <div className={'full-center'}>
-                <div className={'newInput'}>
+                <div className={'input-center-full'}>
                     <SelectSearch
 
                         options={[]}
@@ -85,7 +85,7 @@ export function NewPochta({setSity, setNumberNP, setVisibleSity, setVisibleNumbe
 
 
             <div className={`full-center ${value}`}>
-                <div className={'newInput'}>
+                <div className={'input-center-full select-search-last'}>
                     <SelectSearch
                         options={[]}
                         getOptions={() => {

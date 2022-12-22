@@ -1,12 +1,13 @@
 .analyze {
-    border: 1px solid #47008e;
+    border: 2px solid #47008e;
     padding: 10px;
     width: 90%;
     height: 100%;
-    margin: 20px 0 60px 43px;
+    /*margin: 20px 0 60px 43px;*/
     border-radius: 5px;
     font-weight: 700;
     font-size: 20px;
+    margin: 20px auto;
 }
 h4 {
     text-align: center;
@@ -27,4 +28,27 @@ h4 {
     margin-top: 10px;
     color: white;
     padding: 5px;
+    align-items: center;
+}
+@media screen and (max-width: 800px) {
+    .analyz-h2 {
+        display: none;
+    }
+    .first-analyz {
+        margin-top: 40px;
+    }
+}
+@media screen and (max-width: 600px) {
+    .analyz-h4 {
+        font-size: 20px;
+    }
+    .btn_analyz {
+        font-size: 15px;
+    }
+    .analyz-h2 {
+        display: block;
+    }
+    .first-analyz {
+        margin-top: 0;
+    }
 }

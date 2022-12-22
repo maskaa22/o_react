@@ -3,7 +3,7 @@ input {
     border-bottom: #47008e solid 3px;
     background: transparent;
     width: 100%;
-    margin: 10px 20px;
+    /*margin: 10px 20px;*/
     padding: 3px;
     color: #47008e;
     font-weight: 700;
@@ -17,3 +17,16 @@ input {
     font-weight: 700;
 }
 
+.input-margin {
+    margin: 5px;
+}
+.input-create-product-margin {
+    margin: 5px 10px 0 0;
+}
+.input-del-user {
+    width: 90%;
+    margin: auto 15px;
+}
+.input-width {
+    width: 90%;
+}

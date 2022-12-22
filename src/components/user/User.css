@@ -1,6 +1,7 @@
 .center-table {
     display: flex;
     justify-content: center;
+    margin-bottom: 20px;
 }
 .user-table {
     width: 90%;
@@ -8,22 +9,26 @@
     background-color: white;
     border-radius: 5px;
     border: 2px solid #79cbb8;
+    margin: 20px auto;
 }
 .name-table {
-    height: 40px;
+    height: fit-content;
     display: grid;
     grid-template-columns: 3fr 4fr 2fr 2fr 1fr 1fr;
-    /*grid-template-columns: repeat(4, 3fr) 1fr 1fr;*/
+    align-items: center;
 }
 .row-table {
     background-color: #eeebebbd;
-    height: 35px;
+    height: fit-content;
     border: 1px solid white;
     padding: 5px;
 }
 .cell-table {
+    width: fit-content;
+    overflow-wrap: anywhere;
+}
+.cell-table-last {
     width: 50px;
-
 }
 .header-table {
     padding: 10px 0 10px;
@@ -38,9 +43,10 @@
 .btn-ok {
     border-radius: 5px;
     height: 20px;
-
+    color: white;
     position: relative;
     top: -2px;
+    align-items: center;
 }
 .flex-fot-content {
     display: flex;
@@ -48,6 +54,38 @@
 }
 .centric {
     width: 90%;
-    margin: 10px 20px 20px;
+    margin: 0 20px 20px;
     color: white;
+}
+.margin-minus {
+    margin-bottom: -10px;
+}
+@media screen and (min-width: 801px) {
+    .btn-fond-size {
+        font-size: 15px;
+    }
+}
+@media screen and (max-width: 600px) {
+    .row-table {
+        overflow-wrap: anywhere;
+        height: fit-content;
+    }
+    .cell-table {
+        width: fit-content;
+        padding-left: 7px;
+        height: fit-content;
+        overflow-wrap: anywhere;
+    }
+    .btn-ok {
+        height: fit-content;
+    }
+    .padding_header_last {
+        padding-right: 0;
+    }
+    .btn-fond-size {
+        font-size: 3vw;
+    }
+    h2 {
+        font-size: 5vw;
+    }
 }

@@ -36,7 +36,7 @@ export function Order({orders, del, visible}) {
                         {/*<div className={'user'}>{order.surname}</div>*/}
 
                         <div className={'center'}>
-                            <div className={'user width'}>Адреса доставки: м. {order.nameSity}, відділення
+                            <div className={'user width'}>Адреса доставки: м. {order.nameSity}, відділ.
                                 №{order.nameDepartment}</div>
                         </div>
                         <div className={'center'}>
@@ -99,8 +99,9 @@ export function Order({orders, del, visible}) {
                             </div>
                         </div>
                         <div className={'center'}>
-                            <div className={'width'}>Дата замовлення:
-                                {new Date(order.createdAt).toISOString().split('T')[0]}
+                            <div className={'width flex-date'}>
+                                <div className={'margin-right-date'}>Дата замовлення:</div>
+                                <div>{new Date(order.createdAt).toISOString().split('T')[0]}</div>
 
                                 {/*{ new Date(order.createdAt).toLocaleString('default', { month: 'long' })}*/}
                             </div>

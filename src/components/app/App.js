@@ -2,20 +2,21 @@ import {Route, Routes} from "react-router-dom";
 import {useSelector} from "react-redux";
 
 import './App.css';
-import {AboutAsPage} from "./components/aboutAs";
-import {AdminHomePage} from "./components/admin";
-import {Autorization} from "./components/autorization";
-import {BasketPage} from "./components/basket";
-import {ClientHomePage} from "./components/client";
-import {Contacts} from "./components/contacts";
-import {HomePage} from "./components/home";
-import NotFound from "./components/payButton/NotFound";
-import {ProductsPage} from "./components/productsPage";
-import {Registration} from "./components/registration";
-import {LoginingForm} from "./components/loginingForm";
+import {AboutAsPage} from "../aboutAs";
+import {AdminHomePage} from "../admin";
+import {Autorization} from "../autorization";
+import {BasketPage} from "../basket";
+import {ClientHomePage} from "../client";
+import {Contacts} from "../contacts";
+import {HomePage} from "../home";
+import NotFound from "../payButton/NotFound";
+import {ProductsPage} from "../productsPage";
+import {Registration} from "../registration";
+import {LoginingForm} from "../loginingForm";
 import {useState} from "react";
+import {MensHaircut} from "../mensHaircut";
 
-function App() {
+export function App() {
     const isAuth = useSelector(state => state.user.isAuth);
     // console.log(isAuth);
     const currentUser = useSelector(state => state.user.currentUser)
@@ -30,7 +31,7 @@ function App() {
     const login = 'login';
 
     return (
-
+<div className={'main'}>
         <div className={'all-container'}>
             {/*<Header/>*/}
             {/*<div className={'wrap'}>*/}
@@ -53,6 +54,8 @@ function App() {
             <Routes>
                 <Route path={'/'} element={<HomePage/>}/>
 
+                <Route path={`/mens_haircut`} element={<MensHaircut/>}/>
+
                 <Route path={'products'} element={<ProductsPage/>}/>
                 <Route path={'/about_as'} element={<AboutAsPage/>}/>
                 <Route path={'/contact'} element={<Contacts/>}/>
@@ -67,7 +70,7 @@ function App() {
                 {/*<Route path={'/login'} element={<Autorization login={login}/>}/>*/}
                 <Route path={'/*'} element={<NotFound/>}/>
             </Routes>
-        </div>
+        </div></div>
     );
 }
 

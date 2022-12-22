@@ -15,6 +15,7 @@ export function CreateProduct() {
 
     return (
         <div>
+            <h2 className={'bd-product'}>Занесення в базу</h2>
             <div className={'div-btn first'}>
                 <button className={'big-btn'} onClick={() => setModalActiveCategory(true)}>Додати категорію</button>
             </div>
@@ -41,11 +42,9 @@ export function CreateProduct() {
                     <div className={'close'} onClick={() => setDelProduct('del')}><i className="fa fa-times"
                                                                                      aria-hidden="true"/></div>
                     <h2>Видалення</h2>
-                    <div className={'newInput'}>
                         <Input value={number} setValue={setNumber} placeholder={'Інвентарний номер'}/>
-                    </div>
                     <div className={'btn-position'}>
-                        <button className={'btn-add'} onClick={() => {
+                        <button className={'btn-add margin-add-null'} onClick={() => {
                             APIServise.deleteProduct(number);
                             setDelProduct('del')
                         }}>Видалити

@@ -15,9 +15,9 @@ const CalendarMonitor = ({today, prevHandler, todayHandler, nextHandler}) => {
                 <TextWrapper>{today.format('YYYY')}</TextWrapper>
             </div>
             <ButtonsWrapper>
-                <button onClick={prevHandler}><GrFormPrevious className=" icon-monitor"/></button>
-                <button onClick={todayHandler}><MdToday className=" icon-monitor"/></button>
-                <button onClick={nextHandler}><GrFormNext className=" icon-monitor"/></button>
+                <button className={'button-calendar'} onClick={prevHandler}><GrFormPrevious className=" icon-monitor"/></button>
+                <button className={'button-calendar'} onClick={todayHandler}><MdToday className=" icon-monitor"/></button>
+                <button className={'button-calendar'} onClick={nextHandler}><GrFormNext className=" icon-monitor"/></button>
             </ButtonsWrapper>
         </DivWrapper>
     )

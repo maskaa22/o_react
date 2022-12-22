@@ -11,6 +11,7 @@ import {BasketCart} from "../basketCart";
 import {delAllProduct} from "../reducers/actionCreators";
 import {InfoForBuy} from "../infoForBuy";
 import {store} from "../reducers";
+import {TbBasketOff} from "react-icons/tb";
 
 export function BasketPage({active, setActive}) {
     const dispatch = useDispatch();
@@ -22,7 +23,6 @@ export function BasketPage({active, setActive}) {
     const [cart, setCart] = useState(currentProduct);
     const [status, setStatus] = useState('');
     const [pay, setPay] = useState('');
-
 
 
     useEffect(() => {
@@ -155,12 +155,12 @@ export function BasketPage({active, setActive}) {
                     <InfoForBuy money={summa * count} setPay={setPay} cart={cart}/>
 
 
-                    <div className={'basket_check flex_space_between btn_last'}>
+                    <div className={'basket_check flex__space__between btn_last'}>
                         <div className={'summa'}>
                             <i className="fa fa-shopping-basket summaProduct" aria-hidden="true"/>
                             {summa * count} грн.
                         </div>
-                        <div>
+                        <div className={'check-div'}>
                             <button className={'check'} onClick={() => {
                                 APIServise.setOrder(currentUser.id, currentUser.name, currentUser.surname, currentUser.phone,
                                     currentUser.nameSity, currentUser.nameDepartment, pay, cart, status, summa * count, month);
@@ -173,7 +173,7 @@ export function BasketPage({active, setActive}) {
                                 }
                                 APIServise.dateAnalizy(month, summa)
 
-                            }}>Оформить заказ
+                            }}>Оформити
                             </button>
                         </div>
                     </div>
@@ -184,7 +184,10 @@ export function BasketPage({active, setActive}) {
 
     function showNothing() {
         return (
-            <h1>Товаров нет</h1>
+            <div>
+                <h1 className={'basket-h1'}>Додайте товари в корзину</h1>
+                <div className={'basket-icon-center'}><TbBasketOff className="basket-img"/></div>
+            </div>
         )
     }
 

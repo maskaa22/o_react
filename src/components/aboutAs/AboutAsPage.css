@@ -1,0 +1,25 @@
+
+.img-hear {
+    background-image: url('../../images/lokon1.png');
+    background-position: 50% 50%;
+    background-size: cover;
+    background-attachment: fixed
+}
+.flex-history {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+.history {
+    margin: 30px;
+    background-color: transparent;
+    background-image: linear-gradient(180deg, #FFFFFF80 60%, #FFFFFF00 100%);
+    border-radius: 1vw 1vw 0 0;
+    padding: 30px;
+    color: #47008e;
+    font-size: 20px;
+}
+.header-about {
+    text-align: center;
+    color: white;
+}

@@ -48,7 +48,7 @@ export function InfoForBuy({money, setPay, product, cart}) {
     return (
         <div>
             <div className={'basket_check'}>
-                <div className={'flex_space_between'}>
+                <div className={'flex__space__between'}>
                     <p className={'data_name'}>Контактні дані</p>
                     <button className={'update'} onClick={() => {
                         setStateName(false);
@@ -69,7 +69,7 @@ export function InfoForBuy({money, setPay, product, cart}) {
                         <Input value={name} setValue={setName} placeholder={currentUser.name}/>
                         <Input value={surname} setValue={setSurname} placeholder={currentUser.surname}/>
                         <Input value={phone} setValue={setPhone} placeholder={currentUser.phone}/>
-                        <div className={'d_flex'}>
+                        <div className={'d_flex edit-date-margin'}>
                             <button className={'check save'} onClick={() => {
                                 APIServise.editContactData(currentUser.id, name, surname, phone)
                                 setStateInput(false)
@@ -83,7 +83,7 @@ export function InfoForBuy({money, setPay, product, cart}) {
             </div>
 
             <div className={'basket_check'}>
-                <div className={'flex_space_between'}>
+                <div className={'flex__space__between'}>
                     <p className={'data_name'}>Доставка</p>
                     <button className={'update'} onClick={() => {
                         setStateNameAdress(false);
@@ -105,14 +105,14 @@ export function InfoForBuy({money, setPay, product, cart}) {
                             />
                             <div>
                                 <div className={` ${visibleSity} label_input`}>
-                                    <input className="input-focus" value={sity} readOnly={true}/>
+                                    <input className="input-focus" value={`м. ${sity}`} readOnly={true}/>
                                 </div>
                                 <div className={` ${visibleNumber} label_input_last`}>
-                                    <input className="input-focus" value={numberNP} readOnly={true}/>
+                                    <input className="input-focus" value={`відділення № ${numberNP}`} readOnly={true}/>
                                 </div>
                             </div>
                         </div>
-                        <div className={'d_flex'}>
+                        <div className={'d_flex edit-date-margin-last'}>
                             <button className={'check save'} onClick={() => {
                                 //TODO функция редактирования данних
                                 APIServise.editAdressData(currentUser.id, sity, numberNP)
@@ -131,7 +131,7 @@ export function InfoForBuy({money, setPay, product, cart}) {
 
             <div className={'basket_check'}>
                 <div className={'flex_space_between'}>
-                    <p className={'data_name'}>Оплата</p>
+                    <p className={'data_name byu-title'}>Оплата</p>
                     <div className={`${success}`}>
                         Сплачено <FiCheckCircle className=" icon_basket byu_ok"/>
                     </div>

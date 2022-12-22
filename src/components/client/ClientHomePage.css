@@ -1,16 +1,12 @@
-.adminHomePage {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-}
-.home-menu {
-    height: 600px;
-    width: 20%;
-    padding: 15px 0 0 15px;
-    /*background-color: pink;*/
-}
-.home-page {
-    height: 600px;
-    width: 80%;
-    /*background-color: antiquewhite;*/
-}
+/*.adminHomePage {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-content: center;*/
+/*}*/
+/*.home-menu {*/
+/*    width: 20%;*/
+/*    padding: 15px 0 0 15px;*/
+/*}*/
+/*.home-page {*/
+/*    width: 80%;*/
+/*}*/

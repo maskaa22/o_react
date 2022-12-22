@@ -4,6 +4,8 @@ import {useState} from "react";
 import './ProductsPage.css';
 import {APIServise} from "../servises";
 import {setCategory} from "../reducers/actionCreators";
+import {closeToogleMenu, openFilterName} from "../utils/function";
+import {MdNavigateNext} from "react-icons/md";
 
 export default function ProductCategory({
                                             category,
@@ -12,7 +14,8 @@ export default function ProductCategory({
                                             page,
                                             setCategory_id,
                                             offset,
-                                            setOffset
+                                            setOffset,
+                                            setCategoriName
                                         }) {
 
     let [productCategoryCheck, setProductCategoryCheck] = useState(false);
@@ -27,7 +30,7 @@ export default function ProductCategory({
             <button className={`category`} id={category._id}
                     onClick={() => {
                         setProductCategoryCheck(productCategoryCheck = !productCategoryCheck);
-
+                        closeToogleMenu('category-menu', 'product-menu-block', 'active-menu-category', 'no-scroll');
 
                         dispatch(APIServise.categoriesFilter(category._id, page, 2)).then(response => {
                             setOffset(0);
@@ -46,10 +49,12 @@ export default function ProductCategory({
                             setProductFilter(response.data);
                             setFilter(response.data.docs);
                             dispatch(setCategory())
+                            setCategoriName(category.category_name);
+                            openFilterName();
                         });
                     }
                     }>
-                {category.category_name}
+                {category.category_name} <MdNavigateNext className={'non-icon'}/>
             </button>
         </div>
     );
