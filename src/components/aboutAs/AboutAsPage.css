@@ -23,3 +23,15 @@
     text-align: center;
     color: white;
 }
+.about-h1{
+    text-align: center;
+}
+.about-non-margin {
+    margin: 0;
+}
+.about-video-item {
+    width: 300px;
+}
+.about-p-full {
+    margin: 10px 40px;
+}

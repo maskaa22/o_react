@@ -2,17 +2,17 @@ import './Home.css'
 export function Benefits ()
 {
     return(
-        <div>
+        <div className={'circle-full'}>
             <div className={'circle-flex'}>
-                <div className={'circle-home circle-flex'}>
+                <div className={'circle-home circle-flex-item'}>
                     <div className={'circle-text'}>1</div>
                 </div>
-                <hr/>
-                <div className={'circle-home circle-flex'}>
+                <hr className={'circle-hr'}/>
+                <div className={'circle-home circle-flex-item'}>
                     <div className={'circle-text'}>2</div>
                 </div>
-                <hr/>
-                <div className={'circle-home circle-flex'}>
+                <hr className={'circle-hr'}/>
+                <div className={'circle-home circle-flex-item'}>
                     <div className={'circle-text'}>3</div>
                 </div>
             </div>

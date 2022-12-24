@@ -1,25 +1,32 @@
-import Union from "../../images/Union4.png";
-import Logo from "../../images/logo.png";
+
+import Logo from "../../images/logo-header.png";
 import './Home.css'
+import VideoWebm from "../../video/home.webm";
+import VideoMp4 from "../../video/home.mp4";
 
 export function Main ()
 {
     return(
-        <div>
-            <div className={'container '}>
-                <img src={Logo} className={'logo-img title-for-logo'} alt={'Logo'}/>
+        <div className={'full-screen'}>
+            <div className={'full-screen__body'}>
+                <div className={'container '}>
+                    <img src={Logo} className={'logo-img title-for-logo'} alt={'Logo'}/>
+                </div>
+                <div className={'container title-position'}>
+                    <p className={'title'}>lena </p>
+                </div>
+                <div className={'container title-position-studio'}>
+                    <p className={'title title-max-size'}>Studio</p>
+                </div>
+                <div className={'container button-position'}>
+                    <a href={'#calendar'} className={'write'}>Записатися</a>
+                </div>
             </div>
-            <div className={'container title-position'}>
-                <p className={'title'}>lena </p>
-            </div>
-            <div className={'container title-position-studio'}>
-                <p className={'title title-max-size'}>Studio</p>
-            </div>
-            <img src={Union} alt={'Головна'}/>
+            <video autoPlay muted loop preload={'auto'} className={'full-screen__video'}>
+                <source src={VideoWebm} type={'video/webm'}/>
+                <source src={VideoMp4} type={'video/mp4'}/>
+            </video>
 
-            <div className={'container button-position'}>
-                <a href={'#calendar'} className={'write'}>Записатися</a>
-            </div>
         </div>
     );
 }

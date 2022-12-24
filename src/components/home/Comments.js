@@ -8,7 +8,7 @@ export function Comments ()
 {
     return(
         <div className={'comments'}>
-            <div className={'comment'}>
+            <div className={'comment comment-one'}>
                 <div className={'circle-flex comment-item'}>
                     <div className={'circle-flex'}>
                         <div className="photo">
@@ -22,7 +22,7 @@ export function Comments ()
                     </div>
                 </div>
             </div>
-            <div className={'comment'}>
+            <div className={'comment comment-two'}>
                 <div className={'circle-flex comment-item'}>
                     <div className={'circle-flex'}>
                         <div className="photo">
@@ -36,7 +36,7 @@ export function Comments ()
                     </div>
                 </div>
             </div>
-            <div className={'comment'}>
+            <div className={'comment comment-three'}>
                 <div className={'circle-flex comment-item'}>
                     <div className={'circle-flex'}>
                         <div className="photo">

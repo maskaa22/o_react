@@ -26,6 +26,7 @@ export function Works ()
                         pro. </p>
                 </div>
             </div>
+
             <div className={'two-slide'}><img src={Slide} alt={'Головна'} className={'slide-image'}/>
                 <div className={'p-slide'}>
                     <p className={'p'}>Lorem ipsum dolor sit amet, eu soleat causae virtute vix. Ut dicant
