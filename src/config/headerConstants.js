@@ -1,0 +1,16 @@
+module.exports = {
+    THIS: '/',
+    PRODUCTS: '/products',
+    MENS_HAIRCUT: '/mens_haircut',
+    WOMENS_HAIRCUT: '/womens_haircut',
+    HAIR_STYLES: '/hairstyles',
+    HAIR_COLOR: '/hair_color',
+    ABOUT_AS: '/about_as',
+    CONTACT: '/contact',
+    PRODUCTS_ORDERS: '/products/orders',
+    ADMIN_ALL: '/admin/*',
+    CLIENT_ALL: '/user/*',
+    REGISTRATION: '/registration',
+    LOGIN: '/login',
+    NOT_FOUND: '/*',
+};

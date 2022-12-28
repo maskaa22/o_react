@@ -15,6 +15,19 @@ import {Registration} from "../registration";
 import {LoginingForm} from "../loginingForm";
 import {useState} from "react";
 import {MensHaircut} from "../mensHaircut";
+import {WomensHaircut} from "../womensHaircut";
+import {HairStyles} from "../hairStyles";
+import {HairColor} from "../hairColor";
+import {
+    ABOUT_AS, ADMIN_ALL, CLIENT_ALL, CONTACT,
+    HAIR_COLOR,
+    HAIR_STYLES, LOGIN,
+    MENS_HAIRCUT, NOT_FOUND,
+    PRODUCTS, PRODUCTS_ORDERS, REGISTRATION,
+    THIS,
+    WOMENS_HAIRCUT
+} from "../../config/headerConstants";
+import {WORLD_LOGIN} from "../../config/wordsConstants";
 
 export function App() {
     const isAuth = useSelector(state => state.user.isAuth);
@@ -28,7 +41,7 @@ export function App() {
     //    return <Autorization/>
     // }
 
-    const login = 'login';
+    const login = WORLD_LOGIN;
 
     return (
 <div className={'main'}>
@@ -52,23 +65,26 @@ export function App() {
             {/*<AdminHomePage/>*/}
             {/*<ClientHomePage/>*/}
             <Routes>
-                <Route path={'/'} element={<HomePage/>}/>
+                <Route path={THIS} element={<HomePage/>}/>
 
-                <Route path={`/mens_haircut`} element={<MensHaircut/>}/>
+                <Route path={MENS_HAIRCUT} element={<MensHaircut/>}/>
+                <Route path={WOMENS_HAIRCUT} element={<WomensHaircut/>}/>
+                <Route path={HAIR_STYLES} element={<HairStyles/>}/>
+                <Route path={HAIR_COLOR} element={<HairColor/>}/>
 
-                <Route path={'products'} element={<ProductsPage/>}/>
-                <Route path={'/about_as'} element={<AboutAsPage/>}/>
-                <Route path={'/contact'} element={<Contacts/>}/>
+                <Route path={PRODUCTS} element={<ProductsPage/>}/>
+                <Route path={ABOUT_AS} element={<AboutAsPage/>}/>
+                <Route path={CONTACT} element={<Contacts/>}/>
                 {/*<Route path={'/products/orders'} element={<BasketPage active={activeModalBasket} setActive={setModalActiveBasket}/>}/>*/}
-                <Route path={'/products/orders'} element={<BasketPage/>}/>
-                <Route path={'/admin/*'} element={<AdminHomePage/>}/>
-                <Route path={`/user/*`} element={<ClientHomePage/>}/>
+                <Route path={PRODUCTS_ORDERS} element={<BasketPage/>}/>
+                <Route path={ADMIN_ALL} element={<AdminHomePage/>}/>
+                <Route path={CLIENT_ALL} element={<ClientHomePage/>}/>
 
                 {/*<Route path={'/registration'} element={<Registration/>}/>*/}
-                <Route path={'/registration'} element={<LoginingForm/>}/>
-                <Route path={'/login'} element={<LoginingForm login={login}/>}/>
+                <Route path={REGISTRATION} element={<LoginingForm/>}/>
+                <Route path={LOGIN} element={<LoginingForm login={login}/>}/>
                 {/*<Route path={'/login'} element={<Autorization login={login}/>}/>*/}
-                <Route path={'/*'} element={<NotFound/>}/>
+                <Route path={NOT_FOUND} element={<NotFound/>}/>
             </Routes>
         </div></div>
     );

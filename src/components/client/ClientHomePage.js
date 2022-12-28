@@ -8,7 +8,7 @@ import {Edit} from "../editPage";
 import {UserOrders} from "../orders";
 import {closeToogleMenu, handleClick, ifOpenPageAddActiveClass, openToogleMenu, ViewFunction} from "../utils/function";
 import {MdNavigateNext} from "react-icons/md";
-import {CLIENT, CLIENT_ORDERS} from "../../config/homeConstants";
+import {CLIENT, CLIENT_ORDERS, ORDERS, THIS} from "../../config/homeConstants";
 
 export function ClientHomePage() {
     const currentUser = useSelector(state => state.user.currentUser);
@@ -65,8 +65,8 @@ export function ClientHomePage() {
             </div>
             <div className={'home-page'}>
                 <Routes>
-                    <Route path={'/'} element={<Edit/>}/>
-                    <Route path={'/orders'} element={<UserOrders orders={orders}/>}/>
+                    <Route path={THIS} element={<Edit/>}/>
+                    <Route path={ORDERS} element={<UserOrders orders={orders}/>}/>
                 </Routes>
             </div>
         </div>

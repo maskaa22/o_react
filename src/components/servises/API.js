@@ -1,6 +1,14 @@
 import axios from 'axios';
 
-import {CategoryService, UserService, ProductService, AuthService, OrderService, HomeService} from './URL_Service'
+import {
+    CategoryService,
+    UserService,
+    ProductService,
+    AuthService,
+    OrderService,
+    HomeService,
+    ContactService
+} from './URL_Service'
 import {filterProduct, setProduct, setUser, setRole, userLogout} from "../reducers/actionCreators";
 import {store} from "../reducers";
 import {SwalFunction} from "../utils/function";
@@ -351,6 +359,17 @@ export const getFindEventInRow = async (date) => {
     try {
 
         const response = await HomeService.getFindEvent(date);
+
+        return response.data;
+    } catch (e) {
+        SwalFunction('Помилка!', e.response.data.message, 'error', 'Ok', true)
+    }
+};
+export const sentEmail = async (name, email, phone, text) => {
+    try {
+        const response = await ContactService.sentEmail(name, email, phone, text);
+
+        SwalFunction('Лист відправлено', '', 'success', 'Ok', false, 3500)
 
         return response.data;
     } catch (e) {

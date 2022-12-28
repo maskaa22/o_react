@@ -1,14 +1,20 @@
-
+.margin-bottom-about {
+    margin-bottom: 40px;
+}
 .img-hear {
     background-image: url('../../images/lokon1.png');
     background-position: 50% 50%;
     background-size: cover;
     background-attachment: fixed
 }
-.flex-history {
+.flex-about {
     display: flex;
     justify-content: space-between;
+}
+.grid-history {
+    display: grid;
     margin: 20px;
+    grid-template-columns: repeat(3, 1fr);
 }
 .history {
     margin: 30px;
@@ -26,12 +32,75 @@
 .about-h1{
     text-align: center;
 }
-.about-non-margin {
-    margin: 0;
-}
 .about-video-item {
     width: 300px;
 }
 .about-p-full {
     margin: 10px 40px;
+}
+.about-p-last {
+    margin-top: 15px;
+    font-size: 12px;
+}
+.team-h1 {
+    text-align: center;
+}
+.teams-gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 15px;
+}
+.team-img {
+    border-radius: 5px 5px 0 0;
+    box-shadow: 6px -3px 9px 2px rgb(0 0 0 / 20%);
+}
+.teams-gallery p {
+    text-align: center;
+}
+
+@media (max-width: 800px) {
+    .about-video-item {
+        width: 250px;
+    }
+    .about-p-full {
+        margin: 0 10px;
+    }
+    .grid-history {
+        margin: 0;
+        display: block;
+    }
+    .item-last {
+        margin-bottom: 0;
+    }
+    .history {
+        margin: 0 20px;
+        padding: 20px;
+    }
+    .teams-gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 600px) {
+    .flex-about {
+        display: block;
+    }
+    .about-video-item {
+        width: 300px;
+    }
+    .about-p-full {
+        margin: 10px;
+    }
+    .about-video-flex {
+        display: flex;
+        justify-content: center;
+    }
+    .teams-gallery {
+        grid-template-columns: 1fr;
+    }
+    .team-img {
+        width: 70%;
+    }
+    .teams-items {
+        text-align: center;
+    }
 }

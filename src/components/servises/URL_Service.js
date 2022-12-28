@@ -198,3 +198,9 @@ export class HomeService {
         return api.get('/home/find', {params: {date}})
     }
 }
+
+export class ContactService {
+    static async sentEmail(name, email, phone, text) {
+        return api.post('/contact', {name, email, phone, text})
+    }
+}

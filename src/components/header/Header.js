@@ -14,6 +14,17 @@ import {APIServise} from "../servises";
 import {delFilter} from "../reducers/actionCreators";
 import Logo from "../../images/logo-header.png";
 import {openToogleMenu, closeToogleMenu, handleClick, closeHandleClick} from "../utils/function";
+import {
+    ABOUT_AS, CONTACT,
+    HAIR_COLOR,
+    HAIR_STYLES, LOGIN,
+    MENS_HAIRCUT,
+    PRODUCTS, PRODUCTS_ORDERS, REGISTRATION,
+    THIS,
+    WOMENS_HAIRCUT
+} from "../../config/headerConstants";
+import {WORLD_ADMIN, WORLD_AUTORIZATION, WORLD_USER} from "../../config/wordsConstants";
+import {ADMIN, CLIENT} from "../../config/homeConstants";
 
 export function Header() {
 
@@ -74,14 +85,16 @@ export function Header() {
 
 
 
-    const subLinkOne = document.getElementById('sub-link-one');
-    const subLinkTwo = document.getElementById('sub-link-two');
+    // const subLinkOne = document.getElementById('sub-link-one');
+    // const subLinkTwo = document.getElementById('sub-link-two');
 
     function openSubMenuOne() {
+        const subLinkOne = document.getElementById('sub-link-one');
         subLinkOne.classList.toggle('active-sub-link-one');
     }
 
     function openSubMenuTwo() {
+        const subLinkTwo = document.getElementById('sub-link-two');
         subLinkTwo.classList.toggle('active-sub-link-two');
     }
 
@@ -108,68 +121,68 @@ export function Header() {
                 <ul className={'menu'} id={'list-menu'}>
 
                     <li>
-                        <NavLink to={'/'} onClick={closeToogleMenu}>Головна</NavLink>
+                        <NavLink to={THIS} onClick={closeToogleMenu}>Головна</NavLink>
                     </li>
                     <li>
                         <a onClick={openSubMenuOne}>Послуги</a>
                         <ul className={'submenu'} id={'sub-link-one'}>
                             <li>
-                                <NavLink to={'/mens_haircut'} onClick={closeHandler}>Чоловічі
+                                <NavLink to={MENS_HAIRCUT} onClick={closeHandler}>Чоловічі
                                     стрижки</NavLink>
                             </li>
                             <li>
-                                <NavLink to={'/womens_haircut'} onClick={closeHandler}>Жіночі
+                                <NavLink to={WOMENS_HAIRCUT} onClick={closeHandler}>Жіночі
                                     стрижки</NavLink>
                             </li>
                             <li>
-                                <NavLink to={'/hairstyles'} onClick={closeHandler}
+                                <NavLink to={HAIR_STYLES} onClick={closeHandler}
                                 >Зачіски</NavLink>
                             </li>
                             <li>
-                                <NavLink to={'/hair_dyeing'} onClick={closeHandler}
+                                <NavLink to={HAIR_COLOR} onClick={closeHandler}
                                 >Фарбування</NavLink>
                             </li>
                         </ul>
                     </li>
                     <li >
-                        <NavLink to={'products'} onClick={() => {closeHandler(); dispatch(delFilter())}}>Товари</NavLink>
+                        <NavLink to={PRODUCTS} onClick={() => {closeHandler(); dispatch(delFilter())}}>Товари</NavLink>
                     </li>
                     <li>
-                        <NavLink to={'/about_as'} onClick={closeHandler}>Про нас</NavLink>
+                        <NavLink to={ABOUT_AS} onClick={closeHandler}>Про нас</NavLink>
                     </li>
                     <li>
-                        <NavLink to={'/contact'} onClick={closeHandler}>Контакти</NavLink>
+                        <NavLink to={CONTACT} onClick={closeHandler}>Контакти</NavLink>
                     </li>
                     <li>
                         <a onClick={openSubMenuTwo}><IoMdExit className=" icon_basket link-a"/></a>
                         <ul className={'submenu'} id={'sub-link-two'}>
                             {
                                 !isAuth &&
-                                <li><NavLink to={'/login'} onClick={closeHandler}><RiMapPinUserFill
+                                <li><NavLink to={LOGIN} onClick={closeHandler}><RiMapPinUserFill
                                     className=" icon_login link-a"/>Вхід</NavLink></li>
                             }
                             {
                                 !isAuth &&
-                                <li><NavLink to={'/registration'} onClick={closeHandler}><ImUserPlus
+                                <li><NavLink to={REGISTRATION} onClick={closeHandler}><ImUserPlus
                                     className=" icon_login link-a"/>Реєстрация</NavLink></li>
                             }
                             {
-                                isAuth && role === 'admin' &&
-                                <li><NavLink to={'/admin'} onClick={closeHandler}><ImUserPlus
+                                isAuth && role === WORLD_ADMIN &&
+                                <li><NavLink to={ADMIN} onClick={closeHandler}><ImUserPlus
                                     className=" icon_login link-a"/>Кабінет</NavLink></li>
                             }
                             {
-                                isAuth && role === 'user' &&
-                                <li><NavLink to={'/user'} onClick={closeHandler}><BiCabinet
+                                isAuth && role === WORLD_USER &&
+                                <li><NavLink to={CLIENT} onClick={closeHandler}><BiCabinet
                                     className=" icon_login link-a"/>Кабінет</NavLink></li>
                             }
                             {
                                 isAuth &&
                                 <li onClick={() => {
                                     dispatch(APIServise.logout());
-                                    localStorage.removeItem('autorization');
-                                    navigate("/login");
-                                }}><NavLink to={'/login'} onClick={closeHandler}><GiExitDoor
+                                    localStorage.removeItem(WORLD_AUTORIZATION);
+                                    navigate(LOGIN);
+                                }}><NavLink to={LOGIN} onClick={closeHandler}><GiExitDoor
                                     className=" icon_login link-a"/>Вихід</NavLink></li>
                             }
 
@@ -178,7 +191,7 @@ export function Header() {
                     <li>
                         {
                             isAuth &&
-                            <NavLink to={'/products/orders'} onClick={closeHandler}><BsBasket2
+                            <NavLink to={PRODUCTS_ORDERS} onClick={closeHandler}><BsBasket2
                                 className=" icon_basket link-a"/></NavLink>
                         }
                     </li>

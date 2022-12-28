@@ -18,7 +18,7 @@ import {
     ADMIN_ORDERS,
     ADMIN_PRODUCT,
     ADMIN_RECORDS,
-    ADMIN_USERS
+    ADMIN_USERS, ANALYSIS, ARCHIVE_ORDERS, CLIENTS, ORDERS, PRODUCT, RECORDS, THIS
 } from "../../config/homeConstants";
 import {MdNavigateNext} from "react-icons/md";
 
@@ -53,7 +53,7 @@ export function AdminHomePage() {
         container.addEventListener('click', handleClick, false);
     }
 
-    function closeMenuHome () {
+    function closeMenuHome() {
         closeToogleMenu('category-menu', 'small-menu-admin-client', 'active-menu-category', 'no-scroll');
     }
 
@@ -69,44 +69,53 @@ export function AdminHomePage() {
                     <span className={'category-menu-bar'}/>
                 </div>
                 <div className={'small-menu-admin-client'} id={'small-menu-admin-client'}>
-                        {/*<div className={'left-home-menu'}>*/}
-                            <div className={'padding-last'}>
-                                    <Link to={ADMIN} className={'color_purple click-item'}>
-                                        <button className={'home_item click-item category'} onClick={closeMenuHome}>Редагувати <MdNavigateNext className={'non-icon'}/></button>
-                                    </Link>
-                            </div>
-                            <div className={'padding'}>
-                                {/*<div onClick={getUser}>*/}
-                                    <Link to={ADMIN_USERS} className={'color_purple click-item'}>
-                                        <button className={'home_item click-item category'} onClick={() => {closeMenuHome(); getUser()}}>Клієнти <MdNavigateNext className={'non-icon'}/></button>
-                                    </Link>
-                            </div>
-                            <div className={'padding'}>
-                                    <Link to={ADMIN_RECORDS} className={'color_purple click-item'}>
-                                        <button className={'home_item click-item category'} onClick={closeMenuHome}>Записи <MdNavigateNext className={'non-icon'}/></button>
-                                    </Link>
-                            </div>
-                            <div className={'padding'}>
-                                    <Link to={ADMIN_PRODUCT} className={'color_purple click-item'}>
-                                        <button className={'home_item click-item category'} onClick={closeMenuHome}>Товари <MdNavigateNext className={'non-icon'}/></button>
-                                    </Link>
-                            </div>
-                            <div className={'padding'}>
-                                    <Link to={ADMIN_ORDERS} className={'color_purple click-item'}>
-                                        <button className={'home_item click-item category'} onClick={closeMenuHome}>Замовлення <MdNavigateNext className={'non-icon'}/></button>
-                                    </Link>
-                            </div>
-                            <div className={'padding'}>
-                                    <Link to={ADMIN_ARCHIVE_ORDERS} className={'color_purple click-item'}>
-                                        <button className={'home_item click-item category'} onClick={closeMenuHome}>Архів <MdNavigateNext className={'non-icon'}/></button>
-                                    </Link>
-                            </div>
-                            <div className={'padding'}>
-                                    <Link to={ADMIN_ANALYSIS} className={'color_purple click-item'}>
-                                        <button className={'home_item click-item category'} onClick={closeMenuHome}>Звіти <MdNavigateNext className={'non-icon'}/></button>
-                                    </Link>
-                            </div>
-                        </div>
+                    {/*<div className={'left-home-menu'}>*/}
+                    <div className={'padding-last'}>
+                        <Link to={ADMIN} className={'color_purple click-item'}>
+                            <button className={'home_item click-item category'}
+                                    onClick={closeMenuHome}>Редагувати <MdNavigateNext className={'non-icon'}/></button>
+                        </Link>
+                    </div>
+                    <div className={'padding'}>
+                        {/*<div onClick={getUser}>*/}
+                        <Link to={ADMIN_USERS} className={'color_purple click-item'}>
+                            <button className={'home_item click-item category'} onClick={() => {
+                                closeMenuHome();
+                                getUser()
+                            }}>Клієнти <MdNavigateNext className={'non-icon'}/></button>
+                        </Link>
+                    </div>
+                    <div className={'padding'}>
+                        <Link to={ADMIN_RECORDS} className={'color_purple click-item'}>
+                            <button className={'home_item click-item category'}
+                                    onClick={closeMenuHome}>Записи <MdNavigateNext className={'non-icon'}/></button>
+                        </Link>
+                    </div>
+                    <div className={'padding'}>
+                        <Link to={ADMIN_PRODUCT} className={'color_purple click-item'}>
+                            <button className={'home_item click-item category'}
+                                    onClick={closeMenuHome}>Товари <MdNavigateNext className={'non-icon'}/></button>
+                        </Link>
+                    </div>
+                    <div className={'padding'}>
+                        <Link to={ADMIN_ORDERS} className={'color_purple click-item'}>
+                            <button className={'home_item click-item category'}
+                                    onClick={closeMenuHome}>Замовлення <MdNavigateNext className={'non-icon'}/></button>
+                        </Link>
+                    </div>
+                    <div className={'padding'}>
+                        <Link to={ADMIN_ARCHIVE_ORDERS} className={'color_purple click-item'}>
+                            <button className={'home_item click-item category'}
+                                    onClick={closeMenuHome}>Архів <MdNavigateNext className={'non-icon'}/></button>
+                        </Link>
+                    </div>
+                    <div className={'padding'}>
+                        <Link to={ADMIN_ANALYSIS} className={'color_purple click-item'}>
+                            <button className={'home_item click-item category'}
+                                    onClick={closeMenuHome}>Звіти <MdNavigateNext className={'non-icon'}/></button>
+                        </Link>
+                    </div>
+                </div>
 
 
             </div>
@@ -114,13 +123,13 @@ export function AdminHomePage() {
             <div className={'home-page'}>
                 <div className={'small-content-admin-client'}>
                     <Routes>
-                        <Route path={'/'} element={<Edit/>}/>
-                        <Route path={'/users'} element={<Users items={users}/>}/>
-                        <Route path={'/records'} element={<Records/>}/>
-                        <Route path={'/product'} element={<CreateProduct/>}/>
-                        <Route path={'/orders'} element={<Orders/>}/>
-                        <Route path={'/archive_orders'} element={<ArchiveOrders/>}/>
-                        <Route path={'/analysis'} element={<Analysis/>}/>
+                        <Route path={THIS} element={<Edit/>}/>
+                        <Route path={CLIENTS} element={<Users items={users}/>}/>
+                        <Route path={RECORDS} element={<Records/>}/>
+                        <Route path={PRODUCT} element={<CreateProduct/>}/>
+                        <Route path={ORDERS} element={<Orders/>}/>
+                        <Route path={ARCHIVE_ORDERS} element={<ArchiveOrders/>}/>
+                        <Route path={ANALYSIS} element={<Analysis/>}/>
                     </Routes>
                 </div>
             </div>

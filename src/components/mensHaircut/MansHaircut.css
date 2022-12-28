@@ -1,0 +1,52 @@
+
+.servise-info-h1 {
+    text-align: center;
+}
+.servise-info-img {
+    float: left;
+    width: 40%;
+    margin: 20px 40px 0 0;
+    box-shadow: 6px -3px 9px 2px rgb(0 0 0 / 20%)
+}
+.servise-info-p {
+    margin-top: 20px;
+    font-size: 20px;
+    text-align: justify;
+}
+.servise-info {
+    margin-bottom: 40px;
+}
+.servise-hears {
+    display: flex;
+    margin-bottom: 2vw;
+    justify-content: space-between;
+}
+.hears-item {
+    display: flex;
+    margin: 10px;
+}
+.hears-item-icon {
+    color: #79cbb8;
+    font-size: 30px;
+}
+.hears-item-p {
+    font-size: 20px;
+}
+@media screen and (max-width: 800px) {
+    .hears-item-icon {
+        font-size: 25px;
+    }
+}
+@media screen and (max-width: 600px) {
+    .servise-info-p, .hears-item-p {
+        font-size: 15px;
+    }
+    .hears-item-icon {
+        font-size: 20px;
+    }
+}
+@media screen and (max-width: 400px) {
+    .servise-hears {
+        justify-content: center;
+    }
+}
