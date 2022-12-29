@@ -2,11 +2,13 @@ import {FiCheck} from "react-icons/fi";
 import {useSelector} from "react-redux";
 import {useState} from "react";
 
-import './EditPage.css'
+import './EditPage.css';
+import './EditPage@media.css';
 import {APIServise} from "../servises";
 import {Input} from "../utils";
 import {NewPochta} from "../newPochta";
 import {StyleForPassword, StyleIconOk} from '../utils/function'
+import {WORLD_ADMIN, WORLD_USER} from "../../config/wordsConstants";
 
 export function Edit() {
     const currentUser = useSelector(state => state.user.currentUser);
@@ -50,7 +52,7 @@ export function Edit() {
                     <h2 className={'edit-h2'}>Редагування інформації</h2>
 
                     <div className={'full-center'}>
-                        <img className={'circle'}/>
+                        <img className={'circle'} alt={'circle'}/>
                     </div>
                     <div className={'full-center download-foto-margin'}>
                         <label htmlFor="file-upload" className="custom-file-upload">
@@ -84,7 +86,7 @@ export function Edit() {
                                 </div>
                             </div>
 
-                            {role === 'user' &&
+                            {role === WORLD_USER &&
                             <NewPochta setSity={setSity} setNumberNP={setNumberNP}
                                        setVisibleSity={setVisibleSity} setVisibleNumber={setVisibleNumber}/>
                             }
@@ -136,13 +138,13 @@ export function Edit() {
                     </div>
 
                     <div className={'full-center margin-input'}>
-                        {role === 'admin' &&
+                        {role === WORLD_ADMIN &&
                         <button className={'btn-save'} onClick={() => {
                             // APIServise.editAdminPage(currentUser._id, name, surname, email, phone, oldPassword, number, numberToo)
                             APIServise.editPage(currentUser._id, name, surname, email, phone, oldPassword, number, numberToo)
                         }}>Змінити та зберегти</button>
                         }
-                        {role === 'user' &&
+                        {role === WORLD_USER &&
                         <button className={'btn-save'} onClick={() => {
                             APIServise.editPage(currentUser._id, name, surname, email, phone, oldPassword, number, numberToo,
                                 sity, numberNP)

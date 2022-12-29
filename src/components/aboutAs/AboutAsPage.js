@@ -1,7 +1,8 @@
 import {History} from "./History";
 import {AboutAs} from "./AboutAs";
 import {Team} from "./Team";
-import './AboutAsPage.css'
+import './AboutAsPage.css';
+import './AboutAsPage@media.css';
 import About from '../../images/big-foto/Group 4.png'
 
 export function AboutAsPage ()

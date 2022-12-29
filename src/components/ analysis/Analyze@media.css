@@ -1,0 +1,22 @@
+@media screen and (max-width: 800px) {
+    .analyz-h2 {
+        display: none;
+    }
+    .first-analyz {
+        margin-top: 40px;
+    }
+}
+@media screen and (max-width: 600px) {
+    .analyz-h4 {
+        font-size: 20px;
+    }
+    .btn_analyz {
+        font-size: 15px;
+    }
+    .analyz-h2 {
+        display: block;
+    }
+    .first-analyz {
+        margin-top: 0;
+    }
+}

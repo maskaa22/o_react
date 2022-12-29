@@ -1,9 +1,9 @@
 
-import './Slider.css'
+import './Slider.css';
+import './Slider@media.css';
 import {useState} from "react";
 
 const Slider = ({slides}) => {
-
     const [currentIndex, setCurrentIndex] = useState(0);
 
     const goToPrevious = () => {

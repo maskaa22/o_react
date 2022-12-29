@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
 
 import "./AdminHomePage.css";
+import './AdminHomePage@media.css';
 import {Analysis} from "../ analysis";
 import {APIServise} from "../servises";
 import {ArchiveOrders} from "../archive";
@@ -21,6 +22,12 @@ import {
     ADMIN_USERS, ANALYSIS, ARCHIVE_ORDERS, CLIENTS, ORDERS, PRODUCT, RECORDS, THIS
 } from "../../config/homeConstants";
 import {MdNavigateNext} from "react-icons/md";
+import {
+    WORD_ACTIVE_MENU_CATEGORY,
+    WORD_CATEGORY_MENU,
+    WORD_NO_SCROLL,
+    WORD_SMALL_MENU_ADMIN_CLIENT
+} from "../../config/wordsConstants";
 
 export function AdminHomePage() {
     const [users, setUsers] = useState([]);
@@ -54,7 +61,7 @@ export function AdminHomePage() {
     }
 
     function closeMenuHome() {
-        closeToogleMenu('category-menu', 'small-menu-admin-client', 'active-menu-category', 'no-scroll');
+        closeToogleMenu(WORD_CATEGORY_MENU, WORD_SMALL_MENU_ADMIN_CLIENT, WORD_ACTIVE_MENU_CATEGORY, WORD_NO_SCROLL);
     }
 
     return (
@@ -63,14 +70,14 @@ export function AdminHomePage() {
             <div className={'home-menu'}>
 
                 <div className={'category-menu'} id={'category-menu'}
-                     onClick={() => openToogleMenu('category-menu', 'small-menu-admin-client', 'active-menu-category', 'no-scroll')}>
+                     onClick={() => openToogleMenu(WORD_CATEGORY_MENU, WORD_SMALL_MENU_ADMIN_CLIENT, WORD_ACTIVE_MENU_CATEGORY, WORD_NO_SCROLL)}>
                     <span className={'category-menu-bar'}/>
                     <span className={'category-menu-bar'}/>
                     <span className={'category-menu-bar'}/>
                 </div>
                 <div className={'small-menu-admin-client'} id={'small-menu-admin-client'}>
                     {/*<div className={'left-home-menu'}>*/}
-                    <div className={'padding-last'}>
+                    <div className={'padding padding-last'}>
                         <Link to={ADMIN} className={'color_purple click-item'}>
                             <button className={'home_item click-item category'}
                                     onClick={closeMenuHome}>Редагувати <MdNavigateNext className={'non-icon'}/></button>

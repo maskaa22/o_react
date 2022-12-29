@@ -4,5 +4,6 @@ module.exports = {
     URL: require('./URL'),
     homeConstants: require('./homeConstants'),
     headerConstants: require('./headerConstants'),
-    wordsConstants: require('./wordsConstants')
+    wordsConstants: require('./wordsConstants'),
+    serviseConstants: require('./serviseConstants')
 };

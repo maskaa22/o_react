@@ -1,5 +1,6 @@
 import {useState} from "react";
-import './Slider.css'
+import './Slider.css';
+import './Slider@media.css';
 
 const ImageSlider = ({slides}) => {
     const [currentIndex, setCurrentIndex] = useState(0);

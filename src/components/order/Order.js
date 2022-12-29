@@ -6,6 +6,7 @@ import Select from "@mui/material/Select";
 
 import {APIServise} from "../servises";
 import Cart from "../orders/Cart";
+import {WORD_ACCEPTED, WORD_EXPECTED, WORD_PROCESSING, WORD_READY, WORD_SEND} from "../../config/wordsConstants";
 
 export function Order({orders, del, visible}) {
 
@@ -49,7 +50,7 @@ export function Order({orders, del, visible}) {
                         <div className={'center'}>
                             <div className={'width justify-content-between'}>Статус: {order.status}
                                 <div className={'select_value select_status_color_label'}>
-                                    {order.status !== 'готово' &&
+                                    {order.status !== WORD_READY &&
                                     <FormControl fullWidth size="small">
                                         <InputLabel id="demo-simple-select-label">Вибрати статус</InputLabel>
                                         <Select
@@ -58,16 +59,16 @@ export function Order({orders, del, visible}) {
                                             value={status}
                                             onChange={handleChange}
                                         >
-                                            <MenuItem value={'очікується'}>очікується</MenuItem>
-                                            <MenuItem value={'прийнято'}>прийнято</MenuItem>
-                                            <MenuItem value={'обробка'}>обробка</MenuItem>
-                                            <MenuItem value={'відправлено'}>відправлено</MenuItem>
-                                            <MenuItem value={'готово'}>готово</MenuItem>
+                                            <MenuItem value={WORD_EXPECTED}>очікується</MenuItem>
+                                            <MenuItem value={WORD_ACCEPTED}>прийнято</MenuItem>
+                                            <MenuItem value={WORD_PROCESSING}>обробка</MenuItem>
+                                            <MenuItem value={WORD_SEND}>відправлено</MenuItem>
+                                            <MenuItem value={WORD_READY}>готово</MenuItem>
                                         </Select>
                                     </FormControl>
                                     }
 
-                                    {order.status === 'готово' ?
+                                    {order.status === WORD_READY ?
                                         <div className={`center end ${del}`}>
                                             <button className={'status archive'} onClick={() => {
                                                 APIServise.archiveOrder(order._id)
@@ -78,7 +79,7 @@ export function Order({orders, del, visible}) {
                                         <div className={'center end'}>
                                             <button className={'status'} onClick={() => {
                                                 APIServise.updateStatusOrder(order._id, status)
-                                                if (status === 'готово') {
+                                                if (status === WORD_READY) {
                                                     APIServise.updateDateAnalizy(order.month, order.summa)
                                                 }
                                                 window.location.reload();

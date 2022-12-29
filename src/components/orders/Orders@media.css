@@ -1,0 +1,9 @@
+
+@media screen and (max-width: 600px) {
+    .orders-h2 {
+        display: block;
+    }
+    .flex-date {
+        font-size: 3.5vw;
+    }
+}

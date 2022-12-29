@@ -1,4 +1,3 @@
-import './Record.css'
 import * as React from "react";
 
 export function Record ({event})

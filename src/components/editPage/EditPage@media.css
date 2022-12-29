@@ -1,0 +1,56 @@
+@media screen and (max-width: 800px) {
+    .border-box {
+        margin: 15px 25px;
+    }
+    .btn-save {
+        height: 6vw;
+        margin: 2vw;
+    }
+    .input-center-full {
+        width: 35vw;
+    }
+}
+@media screen and (max-width: 600px) {
+    .btn-save {
+        height: 7vw;
+        font-size: 4vw;
+        width: fit-content;
+    }
+    .border-box {
+        border: none;
+    }
+    .input-center-full {
+        width: 85vw;
+    }
+    .around {
+        display: block;
+        width: 95%;
+        border: 2px solid #79cbb8;
+        margin: 0 auto;
+        border-radius: 5px;
+    }
+    .download-foto-margin {
+        margin-bottom: 15px;
+    }
+    .margin-input-last {
+        margin: 15px;
+    }
+    .last {
+        left: 0;
+    }
+    .notVisible {
+        font-size: 30px;
+        bottom: 10px;
+        left: 0;
+    }
+    .inp, .inp-last {
+        top: -20px;
+    }
+    .edit-h2 {
+        padding: 0 0 15px;
+    }
+    .circle {
+        width: 150px;
+        height: 150px;
+    }
+}

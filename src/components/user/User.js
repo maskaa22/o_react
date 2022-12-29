@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import "./User.css";
+import './User@media.css';
 
 export default function User ({item, setOpenSendUser, userEmail})
 {

@@ -4,6 +4,8 @@ import {useState} from "react";
 import './Registration.css';
 import {APIServise} from "../servises";
 import {Input} from "../utils";
+import {WORD_REGISTRATING, WORD_REGISTRATION} from "../../config/wordsConstants";
+import {LOGIN} from "../../config/headerConstants";
 
 export function Registration({role, handleClose}) {
     const [name, setName] = useState('');
@@ -11,9 +13,6 @@ export function Registration({role, handleClose}) {
     const [password, setPassword] = useState('');
 
     const navigate = useNavigate();
-
-    const registrationWithRole = 'Зареєструвати';
-        const registration = 'Зареєструватися'
 
     return (
         <div className={'flex'}>
@@ -29,9 +28,9 @@ export function Registration({role, handleClose}) {
 
             <button className={'registration_btn'} onClick={() => {
                 APIServise.registration(name, email, password, role).then(rez => {
-                    if (rez) navigate("/login")
+                    if (rez) navigate(LOGIN)
                 })
-            }}>{role ? registrationWithRole : registration}
+            }}>{role ? WORD_REGISTRATION : WORD_REGISTRATING}
 
             </button>
         </div></div>

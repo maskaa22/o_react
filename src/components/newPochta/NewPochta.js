@@ -3,18 +3,21 @@ import SelectSearch, {fuzzySearch} from "react-select-search";
 import {useState} from "react";
 
 import "./NewPochta.css";
+import './NewPochta@media.css';
 import {
     apiKeyNovaPochta,
     calledMethodGetCitiesNovaPochta,
     calledMethodGeWarehousesNovaPochta,
     modelNameNovaPochta
 } from "../../config/constants";
+import {WORD_HIDDEN, WORD_POST, WORD_VISIBLE, WORD_VISIBLE_N_P} from "../../config/wordsConstants";
+import {NEW_POCHTA_URL} from "../../config/URL";
 
 
 export function NewPochta({setSity, setNumberNP, setVisibleSity, setVisibleNumber}) {
     const [nameSity, setNameSity] = useState('');
     const [nameDepartment, setNameDepartment] = useState('');
-    const [value, setValue] = useState('hidden-n-p');
+    const [value, setValue] = useState(WORD_HIDDEN);
 
     const sity = {
         apiKey: apiKeyNovaPochta,
@@ -34,14 +37,14 @@ export function NewPochta({setSity, setNumberNP, setVisibleSity, setVisibleNumbe
         setNameSity(event);
         setSity(event)
 
-        setValue('visible-n-p')
-        setVisibleSity('visible')
+        setValue(WORD_VISIBLE_N_P)
+        setVisibleSity(WORD_VISIBLE)
     };
     const handleChangeDepartment = (event) => {
         setNameDepartment(event);
         setNumberNP(event);
 
-        setVisibleNumber('visible')
+        setVisibleNumber(WORD_VISIBLE)
     };
 
 
@@ -54,10 +57,9 @@ export function NewPochta({setSity, setNumberNP, setVisibleSity, setVisibleNumbe
                         options={[]}
                         getOptions={() => {
                             return new Promise((resolve, reject) => {
-                                fetch(
-                                    `https://api.novaposhta.ua/v2.0/json/`,
+                                fetch(NEW_POCHTA_URL,
                                     {
-                                        method: 'POST',
+                                        method: WORD_POST,
                                         body: JSON.stringify(sity)
                                     }
                                 )
@@ -90,10 +92,9 @@ export function NewPochta({setSity, setNumberNP, setVisibleSity, setVisibleNumbe
                         options={[]}
                         getOptions={() => {
                             return new Promise((resolve, reject) => {
-                                fetch(
-                                    `https://api.novaposhta.ua/v2.0/json/`,
+                                fetch(NEW_POCHTA_URL,
                                     {
-                                        method: 'POST',
+                                        method: WORD_POST,
                                         body: JSON.stringify(department)
                                     }
                                 )

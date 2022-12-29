@@ -11,15 +11,16 @@ import {
     RowInCell,
     ShowDayWrapper
 } from "../CalendarCSS";
+import {WORD_DAY, WORD_MONTH} from "../../../config/wordsConstants";
 
 
 const CalendarGrid = ({startDay, today, totalDays, events, openFormHandler, setTime}) => {
 
-    const isCurrentDay = (day) => moment().isSame(day, 'day');
-    const isSelectedMonth = (month) => today.isSame(month, 'month');
+    const isCurrentDay = (day) => moment().isSame(day, WORD_DAY);
+    const isSelectedMonth = (month) => today.isSame(month, WORD_MONTH);
 
-    const day = startDay.clone().subtract(1, 'day');
-    const daysArray = [...Array(totalDays)].map(() => day.add(1, 'day').clone());
+    const day = startDay.clone().subtract(1, WORD_DAY);
+    const daysArray = [...Array(totalDays)].map(() => day.add(1, WORD_DAY).clone());
 
     return (
         <>
@@ -50,7 +51,7 @@ const CalendarGrid = ({startDay, today, totalDays, events, openFormHandler, setT
                                 </ShowDayWrapper>
                                 <EventListWrapper>
                                     {
-                                        events.filter(event => event.date >= dayItem.format('X') && event.date <= dayItem.clone().endOf('day').format('X'))
+                                        events.filter(event => event.date >= dayItem.format('X') && event.date <= dayItem.clone().endOf(WORD_DAY).format('X'))
                                             .map(event => (
                                                 <div key={event.id}>
                                                     <EventItemWrapper>

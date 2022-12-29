@@ -5,6 +5,7 @@ import {LoginingForm} from "../loginingForm";
 import {DeleteUser} from "../deleteUser";
 import {ModalSendUser} from "./ModalSendUser";
 import {ModalCalendar} from "./ModalCalendar";
+import {WORLD_ADMIN} from "../../config/wordsConstants";
 
 export function ModalUser ({openWindow, handleClose, role, send, del, userEmail, calendar, date, eventCreateHandler, unix, time})
 {
@@ -18,7 +19,7 @@ export function ModalUser ({openWindow, handleClose, role, send, del, userEmail,
             >
                 <Box >
                     {
-                        role && <LoginingForm role={'admin'} handleClose={handleClose}/>
+                        role && <LoginingForm role={WORLD_ADMIN} handleClose={handleClose}/>
                     }
                     {
                         del && <DeleteUser handleClose={handleClose}/>

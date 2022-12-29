@@ -1,17 +1,13 @@
 import Mens from '../../images/big-foto/Group 5.png';
 import smallFoto from '../../images/servises/stylesHear/1.png';
 import '../mensHaircut/MansHaircut.css';
+import '../mensHaircut/MansHaircut@media.css';
 import Slider from "../slider/Slider";
 import {HiBadgeCheck} from "react-icons/hi";
+import {slideStyles} from "../../config/sliderConstants";
 
 
 export function HairStyles() {
-
-    const slides = [
-        {url: 'http://localhost:3000/static/media/Group%2022.02255d55a1c9b5ceed19.png'},
-        {url: 'http://localhost:3000/static/media/Group%2024.03f48c98b0ea26936cfe.png'},
-        {url: 'http://localhost:3000/static/media/Group%2023.27dc1bf0e2b1cb3c8bcb.png'}
-    ];
 
     return (
         <div>
@@ -35,45 +31,48 @@ export function HairStyles() {
                 </div>
             </div>
 
-            <Slider slides={slides}/>
+            <Slider slides={slideStyles}/>
 
             <div className={'container'}>
                 <h1 className={'servise-info-h1'}>Види зачісок</h1>
-                <div className={'servise-hears'}>
-                    <div>
-                        <div className={'hears-item'}>
-                            <HiBadgeCheck className={'hears-item-icon'}/><p className={'hears-item-p'}>Локони</p>
+                <div className={'servise-flex'}>
+                    <div className={'servise-hears'}>
+                        <div>
+                            <div className={'hears-item'}>
+                                <HiBadgeCheck className={'hears-item-icon'}/><p className={'hears-item-p'}>Локони</p>
+                            </div>
+                            <div className={'hears-item'}>
+                                <HiBadgeCheck className={'hears-item-icon'}/><p className={'hears-item-p'}>Пучок</p>
+                            </div>
+                            <div className={'hears-item'}>
+                                <HiBadgeCheck className={'hears-item-icon'}/><p className={'hears-item-p'}>Бабета</p>
+                            </div>
                         </div>
-                        <div className={'hears-item'}>
-                            <HiBadgeCheck className={'hears-item-icon'}/><p className={'hears-item-p'}>Пучок</p>
+                        <div>
+                            <div className={'hears-item'}>
+                                <HiBadgeCheck className={'hears-item-icon'}/><p className={'hears-item-p'}>Плетіння</p>
+                            </div>
+                            <div className={'hears-item'}>
+                                <HiBadgeCheck className={'hears-item-icon'}/><p
+                                className={'hears-item-p'}>Романтичні</p>
+                            </div>
+                            <div className={'hears-item'}>
+                                <HiBadgeCheck className={'hears-item-icon'}/><p className={'hears-item-p'}>Укладання</p>
+                            </div>
                         </div>
-                        <div className={'hears-item'}>
-                            <HiBadgeCheck className={'hears-item-icon'}/><p className={'hears-item-p'}>Бабета</p>
+                        <div>
+                            <div className={'hears-item'}>
+                                <HiBadgeCheck className={'hears-item-icon'}/><p className={'hears-item-p'}>Класична</p>
+                            </div>
+                            <div className={'hears-item'}>
+                                <HiBadgeCheck className={'hears-item-icon'}/><p className={'hears-item-p'}>Афро</p>
+                            </div>
+                            <div className={'hears-item'}>
+                                <HiBadgeCheck className={'hears-item-icon'}/><p className={'hears-item-p'}>Завивка</p>
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <div className={'hears-item'}>
-                            <HiBadgeCheck className={'hears-item-icon'}/><p className={'hears-item-p'}>Плетіння</p>
-                        </div>
-                        <div className={'hears-item'}>
-                            <HiBadgeCheck className={'hears-item-icon'}/><p className={'hears-item-p'}>Романтичні</p>
-                        </div>
-                        <div className={'hears-item'}>
-                            <HiBadgeCheck className={'hears-item-icon'}/><p className={'hears-item-p'}>Укладання</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div className={'hears-item'}>
-                            <HiBadgeCheck className={'hears-item-icon'}/><p className={'hears-item-p'}>Класична</p>
-                        </div>
-                        <div className={'hears-item'}>
-                            <HiBadgeCheck className={'hears-item-icon'}/><p className={'hears-item-p'}>Афро</p>
-                        </div>
-                        <div className={'hears-item'}>
-                            <HiBadgeCheck className={'hears-item-icon'}/><p className={'hears-item-p'}>Завивка</p>
-                        </div>
-                    </div>
 
+                    </div>
                 </div>
             </div>
 

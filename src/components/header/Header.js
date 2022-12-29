@@ -10,6 +10,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useState} from "react";
 
 import "./Header.css";
+import './Header@media.css';
 import {APIServise} from "../servises";
 import {delFilter} from "../reducers/actionCreators";
 import Logo from "../../images/logo-header.png";

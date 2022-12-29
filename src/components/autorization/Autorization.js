@@ -5,6 +5,7 @@ import {useState} from "react";
 import './Autorization.css'
 import {APIServise} from "../servises";
 import {Input} from "../utils";
+import {THIS} from "../../config/headerConstants";
 
 export function Autorization({login}) {
  // console.log(login);
@@ -28,7 +29,7 @@ export function Autorization({login}) {
 
             <button className={'registration_btn'} onClick={() => {
                 dispatch(APIServise.login(email, password)).then(rez => {
-                    if (rez) navigate("/")
+                    if (rez) navigate(THIS)
                 });
             }}>Ввойти
             </button>

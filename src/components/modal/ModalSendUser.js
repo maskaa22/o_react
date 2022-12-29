@@ -3,6 +3,7 @@ import {APIServise} from "../servises";
 import {useState} from "react";
 import {SwalFunction} from "../utils/function";
 import {Input} from "../utils";
+import {WORD_SWAL_LATER_SEND, WORD_SWAL_OK, WORD_SWAL_SUCCESS} from "../../config/wordsConstants";
 
 export function ModalSendUser ({handleClose, userEmail})
 {
@@ -24,7 +25,7 @@ export function ModalSendUser ({handleClose, userEmail})
                     <button className={'btn-add'} onClick={() => {
                         APIServise.sentUser(text, userEmail, topic).then(()=> {
                             handleClose();
-                            SwalFunction('Лист відправлено', '', 'success', 'Ok', false, 3500)
+                            SwalFunction(WORD_SWAL_LATER_SEND, '', WORD_SWAL_SUCCESS, WORD_SWAL_OK, false, 3500)
 
                         })
 

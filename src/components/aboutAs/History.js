@@ -1,4 +1,5 @@
-import './AboutAsPage.css'
+import './AboutAsPage.css';
+import './AboutAsPage@media.css';
 
 export function History() {
     return (

@@ -1,4 +1,5 @@
 import {LOGOUT, SET_ROLE, SET_USER} from './actionTypes'
+import {WORD_TOKEN} from "../../config/wordsConstants";
 
 const defaultState = {
     currentUser: {},
@@ -21,7 +22,7 @@ export default function userReducer(state = defaultState, action) {
                 role: action.payload,
             }
         case LOGOUT:
-            localStorage.removeItem('token')
+            localStorage.removeItem(WORD_TOKEN)
             return {
                 ...state,
                 currentUser: {},

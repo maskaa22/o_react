@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 
 import './ProductsPage.css';
+import './ProductPage@media.css';
 import {APIServise} from "../servises";
 import {PaginationProductCategory} from "../pagination";
 import {ProductCart} from "../productCart";
@@ -16,8 +17,14 @@ import {
     Up
 } from "../utils/function";
 import {BsArrowUpCircle} from "react-icons/bs";
-import {MdClose} from "react-icons/md";
+import {MdClose, MdNavigateNext} from "react-icons/md";
 import {delFilter} from "../reducers/actionCreators";
+import {
+    WORD_ACTIVE_MENU_CATEGORY,
+    WORD_CATEGORY_MENU,
+    WORD_NO_SCROLL,
+    WORD_PRODUCT_MENU_BLOCK
+} from "../../config/wordsConstants";
 
 export function ProductsPage() {
     const [products, setProducts] = useState([]);
@@ -99,7 +106,7 @@ export function ProductsPage() {
         <div>
             <div className={'upward'} onClick={scrollTopTop}><BsArrowUpCircle className="icon-up"/></div>
             <div className={'product-flex'}>
-                <div className={'category-menu'} id={'category-menu'} onClick={() => openToogleMenu('category-menu', 'product-menu-block', 'active-menu-category', 'no-scroll')}>
+                <div className={'category-menu'} id={'category-menu'} onClick={() => openToogleMenu(WORD_CATEGORY_MENU, WORD_PRODUCT_MENU_BLOCK, WORD_ACTIVE_MENU_CATEGORY, WORD_NO_SCROLL)}>
                     <span className={'category-menu-bar'}/>
                     <span className={'category-menu-bar'}/>
                     <span className={'category-menu-bar'}/>
@@ -108,15 +115,15 @@ export function ProductsPage() {
                     <div className={'product-menu-container'} >
                         <div className={'menu-title'}>
                             <div className={'left-title'}>Категорії товарів</div>
-                            <div className={'right-title'} onClick={() => closeToogleMenu('category-menu', 'product-menu-block', 'active-menu-category', 'no-scroll') }><MdClose /></div>
+                            <div className={'right-title'} onClick={() => closeToogleMenu(WORD_CATEGORY_MENU, WORD_PRODUCT_MENU_BLOCK, WORD_ACTIVE_MENU_CATEGORY, WORD_NO_SCROLL) }><MdClose /></div>
                         </div>
                         <hr className={'hr'}/>
                         <div className={'padding'}><button className={`category active-menu`} onClick={() =>
                         {
                             dispatch(delFilter());
                              closeFilterName();
-                            closeToogleMenu('category-menu', 'product-menu-block', 'active-menu-category', 'no-scroll');
-                        }}>Усі</button></div>
+                            closeToogleMenu(WORD_CATEGORY_MENU, WORD_PRODUCT_MENU_BLOCK, WORD_ACTIVE_MENU_CATEGORY, WORD_NO_SCROLL);
+                        }}>Усі<MdNavigateNext className={'non-icon'}/></button></div>
                         {
                             categories.map(category => <ProductCategory key={category._id}
                                                                         category={category}

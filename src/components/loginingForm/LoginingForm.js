@@ -5,6 +5,14 @@ import './LoginingForm.css'
 import {APIServise} from "../servises";
 import {Input} from "../utils";
 import {useDispatch} from "react-redux";
+import {
+    WORD_AUTORIZ,
+    WORD_AUTORIZATING,
+    WORD_BORDER,
+    WORD_REGISTR,
+    WORD_REGISTRATION
+} from "../../config/wordsConstants";
+import {LOGIN, THIS} from "../../config/headerConstants";
 
 export function LoginingForm ({role, handleClose, login})
 {
@@ -15,17 +23,12 @@ export function LoginingForm ({role, handleClose, login})
 
     useEffect(() => {
         if(!role) {
-            setBorder('border');
+            setBorder(WORD_BORDER);
         }
     }, []);
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
-    const registration = 'Зареєструвати'
-    const registring = 'Реєстрація';
-    const logining = 'Авторизація'
-    const log = 'Авторизуватися'
 
 
     return(
@@ -36,7 +39,7 @@ export function LoginingForm ({role, handleClose, login})
                         role && <button className={'close_del left'} onClick={handleClose}><i className="fa fa-times"
                                                                                               aria-hidden="true"/></button>
                     }
-                    <div className="form_header">{login ? logining : registring}</div>
+                    <div className="form_header">{login ? WORD_AUTORIZATING : WORD_REGISTR}</div>
                     { !login &&
                     <Input value={name} setValue={setName} type={'text'} placeholder={"Введіть ім'я"} className={'input-margin'}/>}
                     <Input value={email} setValue={setEmail} type={'text'} placeholder={'Введіть email'} className={'input-margin'}/>
@@ -45,14 +48,14 @@ export function LoginingForm ({role, handleClose, login})
                     <button className={'form_btn'} onClick={() => {
                         {
                             login ? dispatch(APIServise.login(email, password)).then(rez => {
-                                if (rez) navigate("/")
+                                if (rez) navigate(THIS)
                             }) : APIServise.registration(name, email, password, role).then(rez => {
                                 if(!role){
-                                    if (rez) navigate("/login")
+                                    if (rez) navigate(LOGIN)
                                 } else window.location.reload();
                             })
                         }
-                    }}>{login ? log : registration}
+                    }}>{login ? WORD_AUTORIZ : WORD_REGISTRATION}
 
                     </button>
                 </div></div>

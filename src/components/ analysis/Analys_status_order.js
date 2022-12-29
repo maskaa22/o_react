@@ -1,7 +1,8 @@
 import * as React from "react";
 import {Axis, Chart, Geom, Interval, Legend, Tooltip} from "bizcharts";
 
-import './Analyze.css'
+import './Analyze.css';
+import './Analyze@media.css';
 
 export function Analys_status_order({data}) {
     return (

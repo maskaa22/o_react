@@ -12,6 +12,7 @@ import * as React from "react";
 import {ModalUser} from "../modal";
 import {prevHandler, todayHandler, nextHandler, startDateQuery, endDateQuery, totalDays} from "../utils/function";
 import {CalendarWrapper, ShadowWrapper} from "./CalendarCSS";
+import {WORD_MONTH, WORD_WEEK} from "../../config/wordsConstants";
 
 export function Calendar() {
 
@@ -26,7 +27,7 @@ export function Calendar() {
     const [openWindow, setOpenWindow] = React.useState(false);
     const handleClose = () => setOpenWindow(false);
 
-    const startDay = today.clone().startOf('month').startOf('week');
+    const startDay = today.clone().startOf(WORD_MONTH).startOf(WORD_WEEK);
 
     useEffect(() => {
         getCalendarEvent(startDateQuery(startDay),endDateQuery(startDay)).then(rez => {

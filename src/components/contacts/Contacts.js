@@ -1,7 +1,8 @@
 import Women from '../../images/big-foto/Group 9.png'
 import {BsFillTelephoneFill} from "react-icons/bs";
 import {MdAlternateEmail} from "react-icons/md";
-import './Contacts.css'
+import './Contacts.css';
+import './Contacts@media.css';
 import {FaLocationArrow} from "react-icons/fa";
 import {Input} from "../utils";
 import {useState} from "react";

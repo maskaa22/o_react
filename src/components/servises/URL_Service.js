@@ -2,6 +2,17 @@ import axios from "axios";
 
 import {URL} from "../../config";
 import {createCalendarEvent} from "./API";
+import {WORD_SWAL_NOT_AUTORIZE, WORD_TOKEN} from "../../config/wordsConstants";
+import {
+    AUTH,
+    AUTH_LOGIN,
+    AUTH_LOGOUT,
+    AUTH_REFRESH,
+    AUTH_REGISTRATION,
+    CATEGORY, HOME, HOME_FIND, PRODUCT_ARCHIVE_ORDER, PRODUCT_ORDER_ANALYZE,
+    PRODUCT_ORDERS, PRODUCT_ORDERS_ANALYZE_VISUAL, PRODUCT_ORDERS_FILTER, USERS, USERS_ADRESS, USERS_CONTACT, USERS_SEND
+} from "../../config/serviseConstants";
+import {CONTACT, PRODUCTS} from "../../config/headerConstants";
 
 const api = axios.create({
     withCredentials: true,
@@ -9,7 +20,7 @@ const api = axios.create({
 });
 
 api.interceptors.request.use((config) => {
-    config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
+    config.headers.Authorization = `Bearer ${localStorage.getItem(WORD_TOKEN)}`
     return config;
 });
 api.interceptors.response.use((config) => {
@@ -22,13 +33,13 @@ api.interceptors.response.use((config) => {
     ) {
         originalRequest._isRetry = true;
         try {
-            const response = await axios.get(`${URL.AUTH_URL}/auth/refresh`, {withCredentials: true});
+            const response = await axios.get(`${URL.REFRESH_URL}`, {withCredentials: true});
 
-            localStorage.setItem('token', response.data.tokenPair.access_token);
+            localStorage.setItem(WORD_TOKEN, response.data.tokenPair.access_token);
 
             return api.request(originalRequest);
         } catch (e) {
-            console.log('НЕ АВТОРИЗОВАН', e)
+            console.log(WORD_SWAL_NOT_AUTORIZE, e)
         }
     }
     throw error;
@@ -36,58 +47,58 @@ api.interceptors.response.use((config) => {
 
 export class AuthService {
     static async login(email, password) {
-        return api.post('/auth/login', {email, password})
+        return api.post(AUTH_LOGIN, {email, password})
     }
 
     static async registration(name, email, password, role) {
-        return api.post('/auth/registration', {name, email, password, role})
+        return api.post(AUTH_REGISTRATION, {name, email, password, role})
     }
 
     static async deleteUser(email) {
-        return api.delete('/auth', {params: {email}})
+        return api.delete(AUTH, {params: {email}})
     }
 
     static async logout() {
-        return api.get('/auth/logout')
+        return api.get(AUTH_LOGOUT)
     }
 
     static async auth() {
-        return api.get('/auth/refresh', {withCredentials: true})
+        return api.get(AUTH_REFRESH, {withCredentials: true})
     }
 }
 
 export class CategoryService {
 
     static async allCategories() {
-        return api.get('/category')
+        return api.get(CATEGORY)
     }
 
     static async createCategories(category_name) {
-        return api.post('/category', {category_name})
+        return api.post(CATEGORY, {category_name})
     }
 
     static async filtreCategories(checkCategory, page, limit) {
-        return api.post(`/category/${checkCategory}`, {checkCategory}, {params: {page, limit}})
+        return api.post(`${CATEGORY}/${checkCategory}`, {checkCategory}, {params: {page, limit}})
     }
 }
 
 export class OrderService {
 
     static async orders() {
-        return api.get('/products/orders')
+        return api.get(PRODUCT_ORDERS)
     }
 
     static async ordersByVisualAnalis() {
-        return api.get('/products/order_analyze_visual')
+        return api.get(PRODUCT_ORDERS_ANALYZE_VISUAL)
     }
 
     static async ordersByFilter(status) {
         console.log(status);
-        return api.get('/products/orders_filter', {params: {status}})
+        return api.get(PRODUCT_ORDERS_FILTER, {params: {status}})
     }
 
     static async order(user_id, user_name, surname, phone, nameSity, nameDepartment, pay, cart, status, summa, month) {
-        return api.post('/products/orders', {
+        return api.post(PRODUCT_ORDERS, {
             user_id,
             user_name,
             surname,
@@ -103,61 +114,61 @@ export class OrderService {
     }
 
     static async analyze() {
-        return api.get('/products/order_analyze')
+        return api.get(PRODUCT_ORDER_ANALYZE)
     }
 
     static async getArchiveOrders() {
-        return api.get('/products/archive_order')
+        return api.get(PRODUCT_ARCHIVE_ORDER)
     }
 
     static async archiveOrder(_id) {
-        return api.post('/products/archive_order', {_id})
+        return api.post(PRODUCT_ARCHIVE_ORDER, {_id})
     }
 
     static async deleteArchiveOrder(_id) {
-        return api.delete('/products/archive_order', {params: {_id}})
+        return api.delete(PRODUCT_ARCHIVE_ORDER, {params: {_id}})
     }
 
     static async analyzeOrder(month, summa) {
-        return api.post('/products/order_analyze', {month, summa})
+        return api.post(PRODUCT_ORDER_ANALYZE, {month, summa})
     }
 
     static async updateAnalyzeOrder(month, summa) {
-        return api.patch('/products/order_analyze', {month, summa})
+        return api.patch(PRODUCT_ORDER_ANALYZE, {month, summa})
     }
 
     static async updateStatus(_id, status) {
-        return api.patch('/products/orders', {_id, status})
+        return api.patch(PRODUCT_ORDERS, {_id, status})
     }
 
     static async userById(id) {
-        return api.get(`/products/orders`)
+        return api.get(PRODUCT_ORDERS)
     }
 }
 
 export class ProductService {
 
     static async products(page, limit) {
-        return api.get('/products', {params: {page, limit}})
+        return api.get(PRODUCTS, {params: {page, limit}})
     }
 
     static async product(product_name, title, price, category_id, count, totalPrice, inventoryNumber) {
-        return api.post('/products', {product_name, title, price, category_id, count, totalPrice, inventoryNumber})
+        return api.post(PRODUCTS, {product_name, title, price, category_id, count, totalPrice, inventoryNumber})
     }
 
     static async deleteProduct(inventoryNumber) {
-        return api.delete('/products', {params: {inventoryNumber}})
+        return api.delete(PRODUCTS, {params: {inventoryNumber}})
     }
 }
 
 export class UserService {
 
     static async users() {
-        return api.get('/users')
+        return api.get(USERS)
     }
 
     static async editData(_id, name, surname, email, phone, oldPassword, number, numberToo, nameSity, nameDepartment) {
-        return api.patch('/users', {
+        return api.patch(USERS, {
             _id,
             name,
             surname,
@@ -172,15 +183,15 @@ export class UserService {
     }
 
     static async editContactData(_id, name, surname, phone) {
-        return api.patch('/users/contact', {_id, name, surname, phone})
+        return api.patch(USERS_CONTACT, {_id, name, surname, phone})
     }
 
     static async editAdressData(_id, nameSity, nameDepartment) {
-        return api.patch('/users/adress', {_id, nameSity, nameDepartment})
+        return api.patch(USERS_ADRESS, {_id, nameSity, nameDepartment})
     }
 
     static async sentUser(text, email, topic) {
-        return api.post('/users/send', {text, email, topic})
+        return api.post(USERS_SEND, {text, email, topic})
     }
 }
 
@@ -188,19 +199,19 @@ export class UserService {
 export class HomeService {
 
     static async createCalendarEvent(title, date, description, time) {
-        return api.post('/home', {title, date, description, time})
+        return api.post(HOME, {title, date, description, time})
     }
 
     static async getCalendarEvent(startDateQuery, endDateQuery) {
-        return api.get('/home', {params: {startDateQuery, endDateQuery}})
+        return api.get(HOME, {params: {startDateQuery, endDateQuery}})
     }
     static async getFindEvent(date) {
-        return api.get('/home/find', {params: {date}})
+        return api.get(HOME_FIND, {params: {date}})
     }
 }
 
 export class ContactService {
     static async sentEmail(name, email, phone, text) {
-        return api.post('/contact', {name, email, phone, text})
+        return api.post(CONTACT, {name, email, phone, text})
     }
 }

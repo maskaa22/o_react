@@ -10,6 +10,7 @@ import {useState} from "react";
 import {APIServise} from "../servises";
 import {Input} from "../utils";
 import {NewPochta} from "../newPochta";
+import {WORD_CART, WORD_CART_UK, WORD_CASH, WORD_HIDEN, WORD_MONEY, WORD_SUCCESS} from "../../config/wordsConstants";
 
 
 export function InfoForBuy({money, setPay, product, cart}) {
@@ -24,10 +25,10 @@ export function InfoForBuy({money, setPay, product, cart}) {
     const [stateAdress, setStateAdress] = useState(false);
     const [sity, setSity] = useState('');
     const [numberNP, setNumberNP] = useState('');
-    const [visibleSity, setVisibleSity] = useState('hiden');
-    const [visibleNumber, setVisibleNumber] = useState('hiden');
+    const [visibleSity, setVisibleSity] = useState(WORD_HIDEN);
+    const [visibleNumber, setVisibleNumber] = useState(WORD_HIDEN);
     const [value, setValue] = React.useState('');
-    const [success, setSuccess] = useState('not_success');
+    const [success, setSuccess] = useState(WORD_SUCCESS);
 
 
     const currentUser = useSelector(state => state.user.currentUser);
@@ -36,10 +37,10 @@ export function InfoForBuy({money, setPay, product, cart}) {
     const handleChange = (event) => {
 
         setValue(event.target.value);
-        if (event.target.value === 'cash') {
-            setPay('Готівка')
-        } else if (event.target.value === 'cart') {
-            setPay('Карта')
+        if (event.target.value === WORD_CASH) {
+            setPay(WORD_MONEY)
+        } else if (event.target.value === WORD_CART) {
+            setPay(WORD_CART_UK)
         }
 
     };
@@ -118,8 +119,8 @@ export function InfoForBuy({money, setPay, product, cart}) {
                                 APIServise.editAdressData(currentUser.id, sity, numberNP)
                                 setStateNameAdress(true);
                                 setStateAdress(false);
-                                setVisibleSity('hiden');
-                                setVisibleNumber('hiden');
+                                setVisibleSity(WORD_HIDEN);
+                                setVisibleNumber(WORD_HIDEN);
                             }
                             }>Продовжити
                             </button>
@@ -137,7 +138,7 @@ export function InfoForBuy({money, setPay, product, cart}) {
                     </div>
                 </div>
                 {
-                    success === 'not_success' &&
+                    success === WORD_SUCCESS &&
                     <div className={'data_div'}>
                         <FormControl>
                             <RadioGroup
@@ -146,8 +147,8 @@ export function InfoForBuy({money, setPay, product, cart}) {
                                 value={value}
                                 onChange={handleChange}
                             >
-                                <FormControlLabel value="cash" control={<Radio/>} label="Готівка"/>
-                                <FormControlLabel value="cart" control={<Radio/>
+                                <FormControlLabel value={WORD_CASH} control={<Radio/>} label={WORD_MONEY}/>
+                                <FormControlLabel value={WORD_CART} control={<Radio/>
 
                                     //message ? <Message message={message} /> : <ProductDisplay />
 
@@ -163,7 +164,7 @@ export function InfoForBuy({money, setPay, product, cart}) {
                                     //     <Radio>{money}</Radio>
                                     // </StripeCheckout>
 
-                                } label="Карта"/>
+                                } label={WORD_CART_UK}/>
                             </RadioGroup>
                         </FormControl>
                     </div>

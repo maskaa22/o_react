@@ -1,7 +1,8 @@
 import {Chart, Line, Point, Tooltip} from "bizcharts";
 import React from "react";
 
-import './Analyze.css'
+import './Analyze.css';
+import './Analyze@media.css';
 
 export function Analys_profit({analyze}) {
     return (

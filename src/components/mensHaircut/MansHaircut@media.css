@@ -1,0 +1,22 @@
+@media screen and (max-width: 800px) {
+    .hears-item-icon {
+        font-size: 25px;
+    }
+}
+@media screen and (max-width: 600px) {
+    .servise-info-p, .hears-item-p {
+        font-size: 15px;
+    }
+    .hears-item-icon {
+        font-size: 20px;
+    }
+}
+@media screen and (max-width: 400px) {
+    .servise-hears {
+        display: block;
+    }
+    .servise-flex {
+        display: flex;
+        justify-content: center;
+    }
+}

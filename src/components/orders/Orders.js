@@ -5,9 +5,18 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import {useEffect, useState} from "react";
 
-import './Orders.css'
+import './Orders.css';
+import './Orders@media.css';
 import {APIServise} from "../servises";
 import {Order} from "../order";
+import {
+    WORD_ACCEPTED,
+    WORD_EVERY,
+    WORD_EXPECTED,
+    WORD_HIDEN,
+    WORD_PROCESSING, WORD_READY,
+    WORD_SEND
+} from "../../config/wordsConstants";
 
 export function Orders() {
     const [orders, setOrders] = useState();
@@ -40,17 +49,17 @@ export function Orders() {
                         value={filter}
                         onChange={handleChangeFilter}
                     >
-                        <MenuItem value={'все'}>всі</MenuItem>
-                        <MenuItem value={'очікується'}>очікується</MenuItem>
-                        <MenuItem value={'прийнято'}>прийнято</MenuItem>
-                        <MenuItem value={'обробка'}>обробка</MenuItem>
-                        <MenuItem value={'відправлено'}>відправлено</MenuItem>
-                        <MenuItem value={'готово'}>готово</MenuItem>
+                        <MenuItem value={WORD_EVERY}>всі</MenuItem>
+                        <MenuItem value={WORD_EXPECTED}>очікується</MenuItem>
+                        <MenuItem value={WORD_ACCEPTED}>прийнято</MenuItem>
+                        <MenuItem value={WORD_PROCESSING}>обробка</MenuItem>
+                        <MenuItem value={WORD_SEND}>відправлено</MenuItem>
+                        <MenuItem value={WORD_READY}>готово</MenuItem>
                     </Select>
                 </FormControl>
             </div>
 
-            <Order orders={orders} del={false} visible={'hiden'}/>
+            <Order orders={orders} del={false} visible={WORD_HIDEN}/>
 
         </div>
     );

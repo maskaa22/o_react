@@ -1,5 +1,6 @@
 
-import './Footer.css'
+import './Footer.css';
+import './Fotter@media.css';
 import {BiTimeFive} from "react-icons/bi";
 import {FaMapMarkerAlt} from "react-icons/fa";
 import React from "react";

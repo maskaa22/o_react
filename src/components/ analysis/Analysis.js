@@ -1,7 +1,8 @@
 import * as React from "react";
 import {useEffect, useState} from "react";
 
-import './Analyze.css'
+import './Analyze.css';
+import './Analyze@media.css';
 import {Analys_profit} from "./Analys_profit";
 import {Analys_status_order} from "./Analys_status_order";
 import {APIServise} from "../servises"

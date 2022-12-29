@@ -1,0 +1,8 @@
+@media screen and (min-width: 600px) {
+    .select-search {
+        margin: 10px 0;
+    }
+    .select-search-last {
+        margin-top: -10px;
+    }
+}

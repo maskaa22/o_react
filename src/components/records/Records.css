@@ -22,12 +22,9 @@
 .position-relative {
     position: relative;
 }
-
-@media screen and (max-width: 600px) {
-    .cell-table-records {
-        width: fit-content;
-    }
-    .name-date {
-        right: 30px;
-    }
+.client-records {
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+    margin: auto;
 }

@@ -2,6 +2,8 @@ import FirstMen from '../../images/teams/1.png';
 import SecondMen from '../../images/teams/2.png';
 import FirstWomen from '../../images/teams/3.png';
 import SecondWomen from '../../images/teams/4.png';
+import './AboutAsPage.css';
+import './AboutAsPage@media.css';
 
 export  function Team ()
 {

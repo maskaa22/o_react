@@ -1,4 +1,5 @@
-import './Home.css'
+import './Home.css';
+import './Home@media.css';
 export function Benefits ()
 {
     return(

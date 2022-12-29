@@ -2,7 +2,8 @@ import Foto1 from "../../images/foto-1.jpg";
 import Foto2 from "../../images/foto-7.jpg";
 import Foto3 from "../../images/foto-5.png";
 import Foto4 from "../../images/foto-4.jpg";
-import './Home.css'
+import './Home.css';
+import './Home@media.css';
 
 export function Comments ()
 {

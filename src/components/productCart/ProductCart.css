@@ -7,37 +7,6 @@
     margin-top: 20px
 }
 
-/* Отзывчивые столбцы */
-@media screen and (min-width: 800px) {
-    .info_card {
-        font-size: 15px;
-    }
-    .card-small-size {
-        font-size: 12px;
-    }
-}
-@media screen and (max-width: 800px) {
-    .column {
-        width: 50%;
-    }
-    .info_card {
-        font-size: 20px;
-    }
-    .card-small-size {
-        font-size: 15px;
-    }
-}
-
-@media screen and (max-width: 600px) {
-    .column {
-        width: 100%;
-        display: block;
-    }
-    .card {
-        width: 60vw;
-        margin: 1vw 5vw;
-    }
-}
 
 .info_card {
     padding: 0 10px;

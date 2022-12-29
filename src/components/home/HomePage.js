@@ -1,7 +1,8 @@
 import React, {useEffect} from "react";
 import {useDispatch} from "react-redux";
 
-import './Home.css'
+import './Home.css';
+import './Home@media.css';
 import {APIServise} from "../servises";
 import {Calendar} from "../calendar";
 import {Comments} from "./Comments";

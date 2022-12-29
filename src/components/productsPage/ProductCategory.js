@@ -2,10 +2,17 @@ import {useDispatch} from "react-redux";
 import {useState} from "react";
 
 import './ProductsPage.css';
+import './ProductPage@media.css';
 import {APIServise} from "../servises";
 import {setCategory} from "../reducers/actionCreators";
 import {closeToogleMenu, openFilterName} from "../utils/function";
 import {MdNavigateNext} from "react-icons/md";
+import {
+    WORD_ACTIVE_MENU_CATEGORY,
+    WORD_CATEGORY_MENU,
+    WORD_NO_SCROLL,
+    WORD_PRODUCT_MENU_BLOCK
+} from "../../config/wordsConstants";
 
 export default function ProductCategory({
                                             category,
@@ -30,7 +37,7 @@ export default function ProductCategory({
             <button className={`category`} id={category._id}
                     onClick={() => {
                         setProductCategoryCheck(productCategoryCheck = !productCategoryCheck);
-                        closeToogleMenu('category-menu', 'product-menu-block', 'active-menu-category', 'no-scroll');
+                        closeToogleMenu(WORD_CATEGORY_MENU, WORD_PRODUCT_MENU_BLOCK, WORD_ACTIVE_MENU_CATEGORY, WORD_NO_SCROLL);
 
                         dispatch(APIServise.categoriesFilter(category._id, page, 2)).then(response => {
                             setOffset(0);

@@ -1,5 +1,6 @@
 
-import './Home.css'
+import './Home.css';
+import './Home@media.css';
 import One from '../../images/gallery/1.jpg'
 import Two from '../../images/gallery/2.jpg'
 import Three from '../../images/gallery/3.jpeg'

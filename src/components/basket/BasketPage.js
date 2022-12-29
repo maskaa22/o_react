@@ -4,7 +4,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 
-import './BasketPage.css'
+import './BasketPage.css';
+import './BasketPage@media.css';
 import '../productsPage/ProductsPage.css'
 import {APIServise} from "../servises";
 import {BasketCart} from "../basketCart";
@@ -12,6 +13,9 @@ import {delAllProduct} from "../reducers/actionCreators";
 import {InfoForBuy} from "../infoForBuy";
 import {store} from "../reducers";
 import {TbBasketOff} from "react-icons/tb";
+import {WORD_LOCALES, WORD_MONEY, WORD_OPTIONS, WORD_WAITING} from "../../config/wordsConstants";
+import {BUY_URL} from "../../config/URL";
+import {PRODUCTS} from "../../config/headerConstants";
 
 export function BasketPage({active, setActive}) {
     const dispatch = useDispatch();
@@ -27,7 +31,7 @@ export function BasketPage({active, setActive}) {
 
     useEffect(() => {
         setCount(1);
-        setStatus('очікується')
+        setStatus(WORD_WAITING)
     }, []);
     //let [lastCount, setLastCount] = useState(1);
     let summa = 0;
@@ -104,12 +108,12 @@ export function BasketPage({active, setActive}) {
     //     );
     // })
 
-    const month = new Date().toLocaleString('uk-UA', {month: 'long'});
+    const month = new Date().toLocaleString(WORD_LOCALES, {month: WORD_OPTIONS});
     const navigate = useNavigate();
     const handleCheckout = () => {
-        const url = "http://localhost:5000";
+
         axios
-            .post(`${url}/create-checkout-session`, {
+            .post(BUY_URL, {
                 cart,
                 userId: currentUser._id,
             })
@@ -164,11 +168,11 @@ export function BasketPage({active, setActive}) {
                             <button className={'check'} onClick={() => {
                                 APIServise.setOrder(currentUser.id, currentUser.name, currentUser.surname, currentUser.phone,
                                     currentUser.nameSity, currentUser.nameDepartment, pay, cart, status, summa * count, month);
-                                if (pay === 'Готівка') {
-                                    navigate("/products")
+                                if (pay === WORD_MONEY) {
+                                    navigate(PRODUCTS)
                                     store.dispatch(delAllProduct())
                                 }
-                                if (pay !== '' && pay !== 'Готівка') {
+                                if (pay !== '' && pay !== WORD_MONEY) {
                                     handleCheckout()
                                 }
                                 APIServise.dateAnalizy(month, summa)

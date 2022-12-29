@@ -1,0 +1,29 @@
+@media screen and (min-width: 801px) {
+    .btn-fond-size {
+        font-size: 15px;
+    }
+}
+@media screen and (max-width: 600px) {
+    .row-table {
+        overflow-wrap: anywhere;
+        height: fit-content;
+    }
+    .cell-table {
+        width: fit-content;
+        padding-left: 7px;
+        height: fit-content;
+        overflow-wrap: anywhere;
+    }
+    .btn-ok {
+        height: fit-content;
+    }
+    .padding_header_last {
+        padding-right: 0;
+    }
+    .btn-fond-size {
+        font-size: 3vw;
+    }
+    h2 {
+        font-size: 5vw;
+    }
+}

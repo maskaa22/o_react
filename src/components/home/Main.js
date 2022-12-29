@@ -1,6 +1,7 @@
 
 import Logo from "../../images/logo-header.png";
-import './Home.css'
+import './Home.css';
+import './Home@media.css';
 import VideoWebm from "../../video/home.webm";
 import VideoMp4 from "../../video/home.mp4";
 

@@ -28,7 +28,7 @@ export function Users({items}) {
 
             <div className={'flex-fot-content'}>
                 <div className={'centric'}>
-                    <div className={'flex_space_between'}>
+                    <div className={'client-records'}>
                     <button onClick={() => setOpenCreateWindow(true)} className={'btn_analyz btn-fond-size margin-minus'}>Додати адміністратора</button>
                     <button className={'btn_analyz btn-fond-size margin-minus'} onClick={() => setOpenDeleteUser(true)}>Видалити клієнта</button>
                     </div>

@@ -1,9 +1,11 @@
 import {MdOutlineShoppingCart} from "react-icons/md";
 import {useDispatch, useSelector} from "react-redux";
 
-import './ProductCart.css'
+import './ProductCart.css';
+import './ProductCart@media.css';
 import {setProduct} from "../reducers/actionCreators";
 import {SwalFunction} from "../utils/function";
+import {WORD_SWAL_ERROR, WORD_SWAL_NOT_AUTORIZE, WORD_SWAL_OK} from "../../config/wordsConstants";
 
 export function ProductCart({product}) {
 
@@ -35,7 +37,7 @@ export function ProductCart({product}) {
                                         dispatch(setProduct(product));
                                         //dispatch(priceProduct(product.totalPrice));
                                     }
-                                } else SwalFunction('Не авторизований', '', 'error', 'Ok', true)
+                                } else SwalFunction(WORD_SWAL_NOT_AUTORIZE, '', WORD_SWAL_ERROR, WORD_SWAL_OK, true)
 
                             }}/>
                         </div>

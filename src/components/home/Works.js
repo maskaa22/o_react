@@ -1,6 +1,7 @@
 import Slide from "../../images/90.jpg";
 import Pricheska from "../../images/Pricheska.jpg";
-import './Home.css'
+import './Home.css';
+import './Home@media.css';
 
 export function Works ()
 {

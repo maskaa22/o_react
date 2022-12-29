@@ -1,4 +1,5 @@
-import './AboutAsPage.css'
+import './AboutAsPage.css';
+import './AboutAsPage@media.css';
 import VideoWebm from "../../video/aboutAs.webm";
 import VideoMp4 from "../../video/aboutAs.mp4";
 
