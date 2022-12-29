@@ -1,1 +1,1 @@
-export * from './NewPochta'
+export * from './NewPochta';

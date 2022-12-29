@@ -5,6 +5,7 @@ import {APIServise} from "../servises";
 import {Input} from "../utils";
 
 export function ModalCreateCategory({active, setActive}) {
+
     const [nameCategory, setNameCategory] = useState('');
 
     return (
@@ -13,10 +14,11 @@ export function ModalCreateCategory({active, setActive}) {
                 <div className={'close'} onClick={() => setActive(false)}><i className="fa fa-times"
                                                                              aria-hidden="true"/></div>
                 <h2>Категорія</h2>
-                    <Input value={nameCategory} setValue={setNameCategory} placeholder={'Назва категорії'} className={'input-del-user'}/>
+                <Input value={nameCategory} setValue={setNameCategory} placeholder={'Назва категорії'}
+                       className={'input-del-user'}/>
                 <div className={'btn-position'}>
                     <button className={'btn-add'} onClick={() => {
-                        APIServise.createCategory(nameCategory)
+                        APIServise.createCategory(nameCategory);
                     }}>Створити
                     </button>
                 </div>
@@ -24,4 +26,3 @@ export function ModalCreateCategory({active, setActive}) {
         </div>
     );
 }
-

@@ -1,1 +1,1 @@
-export * from './InfoForBuy'
+export * from './InfoForBuy';

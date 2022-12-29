@@ -8,6 +8,6 @@ import productReducer from "./productReducer";
 export const rootReducer = combineReducers({
     user: userReducer,
     product: productReducer,
-})
+});
 
-export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
+export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));

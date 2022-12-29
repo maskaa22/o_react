@@ -3,6 +3,7 @@
     height: 280px;
     margin: 0 auto;
 }
+
 .rightArrowStyles {
     position: absolute;
     top: 50%;
@@ -13,6 +14,7 @@
     z-index: 1;
     cursor: pointer;
 }
+
 .leftArrowStyles {
     position: absolute;
     top: 50%;
@@ -23,15 +25,15 @@
     z-index: 1;
     cursor: pointer;
 }
+
 .sliderStyles {
     position: relative;
     height: 100%;
 }
+
 .slideStyles {
     width: 100%;
     height: 100%;
     background-size: cover;
     background-position: center;
 }
-
-

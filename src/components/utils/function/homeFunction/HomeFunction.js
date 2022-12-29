@@ -1,14 +1,10 @@
-export function HomeFunction ()
-{
+export function HomeFunction() {
+
     function onEntry(entry) {
         entry.forEach(change => {
             if (change.isIntersecting) {
                 change.target.classList.add('element-show');
             }
-            //повторение
-            // else {
-            //     change.target.classList.remove('element-show')
-            // }
         });
     }
 
@@ -22,16 +18,17 @@ export function HomeFunction ()
         observer.observe(elm);
     }
 }
-export function Up () {
+
+export function Up() {
     window.addEventListener('scroll', function () {
         const scroll = document.querySelector('.upward');
-        // console.log(scroll);
-        if(scroll)
-        {
-            scroll.classList.toggle('active-scroll', window.scrollY>500);
+
+        if (scroll) {
+            scroll.classList.toggle('active-scroll', window.scrollY > 500);
         }
     })
 }
-export function scrollTopTop () {
-    window.scrollTo({top:0})
+
+export function scrollTopTop() {
+    window.scrollTo({top: 0})
 }

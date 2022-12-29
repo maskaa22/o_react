@@ -2,7 +2,6 @@
     0% {
         box-shadow: 0 0 20px 5px #78c9b8;
     }
-
     50% {
         box-shadow: transparent;
     }
@@ -17,17 +16,14 @@
     }
 }
 
-
 @media (max-width: 1200px) {
     .all-container {
-        /*max-width: 970px;*/
         max-width: none;
     }
 }
 
 @media (max-width: 992px) {
     .all-container {
-        /*max-width: 750px;*/
         max-width: none;
     }
 
@@ -133,13 +129,16 @@
         grid-gap: 30px;
         margin: 10px;
     }
+
     .circle-hr {
         display: none;
     }
+
     .element-animation.element-show {
         transition: none;
         transform: none;
     }
+
     .box1 {
         grid-column-start: 1;
         grid-row-start: 1;
@@ -171,6 +170,7 @@
     .container-brands-item {
         height: 200px;
     }
+
     .personPhoto {
         width: 100%;
         height: auto;

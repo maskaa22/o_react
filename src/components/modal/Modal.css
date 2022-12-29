@@ -1,7 +1,7 @@
 .modal {
     height: 100%;
     width: 100%;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.4);
     position: fixed;
     top: 0;
     left: 0;
@@ -12,10 +12,12 @@
     pointer-events: none;
     transition: 0.5s;
 }
+
 .modal.active {
     opacity: 1;
     pointer-events: all;
 }
+
 .modal-content {
     padding: 10px 20px;
     border-radius: 12px;
@@ -25,9 +27,11 @@
     transition: 0.4s all;
     color: #47008e;
 }
+
 .modal-content.active {
     transform: scale(1);
 }
+
 textarea {
     border-radius: 5px;
     width: 93%;
@@ -36,14 +40,17 @@ textarea {
     font-size: 14px;
     border: 1px solid #47008e;
 }
+
 .flex_start {
     display: flex;
     justify-content: flex-start;
     padding: 0 0 0 10px;
 }
+
 .margin_right_small {
     margin-right: 5px;
 }
+
 .create_event {
     margin-top: 150px;
     padding: 10px 20px;
@@ -52,12 +59,15 @@ textarea {
     width: 350px;
     color: #47008e;
 }
+
 .h2 {
     padding: 0 15px 15px;
 }
+
 .margin_all_select {
     margin: -5px 10px 10px;
 }
+
 .input_date_width {
     width: 117px;
 }

@@ -2,8 +2,8 @@ import {useState} from "react";
 
 import './CreateProduct.css';
 import {APIServise} from "../servises";
-import {ModalCreateProduct, ModalCreateCategory} from '../modal';
 import {Input} from "../utils";
+import {ModalCreateCategory, ModalCreateProduct} from '../modal';
 import {WORD_ADD, WORD_DEL} from "../../config/wordsConstants";
 
 export function CreateProduct() {
@@ -25,7 +25,7 @@ export function CreateProduct() {
                     () => {
                         setModalActiveProduct(true);
                         APIServise.getCategories().then(respons => {
-                            setCategories(respons.data)
+                            setCategories(respons.data);
                         });
                     }
                 }>Додати продукт
@@ -34,20 +34,20 @@ export function CreateProduct() {
             <div className={'div-btn'}>
                 <button className={'big-btn'} onClick={
                     () => {
-                        setDelProduct(WORD_ADD)
+                        setDelProduct(WORD_ADD);
                     }}>Видалити продукт
                 </button>
             </div>
             <div className={`div-btn `}>
                 <div className={`${delProduct}`}>
                     <div className={'close'} onClick={() => setDelProduct(WORD_DEL)}><i className="fa fa-times"
-                                                                                     aria-hidden="true"/></div>
+                                                                                        aria-hidden="true"/></div>
                     <h2>Видалення</h2>
-                        <Input value={number} setValue={setNumber} placeholder={'Інвентарний номер'}/>
+                    <Input value={number} setValue={setNumber} placeholder={'Інвентарний номер'}/>
                     <div className={'btn-position'}>
                         <button className={'btn-add margin-add-null'} onClick={() => {
                             APIServise.deleteProduct(number);
-                            setDelProduct(WORD_DEL)
+                            setDelProduct(WORD_DEL);
                         }}>Видалити
                         </button>
                     </div>
@@ -55,7 +55,6 @@ export function CreateProduct() {
             </div>
 
             <ModalCreateProduct active={modalActiveProduct} setActive={setModalActiveProduct} categories={categories}/>
-
             <ModalCreateCategory active={modalActiveCategory} setActive={setModalActiveCategory}/>
 
 

@@ -1,13 +1,12 @@
-
-import Logo from "../../images/logo-header.png";
 import './Home.css';
 import './Home@media.css';
-import VideoWebm from "../../video/home.webm";
+import Logo from "../../images/logo-header.png";
 import VideoMp4 from "../../video/home.mp4";
+import VideoWebm from "../../video/home.webm";
 
-export function Main ()
-{
-    return(
+export function Main() {
+
+    return (
         <div className={'full-screen'}>
             <div className={'full-screen__body'}>
                 <div className={'container '}>

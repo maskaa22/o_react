@@ -6,10 +6,12 @@
     width: 350px;
     color: #47008e;
 }
+
 .flex {
     display: flex;
     justify-content: center;
 }
+
 .close_del {
     position: relative;
     left: 98%;
@@ -18,16 +20,20 @@
     background-color: white;
     height: fit-content;
 }
+
 .close_del i {
     color: #47008e;
 }
+
 .auto {
     width: auto;
 }
+
 .margin_right {
     margin-right: 30px;
     margin-left: -10px;
 }
+
 .input-width {
     width: 100%;
 }

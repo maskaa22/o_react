@@ -1,8 +1,8 @@
+import * as React from "react";
 import {useEffect, useState} from "react";
 
 import {APIServise} from "../servises";
 import {Order} from "../order";
-import * as React from "react";
 
 export function ArchiveOrders() {
     const [orders, setOrders] = useState();

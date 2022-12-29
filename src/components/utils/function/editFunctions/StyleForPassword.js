@@ -1,4 +1,4 @@
-import {s_letters, b_letters, digits} from "../../../../config/functionConstants";
+import {b_letters, digits, s_letters} from "../../../../config/functionConstants";
 
 export function StyleForPassword(number, block_check) {
 
@@ -7,7 +7,6 @@ export function StyleForPassword(number, block_check) {
     let is_d = false;
 
     for (let i = 0; i < number.length; i++) {
-
         if (!is_s && s_letters.indexOf(number[i]) !== -1) {
             is_s = true
         } else if (!is_b && b_letters.indexOf(number[i]) !== -1) {
@@ -16,7 +15,9 @@ export function StyleForPassword(number, block_check) {
             is_d = true
         }
     }
+
     let rating = 0;
+
     if (is_s) rating++;
     if (is_b) rating++;
     if (is_d) rating++;

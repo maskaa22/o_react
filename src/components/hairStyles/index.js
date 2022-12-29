@@ -1,1 +1,1 @@
-export * from './HairStyles'
+export * from './HairStyles';

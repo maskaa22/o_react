@@ -1,5 +1,3 @@
-
-/* Поплавок четыре колонки бок о бок */
 .column {
     float: left;
     width: 20%;
@@ -7,16 +5,13 @@
     margin-top: 20px
 }
 
-
 .info_card {
     padding: 0 10px;
     color: white;
 }
 
-/* Стиль контейнера карточек */
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    /*background-color: #f1f1f1;*/
     background-color: #79CBB8FF;
     border-radius: 5px;
 }
@@ -26,17 +21,12 @@ img {
     height: auto;
 }
 
-/*.info_card {*/
-/*    padding: 0 10px;*/
-/*    color: white;*/
-/*    !*font-size: 1.5vw;*!*/
-/*    font-size: 15px;*/
-/*}*/
 .flex_buy {
     display: flex;
     justify-content: space-between;
     white-space: nowrap;
 }
+
 .buy {
     padding-right: 10px;
     font-size: 20px;
@@ -46,44 +36,42 @@ img {
 }
 
 .card-image {
-    /*width: 15vw;*/
     width: 100%;
 }
+
 button {
     border: none;
     cursor: pointer;
     background-color: #79CBB8FF;
 }
+
 .icon_basket {
     font-size: 20px;
     height: 20px;
     width: 20px;
     transition: color, transform 500ms ease;
 }
+
 .color_purple {
     color: #47008e;
 }
-.icon_basket:hover{
+
+.icon_basket:hover {
     transform: scale(1.5);
 }
+
 span {
     font-weight: bold;
 }
+
 .count {
     font-size: 20px;
     color: #47008e;
     cursor: pointer;
 }
+
 .info {
     display: flex;
     align-items: center;
     justify-content: center
 }
-
-/*.card {*/
-/*    border: 1px solid #79cbb8;*/
-/*}*/
-/*.card-foto {*/
-/*    width: 4vw;*/
-/*    height: 4vw;*/
-/*}*/

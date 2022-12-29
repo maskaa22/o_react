@@ -2,23 +2,29 @@
     .contact-info-item {
         height: inherit;
     }
+
     .contact-icon-circle {
         width: 40px;
         height: 40px;
     }
+
     .contact-info-p-first {
         font-size: 20px;
     }
+
     .contact-info-p-second {
         font-size: 10px;
         margin-bottom: 5px;
     }
+
     .contact-info {
         grid-gap: 20px;
     }
+
     .contact-grid {
         display: block;
     }
+
     .contact-button {
         width: 100%;
     }

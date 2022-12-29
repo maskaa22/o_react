@@ -1,20 +1,18 @@
 import * as React from "react";
+import {useState} from "react";
 import {FiCheckCircle} from "react-icons/fi";
 import FormControl from "@mui/material/FormControl";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import {useSelector} from "react-redux";
-import {useState} from "react";
 
 import {APIServise} from "../servises";
 import {Input} from "../utils";
 import {NewPochta} from "../newPochta";
 import {WORD_CART, WORD_CART_UK, WORD_CASH, WORD_HIDEN, WORD_MONEY, WORD_SUCCESS} from "../../config/wordsConstants";
 
-
-export function InfoForBuy({money, setPay, product, cart}) {
-
+export function InfoForBuy({setPay}) {
 
     const [name, setName] = useState('');
     const [surname, setSurname] = useState('');
@@ -30,21 +28,16 @@ export function InfoForBuy({money, setPay, product, cart}) {
     const [value, setValue] = React.useState('');
     const [success, setSuccess] = useState(WORD_SUCCESS);
 
-
     const currentUser = useSelector(state => state.user.currentUser);
 
-
     const handleChange = (event) => {
-
         setValue(event.target.value);
         if (event.target.value === WORD_CASH) {
-            setPay(WORD_MONEY)
+            setPay(WORD_MONEY);
         } else if (event.target.value === WORD_CART) {
-            setPay(WORD_CART_UK)
+            setPay(WORD_CART_UK);
         }
-
     };
-
 
     return (
         <div>
@@ -53,7 +46,7 @@ export function InfoForBuy({money, setPay, product, cart}) {
                     <p className={'data_name'}>Контактні дані</p>
                     <button className={'update'} onClick={() => {
                         setStateName(false);
-                        setStateInput(true)
+                        setStateInput(true);
                     }}>Змінити
                     </button>
                 </div>
@@ -73,22 +66,20 @@ export function InfoForBuy({money, setPay, product, cart}) {
                         <div className={'d_flex edit-date-margin'}>
                             <button className={'check save'} onClick={() => {
                                 APIServise.editContactData(currentUser.id, name, surname, phone)
-                                setStateInput(false)
+                                setStateInput(false);
                                 setStateName(true);
-                            }
-                            }>Продовжити
+                            }}>Продовжити
                             </button>
                         </div>
                     </div>
                 }
             </div>
-
             <div className={'basket_check'}>
                 <div className={'flex__space__between'}>
                     <p className={'data_name'}>Доставка</p>
                     <button className={'update'} onClick={() => {
                         setStateNameAdress(false);
-                        setStateAdress(true)
+                        setStateAdress(true);
                     }}>Змінити
                     </button>
                 </div>
@@ -116,20 +107,17 @@ export function InfoForBuy({money, setPay, product, cart}) {
                         <div className={'d_flex edit-date-margin-last'}>
                             <button className={'check save'} onClick={() => {
                                 //TODO функция редактирования данних
-                                APIServise.editAdressData(currentUser.id, sity, numberNP)
+                                APIServise.editAdressData(currentUser.id, sity, numberNP);
                                 setStateNameAdress(true);
                                 setStateAdress(false);
                                 setVisibleSity(WORD_HIDEN);
                                 setVisibleNumber(WORD_HIDEN);
-                            }
-                            }>Продовжити
+                            }}>Продовжити
                             </button>
                         </div>
                     </div>
                 }
             </div>
-
-
             <div className={'basket_check'}>
                 <div className={'flex_space_between'}>
                     <p className={'data_name byu-title'}>Оплата</p>
@@ -149,28 +137,12 @@ export function InfoForBuy({money, setPay, product, cart}) {
                             >
                                 <FormControlLabel value={WORD_CASH} control={<Radio/>} label={WORD_MONEY}/>
                                 <FormControlLabel value={WORD_CART} control={<Radio/>
-
-                                    //message ? <Message message={message} /> : <ProductDisplay />
-
-
-                                    // <StripeCheckout
-                                    //     token={makePayment}
-                                    //     stripeKey={PRIVATE_KEY_STRIPE}
-                                    //     name={'Введіть дані'}
-                                    //     amount={money*100}
-                                    //     currency="UAH"
-                                    //     email={currentUser.email}
-                                    // >
-                                    //     <Radio>{money}</Radio>
-                                    // </StripeCheckout>
-
                                 } label={WORD_CART_UK}/>
                             </RadioGroup>
                         </FormControl>
                     </div>
                 }
             </div>
-
         </div>
     );
 }

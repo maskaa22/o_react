@@ -3,11 +3,13 @@
         height: 200px;
     }
 }
+
 @media screen and (max-width: 600px) {
     .containerStyles {
         height: 150px;
     }
 }
+
 @media screen and (max-width: 400px) {
     .containerStyles {
         height: 200px;

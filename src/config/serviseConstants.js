@@ -1,21 +1,21 @@
 module.exports = {
-    AUTH_LOGIN: '/auth/login',
-    AUTH_REGISTRATION: '/auth/registration',
     AUTH: '/auth',
+    AUTH_LOGIN: '/auth/login',
     AUTH_LOGOUT: '/auth/logout',
     AUTH_REFRESH: '/auth/refresh',
+    AUTH_REGISTRATION: '/auth/registration',
     CATEGORY: '/category',
+    CONTACT: '/contact',
+    HOME: '/home',
+    HOME_FIND: '/home/find',
+    PRODUCT_ARCHIVE_ORDER: '/products/archive_order',
+    PRODUCT_ORDER_ANALYZE: '/products/order_analyze',
     PRODUCT_ORDERS: '/products/orders',
     PRODUCT_ORDERS_ANALYZE_VISUAL: '/products/order_analyze_visual',
     PRODUCT_ORDERS_FILTER: '/products/orders_filter',
-    PRODUCT_ORDER_ANALYZE: '/products/order_analyze',
-    PRODUCT_ARCHIVE_ORDER: '/products/archive_order',
     PRODUCTS: '/products',
     USERS: '/users',
-    USERS_CONTACT: '/users/contact',
     USERS_ADRESS: '/users/adress',
-    USERS_SEND: '/users/send',
-    HOME: '/home',
-    HOME_FIND: '/home/find',
-    CONTACT: '/contact'
-}
+    USERS_CONTACT: '/users/contact',
+    USERS_SEND: '/users/send'
+};

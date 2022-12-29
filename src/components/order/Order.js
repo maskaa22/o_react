@@ -12,11 +12,9 @@ export function Order({orders, del, visible}) {
 
     const [status, setStatus] = React.useState('');
 
-
     const handleChange = (event) => {
         setStatus(event.target.value);
     };
-
 
     return (
         <div>
@@ -26,16 +24,9 @@ export function Order({orders, del, visible}) {
                         <div className={'center color_label'}>
                             <div>Замовлення № {i + 1}</div>
                         </div>
-                        {/*<div className={'justify-content-around'}>*/}
-                        {/*    <div className={'user'}>{order.user_name} {order.surname}</div>*/}
-                        {/*    /!*<div className={'user'}>{order.surname}</div>*!/*/}
-                        {/*</div>*/}
-
                         <div className={'center'}>
                             <div className={'user width'}>ПІБ: {order.user_name} {order.surname}</div>
                         </div>
-                        {/*<div className={'user'}>{order.surname}</div>*/}
-
                         <div className={'center'}>
                             <div className={'user width'}>Адреса доставки: м. {order.nameSity}, відділ.
                                 №{order.nameDepartment}</div>
@@ -67,20 +58,19 @@ export function Order({orders, del, visible}) {
                                         </Select>
                                     </FormControl>
                                     }
-
                                     {order.status === WORD_READY ?
                                         <div className={`center end ${del}`}>
                                             <button className={'status archive'} onClick={() => {
-                                                APIServise.archiveOrder(order._id)
+                                                APIServise.archiveOrder(order._id);
                                                 window.location.reload();
                                             }}>В архив
                                             </button>
                                         </div> :
                                         <div className={'center end'}>
                                             <button className={'status'} onClick={() => {
-                                                APIServise.updateStatusOrder(order._id, status)
+                                                APIServise.updateStatusOrder(order._id, status);
                                                 if (status === WORD_READY) {
-                                                    APIServise.updateDateAnalizy(order.month, order.summa)
+                                                    APIServise.updateDateAnalizy(order.month, order.summa);
                                                 }
                                                 window.location.reload();
                                             }}>Змінити
@@ -89,13 +79,11 @@ export function Order({orders, del, visible}) {
                                     }
                                     <div className={`center end ${visible}`}>
                                         <button className={'status'} onClick={() => {
-                                            APIServise.deleteOrder(order._id)
+                                            APIServise.deleteOrder(order._id);
                                             window.location.reload();
                                         }}>Видалити
                                         </button>
                                     </div>
-
-
                                 </div>
                             </div>
                         </div>
@@ -103,11 +91,8 @@ export function Order({orders, del, visible}) {
                             <div className={'width flex-date'}>
                                 <div className={'margin-right-date'}>Дата замовлення:</div>
                                 <div>{new Date(order.createdAt).toISOString().split('T')[0]}</div>
-
-                                {/*{ new Date(order.createdAt).toLocaleString('default', { month: 'long' })}*/}
                             </div>
                         </div>
-
 
                     </div>
                 ).reverse()

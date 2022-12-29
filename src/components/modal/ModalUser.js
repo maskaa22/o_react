@@ -1,15 +1,27 @@
 import * as React from "react";
 import {Box, Modal} from "@mui/material";
 
-import {LoginingForm} from "../loginingForm";
 import {DeleteUser} from "../deleteUser";
+import {LoginingForm} from "../loginingForm";
 import {ModalSendUser} from "./ModalSendUser";
 import {ModalCalendar} from "./ModalCalendar";
 import {WORLD_ADMIN} from "../../config/wordsConstants";
 
-export function ModalUser ({openWindow, handleClose, role, send, del, userEmail, calendar, date, eventCreateHandler, unix, time})
-{
-    return(
+export function ModalUser({
+                              openWindow,
+                              handleClose,
+                              role,
+                              send,
+                              del,
+                              userEmail,
+                              calendar,
+                              date,
+                              eventCreateHandler,
+                              unix,
+                              time
+                          }) {
+
+    return (
         <div>
             <Modal
                 open={openWindow}
@@ -17,7 +29,7 @@ export function ModalUser ({openWindow, handleClose, role, send, del, userEmail,
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <Box >
+                <Box>
                     {
                         role && <LoginingForm role={WORLD_ADMIN} handleClose={handleClose}/>
                     }
@@ -28,7 +40,9 @@ export function ModalUser ({openWindow, handleClose, role, send, del, userEmail,
                         send && <ModalSendUser handleClose={handleClose} userEmail={userEmail}/>
                     }
                     {
-                        calendar && <ModalCalendar handleClose={handleClose} date={date} eventCreateHandler={eventCreateHandler} unix={unix} newTime={time}/>
+                        calendar &&
+                        <ModalCalendar handleClose={handleClose} date={date} eventCreateHandler={eventCreateHandler}
+                                       unix={unix} newTime={time}/>
                     }
                 </Box>
             </Modal>

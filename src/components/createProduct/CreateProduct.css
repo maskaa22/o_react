@@ -4,9 +4,11 @@
     width: 90%;
     margin: 20px auto;
 }
+
 .del {
     visibility: hidden;
 }
+
 .add {
     visibility: visible;
     padding: 10px 20px;
@@ -15,6 +17,7 @@
     width: 300px;
     height: 200px;
 }
+
 .big-btn {
     width: 100%;
     height: 50px;
@@ -24,20 +27,25 @@
     font-size: 20px;
     align-items: center;
 }
+
 .close {
     margin: 0;
     cursor: pointer;
 }
+
 .close i {
     color: #47008e;
 }
+
 .newInput {
     width: fit-content;
 }
+
 .position_relative {
     position: relative;
     top: 5px;
 }
+
 h2 {
     text-align: center;
     color: #47008e;
@@ -45,6 +53,7 @@ h2 {
     margin: 0 10px;
     padding: 15px;
 }
+
 select {
     width: 93%;
     height: 20px;
@@ -63,15 +72,18 @@ p {
 option {
     font-weight: 700;
 }
+
 .position {
     padding: 20px 10px 0;
     width: 100%;
 }
+
 .select-product {
     height: 50px;
     position: relative;
     bottom: 25px;
 }
+
 .select-product label {
     color: #47008e;
     font-weight: bold;
@@ -81,16 +93,19 @@ option {
     left: 5px;
     font-family: 'Noto Sans', sans-serif;
 }
+
 .standard {
     border-bottom: 2px solid #47008e;
-
 }
+
 .standard:hover {
     border-bottom: 1px solid #47008e;
 }
+
 .select_label {
     color: #47008e;
 }
+
 .btn-add {
     width: 100%;
     height: 40px;
@@ -99,9 +114,11 @@ option {
     color: #47008e;
     align-items: center;
 }
+
 .margin-add-null {
     margin: 0;
 }
+
 .btn-position {
     margin: 15px auto;
 }
@@ -109,6 +126,7 @@ option {
 input[type="file"] {
     display: none;
 }
+
 .custom-file-upload {
     border: 1px solid #ccc;
     display: inline-block;
@@ -118,4 +136,3 @@ input[type="file"] {
     color: #47008e;
     margin-left: 5px;
 }
-

@@ -11,23 +11,27 @@
     justify-content: space-between;
     align-items: center;
 }
+
 .footer-center {
     display: flex;
     justify-content: center;
     margin-top: 0.5vw;
 }
+
 .footer-icon {
     font-size: 3vw;
-}.footer-time {
+}
+
+.footer-time {
     font-size: 1vw;
- }
+}
+
 .logo {
     margin: 0.5vw 0.5vw 0 0;
     height: 3vw;
     width: 3vw;
 }
+
 .logo-p {
     font-size: 3vw;
 }
-
-

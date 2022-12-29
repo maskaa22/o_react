@@ -1,8 +1,9 @@
 import './Home.css';
 import './Home@media.css';
-export function Benefits ()
-{
-    return(
+
+export function Benefits() {
+
+    return (
         <div className={'circle-full'}>
             <div className={'circle-flex'}>
                 <div className={'circle-home circle-flex-item'}>

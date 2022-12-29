@@ -1,4 +1,4 @@
-import {FaAngleUp, FaAngleDown} from "react-icons/fa"
+import {FaAngleDown, FaAngleUp} from "react-icons/fa"
 
 import './Count.css'
 

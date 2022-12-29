@@ -1,12 +1,13 @@
-import Women from '../../images/big-foto/Group 9.png'
 import {BsFillTelephoneFill} from "react-icons/bs";
+import {FaLocationArrow} from "react-icons/fa";
 import {MdAlternateEmail} from "react-icons/md";
+import {useState} from "react";
+
 import './Contacts.css';
 import './Contacts@media.css';
-import {FaLocationArrow} from "react-icons/fa";
-import {Input} from "../utils";
-import {useState} from "react";
 import {APIServise} from "../servises";
+import {Input} from "../utils";
+import Women from '../../images/big-foto/Group 9.png'
 
 export function Contacts() {
 
@@ -18,22 +19,29 @@ export function Contacts() {
     return (
         <div>
             <img src={Women} alt={'Women'}/>
-
             <div className={'container'}>
                 <h1 className={'contact-h1'}>Чекаємо на Вас</h1>
                 <div className={'contact-info'}>
                     <div className={'contact-info-item'}>
-                        <div className={'contact-icon-center'}><div className={'contact-icon-circle'}><BsFillTelephoneFill className={'contact-icon'}/></div></div>
+                        <div className={'contact-icon-center'}>
+                            <div className={'contact-icon-circle'}><BsFillTelephoneFill className={'contact-icon'}/>
+                            </div>
+                        </div>
                         <p className={'contact-info-p-first'}>Телефон</p>
                         <p className={'contact-info-p-second'}>0657487125</p>
                     </div>
                     <div className={'contact-info-item'}>
-                        <div className={'contact-icon-center'}><div className={'contact-icon-circle icon-second'}><MdAlternateEmail className={'contact-icon'}/></div></div>
+                        <div className={'contact-icon-center'}>
+                            <div className={'contact-icon-circle icon-second'}><MdAlternateEmail
+                                className={'contact-icon'}/></div>
+                        </div>
                         <p className={'contact-info-p-first'}>Пошта</p>
                         <p className={'contact-info-p-second'}>sdsdf@dfbv.dtf</p>
                     </div>
                     <div className={'contact-info-item'}>
-                        <div className={'contact-icon-center'}><div className={'contact-icon-circle'}><FaLocationArrow className={'contact-icon'}/></div></div>
+                        <div className={'contact-icon-center'}>
+                            <div className={'contact-icon-circle'}><FaLocationArrow className={'contact-icon'}/></div>
+                        </div>
                         <p className={'contact-info-p-first'}>Адреса</p>
                         <p className={'contact-info-p-second'}>м. Київ, вул. Іващенка, б. 327</p>
                     </div>
@@ -52,11 +60,14 @@ export function Contacts() {
                     <Input value={email} setValue={setEmail} type={'text'} placeholder={'Введіть email'}/>
                     <Input value={phone} setValue={setPhone} type={'text'} placeholder={'Введіть телефон'}/>
                 </div>
-                <textarea cols="35" rows="7" placeholder="Введіть текст" onChange={(event) => setText(event.target.value)} className={'contact-area'}/>
-                <div className={'contact-button-flex'}><button className={'form_btn contact-button'} onClick={() =>{
-                    //console.log(name, email, phone, text);
-                    APIServise.sentEmail(name, email, phone, text)
-                }}>Відправити</button></div>
+                <textarea cols="35" rows="7" placeholder="Введіть текст"
+                          onChange={(event) => setText(event.target.value)} className={'contact-area'}/>
+                <div className={'contact-button-flex'}>
+                    <button className={'form_btn contact-button'} onClick={() => {
+                        APIServise.sentEmail(name, email, phone, text)
+                    }}>Відправити
+                    </button>
+                </div>
             </div>
         </div>
     );

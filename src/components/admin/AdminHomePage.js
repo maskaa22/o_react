@@ -1,27 +1,35 @@
 import {Link, Route, Routes} from "react-router-dom";
+import {MdNavigateNext} from "react-icons/md";
 import React, {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
 
 import "./AdminHomePage.css";
 import './AdminHomePage@media.css';
-import {Analysis} from "../ analysis";
-import {APIServise} from "../servises";
-import {ArchiveOrders} from "../archive";
-import {CreateProduct} from "../createProduct";
-import {Edit} from "../editPage";
-import {Orders} from "../orders";
-import {Users} from "../users";
-import {closeToogleMenu, handleClick, ifOpenPageAddActiveClass, openToogleMenu, ViewFunction} from "../utils/function";
-import {Records} from "../records/Records";
 import {
-    ADMIN, ADMIN_ANALYSIS,
+    ADMIN,
+    ADMIN_ANALYSIS,
     ADMIN_ARCHIVE_ORDERS,
     ADMIN_ORDERS,
     ADMIN_PRODUCT,
     ADMIN_RECORDS,
-    ADMIN_USERS, ANALYSIS, ARCHIVE_ORDERS, CLIENTS, ORDERS, PRODUCT, RECORDS, THIS
+    ADMIN_USERS,
+    ANALYSIS,
+    ARCHIVE_ORDERS,
+    CLIENTS,
+    ORDERS,
+    PRODUCT,
+    RECORDS,
+    THIS
 } from "../../config/homeConstants";
-import {MdNavigateNext} from "react-icons/md";
+import {Analysis} from "../ analysis";
+import {APIServise} from "../servises";
+import {ArchiveOrders} from "../archive";
+import {closeToogleMenu, handleClick, ifOpenPageAddActiveClass, openToogleMenu, ViewFunction} from "../utils/function";
+import {CreateProduct} from "../createProduct";
+import {Edit} from "../editPage";
+import {Orders} from "../orders";
+import {Users} from "../users";
+import {Records} from "../records/Records";
 import {
     WORD_ACTIVE_MENU_CATEGORY,
     WORD_CATEGORY_MENU,
@@ -66,9 +74,7 @@ export function AdminHomePage() {
 
     return (
         <div className={'adminHomePage'}>
-
             <div className={'home-menu'}>
-
                 <div className={'category-menu'} id={'category-menu'}
                      onClick={() => openToogleMenu(WORD_CATEGORY_MENU, WORD_SMALL_MENU_ADMIN_CLIENT, WORD_ACTIVE_MENU_CATEGORY, WORD_NO_SCROLL)}>
                     <span className={'category-menu-bar'}/>
@@ -76,7 +82,6 @@ export function AdminHomePage() {
                     <span className={'category-menu-bar'}/>
                 </div>
                 <div className={'small-menu-admin-client'} id={'small-menu-admin-client'}>
-                    {/*<div className={'left-home-menu'}>*/}
                     <div className={'padding padding-last'}>
                         <Link to={ADMIN} className={'color_purple click-item'}>
                             <button className={'home_item click-item category'}
@@ -84,7 +89,6 @@ export function AdminHomePage() {
                         </Link>
                     </div>
                     <div className={'padding'}>
-                        {/*<div onClick={getUser}>*/}
                         <Link to={ADMIN_USERS} className={'color_purple click-item'}>
                             <button className={'home_item click-item category'} onClick={() => {
                                 closeMenuHome();
@@ -123,10 +127,7 @@ export function AdminHomePage() {
                         </Link>
                     </div>
                 </div>
-
-
             </div>
-
             <div className={'home-page'}>
                 <div className={'small-content-admin-client'}>
                     <Routes>

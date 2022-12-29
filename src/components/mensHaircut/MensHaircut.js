@@ -1,10 +1,11 @@
-import Mens from '../../images/big-foto/Group 7.png';
-import smallFoto from '../../images/servises/menHears/1.png'
+import {HiBadgeCheck} from "react-icons/hi";
+
 import './MansHaircut.css';
 import './MansHaircut@media.css';
+import Mens from '../../images/big-foto/Group 7.png';
 import Slider from "../slider/Slider";
-import {HiBadgeCheck} from "react-icons/hi";
 import {slidesMan} from "../../config/sliderConstants";
+import smallFoto from '../../images/servises/menHears/1.png'
 
 export function MensHaircut() {
 
@@ -19,20 +20,16 @@ export function MensHaircut() {
                         не важливо де чоловік буде сьогодні : дома, на важливій зустрічі, або на святі – гарна стрижка,
                         це запорука успіху кожного чоловіка. «Olena Studio» працює з професійною косметикою,
                         використовує надійні інструменти для роботи з чоловічими стрижками.</p>
-
                     <p className={'servise-info-p'}>Ми враховуємо як побажання клієнта, так і структурні особливості
                         його особи, завжди знаходимо
                         найкраще стильове рішення. Тому для нас важливим є індивідуальний підхід, який робить кожну
                         чоловічу стрижку унікальною.</p>
-
                     <p className={'servise-info-p'}>Розслаблююча атмосфера та високий рівень послуг від майстрів,
                         дозволяють отримати максимум
                         задоволення від процесу чоловічої стрижки.</p>
                 </div>
             </div>
-
             <Slider slides={slidesMan}/>
-
             <div className={'container'}>
                 <h1 className={'servise-info-h1'}>Види стрижок</h1>
                 <div className={'servise-flex'}>
@@ -73,7 +70,6 @@ export function MensHaircut() {
                     </div>
                 </div>
             </div>
-
         </div>
     );
 }

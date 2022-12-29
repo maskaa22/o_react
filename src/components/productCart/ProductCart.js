@@ -32,13 +32,11 @@ export function ProductCart({product}) {
                                     currentProduct.forEach(el => {
                                         if (el._id === product._id)
                                             isInArray = true;
-                                    })
+                                    });
                                     if (!isInArray) {
                                         dispatch(setProduct(product));
-                                        //dispatch(priceProduct(product.totalPrice));
                                     }
-                                } else SwalFunction(WORD_SWAL_NOT_AUTORIZE, '', WORD_SWAL_ERROR, WORD_SWAL_OK, true)
-
+                                } else SwalFunction(WORD_SWAL_NOT_AUTORIZE, '', WORD_SWAL_ERROR, WORD_SWAL_OK, true);
                             }}/>
                         </div>
                     </div>

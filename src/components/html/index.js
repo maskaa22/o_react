@@ -1,1 +1,1 @@
-export * from './HTML'
+export * from './HTML';

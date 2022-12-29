@@ -1,1 +1,1 @@
-export * from './AdminHomePage'
+export * from './AdminHomePage';

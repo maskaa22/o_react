@@ -1,24 +1,24 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
+import {BsArrowUpCircle} from "react-icons/bs";
+import {MdClose, MdNavigateNext} from "react-icons/md"
 
 import './ProductsPage.css';
 import './ProductPage@media.css';
 import {APIServise} from "../servises";
-import {PaginationProductCategory} from "../pagination";
-import {ProductCart} from "../productCart";
-import ProductCategory from "./ProductCategory";
 import {
+    closeFilterName,
     closeToogleMenu,
     handleClick,
     HomeFunction,
-    closeFilterName,
     openToogleMenu,
     scrollTopTop,
     Up
 } from "../utils/function";
-import {BsArrowUpCircle} from "react-icons/bs";
-import {MdClose, MdNavigateNext} from "react-icons/md";
 import {delFilter} from "../reducers/actionCreators";
+import {PaginationProductCategory} from "../pagination";
+import {ProductCart} from "../productCart";
+import ProductCategory from "./ProductCategory";
 import {
     WORD_ACTIVE_MENU_CATEGORY,
     WORD_CATEGORY_MENU,
@@ -27,6 +27,7 @@ import {
 } from "../../config/wordsConstants";
 
 export function ProductsPage() {
+
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
     const [categoriName, setCategoriName] = useState([]);
@@ -38,34 +39,23 @@ export function ProductsPage() {
     const [category_id, setCategory_id] = useState([]);
     const [offset, setOffset] = useState(0);
 
-
     const filterFlag = useSelector(state => state.product.filterFlag);
-
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(APIServise.auth());
-
-
-        // APIServise.getProducts(page, 5).then(respons => {
-        //     setProducts(respons.data.docs);
-        //     setPaginate(respons.data)
-        // });
         APIServise.getCategories().then(respons => {
-            // console.log(respons.data);
             setCategories(respons.data)
         });
-    }, [])
+    }, []);
 
     useEffect(() => {
         APIServise.getProducts(page, 10).then(respons => {
             setProducts(respons.data.docs);
-            setPaginate(respons.data)
-            // console.log(respons.data);
+            setPaginate(respons.data);
         });
-
-    }, [page])
+    }, [page]);
 
     function thisPage(page) {
         setPage(page);
@@ -75,55 +65,41 @@ export function ProductsPage() {
         setPageFilter(page);
     }
 
-
-// Get the container and the buttons
     const container = document.querySelector('.product-menu');
-    // const buttons = document.querySelectorAll('.category');
 
-// Add a click listener to the container
     if (container) {
         container.addEventListener('click', handleClick, false);
     }
 
-    // function handleClick(e) {
-    //     const {target} = e;
-    //
-    //     // If a button has been clicked
-    //     if (target.classList.contains('category')) {
-    //
-    //         // Clear any active buttons
-    //         buttons.forEach(button => button.classList.remove('active-menu'));
-    //         target.classList.add('active-menu');
-    //     }
-    // }
-
     HomeFunction();
     Up();
-
-
 
     return (
         <div>
             <div className={'upward'} onClick={scrollTopTop}><BsArrowUpCircle className="icon-up"/></div>
             <div className={'product-flex'}>
-                <div className={'category-menu'} id={'category-menu'} onClick={() => openToogleMenu(WORD_CATEGORY_MENU, WORD_PRODUCT_MENU_BLOCK, WORD_ACTIVE_MENU_CATEGORY, WORD_NO_SCROLL)}>
+                <div className={'category-menu'} id={'category-menu'}
+                     onClick={() => openToogleMenu(WORD_CATEGORY_MENU, WORD_PRODUCT_MENU_BLOCK, WORD_ACTIVE_MENU_CATEGORY, WORD_NO_SCROLL)}>
                     <span className={'category-menu-bar'}/>
                     <span className={'category-menu-bar'}/>
                     <span className={'category-menu-bar'}/>
                 </div>
                 <div className={'product-menu'} id={'product-menu-block'}>
-                    <div className={'product-menu-container'} >
+                    <div className={'product-menu-container'}>
                         <div className={'menu-title'}>
                             <div className={'left-title'}>Категорії товарів</div>
-                            <div className={'right-title'} onClick={() => closeToogleMenu(WORD_CATEGORY_MENU, WORD_PRODUCT_MENU_BLOCK, WORD_ACTIVE_MENU_CATEGORY, WORD_NO_SCROLL) }><MdClose /></div>
+                            <div className={'right-title'}
+                                 onClick={() => closeToogleMenu(WORD_CATEGORY_MENU, WORD_PRODUCT_MENU_BLOCK, WORD_ACTIVE_MENU_CATEGORY, WORD_NO_SCROLL)}>
+                                <MdClose/></div>
                         </div>
                         <hr className={'hr'}/>
-                        <div className={'padding'}><button className={`category active-menu`} onClick={() =>
-                        {
-                            dispatch(delFilter());
-                             closeFilterName();
-                            closeToogleMenu(WORD_CATEGORY_MENU, WORD_PRODUCT_MENU_BLOCK, WORD_ACTIVE_MENU_CATEGORY, WORD_NO_SCROLL);
-                        }}>Усі<MdNavigateNext className={'non-icon'}/></button></div>
+                        <div className={'padding'}>
+                            <button className={`category active-menu`} onClick={() => {
+                                dispatch(delFilter());
+                                closeFilterName();
+                                closeToogleMenu(WORD_CATEGORY_MENU, WORD_PRODUCT_MENU_BLOCK, WORD_ACTIVE_MENU_CATEGORY, WORD_NO_SCROLL);
+                            }}>Усі<MdNavigateNext className={'non-icon'}/></button>
+                        </div>
                         {
                             categories.map(category => <ProductCategory key={category._id}
                                                                         category={category}
@@ -142,7 +118,9 @@ export function ProductsPage() {
                 </div>
                 <div className={'row'}>
                     <div className={'row-container'}>
-                        <div className={'filter-name'}><div>{categoriName}</div></div>
+                        <div className={'filter-name'}>
+                            <div>{categoriName}</div>
+                        </div>
                         {!filterFlag &&
                         products.map(product => <ProductCart key={product._id} product={product}/>)
                         }

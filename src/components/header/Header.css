@@ -3,7 +3,6 @@
     height: 50px;
     background: linear-gradient(to right, #78c9b8 46%, #47008e 100%);
     color: white;
-
     display: flex;
     justify-content: center;
     position: relative;
@@ -45,9 +44,6 @@
     font-size: 40px;
 }
 
-
 a {
-    /*color: white;*/
     text-decoration: none;
 }
-

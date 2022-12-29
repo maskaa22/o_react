@@ -3,6 +3,7 @@
     justify-content: center;
     margin-bottom: 20px;
 }
+
 .user-table {
     width: 90%;
     height: 100%;
@@ -11,25 +12,30 @@
     border: 2px solid #79cbb8;
     margin: 20px auto;
 }
+
 .name-table {
     height: fit-content;
     display: grid;
     grid-template-columns: 3fr 4fr 2fr 2fr 1fr 1fr;
     align-items: center;
 }
+
 .row-table {
     background-color: #eeebebbd;
     height: fit-content;
     border: 1px solid white;
     padding: 5px;
 }
+
 .cell-table {
     width: fit-content;
     overflow-wrap: anywhere;
 }
+
 .cell-table-last {
     width: 50px;
 }
+
 .header-table {
     padding: 10px 0 10px;
     font-size: 15px;
@@ -37,9 +43,11 @@
     color: #47008e;
     text-align: center;
 }
+
 .padding_header_last {
     padding-right: 55px;
 }
+
 .btn-ok {
     border-radius: 5px;
     height: 20px;
@@ -48,15 +56,18 @@
     top: -2px;
     align-items: center;
 }
+
 .flex-fot-content {
     display: flex;
     justify-content: center;
 }
+
 .centric {
     width: 90%;
     margin: 0 20px 20px;
     color: white;
 }
+
 .margin-minus {
     margin-bottom: -10px;
 }

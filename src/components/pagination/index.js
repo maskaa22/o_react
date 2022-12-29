@@ -1,2 +1,1 @@
-
-export * from './PaginationProductCategory'
+export * from './PaginationProductCategory';

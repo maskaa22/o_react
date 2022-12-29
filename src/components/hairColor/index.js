@@ -1,1 +1,1 @@
-export * from './HairColor'
+export * from './HairColor';

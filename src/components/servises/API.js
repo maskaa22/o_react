@@ -1,22 +1,27 @@
 import axios from 'axios';
 
 import {
-    CategoryService,
-    UserService,
-    ProductService,
     AuthService,
-    OrderService,
+    CategoryService,
+    ContactService,
     HomeService,
-    ContactService
+    OrderService,
+    ProductService,
+    UserService
 } from './URL_Service'
-import {filterProduct, setProduct, setUser, setRole, userLogout} from "../reducers/actionCreators";
+import {filterProduct, setProduct, setRole, setUser, userLogout} from "../reducers/actionCreators";
 import {store} from "../reducers";
 import {SwalFunction} from "../utils/function";
 import {URL} from "../../config";
 import {
     WORD_SWAL_CATEGORY_CREATED,
-    WORD_SWAL_ERROR, WORD_SWAL_LATER_SEND,
-    WORD_SWAL_OK, WORD_SWAL_ORDER_SEND, WORD_SWAL_PRODUCT_ADD, WORD_SWAL_READY, WORD_SWAL_SUCCESS,
+    WORD_SWAL_ERROR,
+    WORD_SWAL_LATER_SEND,
+    WORD_SWAL_OK,
+    WORD_SWAL_ORDER_SEND,
+    WORD_SWAL_PRODUCT_ADD,
+    WORD_SWAL_READY,
+    WORD_SWAL_SUCCESS,
     WORD_SWAL_TEXT_ERROR,
     WORD_SWAL_USER_CREATED,
     WORD_TOKEN
@@ -31,10 +36,9 @@ export const login = (email, password) => {
             dispatch(setUser(response.data.user));
             dispatch(setRole(response.data.user.role));
 
-
-            return response.data.user
+            return response.data.user;
         } catch (e) {
-            SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true)
+            SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
         }
     }
 };
@@ -50,8 +54,7 @@ export const auth = () => {
 
             return response.data.user;
         } catch (e) {
-            //SwalFunction('Не авторизований', e.response.data.message, 'error', 'Ok', true)//???????????
-            // throw new Error(e.response.data.message)
+            SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
         }
     }
 };
@@ -60,19 +63,18 @@ export const registration = async (name, email, password, role) => {
         await AuthService.registration(name, email, password, role);
 
         if (!role) {
-            SwalFunction(WORD_SWAL_USER_CREATED, '', WORD_SWAL_SUCCESS, WORD_SWAL_OK, false, 3500)
+            SwalFunction(WORD_SWAL_USER_CREATED, '', WORD_SWAL_SUCCESS, WORD_SWAL_OK, false, 3500);
         }
     } catch (e) {
-        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true)
+        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
     }
 };
 export const deleteUser = async (email) => {
     try {
         await AuthService.deleteUser(email);
 
-        //SwalFunction('Користувач видалений', '', 'success', 'Ok', false, 3500)
     } catch (e) {
-        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true)
+        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
     }
 };
 export const logout = () => {
@@ -83,9 +85,7 @@ export const logout = () => {
             dispatch(userLogout());
 
         } catch (e) {
-            //Провірить
-            //SwalFunction('Помилка!', e.response.data.message, 'error', 'Ok', true)
-            alert(e.response.data.message)
+            SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
         }
     }
 };
@@ -93,9 +93,7 @@ export const getUsers = async () => {
     try {
         return await UserService.users();
     } catch (e) {
-        //Провірить
-        //SwalFunction('Помилка!', e.response.data.message, 'error', 'Ok', true)
-        console.log(e.response.data.message);
+        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
     }
 };
 
@@ -105,42 +103,36 @@ export const getProducts = async (page, limit) => {
 
         setProduct(response.data);
 
-        return response
+        return response;
     } catch (e) {
-        //Провірить
-        //SwalFunction('Помилка!', e.response.data.message, 'error', 'Ok', true)
-        console.log(e.response.data.message);
+        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
     }
 };
 export const getCategories = async () => {
     try {
         return await CategoryService.allCategories();
     } catch (e) {
-        //Провірить
-        //SwalFunction('Помилка!', e.response.data.message, 'error', 'Ok', true)
-        console.log(e.response.data.message);
+        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
     }
 };
 export const createCategory = async (category_name) => {
     try {
         const response = await CategoryService.createCategories(category_name);
 
-        SwalFunction(WORD_SWAL_CATEGORY_CREATED, '', WORD_SWAL_SUCCESS, WORD_SWAL_OK, false, 3500)
+        SwalFunction(WORD_SWAL_CATEGORY_CREATED, '', WORD_SWAL_SUCCESS, WORD_SWAL_OK, false, 3500);
 
         return response.data;
     } catch (e) {
-        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true)
+        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
     }
 };
 export const sentUser = async (text, userEmail, topic) => {
     try {
         const response = await UserService.sentUser(text, userEmail, topic);
 
-        // SwalFunction('Лист відправлено', '', 'success', 'Ok', false, 3500)
-
         return response.data;
     } catch (e) {
-        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true)
+        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
     }
 };
 export const setProducts = async (name, tittle, price, category, totalPriceProduct, countProduct, inventoryNumber) => {
@@ -148,11 +140,11 @@ export const setProducts = async (name, tittle, price, category, totalPriceProdu
 
         const response = await ProductService.product(name, tittle, price, category, countProduct, totalPriceProduct, inventoryNumber);
 
-        SwalFunction(WORD_SWAL_PRODUCT_ADD, '', WORD_SWAL_SUCCESS, WORD_SWAL_OK, false, 3500)
+        SwalFunction(WORD_SWAL_PRODUCT_ADD, '', WORD_SWAL_SUCCESS, WORD_SWAL_OK, false, 3500);
 
         return response.data;
     } catch (e) {
-        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true)
+        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
     }
 };
 export const categoriesFilter = (checkCategory, page, limit) => {
@@ -165,9 +157,7 @@ export const categoriesFilter = (checkCategory, page, limit) => {
 
             return response;
         } catch (e) {
-            //Провірить
-            //SwalFunction('Помилка!', e.response.data.message, 'error', 'Ok', true)
-            alert(e)
+            SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
         }
     }
 };
@@ -178,37 +168,30 @@ export const setOrder = async (user_id, user_name, surname, phone, nameSity, nam
 
         SwalFunction(WORD_SWAL_ORDER_SEND, '', WORD_SWAL_SUCCESS, WORD_SWAL_OK, false, 3500)
 
-
         return response;
     } catch (e) {
-        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true)
+        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
     }
 };
 export const getOrders = async () => {
     try {
         return await OrderService.orders();
     } catch (e) {
-        //Провірить
-        //SwalFunction('Помилка!', e.response.data.message, 'error', 'Ok', true)
-        console.log(e.response.data.message);
+        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
     }
 };
 export const getOrdersByVisualAnaliz = async () => {
     try {
         return await OrderService.ordersByVisualAnalis();
     } catch (e) {
-        //Провірить
-        //SwalFunction('Помилка!', e.response.data.message, 'error', 'Ok', true)
-        console.log(e.response.data.message);
+        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
     }
 };
 export const getOrdersByFilter = async (status) => {
     try {
         return await OrderService.ordersByFilter(status);
     } catch (e) {
-        //Провірить
-        //SwalFunction('Помилка!', e.response.data.message, 'error', 'Ok', true)
-        console.log(e.response.data.message);
+        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
     }
 };
 export const updateStatusOrder = async (id, status) => {
@@ -218,25 +201,21 @@ export const updateStatusOrder = async (id, status) => {
 
         return response.data;
     } catch (e) {
-        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true)
+        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
     }
 };
 export const getOrdersById = async (id) => {
     try {
         return await OrderService.userById(id);
     } catch (e) {
-        //Провірить
-        //SwalFunction('Помилка!', e.response.data.message, 'error', 'Ok', true)
-        console.log(e.response.data.message);
+        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
     }
 };
 export const getAnalyze = async () => {
     try {
         return await OrderService.analyze();
     } catch (e) {
-        //Провірить
-        //SwalFunction('Помилка!', e.response.data.message, 'error', 'Ok', true)
-        console.log(e.response.data.message);
+        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
     }
 };
 export const dateAnalizy = async (month, summa) => {
@@ -246,7 +225,7 @@ export const dateAnalizy = async (month, summa) => {
 
         return response.data;
     } catch (e) {
-        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true)
+        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
     }
 };
 export const updateDateAnalizy = async (month, summa) => {
@@ -256,7 +235,7 @@ export const updateDateAnalizy = async (month, summa) => {
 
         return response.data;
     } catch (e) {
-        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true)
+        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
     }
 };
 export const archiveOrder = async (id) => {
@@ -264,20 +243,18 @@ export const archiveOrder = async (id) => {
 
         const response = await OrderService.archiveOrder(id);
 
-        SwalFunction(WORD_SWAL_READY, '', WORD_SWAL_SUCCESS, WORD_SWAL_OK, false, 3500)
+        SwalFunction(WORD_SWAL_READY, '', WORD_SWAL_SUCCESS, WORD_SWAL_OK, false, 3500);
 
         return response.data;
     } catch (e) {
-        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true)
+        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
     }
 };
 export const getArchiveOrders = async () => {
     try {
         return await OrderService.getArchiveOrders();
     } catch (e) {
-        //Провірить
-        //SwalFunction('Помилка!', e.response.data.message, 'error', 'Ok', true)
-        console.log(e.response.data.message);
+        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
     }
 };
 export const deleteOrder = async (id) => {
@@ -287,7 +264,7 @@ export const deleteOrder = async (id) => {
 
         return response.data;
     } catch (e) {
-        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true)
+        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
     }
 };
 export const deleteProduct = async (number) => {
@@ -295,22 +272,22 @@ export const deleteProduct = async (number) => {
 
         const response = await ProductService.deleteProduct(number);
 
-        SwalFunction(WORD_SWAL_READY, '', WORD_SWAL_SUCCESS, WORD_SWAL_OK, false, 3500)
+        SwalFunction(WORD_SWAL_READY, '', WORD_SWAL_SUCCESS, WORD_SWAL_OK, false, 3500);
 
         return response.data;
     } catch (e) {
-        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true)
+        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
     }
 };
 export const editPage = async (id, name, surname, email, phone, oldPassword, number, numberToo, sity, numberNP) => {
     try {
         const response = await UserService.editData(id, name, surname, email, phone, oldPassword, number, numberToo, sity, numberNP);
 
-        SwalFunction(WORD_SWAL_READY, '', WORD_SWAL_SUCCESS, WORD_SWAL_OK, false, 3500)
+        SwalFunction(WORD_SWAL_READY, '', WORD_SWAL_SUCCESS, WORD_SWAL_OK, false, 3500);
 
         return response.data;
     } catch (e) {
-        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true)
+        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
     }
 };
 export const editContactData = async (id, name, surname, phone) => {
@@ -320,12 +297,11 @@ export const editContactData = async (id, name, surname, phone) => {
 
         store.dispatch(setUser(response.data));
 
-        SwalFunction(WORD_SWAL_READY, '', WORD_SWAL_SUCCESS, WORD_SWAL_OK, false, 3500)
-
+        SwalFunction(WORD_SWAL_READY, '', WORD_SWAL_SUCCESS, WORD_SWAL_OK, false, 3500);
 
         return response.data;
     } catch (e) {
-        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true)
+        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
     }
 };
 export const editAdressData = async (id, sity, numberNP) => {
@@ -335,12 +311,11 @@ export const editAdressData = async (id, sity, numberNP) => {
 
         store.dispatch(setUser(response.data));
 
-        SwalFunction(WORD_SWAL_READY, '', WORD_SWAL_SUCCESS, WORD_SWAL_OK, false, 3500)
-
+        SwalFunction(WORD_SWAL_READY, '', WORD_SWAL_SUCCESS, WORD_SWAL_OK, false, 3500);
 
         return response.data;
     } catch (e) {
-        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true)
+        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
     }
 };
 export const createCalendarEvent = async (title, date, description, time) => {
@@ -350,7 +325,7 @@ export const createCalendarEvent = async (title, date, description, time) => {
 
         return response.data;
     } catch (e) {
-        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true)
+        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
     }
 };
 export const getCalendarEvent = async (startDateQuery, endDateQuery) => {
@@ -360,7 +335,7 @@ export const getCalendarEvent = async (startDateQuery, endDateQuery) => {
 
         return response.data;
     } catch (e) {
-        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true)
+        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
     }
 };
 export const getFindEventInRow = async (date) => {
@@ -370,17 +345,17 @@ export const getFindEventInRow = async (date) => {
 
         return response.data;
     } catch (e) {
-        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true)
+        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
     }
 };
 export const sentEmail = async (name, email, phone, text) => {
     try {
         const response = await ContactService.sentEmail(name, email, phone, text);
 
-        SwalFunction(WORD_SWAL_LATER_SEND, '', WORD_SWAL_SUCCESS, WORD_SWAL_OK, false, 3500)
+        SwalFunction(WORD_SWAL_LATER_SEND, '', WORD_SWAL_SUCCESS, WORD_SWAL_OK, false, 3500);
 
         return response.data;
     } catch (e) {
-        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true)
+        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
     }
 };

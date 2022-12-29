@@ -1,18 +1,18 @@
-import React from 'react';
 import moment from 'moment'
+import React from 'react';
 
-import {getFindEventInRow} from "../../servises/API";
 import {
     CellWrapper,
     CurrentDay,
-    DayWrapper, EventItemWrapper,
+    DayWrapper,
+    EventItemWrapper,
     EventListWrapper,
     GridWrapper,
     RowInCell,
     ShowDayWrapper
 } from "../CalendarCSS";
+import {getFindEventInRow} from "../../servises/API";
 import {WORD_DAY, WORD_MONTH} from "../../../config/wordsConstants";
-
 
 const CalendarGrid = ({startDay, today, totalDays, events, openFormHandler, setTime}) => {
 
@@ -37,11 +37,11 @@ const CalendarGrid = ({startDay, today, totalDays, events, openFormHandler, setT
                 {
                     daysArray.map((dayItem) => (
                         <CellWrapper isBody
-                            key={dayItem.unix()} isWeekend={dayItem.day() === 6 || dayItem.day() === 0}
-                            isSelectedMonth={isSelectedMonth(dayItem)} onClick={() => {
+                                     key={dayItem.unix()} isWeekend={dayItem.day() === 6 || dayItem.day() === 0}
+                                     isSelectedMonth={isSelectedMonth(dayItem)} onClick={() => {
                             getFindEventInRow(dayItem.unix()).then(res => setTime(res));
-                            openFormHandler(dayItem.format('DD.MM.YYYY'), dayItem.unix())
-                            }}>
+                            openFormHandler(dayItem.format('DD.MM.YYYY'), dayItem.unix());
+                        }}>
                             <RowInCell>
                                 <ShowDayWrapper>
                                     <DayWrapper>

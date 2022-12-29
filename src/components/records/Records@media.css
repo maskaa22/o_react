@@ -1,10 +1,9 @@
-
 @media screen and (max-width: 600px) {
     .cell-table-records {
         width: fit-content;
     }
+
     .name-date {
         right: 30px;
     }
-
 }

@@ -1,13 +1,12 @@
+import './Home.css';
+import './Home@media.css';
 import Foto1 from "../../images/foto-1.jpg";
 import Foto2 from "../../images/foto-7.jpg";
 import Foto3 from "../../images/foto-5.png";
 import Foto4 from "../../images/foto-4.jpg";
-import './Home.css';
-import './Home@media.css';
 
-export function Comments ()
-{
-    return(
+export function Comments() {
+    return (
         <div className={'comments'}>
             <div className={'comment comment-one'}>
                 <div className={'circle-flex comment-item'}>

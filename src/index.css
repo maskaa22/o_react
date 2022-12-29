@@ -5,28 +5,12 @@ html {
 body {
   margin: 0;
   height: 100%;
-  /*font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',*/
-  /*  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',*/
-  /*  sans-serif;*/
-  /*-webkit-font-smoothing: antialiased;*/
-  /*-moz-osx-font-smoothing: grayscale;*/
-
-
-  font-family: 'Ledger', serif;
-
-  /*display: flex;*/
-  /*flex-direction: column;*/
-  /*min-height: 100vh;*/
+  font-family: 'Ledger', serif
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
-.all-container {
-  /*max-width: 100%;*/
-  /*margin: 0 auto;*/
-
 }
 .wr {
   min-height: 100vh;
@@ -34,6 +18,5 @@ code {
   flex-direction: column;
 }
 .main {
-  /*padding: 30px;*/
   flex: 1 1 auto;
 }

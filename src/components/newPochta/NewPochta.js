@@ -1,6 +1,6 @@
 import * as React from "react";
-import SelectSearch, {fuzzySearch} from "react-select-search";
 import {useState} from "react";
+import SelectSearch, {fuzzySearch} from "react-select-search";
 
 import "./NewPochta.css";
 import './NewPochta@media.css';
@@ -10,11 +10,11 @@ import {
     calledMethodGeWarehousesNovaPochta,
     modelNameNovaPochta
 } from "../../config/constants";
-import {WORD_HIDDEN, WORD_POST, WORD_VISIBLE, WORD_VISIBLE_N_P} from "../../config/wordsConstants";
 import {NEW_POCHTA_URL} from "../../config/URL";
-
+import {WORD_HIDDEN, WORD_POST, WORD_VISIBLE, WORD_VISIBLE_N_P} from "../../config/wordsConstants";
 
 export function NewPochta({setSity, setNumberNP, setVisibleSity, setVisibleNumber}) {
+
     const [nameSity, setNameSity] = useState('');
     const [nameDepartment, setNameDepartment] = useState('');
     const [value, setValue] = useState(WORD_HIDDEN);
@@ -23,7 +23,8 @@ export function NewPochta({setSity, setNumberNP, setVisibleSity, setVisibleNumbe
         apiKey: apiKeyNovaPochta,
         modelName: modelNameNovaPochta,
         calledMethod: calledMethodGetCitiesNovaPochta
-    }
+    };
+
     const department = {
         apiKey: apiKeyNovaPochta,
         modelName: modelNameNovaPochta,
@@ -31,29 +32,26 @@ export function NewPochta({setSity, setNumberNP, setVisibleSity, setVisibleNumbe
         methodProperties: {
             CityName: nameSity
         }
-    }
+    };
 
     const handleChangeSity = (event) => {
         setNameSity(event);
-        setSity(event)
-
-        setValue(WORD_VISIBLE_N_P)
-        setVisibleSity(WORD_VISIBLE)
+        setSity(event);
+        setValue(WORD_VISIBLE_N_P);
+        setVisibleSity(WORD_VISIBLE);
     };
+
     const handleChangeDepartment = (event) => {
         setNameDepartment(event);
         setNumberNP(event);
-
         setVisibleNumber(WORD_VISIBLE)
     };
-
 
     return (
         <div>
             <div className={'full-center'}>
                 <div className={'input-center-full'}>
                     <SelectSearch
-
                         options={[]}
                         getOptions={() => {
                             return new Promise((resolve, reject) => {
@@ -76,7 +74,6 @@ export function NewPochta({setSity, setNumberNP, setVisibleSity, setVisibleNumbe
                                     .catch(reject);
                             });
                         }}
-                        // onChange={setNameSity}
                         onChange={handleChangeSity}
                         search
                         filterOptions={fuzzySearch}
@@ -84,8 +81,6 @@ export function NewPochta({setSity, setNumberNP, setVisibleSity, setVisibleNumbe
                     />
                 </div>
             </div>
-
-
             <div className={`full-center ${value}`}>
                 <div className={'input-center-full select-search-last'}>
                     <SelectSearch
@@ -112,7 +107,6 @@ export function NewPochta({setSity, setNumberNP, setVisibleSity, setVisibleNumbe
                                     .catch(reject);
                             });
                         }}
-                        //onChange={setNameDepartment}
                         onChange={handleChangeDepartment}
                         search
                         filterOptions={fuzzySearch}
@@ -120,7 +114,6 @@ export function NewPochta({setSity, setNumberNP, setVisibleSity, setVisibleNumbe
                     />
                 </div>
             </div>
-
         </div>
     );
 }

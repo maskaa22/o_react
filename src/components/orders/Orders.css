@@ -1,6 +1,4 @@
-
 .check_order {
-    /*border: 1px solid #500472;*/
     padding: 10px;
     width: 90%;
     height: 100%;
@@ -9,25 +7,30 @@
     font-weight: 700;
     font-size: 20px;
 }
+
 .center {
     display: flex;
     justify-content: center;
     text-align: center;
 }
+
 .filter {
     padding: 0;
     margin: 25px auto;
 }
+
 .justify-content-around {
     display: flex;
     justify-content: space-around;
     text-align: center;
 }
+
 .select_status {
     width: 20%;
     margin: 0 0 10px 10px;
 }
-.status{
+
+.status {
     width: 70%;
     border-radius: 5px;
     height: 30px;
@@ -35,10 +38,12 @@
     align-items: center;
     color: white;
 }
+
 .archive {
     background-color: #47008e;
     color: white;
 }
+
 .true, .hiden {
     display: none;
 }
@@ -46,57 +51,72 @@
 .user {
     border-bottom: 2px solid #47008e;
 }
+
 .width {
     width: 90%;
     text-align: initial;
 }
+
 .select_value {
     width: 160px;
 }
+
 .select_all_border {
     border: 2px solid #47008e;
 }
+
 .select_status_label label {
     color: #47008e;
     font-weight: bold;
     font-size: 20px;
 }
+
 .select_status_color_label label {
     color: black;
 }
+
 .justify-content-between {
     display: flex;
     justify-content: space-between;
     text-align: center;
 }
+
 .end {
     justify-content: end;
 }
+
 .color_label {
     color: #47008e;
 }
+
 .очікується {
     border: 2px solid #d400cb;
 }
+
 .прийнято {
     border: 2px solid #5400a8;
 }
+
 .обробка {
     border: 2px solid #648da594;
 }
+
 .відправлено {
     border: 2px solid #c489ff;
 }
+
 .готово {
     border: 2px solid #79cbb8;
 }
+
 .orders-h2 {
     display: none;
 }
+
 .flex-date {
     display: flex;
 }
+
 .margin-right-date {
     margin-right: 5px;
 }
-

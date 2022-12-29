@@ -42,13 +42,16 @@
         background-color: #e4def1;
         color: black;
     }
+
     .submenu li svg {
         position: relative;
         left: 35%;
     }
+
     .submenu li:hover {
         background-color: #efebf6;
     }
+
     .submenu a {
         padding: 10px;
     }
@@ -57,7 +60,6 @@
 @media screen and (max-width: 800px) {
     .menu {
         flex-direction: column;
-        /*z-index: 3;*/
         position: fixed;
         left: -100%;
         top: 50px;
@@ -87,10 +89,12 @@
         font-size: x-large;
         font-weight: bold;
     }
+
     .menu .icon_basket {
         height: 30px;
         width: 30px;
     }
+
     .menu a:hover {
         background-color: rgb(120 201 184 / 40%);
     }
@@ -116,10 +120,8 @@
         border: 0;
         border-radius: unset;
         margin: 1px;
-
         display: block;
         z-index: 1;
-
     }
 
     .bar {
@@ -152,6 +154,7 @@
         flex: 1 1 100%;
         margin: 20px 0 0 0;
     }
+
     .active-menu-header .active-sub-link-one,
     .active-menu-header .active-sub-link-two {
         display: block;
@@ -160,6 +163,4 @@
     body.no-scroll {
         overflow: hidden;
     }
-
-
 }

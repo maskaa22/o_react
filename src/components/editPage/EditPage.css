@@ -2,17 +2,21 @@
     display: flex;
     justify-content: center;
 }
+
 .around {
     display: flex;
     justify-content: space-evenly;
     width: 100%;
 }
+
 .margin-input {
     margin: 15px;
 }
+
 .margin-input-last {
     margin-bottom: 0;
 }
+
 .circle {
     width: 200px;
     height: 200px;
@@ -20,9 +24,11 @@
     background-color: #510c76;
     margin-bottom: 20px;
 }
+
 .input-center-full {
     width: 25vw;
 }
+
 .btn-save {
     height: 4vw;
     margin: 20px;
@@ -33,6 +39,7 @@
     text-align: center;
     display: inline;
 }
+
 #block_check {
     height: 5px;
     transition: 1s;
@@ -40,54 +47,62 @@
     position: absolute;
     bottom: 5px;
 }
+
 .position_box {
     position: relative;
 }
+
 .input-focus:focus {
     outline: none;
     transform: scale(1.01);
 }
+
 ::-webkit-input-placeholder {
     color: #47008e;
     font-weight: 700;
 }
+
 .last {
-    /*margin-top: 5px;*/
     position: relative;
     left: 5px;
     bottom: 8px;
     text-overflow: ellipsis;
 }
+
 .icon_ok {
     position: relative;
     left: 10px;
     color: #79cbb8;
     font-size: 20px;
 }
+
 .notVisible {
     visibility: hidden;
     bottom: 5px;
 }
+
 .visible {
     visibility: visible;
 }
+
 .inp {
     position: relative;
-    /*top: 20px;*/
     top: 30px;
-    /*visibility: hidden;*/
 }
+
 .inp-last {
     position: relative;
     top: 35px;
     visibility: visible;
 }
+
 .border-box {
     margin: 25px auto;
     border: 2px solid #79cbb8;
     width: 90%;
     border-radius: 5px;
 }
+
 .none {
     display: none;
 }

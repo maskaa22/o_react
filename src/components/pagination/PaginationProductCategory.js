@@ -13,17 +13,15 @@ export function PaginationProductCategory({paginate, category_id, setFilter, thi
     const pageCount = Math.ceil(paginate.total / paginate.limit);
 
     function handlePageClick(e) {
-
         const selectedPage = e.selected;
 
         !filterFlag &&
-        thisPage(selectedPage + 1)
+        thisPage(selectedPage + 1);
         filterFlag &&
         dispatch(APIServise.categoriesFilter(category_id, selectedPage + 1, 2)).then(response => {
-            thisPage(selectedPage + 1)
-            setFilter(response.data.docs)
-        })
-        //dispatch(delCategory())
+            thisPage(selectedPage + 1);
+            setFilter(response.data.docs);
+        });
     }
 
     return (

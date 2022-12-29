@@ -1,17 +1,14 @@
+import * as React from "react";
+import {useEffect, useState} from "react";
 import moment from 'moment'
 import 'moment/locale/uk';
-import styled from 'styled-components';
 
-
-
-import {CalendarMonitor} from "./calendarMonitor";
+import {endDateQuery, nextHandler, prevHandler, startDateQuery, todayHandler, totalDays} from "../utils/function";
 import {CalendarGrid} from "./calendarGrid";
-import {useEffect, useState} from "react";
-import {createCalendarEvent, getCalendarEvent} from "../servises/API";
-import * as React from "react";
-import {ModalUser} from "../modal";
-import {prevHandler, todayHandler, nextHandler, startDateQuery, endDateQuery, totalDays} from "../utils/function";
+import {CalendarMonitor} from "./calendarMonitor";
 import {CalendarWrapper, ShadowWrapper} from "./CalendarCSS";
+import {createCalendarEvent, getCalendarEvent} from "../servises/API";
+import {ModalUser} from "../modal";
 import {WORD_MONTH, WORD_WEEK} from "../../config/wordsConstants";
 
 export function Calendar() {
@@ -30,30 +27,35 @@ export function Calendar() {
     const startDay = today.clone().startOf(WORD_MONTH).startOf(WORD_WEEK);
 
     useEffect(() => {
-        getCalendarEvent(startDateQuery(startDay),endDateQuery(startDay)).then(rez => {
+        getCalendarEvent(startDateQuery(startDay), endDateQuery(startDay)).then(rez => {
             setEvents(rez)
-        })
+        });
     }, [today]);
 
     const openFormHandler = (todayDate, unixDate) => {
         setDate(todayDate);
-        setUnix(unixDate)
+        setUnix(unixDate);
         setOpenWindow(true);
-    }
+    };
+
     const eventCreateHandler = (title, date, description, time) => {
-         createCalendarEvent(title, date, description, time).then(rez => {
-             setEvents(prevState => [...prevState, rez]);
-             handleClose()
-         });
-    }
+        createCalendarEvent(title, date, description, time).then(rez => {
+            setEvents(prevState => [...prevState, rez]);
+            handleClose()
+        });
+    };
 
     return (
         <>
-            <ModalUser openWindow={openWindow} handleClose={handleClose} calendar={'calendar'} date={date} eventCreateHandler={eventCreateHandler} unix={unix} time={time}/>
+            <ModalUser openWindow={openWindow} handleClose={handleClose} calendar={'calendar'} date={date}
+                       eventCreateHandler={eventCreateHandler} unix={unix} time={time}/>
             <CalendarWrapper>
                 <ShadowWrapper>
-                    <CalendarMonitor today={today} prevHandler={() => prevHandler(setToday)} todayHandler={() => todayHandler(setToday)} nextHandler={() => nextHandler(setToday)}/>
-                    <CalendarGrid startDay={startDay} today={today} totalDays={totalDays} events={events} openFormHandler={openFormHandler} setTime={setTime}/>
+                    <CalendarMonitor today={today} prevHandler={() => prevHandler(setToday)}
+                                     todayHandler={() => todayHandler(setToday)}
+                                     nextHandler={() => nextHandler(setToday)}/>
+                    <CalendarGrid startDay={startDay} today={today} totalDays={totalDays} events={events}
+                                  openFormHandler={openFormHandler} setTime={setTime}/>
                 </ShadowWrapper>
             </CalendarWrapper>
         </>

@@ -1,1 +1,1 @@
-export * from './WomensHaircut'
+export * from './WomensHaircut';

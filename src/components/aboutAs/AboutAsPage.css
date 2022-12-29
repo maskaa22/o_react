@@ -1,21 +1,25 @@
 .margin-bottom-about {
     margin-bottom: 40px;
 }
+
 .img-hear {
     background-image: url('../../images/lokon1.png');
     background-position: 50% 50%;
     background-size: cover;
     background-attachment: fixed
 }
+
 .flex-about {
     display: flex;
     justify-content: space-between;
 }
+
 .grid-history {
     display: grid;
     margin: 20px;
     grid-template-columns: repeat(3, 1fr);
 }
+
 .history {
     margin: 30px;
     background-color: transparent;
@@ -25,37 +29,44 @@
     color: #47008e;
     font-size: 20px;
 }
+
 .header-about {
     text-align: center;
     color: white;
 }
-.about-h1{
+
+.about-h1 {
     text-align: center;
 }
+
 .about-video-item {
     width: 300px;
 }
+
 .about-p-full {
     margin: 10px 40px;
 }
+
 .about-p-last {
     margin-top: 15px;
     font-size: 12px;
 }
+
 .team-h1 {
     text-align: center;
 }
+
 .teams-gallery {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 15px;
 }
+
 .team-img {
     border-radius: 5px 5px 0 0;
     box-shadow: 6px -3px 9px 2px rgb(0 0 0 / 20%);
 }
+
 .teams-gallery p {
     text-align: center;
 }
-
-

@@ -1,16 +1,14 @@
-
 import './Home.css';
 import './Home@media.css';
 import One from '../../images/gallery/1.jpg'
-import Two from '../../images/gallery/2.jpg'
-import Three from '../../images/gallery/3.jpeg'
 import Four from '../../images/gallery/4.jpg'
 import Five from '../../images/gallery/5.jpg'
 import Six from '../../images/gallery/6.jpg'
+import Three from '../../images/gallery/3.jpeg'
+import Two from '../../images/gallery/2.jpg'
 
-export function Works2 ()
-{
-    return(
+export function Works2() {
+    return (
         <div className={'works-gallery element-animation'}>
             <div className={'works-gallery-items box1'}>
                 <img src={One} alt={'One'} className={'margin-img-gallery'}/>

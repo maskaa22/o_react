@@ -1,15 +1,10 @@
-export function toogleMenu(e) {
-    e.preventDefault();
-    openToogleMenu();
-}
-
-
 export const button = (btn) => document.getElementById(btn);
 export const menu = (list) => document.getElementById(list);
 
 const body = document.body;
-export const subLinkOne = (linkOneName) => document.getElementById(linkOneName); //'sub-link-one'
-export const subLinkTwo = (linkTwoName) => document.getElementById(linkTwoName); //'sub-link-two'
+
+export const subLinkOne = (linkOneName) => document.getElementById(linkOneName);
+export const subLinkTwo = (linkTwoName) => document.getElementById(linkTwoName);
 
 export function openToogleMenu(buttonName, menuName, active, noScroll) {
     button(buttonName).classList.toggle(active);
@@ -23,9 +18,10 @@ export function closeToogleMenu(buttonName, menuName, active, noScroll, linkOneN
         menu(menuName).classList.remove(active);
         body.classList.remove(noScroll);
     }
-    if(subLinkOne(linkOneName) !=null){
-    if (subLinkOne(linkOneName).classList.contains(activeLinkOne) || subLinkTwo(linkTwoName).classList.contains(activeLinkTwo)) {
-        subLinkOne(linkOneName).classList.remove(activeLinkOne);
-        subLinkTwo(linkTwoName).classList.remove(activeLinkTwo);
-    }}
+    if (subLinkOne(linkOneName) != null) {
+        if (subLinkOne(linkOneName).classList.contains(activeLinkOne) || subLinkTwo(linkTwoName).classList.contains(activeLinkTwo)) {
+            subLinkOne(linkOneName).classList.remove(activeLinkOne);
+            subLinkTwo(linkTwoName).classList.remove(activeLinkTwo);
+        }
+    }
 }

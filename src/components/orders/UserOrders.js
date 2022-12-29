@@ -3,7 +3,7 @@ import * as React from "react";
 import Cart from "./Cart";
 
 export function UserOrders({orders}) {
-    // console.log(orders);
+
     return (
         <>
             <h2 className={'orders-h2'}>Мої замовлення</h2>
@@ -23,8 +23,6 @@ export function UserOrders({orders}) {
 
                                 </div>
                             </div>
-
-
                         </div>
                     ).reverse()
                 }

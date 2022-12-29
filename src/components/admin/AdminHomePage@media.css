@@ -2,35 +2,43 @@
     .adminHomePage {
         display: block;
     }
+
     .small-menu-admin-client {
         display: flex;
         width: 90%;
         margin: 0 auto;
         white-space: nowrap;
     }
+
     .small-content-admin-client {
         width: 100%;
         margin: 0 auto;
     }
+
     .home-menu {
         width: 100%;
         padding: 15px;
     }
+
     .home-page {
         width: 100%;
         margin-top: 15px;
     }
+
     .width-menu {
         width: 100%;
     }
+
     .home_item {
         padding: 1.5px;
     }
+
     .left-home-menu {
         display: flex;
         width: 90%;
         margin: 0 auto;
     }
+
     .padding-last {
         padding: 0 5px 5px 5px;
     }
@@ -40,9 +48,11 @@
     .home-page {
         margin-top: 0;
     }
+
     .home-menu {
         padding: 0;
     }
+
     .small-menu-admin-client {
         top: 50px;
         left: -100%;
@@ -57,6 +67,7 @@
         display: block;
         background-color: white;
     }
+
     .left-home-menu > div {
         width: 100%;
         cursor: pointer;

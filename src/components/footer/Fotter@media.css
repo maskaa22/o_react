@@ -2,28 +2,35 @@
     .logo-p {
         font-size: 5vw;
     }
+
     .logo {
         height: 5vw;
         width: 5vw;
     }
+
     .footer-time {
         font-size: 1.5vw;
     }
+
     .footer-icon {
         font-size: 4vw;
     }
 }
+
 @media (max-width: 600px) {
     .logo {
         height: 7vw;
         width: 7vw;
     }
+
     .logo-p {
         font-size: 7vw;
     }
+
     .footer-icon {
         font-size: 5vw;
     }
+
     .footer-time {
         font-size: 2vw;
     }

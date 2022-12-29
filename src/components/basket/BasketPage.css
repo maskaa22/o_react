@@ -1,5 +1,4 @@
 .basket_check {
-    /*margin: 20px 50px 0 50px;*/
     border: 2px solid #79CBB8FF;
     border-radius: 5px;
     padding: 10px;
@@ -102,23 +101,10 @@
     top: 5px;
 }
 
-/*.modal_content_basket {*/
-/*    width: 80%;*/
-/*    padding: 10px 20px;*/
-/*    border-radius: 12px;*/
-/*    background-color: white;*/
-/*    transform: scale(0.5);*/
-/*    transition: 0.4s all;*/
-/*    color: #510c76;*/
-/*}*/
-/*.modal_content_basket.active {*/
-/*    transform: scale(1);*/
-/*}*/
 .roww {
     width: 80%;
 }
 
-/* Очистить поплавки после столбцов */
 .roww:after {
 
     display: table;
@@ -155,10 +141,6 @@
     color: #47008e;
 }
 
-/*.text-center {*/
-/*    position: relative;*/
-/*    top: 30px;*/
-/*}*/
 .text-center {
     display: flex;
     align-items: center;
@@ -177,17 +159,19 @@
 .edit-date-margin-last {
     margin: 10px;
 }
+
 .basket-img {
     width: 300px;
     height: 300px;
     color: #47008e;
 }
+
 .basket-h1 {
     text-align: center;
     margin-top: 60px;
 }
+
 .basket-icon-center {
     display: flex;
     justify-content: center;
 }
-

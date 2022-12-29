@@ -1,11 +1,11 @@
-import Mens from '../../images/big-foto/Group 5.png';
-import smallFoto from '../../images/servises/stylesHear/1.png';
+import {HiBadgeCheck} from "react-icons/hi";
+
 import '../mensHaircut/MansHaircut.css';
 import '../mensHaircut/MansHaircut@media.css';
+import Mens from '../../images/big-foto/Group 5.png';
+import smallFoto from '../../images/servises/stylesHear/1.png';
 import Slider from "../slider/Slider";
-import {HiBadgeCheck} from "react-icons/hi";
 import {slideStyles} from "../../config/sliderConstants";
-
 
 export function HairStyles() {
 
@@ -19,7 +19,6 @@ export function HairStyles() {
                     <p className={'servise-info-p'}>Хочу виглядати бездоганно, тут і зараз, бажано швидко» – виклик
                         прийнято. Зачіска – найважливіша складова вашого образу. Якщо ви хочете виглядати надзвичайно і
                         привертати увагу оточуючих без красивої укладки не обійтись.</p>
-
                     <p className={'servise-info-p'}>Стилісти салона краси «Olena Studio» застосовують різні
                         методики, які дозволяють на волоссі різної довжини створити справжній витвір мистецтва. Вечірня,
                         весільна або просто охайне укладання волосся по довжині, призначене для невеликої урочистості,
@@ -27,12 +26,9 @@ export function HairStyles() {
                         Studio»
                         використовують абсолютно професійну косметику від відомих брендів, ваше волосся буде
                         шовковистим, та неймовірно пахнути.</p>
-
                 </div>
             </div>
-
             <Slider slides={slideStyles}/>
-
             <div className={'container'}>
                 <h1 className={'servise-info-h1'}>Види зачісок</h1>
                 <div className={'servise-flex'}>
@@ -71,7 +67,6 @@ export function HairStyles() {
                                 <HiBadgeCheck className={'hears-item-icon'}/><p className={'hears-item-p'}>Завивка</p>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>

@@ -1,13 +1,12 @@
-import FirstMen from '../../images/teams/1.png';
-import SecondMen from '../../images/teams/2.png';
-import FirstWomen from '../../images/teams/3.png';
-import SecondWomen from '../../images/teams/4.png';
 import './AboutAsPage.css';
 import './AboutAsPage@media.css';
+import FirstMen from '../../images/teams/1.png';
+import FirstWomen from '../../images/teams/3.png';
+import SecondMen from '../../images/teams/2.png';
+import SecondWomen from '../../images/teams/4.png';
 
-export  function Team ()
-{
-    return(
+export function Team() {
+    return (
         <div className={'margin-bottom-about'}>
             <h1 className={'team-h1'}>Наша команда</h1>
             <div className={'teams-gallery'}>

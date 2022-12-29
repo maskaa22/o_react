@@ -1,18 +1,27 @@
 import axios from "axios";
 
-import {URL} from "../../config";
-import {createCalendarEvent} from "./API";
-import {WORD_SWAL_NOT_AUTORIZE, WORD_TOKEN} from "../../config/wordsConstants";
 import {
     AUTH,
     AUTH_LOGIN,
     AUTH_LOGOUT,
     AUTH_REFRESH,
     AUTH_REGISTRATION,
-    CATEGORY, HOME, HOME_FIND, PRODUCT_ARCHIVE_ORDER, PRODUCT_ORDER_ANALYZE,
-    PRODUCT_ORDERS, PRODUCT_ORDERS_ANALYZE_VISUAL, PRODUCT_ORDERS_FILTER, USERS, USERS_ADRESS, USERS_CONTACT, USERS_SEND
+    CATEGORY,
+    HOME,
+    HOME_FIND,
+    PRODUCT_ARCHIVE_ORDER,
+    PRODUCT_ORDER_ANALYZE,
+    PRODUCT_ORDERS,
+    PRODUCT_ORDERS_ANALYZE_VISUAL,
+    PRODUCT_ORDERS_FILTER,
+    USERS,
+    USERS_ADRESS,
+    USERS_CONTACT,
+    USERS_SEND
 } from "../../config/serviseConstants";
 import {CONTACT, PRODUCTS} from "../../config/headerConstants";
+import {URL} from "../../config";
+import {WORD_SWAL_NOT_AUTORIZE, WORD_TOKEN} from "../../config/wordsConstants";
 
 const api = axios.create({
     withCredentials: true,
@@ -46,6 +55,7 @@ api.interceptors.response.use((config) => {
 });
 
 export class AuthService {
+
     static async login(email, password) {
         return api.post(AUTH_LOGIN, {email, password})
     }
@@ -93,7 +103,6 @@ export class OrderService {
     }
 
     static async ordersByFilter(status) {
-        console.log(status);
         return api.get(PRODUCT_ORDERS_FILTER, {params: {status}})
     }
 
@@ -195,7 +204,6 @@ export class UserService {
     }
 }
 
-
 export class HomeService {
 
     static async createCalendarEvent(title, date, description, time) {
@@ -205,6 +213,7 @@ export class HomeService {
     static async getCalendarEvent(startDateQuery, endDateQuery) {
         return api.get(HOME, {params: {startDateQuery, endDateQuery}})
     }
+
     static async getFindEvent(date) {
         return api.get(HOME_FIND, {params: {date}})
     }

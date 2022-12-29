@@ -7,64 +7,36 @@ import {IoMdExit} from "react-icons/io";
 import {NavLink, useNavigate} from "react-router-dom";
 import {RiMapPinUserFill} from "react-icons/ri";
 import {useDispatch, useSelector} from "react-redux";
-import {useState} from "react";
 
 import "./Header.css";
 import './Header@media.css';
-import {APIServise} from "../servises";
-import {delFilter} from "../reducers/actionCreators";
-import Logo from "../../images/logo-header.png";
-import {openToogleMenu, closeToogleMenu, handleClick, closeHandleClick} from "../utils/function";
 import {
-    ABOUT_AS, CONTACT,
+    ABOUT_AS,
+    CONTACT,
     HAIR_COLOR,
-    HAIR_STYLES, LOGIN,
+    HAIR_STYLES,
+    LOGIN,
     MENS_HAIRCUT,
-    PRODUCTS, PRODUCTS_ORDERS, REGISTRATION,
+    PRODUCTS,
+    PRODUCTS_ORDERS,
+    REGISTRATION,
     THIS,
     WOMENS_HAIRCUT
 } from "../../config/headerConstants";
-import {WORLD_ADMIN, WORLD_AUTORIZATION, WORLD_USER} from "../../config/wordsConstants";
 import {ADMIN, CLIENT} from "../../config/homeConstants";
+import {APIServise} from "../servises";
+import {delFilter} from "../reducers/actionCreators";
+import Logo from "../../images/logo-header.png";
+import {closeToogleMenu, openToogleMenu} from "../utils/function";
+import {WORLD_ADMIN, WORLD_AUTORIZATION, WORLD_USER} from "../../config/wordsConstants";
 
 export function Header() {
 
-    // const [open, setOpen] = React.useState(false);
-    // const handleOpen = () => setOpen(true);
-    // const handleClose = () => setOpen(false);
-
-
     const isAuth = useSelector(state => state.user.isAuth);
     const role = useSelector(state => state.user.role);
-    // const currentUser = useSelector(state => state.user.currentUser);
-
-    //const [role, setRole] = useState('');
-
-    // const hamb = document.querySelector('#hamb');
-    // const popup = document.querySelector('#popup');
-    // const menu = document.querySelector('#menu');
-    // const body = document.body;
-    // if(menu) {
-    //     menu.cloneNode(true);
-    // }
-    // function hambHandler (e) {
-    //     e.preventDefault();
-    //     if(popup) {
-    //         popup.classList.toggle('open-popup');
-    //     }
-    //     hamb.classList.toggle('active-hamb');
-    //     body.classList.toggle('noscroll');
-    //     renderPopup();
-    //
-    // }
-    // function renderPopup () {
-    //     popup.appendChild(menu)
-    // }
-
 
     const dispatch = useDispatch();
 
-    //добавление подчёркивание в выбраное меню
     const links = document.getElementsByClassName("navbar");
     let URL = window.location.pathname;
     URL = URL.substring(URL.lastIndexOf('/'));
@@ -74,20 +46,7 @@ export function Header() {
         }
     }
 
-    // if(isAuth){
-    //     console.log(currentUser.role);
-    //     // currentUser?.map(user => setRole(user.role))
-    //     // console.log(role);
-    // }
-
-
     const navigate = useNavigate();
-
-
-
-
-    // const subLinkOne = document.getElementById('sub-link-one');
-    // const subLinkTwo = document.getElementById('sub-link-two');
 
     function openSubMenuOne() {
         const subLinkOne = document.getElementById('sub-link-one');
@@ -104,7 +63,6 @@ export function Header() {
             'no-scroll', 'sub-link-one', 'sub-link-two', 'active-sub-link-one', 'active-sub-link-two');
     }
 
-
     return (
         <div className={'all-container'}>
             <div className={'header'}>
@@ -120,7 +78,6 @@ export function Header() {
                     <span className={'bar'}/>
                 </button>
                 <ul className={'menu'} id={'list-menu'}>
-
                     <li>
                         <NavLink to={THIS} onClick={closeToogleMenu}>Головна</NavLink>
                     </li>
@@ -145,8 +102,11 @@ export function Header() {
                             </li>
                         </ul>
                     </li>
-                    <li >
-                        <NavLink to={PRODUCTS} onClick={() => {closeHandler(); dispatch(delFilter())}}>Товари</NavLink>
+                    <li>
+                        <NavLink to={PRODUCTS} onClick={() => {
+                            closeHandler();
+                            dispatch(delFilter());
+                        }}>Товари</NavLink>
                     </li>
                     <li>
                         <NavLink to={ABOUT_AS} onClick={closeHandler}>Про нас</NavLink>

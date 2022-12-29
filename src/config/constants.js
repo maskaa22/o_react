@@ -4,7 +4,7 @@ module.exports = {
     calledMethodGeWarehousesNovaPochta: "getWarehouses",
     modelNameNovaPochta: "Address",
 
-    PRIVATE_KEY_STRIPE: process.env.REACT_APP_PRIVATE_KEY_STRIPE,
+    FILE_TYPE: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8",
 
-    FILE_TYPE: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8"
+    PRIVATE_KEY_STRIPE: process.env.REACT_APP_PRIVATE_KEY_STRIPE
 };

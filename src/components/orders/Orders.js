@@ -1,9 +1,9 @@
 import * as React from 'react';
+import {useEffect, useState} from 'react';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import {useEffect, useState} from "react";
 
 import './Orders.css';
 import './Orders@media.css';
@@ -14,14 +14,15 @@ import {
     WORD_EVERY,
     WORD_EXPECTED,
     WORD_HIDEN,
-    WORD_PROCESSING, WORD_READY,
+    WORD_PROCESSING,
+    WORD_READY,
     WORD_SEND
 } from "../../config/wordsConstants";
 
 export function Orders() {
+
     const [orders, setOrders] = useState();
     const [filter, setFilter] = React.useState('');
-
 
     useEffect(() => {
         APIServise.getOrders().then(respons => {
@@ -29,11 +30,10 @@ export function Orders() {
         });
     }, []);
 
-
     const handleChangeFilter = (event) => {
         setFilter(event.target.value);
         APIServise.getOrdersByFilter(event.target.value).then(respons => {
-            setOrders(respons.data)
+            setOrders(respons.data);
         });
     };
 
@@ -58,9 +58,7 @@ export function Orders() {
                     </Select>
                 </FormControl>
             </div>
-
             <Order orders={orders} del={false} visible={WORD_HIDEN}/>
-
         </div>
     );
 }

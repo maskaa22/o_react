@@ -1,9 +1,9 @@
 module.exports = {
     constants: require('./constants'),
     functionConstant: require('./functionConstants'),
-    URL: require('./URL'),
-    homeConstants: require('./homeConstants'),
     headerConstants: require('./headerConstants'),
-    wordsConstants: require('./wordsConstants'),
-    serviseConstants: require('./serviseConstants')
+    homeConstants: require('./homeConstants'),
+    serviseConstants: require('./serviseConstants'),
+    URL: require('./URL'),
+    wordsConstants: require('./wordsConstants')
 };

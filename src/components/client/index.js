@@ -1,1 +1,1 @@
-export * from './ClientHomePage'
+export * from './ClientHomePage';

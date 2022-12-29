@@ -3,13 +3,16 @@
     justify-content: center;
     align-content: center;
 }
+
 .home-menu {
     width: 20%;
     padding: 15px 0 0 15px;
 }
+
 .home-page {
     width: 80%;
 }
+
 .home_item {
     width: 100%;
     padding: 5px;
@@ -22,10 +25,9 @@
     text-align: start;
     height: 100%;
 }
+
 .active-item {
     border-color: #79CBB8FF;
     background-color: #79cbb8;
     color: white;
 }
-
-
