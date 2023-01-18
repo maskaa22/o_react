@@ -4,7 +4,7 @@ import {FILE_TYPE} from "../../../../config/constants";
 import {WORD_ARRAY, WORD_DATA, WORD_XLSX} from "../../../../config/wordsConstants";
 
 export function ELSXFunction(Heading, newData, nameFile) {
-    const XLSX = require(WORD_XLSX);
+    const XLSX = require('xlsx');
 
     const ws = XLSX.utils.json_to_sheet(Heading, {skipHeader: true, origin: 0});
 

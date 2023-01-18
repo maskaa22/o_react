@@ -22,10 +22,11 @@ export function ClientHomePage() {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        if (localStorage.getItem('token')) {
         dispatch(APIServise.auth());
         APIServise.getOrdersById(currentUser.id).then(respons => {
-            setOrders(respons.data)
-        });
+                setOrders(respons.data)
+        });}
     }, []);
 
     ViewFunction();

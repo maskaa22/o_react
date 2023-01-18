@@ -17,9 +17,9 @@ import {
     ARCHIVE_ORDERS,
     CLIENTS,
     ORDERS,
-    PRODUCT,
     RECORDS,
-    THIS
+    THIS,
+    PRODUCTS
 } from "../../config/homeConstants";
 import {Analysis} from "../ analysis";
 import {APIServise} from "../servises";
@@ -134,7 +134,7 @@ export function AdminHomePage() {
                         <Route path={THIS} element={<Edit/>}/>
                         <Route path={CLIENTS} element={<Users items={users}/>}/>
                         <Route path={RECORDS} element={<Records/>}/>
-                        <Route path={PRODUCT} element={<CreateProduct/>}/>
+                        <Route path={PRODUCTS} element={<CreateProduct/>}/>
                         <Route path={ORDERS} element={<Orders/>}/>
                         <Route path={ARCHIVE_ORDERS} element={<ArchiveOrders/>}/>
                         <Route path={ANALYSIS} element={<Analysis/>}/>

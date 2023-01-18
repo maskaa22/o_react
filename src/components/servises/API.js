@@ -3,7 +3,7 @@ import axios from 'axios';
 import {
     AuthService,
     CategoryService,
-    ContactService,
+    ContactService, FotoService,
     HomeService,
     OrderService,
     ProductService,
@@ -14,6 +14,8 @@ import {store} from "../reducers";
 import {SwalFunction} from "../utils/function";
 import {URL} from "../../config";
 import {
+    WORD_ACTIVETING,
+    WORD_RESET,
     WORD_SWAL_CATEGORY_CREATED,
     WORD_SWAL_ERROR,
     WORD_SWAL_LATER_SEND,
@@ -54,17 +56,48 @@ export const auth = () => {
 
             return response.data.user;
         } catch (e) {
-            SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
+            console.log(e);
         }
     }
 };
-export const registration = async (name, email, password, role) => {
+export const registration = async (name, email, password, role, passwordToo, foto) => {
     try {
-        await AuthService.registration(name, email, password, role);
+        console.log("foto", foto);
+        await AuthService.registration(name, email, password, role, passwordToo, foto);
 
         if (!role) {
             SwalFunction(WORD_SWAL_USER_CREATED, '', WORD_SWAL_SUCCESS, WORD_SWAL_OK, false, 3500);
         }
+    } catch (e) {
+        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
+    }
+};
+export const sendEmailForResetPassword = async (email) => {
+    try {
+        await AuthService.sendEmailForResetPassword(email);
+
+        SwalFunction(WORD_SWAL_LATER_SEND, '', WORD_SWAL_SUCCESS, WORD_SWAL_OK, false, 3500);
+
+    } catch (e) {
+        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
+    }
+};
+export const activateEmail = async (token) => {
+    try {
+        await AuthService.activateEmail(token);
+
+        SwalFunction(WORD_ACTIVETING, '', WORD_SWAL_SUCCESS, WORD_SWAL_OK, false, 3500);
+
+    } catch (e) {
+        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
+    }
+};
+export const resetPassword = async (password, passwordToo, id) => {
+    try {
+        await AuthService.resetPassword(password, passwordToo, id);
+
+        SwalFunction(WORD_RESET, '', WORD_SWAL_SUCCESS, WORD_SWAL_OK, false, 3500);
+
     } catch (e) {
         SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
     }
@@ -135,10 +168,10 @@ export const sentUser = async (text, userEmail, topic) => {
         SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
     }
 };
-export const setProducts = async (name, tittle, price, category, totalPriceProduct, countProduct, inventoryNumber) => {
+export const setProducts = async (product) => {
     try {
 
-        const response = await ProductService.product(name, tittle, price, category, countProduct, totalPriceProduct, inventoryNumber);
+        const response = await ProductService.product(product);
 
         SwalFunction(WORD_SWAL_PRODUCT_ADD, '', WORD_SWAL_SUCCESS, WORD_SWAL_OK, false, 3500);
 
@@ -208,7 +241,21 @@ export const getOrdersById = async (id) => {
     try {
         return await OrderService.userById(id);
     } catch (e) {
-        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
+        console.log(e.response.data.message);
+    }
+};
+export const saveFoto = async (id, img) => {
+    try {
+        return await FotoService.saveFoto(id, img);
+    } catch (e) {
+        console.log(e.response.data.message);
+    }
+};
+export const getFoto = async (id) => {
+    try {
+        return await FotoService.fotoById(id);
+    } catch (e) {
+        console.log(e.response.data.message);
     }
 };
 export const getAnalyze = async () => {

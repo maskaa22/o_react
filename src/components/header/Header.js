@@ -119,13 +119,13 @@ export function Header() {
                         <ul className={'submenu'} id={'sub-link-two'}>
                             {
                                 !isAuth &&
-                                <li><NavLink to={LOGIN} onClick={closeHandler}><RiMapPinUserFill
-                                    className=" icon_login link-a"/>Вхід</NavLink></li>
+                                <li><NavLink to={LOGIN} onClick={closeHandler}>
+                                    Вхід</NavLink></li>
                             }
                             {
                                 !isAuth &&
-                                <li><NavLink to={REGISTRATION} onClick={closeHandler}><ImUserPlus
-                                    className=" icon_login link-a"/>Реєстрация</NavLink></li>
+                                <li><NavLink to={REGISTRATION} onClick={closeHandler}>
+                                    Реєстрація</NavLink></li>
                             }
                             {
                                 isAuth && role === WORLD_ADMIN &&

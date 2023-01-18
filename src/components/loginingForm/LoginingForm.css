@@ -38,6 +38,7 @@
 .flex {
     display: flex;
     justify-content: center;
+    margin-bottom: 40px
 }
 
 .flex_end {
@@ -49,4 +50,10 @@
 
 .left {
     left: 53%
+}
+
+.login-reset-password {
+    color: #79cbb8;
+    margin: 15px 10px 0 10px;
+    cursor: pointer;
 }

@@ -1,27 +1,28 @@
 import axios from "axios";
 
 import {
-    AUTH,
+    AUTH, AUTH_ACTIVATE_TOKEN_URL, AUTH_EMAIL_FOR_RESET_PASSWORD,
     AUTH_LOGIN,
     AUTH_LOGOUT,
     AUTH_REFRESH,
     AUTH_REGISTRATION,
     CATEGORY,
     HOME,
-    HOME_FIND,
+    HOME_FIND, ORDER_BY_USER,
     PRODUCT_ARCHIVE_ORDER,
     PRODUCT_ORDER_ANALYZE,
     PRODUCT_ORDERS,
     PRODUCT_ORDERS_ANALYZE_VISUAL,
-    PRODUCT_ORDERS_FILTER,
+    PRODUCT_ORDERS_FILTER, RESET_PASSWORD_,
     USERS,
     USERS_ADRESS,
     USERS_CONTACT,
     USERS_SEND
 } from "../../config/serviseConstants";
-import {CONTACT, PRODUCTS} from "../../config/headerConstants";
+import {CONTACT, PRODUCTS, UPLOAD} from "../../config/headerConstants";
 import {URL} from "../../config";
 import {WORD_SWAL_NOT_AUTORIZE, WORD_TOKEN} from "../../config/wordsConstants";
+import {activateEmail, resetPassword, sendEmailForResetPassword} from "./API";
 
 const api = axios.create({
     withCredentials: true,
@@ -60,8 +61,20 @@ export class AuthService {
         return api.post(AUTH_LOGIN, {email, password})
     }
 
-    static async registration(name, email, password, role) {
-        return api.post(AUTH_REGISTRATION, {name, email, password, role})
+    static async registration(name, email, password, role, passwordToo, foto) {
+        return api.post(AUTH_REGISTRATION, {name, email, password, role, passwordToo, foto})
+    }
+
+    static async sendEmailForResetPassword(email) {
+        return api.post(AUTH_EMAIL_FOR_RESET_PASSWORD, {email})
+    }
+
+    static async activateEmail(token) {
+        return api.get(AUTH_ACTIVATE_TOKEN_URL, {params: {token}})
+    }
+
+    static async resetPassword(password, passwordToo, _id) {
+        return api.patch(RESET_PASSWORD_, {password, passwordToo, _id})
     }
 
     static async deleteUser(email) {
@@ -150,8 +163,8 @@ export class OrderService {
         return api.patch(PRODUCT_ORDERS, {_id, status})
     }
 
-    static async userById(id) {
-        return api.get(PRODUCT_ORDERS)
+    static async userById(user_id) {
+        return api.get(`${PRODUCTS}/${user_id}${ORDER_BY_USER}`, {params: {user_id}})
     }
 }
 
@@ -161,8 +174,8 @@ export class ProductService {
         return api.get(PRODUCTS, {params: {page, limit}})
     }
 
-    static async product(product_name, title, price, category_id, count, totalPrice, inventoryNumber) {
-        return api.post(PRODUCTS, {product_name, title, price, category_id, count, totalPrice, inventoryNumber})
+    static async product(product) {
+        return api.post(PRODUCTS, product)
     }
 
     static async deleteProduct(inventoryNumber) {
@@ -222,5 +235,14 @@ export class HomeService {
 export class ContactService {
     static async sentEmail(name, email, phone, text) {
         return api.post(CONTACT, {name, email, phone, text})
+    }
+}
+
+export class FotoService {
+    static async saveFoto(user_id, img) {
+        return api.post(UPLOAD, {user_id, img})
+    }
+    static async fotoById(user_id) {
+        return api.get('/upload_files', {params: {user_id}})
     }
 }

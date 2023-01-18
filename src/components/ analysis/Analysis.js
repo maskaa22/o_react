@@ -25,13 +25,13 @@ export function Analysis() {
     const HeadingAnalyze = [
         {
             month: "Місяць",
-            summa: "Сумма"
+            summa: "Сума"
         }
     ];
     const HeadingOrder = [
         {
             status: "Статус",
-            summa: "Сумма"
+            summa: "Сума"
         }
     ];
 

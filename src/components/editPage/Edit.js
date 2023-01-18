@@ -1,6 +1,6 @@
 import {FiCheck} from "react-icons/fi";
 import {useSelector} from "react-redux";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 import './EditPage.css';
 import './EditPage@media.css';
@@ -9,6 +9,8 @@ import {Input} from "../utils";
 import {NewPochta} from "../newPochta";
 import {StyleForPassword, StyleIconOk} from '../utils/function'
 import {WORLD_ADMIN, WORLD_USER} from "../../config/wordsConstants";
+import Avatar from '@mui/material/Avatar';
+import Stack from '@mui/material/Stack';
 
 export function Edit() {
     const currentUser = useSelector(state => state.user.currentUser);
@@ -25,6 +27,7 @@ export function Edit() {
     const [numberNP, setNumberNP] = useState('');
     const [visibleSity, setVisibleSity] = useState('none');
     const [visibleNumber, setVisibleNumber] = useState('none');
+    // const [file, setFile] = useState(null);
 
     const block_check = document.getElementById('block_check');
 
@@ -43,19 +46,165 @@ export function Edit() {
         StyleIconOk(diag_nap_uchr, diag_osn, icon);
     }
 
+    const activeEmail = 'active-email';
+    const nonActiveEmail = 'none';
+
+    // const uploadFile = event => {
+    //     console.log('upload start');
+    //     console.log(event.target);
+    //     let target = event.target || event.srcElement || event.currentTarget;
+    //     let file = target.files[0];
+    //     let xhr = new XMLHttpRequest();
+    //     xhr.open('POST', 'http://localhost:5000/uploads/'+file.name, true);
+    //     xhr.setRequestHeader('Content-Type', 'application/octet-stream');
+    //     xhr.onreadystatechange = function () {
+    //         event = null;
+    //         if(xhr.readyState === 4) {
+    //             if(xhr.status === 200) {
+    //                 callBackFunction(this.responseText);
+    //             } else {
+    //                 console.log('error');
+    //             }
+    //         }
+    //     };
+    //     xhr.send(file);
+    //     event.target.value = '';
+    // }
+    //
+    // function callBackFunction(data) {
+    //     console.log(data);
+    //     // document.querySelector('.icon-image-user').src = 'images/'+data;
+    // }
+
+    // const addFoto = () => {
+    //     const formData = new FormData();
+    //     formData.append('img2', 'file');
+    //     formData.append('img', file);
+    //     const request = new XMLHttpRequest();
+    //     request.open("POST", "http://localhost:5000/upload");
+    //     request.send(formData);
+    //     // saveFoto(formData).then(res => console.log(res))
+    // }
+    //
+    // const handleOnChange = e => {
+    //     console.log(e.target.files[0]);
+    //     setFile(e.target.files[0]);
+    //     addFoto();
+    // };
+
+
+
+    // document.addEventListener("DOMContentLoaded", function (){
+    //     document.getElementById("form").addEventListener("change", submitForm)
+    //     // document.getElementById("form").addEventListener("change", function () {
+    //     //     submitForm()
+    //     // })
+    //     // document.getElementById("form").addEventListener("change", submitForm)
+    //     // document.querySelectorAll("form.form").forEach(function (newBreakPointWindow) {
+    //     //     newBreakPointWindow.addEventListener("change", submitForm)
+    //     // })
+    //     // form.addEventListener("change", submitForm);
+    //
+    // });
+    //
+    // function submitForm(e) {
+    //      e.preventDefault();
+    //
+    //    //console.log(e.target.files[0]);
+    //     // const files = document.getElementById("file-upload");
+    //      const formData = new FormData();
+    //     // console.log(files.files);
+    //     //
+    //     // // for(let i =0; i < files.files.length; i++) {
+    //      formData.append("files", e.target.files[0]);
+    //
+    //     // if(currentUser._id) {
+    //     //     formData.append("user", (currentUser._id));
+    //     // }
+    //     // // }
+    //     fetch("http://localhost:5000/upload_files", {
+    //         method: 'POST',
+    //         body: formData,
+    //     })
+    //         // .then((res) => console.log(res))
+    //         .catch((err) => ("Error occured", err));
+    //
+    //     document.getElementById("form").removeEventListener("change", submitForm)
+    // }
+
+    async function q (e) {
+        console.log(e.target.files);
+        const formData = new FormData();
+        formData.append("files", e.target.files[0]);
+        formData.append("name", currentUser._id);
+
+        await fetch("http://localhost:5000/upload_files", {
+                method: 'POST',
+                body: formData,
+            })
+                 .then((res) => console.log(res))
+                .catch((err) => ("Error occured", err));
+        //APIServise.getFoto(currentUser._id).then(res => console.log(res))
+    }
+
+    // document.addEventListener("DOMContentLoaded", function (){
+    //     console.log(currentUser.foto);
+    //
+    // })
+    // console.log(currentUser.foto);
+//     const [file, setFile] = useState('');
+// setFile(currentUser.foto);
+// // console.log(file);
+//
+//     const slideStylesWidthBackground = {
+//         backgroundImage: `url(${file})`,
+//     };
+
+    // useEffect(() => {
+    //     APIServise.getFoto(currentUser._id).then(res => console.log(res))
+    // },)
+
+// console.log(currentUser.img.data.data);
+//     const str = (currentUser.img.data.data).toString('base64');
+//     console.log(str);
+//     const img = new Buffer.from(currentUser.img.data.data).toString('base64');
+//     console.log(img);
+    // const base64String = btoa(String.fromCharCode(...new Uint8Array(str)));
+    // console.log(base64String);
+    function stringAvatar(name) {
+        return {
+            children: `${name.split(' ')[0][0]}`,
+        };
+    }
+
     return (
         <div>
             <div className={'full-center'}>
                 <div className={'border-box'}>
                     <h2 className={'edit-h2'}>Редагування інформації</h2>
                     <div className={'full-center'}>
-                        <img className={'circle'} alt={'circle'}/>
+                        <Stack direction="row" spacing={2}>
+                            <Avatar {...stringAvatar(currentUser.name)} sx={{ bgcolor: '#78c9b8' }}/>
+                        </Stack>
+                        {/*<img className={'circle icon-image-user'} alt={'circle'}*/}
+                        {/*     src={currentUser.foto}/>*/}
+
                     </div>
                     <div className={'full-center download-foto-margin'}>
-                        <label htmlFor="file-upload" className="custom-file-upload">
-                            <i className="fa fa-cloud-upload"/> Загрузити фото
-                        </label>
-                        <input id="file-upload" type="file"/>
+                        <form id='form' >
+                            <label htmlFor="file-upload" className="custom-file-upload">
+                                <i className="fa fa-cloud-upload"/> Загрузити фото
+                            </label>
+                            <input id="file-upload" type="file" name={'files'} className="checkbox" onChange={q}/>
+                        </form>
+                    </div>
+                    <div>
+                        <div className={'full-center margin-input'}>
+                            <div
+                                className={currentUser.is_active === false ? `input-center-full ${activeEmail}` : `input-center-full ${nonActiveEmail}`}>
+                                Підтвердіть пошту
+                            </div>
+                        </div>
                     </div>
                     <div className={'around'}>
                         <div>
@@ -126,18 +275,18 @@ export function Edit() {
                     </div>
                     <div className={'full-center margin-input'}>
                         {role === WORLD_ADMIN &&
-                        <button className={'btn-save'} onClick={() => {
+                        <button className={'btn-save'} type='submit' onClick={() => {
                             APIServise.editPage(currentUser._id, name, surname, email, phone, oldPassword, number, numberToo);
                         }}>Змінити та зберегти</button>
                         }
                         {role === WORLD_USER &&
-                        <button className={'btn-save'} onClick={() => {
-                            APIServise.editPage(currentUser._id, name, surname, email, phone, oldPassword, number, numberToo,
-                                sity, numberNP);
+                        <button className={'btn-save'} type='submit' onClick={() => {
+                             APIServise.editPage(currentUser._id, name, surname, email, phone, oldPassword, number, numberToo,
+                                 sity, numberNP);
                         }}>Змінити та зберегти</button>
                         }
                     </div>
-                </div>
+            </div>
             </div>
         </div>
     );

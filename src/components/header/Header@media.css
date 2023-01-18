@@ -23,14 +23,13 @@
         opacity: 0;
         pointer-events: none;
         transition: .3s;
-
         display: block;
         list-style: none;
         margin: 0;
         padding: 0;
         z-index: 4;
         position: absolute;
-        width: 100%;
+        width: fit-content;
     }
 
     .menu > li {

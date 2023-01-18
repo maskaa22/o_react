@@ -11,7 +11,14 @@ import {
     modelNameNovaPochta
 } from "../../config/constants";
 import {NEW_POCHTA_URL} from "../../config/URL";
-import {WORD_HIDDEN, WORD_POST, WORD_VISIBLE, WORD_VISIBLE_N_P} from "../../config/wordsConstants";
+import {
+    WORD_HIDDEN,
+    WORD_POST, WORD_SWAL_ERROR, WORD_SWAL_OK,
+    WORD_SWAL_TEXT_ERROR,
+    WORD_VISIBLE,
+    WORD_VISIBLE_N_P
+} from "../../config/wordsConstants";
+import {SwalFunction} from "../utils/function";
 
 export function NewPochta({setSity, setNumberNP, setVisibleSity, setVisibleNumber}) {
 
@@ -71,7 +78,9 @@ export function NewPochta({setSity, setNumberNP, setVisibleSity, setVisibleNumbe
                                             }))
                                         );
                                     })
-                                    .catch(reject);
+                                    .catch((reject) => {
+                                        SwalFunction(WORD_SWAL_TEXT_ERROR, reject, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
+                                    });
                             });
                         }}
                         onChange={handleChangeSity}
@@ -104,7 +113,9 @@ export function NewPochta({setSity, setNumberNP, setVisibleSity, setVisibleNumbe
                                             }))
                                         );
                                     })
-                                    .catch(reject);
+                                    .catch((reject) => {
+                                        SwalFunction(WORD_SWAL_TEXT_ERROR, reject, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
+                                    });
                             });
                         }}
                         onChange={handleChangeDepartment}

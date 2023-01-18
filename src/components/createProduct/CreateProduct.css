@@ -81,7 +81,7 @@ option {
 .select-product {
     height: 50px;
     position: relative;
-    bottom: 25px;
+    bottom: 20px;
 }
 
 .select-product label {

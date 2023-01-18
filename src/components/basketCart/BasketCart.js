@@ -5,6 +5,7 @@ import {useDispatch} from "react-redux";
 
 import {Count} from "../countProduct";
 import priceFormatter from "../utils/priceFormatter/priceFormatter";
+import {AUTH_URL} from "../../config/URL";
 
 export function BasketCart({product, deleteProduct, increase, decrease, changeValue}) {
 
@@ -13,7 +14,7 @@ export function BasketCart({product, deleteProduct, increase, decrease, changeVa
     return (
         <div>
             <div className="grid-column box-shadow border_radius">
-                <div className={'img img-none'}><img src={'https://u.makeup.com.ua/g/gl/gla8v5cgd3qy.png'}
+                <div className={'img img-none'}><img src={AUTH_URL + '/' + product.img}
                                                      alt={'шaмпунь'}/>
                 </div>
                 <div className={'text-center'}><span>{product.product_name}</span></div>

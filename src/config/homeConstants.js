@@ -4,7 +4,7 @@ module.exports = {
     ADMIN_ARCHIVE_ORDERS: '/admin/archive_orders',
     ADMIN_ORDERS: '/admin/orders',
     ADMIN_RECORDS: '/admin/records',
-    ADMIN_PRODUCT: '/admin/product',
+    ADMIN_PRODUCT: '/admin/products',
     ADMIN_USERS: '/admin/users',
     ANALYSIS: '/analysis',
     ARCHIVE_ORDERS: '/archive_orders',
@@ -13,6 +13,7 @@ module.exports = {
     CLIENTS: '/users',
     ORDERS: '/orders',
     PRODUCT: '/product',
+    PRODUCTS: '/products',
     RECORDS: '/records',
     THIS: '/'
 };

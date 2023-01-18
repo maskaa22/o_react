@@ -1,6 +1,7 @@
 module.exports = {
     WORD_ACCEPTED: 'прийнято',
     WORD_ACTIVE_MENU_CATEGORY: 'active-menu-category',
+    WORD_ACTIVETING: 'Пошта активована',
     WORD_ADD: 'add',
     WORLD_ADMIN: 'admin',
     WORD_ARRAY: 'array',
@@ -12,6 +13,7 @@ module.exports = {
     WORD_CART_UK: 'Карта',
     WORD_CATEGORY_MENU: 'category-menu',
     WORD_CASH: 'cash',
+    WORD_CHECK_YOUR_MAIL: 'Перевірте пошту',
     WORD_DATA: 'data',
     WORD_DAY: 'day',
     WORD_DEL: 'del',
@@ -34,6 +36,7 @@ module.exports = {
     WORD_REGISTR: 'Реєстрація',
     WORD_REGISTRATION: 'Зареєструвати',
     WORD_REGISTRATING: 'Зареєструватися',
+    WORD_RESET: 'Змінено',
     WORD_SEND: 'відправлено',
     WORD_SMALL_MENU_ADMIN_CLIENT: 'small-menu-admin-client',
     WORD_SUCCESS: 'not_success',

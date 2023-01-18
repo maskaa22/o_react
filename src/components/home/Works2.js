@@ -9,7 +9,7 @@ import Two from '../../images/gallery/2.jpg'
 
 export function Works2() {
     return (
-        <div className={'works-gallery element-animation'}>
+        <div className={'works-gallery'}>
             <div className={'works-gallery-items box1'}>
                 <img src={One} alt={'One'} className={'margin-img-gallery'}/>
                 <img src={Two} alt={'Two'} className={'margin-img-gallery'}/>

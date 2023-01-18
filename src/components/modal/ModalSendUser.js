@@ -20,8 +20,8 @@ export function ModalSendUser({handleClose, userEmail}) {
                 <div className={'flex_start'}>
                     <div className={'margin_right_small'}>Отримувач:</div>
                     <span>{userEmail}</span></div>
-                <div className={'auto margin_right'}><Input value={topic} setValue={setTopic}
-                                                            placeholder={'Введіть тему'}/></div>
+                <div className={'auto margin_all_send'}>
+                    <Input value={topic} setValue={setTopic} placeholder={'Введіть тему'}/></div>
                 <div className={'auto flex'}>
                     <textarea cols="35" rows="7" placeholder={'Ввести текст'}
                               onChange={(event) => setText(event.target.value)}/>

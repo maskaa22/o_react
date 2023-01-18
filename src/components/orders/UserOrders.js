@@ -26,6 +26,9 @@ export function UserOrders({orders}) {
                         </div>
                     ).reverse()
                 }
+                {
+                    (orders!==[]) && <h1 className={'h1-text-align-center'}>Замовлення вісутні</h1>
+                }
             </div>
         </>
     );

@@ -6,6 +6,7 @@ import './ProductCart@media.css';
 import {setProduct} from "../reducers/actionCreators";
 import {SwalFunction} from "../utils/function";
 import {WORD_SWAL_ERROR, WORD_SWAL_NOT_AUTORIZE, WORD_SWAL_OK} from "../../config/wordsConstants";
+import {AUTH_URL} from "../../config/URL";
 
 export function ProductCart({product}) {
 
@@ -18,7 +19,7 @@ export function ProductCart({product}) {
         <div className="column">
             <div className={'card'}>
                 <div className={'top-card'}>
-                    <img src={'https://u.makeup.com.ua/g/gl/gla8v5cgd3qy.png'} alt={'шaмпунь'}/>
+                    <img src={AUTH_URL + '/' + product.img} alt={'шaмпунь'}/>
                 </div>
                 <div className={'bottom-card'}>
                     <div className={'info_card'}><span>{product.product_name}</span></div>
