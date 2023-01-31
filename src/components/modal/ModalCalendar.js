@@ -29,7 +29,7 @@ export function ModalCalendar({handleClose, date, eventCreateHandler, unix, newT
                                                                          aria-hidden="true"/></button>
                 <h2 className={'h2'}>Записатися</h2>
                 <div className={'auto margin_right flex_space_between'}>
-                    <Input value={currentUser.name} readOnly/>
+                    <Input value={currentUser.name} readOnly className={'calendar-width'}/>
                     <div className={'input_date_width'}><Input value={date} readOnly/></div>
                 </div>
                 <div className={'auto flex_space_between margin_all_select'}>
@@ -66,7 +66,7 @@ export function ModalCalendar({handleClose, date, eventCreateHandler, unix, newT
                 </div>
                 <div className={'btn-position'}>
                     <button className={'btn-add'} onClick={() => {
-                        eventCreateHandler(currentUser.name, unix, type, time)
+                        eventCreateHandler(currentUser.name, unix, type, time, currentUser._id)
                     }}>Зберегти
                     </button>
                 </div>

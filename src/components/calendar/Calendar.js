@@ -10,6 +10,7 @@ import {CalendarWrapper, ShadowWrapper} from "./CalendarCSS";
 import {createCalendarEvent, getCalendarEvent} from "../servises/API";
 import {ModalUser} from "../modal";
 import {WORD_MONTH, WORD_WEEK} from "../../config/wordsConstants";
+import {useSelector} from "react-redux";
 
 export function Calendar() {
 
@@ -23,6 +24,9 @@ export function Calendar() {
 
     const [openWindow, setOpenWindow] = React.useState(false);
     const handleClose = () => setOpenWindow(false);
+
+    const isAuth = useSelector(state => state.user.isAuth);
+
 
     const startDay = today.clone().startOf(WORD_MONTH).startOf(WORD_WEEK);
 
@@ -38,8 +42,8 @@ export function Calendar() {
         setOpenWindow(true);
     };
 
-    const eventCreateHandler = (title, date, description, time) => {
-        createCalendarEvent(title, date, description, time).then(rez => {
+    const eventCreateHandler = (title, date, description, time, id) => {
+        createCalendarEvent(title, date, description, time, id).then(rez => {
             setEvents(prevState => [...prevState, rez]);
             handleClose()
         });
@@ -47,8 +51,13 @@ export function Calendar() {
 
     return (
         <>
-            <ModalUser openWindow={openWindow} handleClose={handleClose} calendar={'calendar'} date={date}
-                       eventCreateHandler={eventCreateHandler} unix={unix} time={time}/>
+            {
+                isAuth ? <ModalUser openWindow={openWindow} handleClose={handleClose} calendar={'calendar'} date={date}
+                                     eventCreateHandler={eventCreateHandler} unix={unix} time={time}/> :
+                    <ModalUser openWindow={openWindow} handleClose={handleClose} register/>
+            }
+
+
             <CalendarWrapper>
                 <ShadowWrapper>
                     <CalendarMonitor today={today} prevHandler={() => prevHandler(setToday)}

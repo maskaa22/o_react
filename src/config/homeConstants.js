@@ -10,6 +10,7 @@ module.exports = {
     ARCHIVE_ORDERS: '/archive_orders',
     CLIENT: '/user',
     CLIENT_ORDERS: '/user/orders',
+    CLIENT_RECORDS: '/user/records',
     CLIENTS: '/users',
     ORDERS: '/orders',
     PRODUCT: '/product',

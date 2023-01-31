@@ -45,7 +45,7 @@ module.exports = {
     WORD_SWAL_LATER_SEND: 'Лист відправлено',
     WORD_SWAL_NOT_AUTORIZE: 'Не авторизований',
     WORD_SWAL_OK: 'Ok',
-    WORD_SWAL_ORDER_SEND: 'Замовлення відправлено',
+    WORD_SWAL_ORDER_SEND: 'Замовлення оформлено',
     WORD_SWAL_PRODUCT_ADD: 'Товар доданий',
     WORD_SWAL_READY: 'Готово',
     WORD_SWAL_SUCCESS: 'success',

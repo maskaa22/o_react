@@ -189,6 +189,10 @@ export class UserService {
         return api.get(USERS)
     }
 
+    static async foto(foto) {
+        return api.post(USERS, foto)
+    }
+
     static async editData(_id, name, surname, email, phone, oldPassword, number, numberToo, nameSity, nameDepartment) {
         return api.patch(USERS, {
             _id,
@@ -215,16 +219,24 @@ export class UserService {
     static async sentUser(text, email, topic) {
         return api.post(USERS_SEND, {text, email, topic})
     }
+
+    static async getUserById(_id) {
+        return api.get(`${USERS}/${_id}`, {params: {_id}})
+    }
 }
 
 export class HomeService {
 
-    static async createCalendarEvent(title, date, description, time) {
-        return api.post(HOME, {title, date, description, time})
+    static async createCalendarEvent(title, date, description, time, user_id) {
+        return api.post(HOME, {title, date, description, time, user_id})
     }
 
     static async getCalendarEvent(startDateQuery, endDateQuery) {
         return api.get(HOME, {params: {startDateQuery, endDateQuery}})
+    }
+
+    static async getCalendarEventForId(user_id) {
+        return api.get(`${HOME}/events/${user_id}`, {params: {user_id}})
     }
 
     static async getFindEvent(date) {

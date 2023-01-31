@@ -6,6 +6,7 @@ import {LoginingForm} from "../loginingForm";
 import {ModalSendUser} from "./ModalSendUser";
 import {ModalCalendar} from "./ModalCalendar";
 import {WORLD_ADMIN} from "../../config/wordsConstants";
+import {ModalRegister} from "./ModalRegister";
 
 export function ModalUser({
                               openWindow,
@@ -18,7 +19,8 @@ export function ModalUser({
                               date,
                               eventCreateHandler,
                               unix,
-                              time
+                              time,
+                              register
                           }) {
 
     return (
@@ -35,6 +37,9 @@ export function ModalUser({
                     }
                     {
                         del && <DeleteUser handleClose={handleClose}/>
+                    }
+                    {
+                        register && <ModalRegister handleClose={handleClose}/>
                     }
                     {
                         send && <ModalSendUser handleClose={handleClose} userEmail={userEmail}/>

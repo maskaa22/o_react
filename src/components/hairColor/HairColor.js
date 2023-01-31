@@ -6,8 +6,29 @@ import Mens from '../../images/big-foto/Group 6.png';
 import smallFoto from '../../images/servises/colorsHears/1.png';
 import Slider from "../slider/Slider";
 import {slideColor} from "../../config/sliderConstants";
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect} from "react";
+import {WORD_TOKEN} from "../../config/wordsConstants";
+import {APIServise} from "../servises";
+
+import {IsAuthFunction} from '../utils/function'
 
 export function HairColor() {
+
+    IsAuthFunction();
+
+    // const dispatch = useDispatch();
+    //
+    // const isAuth = useSelector(state => state.user.isAuth);
+    //
+    // useEffect(() => {
+    //     if(!isAuth) {
+    //         localStorage.removeItem(WORD_TOKEN);
+    //     } else
+    //     if(localStorage.getItem(WORD_TOKEN)) {
+    //         dispatch(APIServise.auth());
+    //     }
+    // }, []);
 
     return (
         <div>

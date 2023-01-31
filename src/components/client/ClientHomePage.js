@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 
 import {APIServise} from "../servises";
-import {CLIENT, CLIENT_ORDERS, ORDERS, THIS} from "../../config/homeConstants";
+import {CLIENT, CLIENT_ORDERS, CLIENT_RECORDS, ORDERS, RECORDS, THIS} from "../../config/homeConstants";
 import {closeToogleMenu, handleClick, ifOpenPageAddActiveClass, openToogleMenu, ViewFunction} from "../utils/function";
 import {Edit} from "../editPage";
 import {UserOrders} from "../orders";
@@ -12,21 +12,28 @@ import {
     WORD_ACTIVE_MENU_CATEGORY,
     WORD_CATEGORY_MENU,
     WORD_NO_SCROLL,
-    WORD_SMALL_MENU_ADMIN_CLIENT
+    WORD_SMALL_MENU_ADMIN_CLIENT, WORD_TOKEN
 } from "../../config/wordsConstants";
+import {ClientRecords} from "../clientRecords";
 
 export function ClientHomePage() {
-    const currentUser = useSelector(state => state.user.currentUser);
-    const [orders, setOrders] = useState([]);
+
+    const [user, setUser] = useState([]);
 
     const dispatch = useDispatch();
 
+    const isAuth = useSelector(state => state.user.isAuth);
+
+
     useEffect(() => {
+        if(!isAuth) {
+            localStorage.removeItem(WORD_TOKEN);
+        } else
         if (localStorage.getItem('token')) {
         dispatch(APIServise.auth());
-        APIServise.getOrdersById(currentUser.id).then(respons => {
-                setOrders(respons.data)
-        });}
+        APIServise.getUserForToken().then(user => {
+            setUser(user.user_id._id)})
+        }
     }, []);
 
     ViewFunction();
@@ -59,9 +66,15 @@ export function ClientHomePage() {
                         </Link>
                     </div>
                     <div className={'padding'}>
-                        <Link to={CLIENT_ORDERS} className={'color_purple click-item'}>
+                        <Link to={`${CLIENT_ORDERS}/:${user}`} className={'color_purple click-item'}>
                             <button className={'home_item click-item category'}
                                     onClick={closeMenuHome}>Замовлення<MdNavigateNext className={'non-icon'}/></button>
+                        </Link>
+                    </div>
+                    <div className={'padding'}>
+                        <Link to={`${CLIENT_RECORDS}/:${user}`} className={'color_purple click-item'}>
+                            <button className={'home_item click-item category'}
+                                    onClick={closeMenuHome}>Записи<MdNavigateNext className={'non-icon'}/></button>
                         </Link>
                     </div>
                 </div>
@@ -69,7 +82,8 @@ export function ClientHomePage() {
             <div className={'home-page'}>
                 <Routes>
                     <Route path={THIS} element={<Edit/>}/>
-                    <Route path={ORDERS} element={<UserOrders orders={orders}/>}/>
+                    <Route path={`${ORDERS}/:${user}`} element={<UserOrders/>}/>
+                    <Route path={`${RECORDS}/:${user}`} element={<ClientRecords/>}/>
                 </Routes>
             </div>
         </div>

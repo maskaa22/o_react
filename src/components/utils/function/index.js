@@ -7,3 +7,4 @@ export * from './calendarFunction/calendarFunction';
 export * from './homeFunction/HomeFunction';
 export * from './smallMenuFunction/SmallMenuFunction';
 export * from './productFunction/productFunction';
+export * from './isAuthFunction/IsAuthFunction';

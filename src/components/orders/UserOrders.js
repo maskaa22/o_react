@@ -1,8 +1,30 @@
 import * as React from "react";
 
 import Cart from "./Cart";
+import {useEffect, useState} from "react";
+import {APIServise} from "../servises";
 
-export function UserOrders({orders}) {
+export function UserOrders() {
+
+    const [orders, setOrders] = useState([]);
+
+    const location = window. location.pathname;
+    const locationSplit = location.split('/:');
+     const locationSplitOneItem = locationSplit[1];
+
+    useEffect(() => {
+        let isMounted = true;
+            APIServise.getOrdersById(locationSplitOneItem).then(respons => {
+                if(isMounted) {
+                    setOrders(respons.data)
+                }
+            });
+        return () => {
+            isMounted = false;
+        }
+
+
+}, []);
 
     return (
         <>
@@ -26,8 +48,7 @@ export function UserOrders({orders}) {
                         </div>
                     ).reverse()
                 }
-                {
-                    (orders!==[]) && <h1 className={'h1-text-align-center'}>Замовлення вісутні</h1>
+                {!orders && <h1 className={'h1-text-align-center'}>Замовлення вісутні</h1>
                 }
             </div>
         </>

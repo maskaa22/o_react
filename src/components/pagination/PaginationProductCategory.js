@@ -26,16 +26,19 @@ export function PaginationProductCategory({paginate, category_id, setFilter, thi
 
     return (
         <div className={'paginate'}>
-            <ReactPaginate
-                previousLabel={'<'}
-                nextLabel={">"}
-                pageCount={pageCount}
-                onPageChange={handlePageClick}
-                containerClassName={"pagination"}
-                subContainerClassName={"pages pagination"}
-                activeClassName={"active"}
-                selectedPageRel={"canonical"}
-            />
+            {
+                !isNaN(pageCount) && <ReactPaginate
+                    previousLabel={'<'}
+                    nextLabel={">"}
+                    pageCount={pageCount}
+                    onPageChange={handlePageClick}
+                    containerClassName={"pagination"}
+                    subContainerClassName={"pages pagination"}
+                    activeClassName={"active"}
+                    selectedPageRel={"canonical"}
+                />
+            }
+
         </div>
     );
 }

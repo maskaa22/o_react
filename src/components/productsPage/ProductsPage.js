@@ -23,7 +23,7 @@ import {
     WORD_ACTIVE_MENU_CATEGORY,
     WORD_CATEGORY_MENU,
     WORD_NO_SCROLL,
-    WORD_PRODUCT_MENU_BLOCK
+    WORD_PRODUCT_MENU_BLOCK, WORD_TOKEN
 } from "../../config/wordsConstants";
 
 export function ProductsPage() {
@@ -44,10 +44,12 @@ export function ProductsPage() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(APIServise.auth());
         APIServise.getCategories().then(respons => {
             setCategories(respons.data)
         });
+        if(localStorage.getItem(WORD_TOKEN)) {
+            dispatch(APIServise.auth());
+        }
     }, []);
 
     useEffect(() => {

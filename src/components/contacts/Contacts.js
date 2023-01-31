@@ -1,13 +1,15 @@
 import {BsFillTelephoneFill} from "react-icons/bs";
 import {FaLocationArrow} from "react-icons/fa";
 import {MdAlternateEmail} from "react-icons/md";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 import './Contacts.css';
 import './Contacts@media.css';
 import {APIServise} from "../servises";
 import {Input} from "../utils";
 import Women from '../../images/big-foto/Group 9.png'
+import {useDispatch} from "react-redux";
+import {WORD_TOKEN} from "../../config/wordsConstants";
 
 export function Contacts() {
 
@@ -15,6 +17,14 @@ export function Contacts() {
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [text, setText] = useState('');
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if(localStorage.getItem(WORD_TOKEN)) {
+            dispatch(APIServise.auth());
+        }
+    }, []);
 
     return (
         <div>

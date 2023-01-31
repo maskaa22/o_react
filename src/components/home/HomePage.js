@@ -1,6 +1,6 @@
 import {BsArrowUpCircle} from "react-icons/bs";
 import React, {useEffect} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 import './Home.css';
 import './Home@media.css';
@@ -12,12 +12,21 @@ import {Comments} from "./Comments";
 import {HomeFunction, scrollTopTop, Up} from "../utils/function";
 import {Main} from "./Main";
 import {Works2} from "./Works2";
+import {WORD_TOKEN} from "../../config/wordsConstants";
 
 export function HomePage() {
     const dispatch = useDispatch();
 
+    const isAuth = useSelector(state => state.user.isAuth);
+
+
     useEffect(() => {
-        dispatch(APIServise.auth());
+        if(!isAuth) {
+            localStorage.removeItem(WORD_TOKEN);
+        } else
+        if(localStorage.getItem(WORD_TOKEN)) {
+            dispatch(APIServise.auth());
+        }
     }, []);
 
     HomeFunction();

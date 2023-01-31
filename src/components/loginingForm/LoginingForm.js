@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
-import {NavLink, useNavigate} from "react-router-dom";
+import {NavLink, useLocation, useNavigate} from "react-router-dom";
 
 import './LoginingForm.css'
 import {APIServise} from "../servises";
@@ -14,7 +14,7 @@ import {
     WORD_REGISTRATION
 } from "../../config/wordsConstants";
 
-export function LoginingForm({role, handleClose, login}) {
+export function LoginingForm({role, handleClose}) {
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -31,6 +31,9 @@ export function LoginingForm({role, handleClose, login}) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    const location = useLocation();
+    const isLogin = location.pathname === LOGIN;
+
     return (
         <div>
             <div className={`flex`}>
@@ -40,8 +43,8 @@ export function LoginingForm({role, handleClose, login}) {
                                                                                               aria-hidden="true"/>
                         </button>
                     }
-                    <div className="form_header">{login ? WORD_AUTORIZATING : WORD_REGISTR}</div>
-                    {!login &&
+                    <div className="form_header">{isLogin ? WORD_AUTORIZATING : WORD_REGISTR}</div>
+                    {!isLogin &&
                     <Input value={name} setValue={setName} type={'text'} placeholder={"Введіть ім'я"}
                            className={'input-margin'}/>
                     }
@@ -50,12 +53,12 @@ export function LoginingForm({role, handleClose, login}) {
                     <Input value={password} setValue={setPassword} type={'password'} placeholder={'Введіть пароль'}
                            className={'input-margin'}/>
                     {
-                        !login && <Input value={passwordToo} setValue={setPasswordToo} type={'password'} placeholder={'Повторіть пароль'}
+                        !isLogin && <Input value={passwordToo} setValue={setPasswordToo} type={'password'} placeholder={'Повторіть пароль'}
                                          className={'input-margin'}/>
                     }
                     <button className={'form_btn'} onClick={() => {
                         {
-                            login ? dispatch(APIServise.login(email, password)).then(rez => {
+                            isLogin ? dispatch(APIServise.login(email, password)).then(rez => {
                                 if (rez) navigate(THIS);
                             }) : APIServise.registration(name, email, password, role, passwordToo, '').then(rez => {
                                 if (!role) {
@@ -63,10 +66,10 @@ export function LoginingForm({role, handleClose, login}) {
                                 } else window.location.reload();
                             })
                         }
-                    }}>{login ? WORD_AUTORIZ : WORD_REGISTRATION}
+                    }}>{isLogin ? WORD_AUTORIZ : WORD_REGISTRATION}
                     </button>
                     {
-                        login && <NavLink to={LOGIN_RESET_PASSWORD} className={'login-reset-password'}>Забули пароль?</NavLink>
+                        isLogin && <NavLink to={LOGIN_RESET_PASSWORD} className={'login-reset-password'}>Забули пароль?</NavLink>
                     }
                 </div>
             </div>

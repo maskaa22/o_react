@@ -6,8 +6,24 @@ import Mens from '../../images/big-foto/Group 5.png';
 import smallFoto from '../../images/servises/stylesHear/1.png';
 import Slider from "../slider/Slider";
 import {slideStyles} from "../../config/sliderConstants";
+import {useDispatch} from "react-redux";
+import {useEffect} from "react";
+import {WORD_TOKEN} from "../../config/wordsConstants";
+import {APIServise} from "../servises";
+import {IsAuthFunction} from "../utils/function";
 
 export function HairStyles() {
+
+    IsAuthFunction();
+
+
+    // const dispatch = useDispatch();
+    //
+    // useEffect(() => {
+    //     if(localStorage.getItem(WORD_TOKEN)) {
+    //         dispatch(APIServise.auth());
+    //     }
+    // }, []);
 
     return (
         <div>

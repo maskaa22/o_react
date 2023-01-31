@@ -49,7 +49,7 @@ export function App() {
                     <Route path={ADMIN_ALL} element={<AdminHomePage/>}/>
                     <Route path={CLIENT_ALL} element={<ClientHomePage/>}/>
                     <Route path={REGISTRATION} element={<LoginingForm/>}/>
-                    <Route path={LOGIN} element={<LoginingForm login={WORLD_LOGIN}/>}/>
+                    <Route path={LOGIN} element={<LoginingForm/>}/>
                     <Route path={NOT_FOUND} element={<NotFound/>}/>
                     <Route path={LOGIN_RESET_PASSWORD} element={<WritingEmailForm/>}/>
                     <Route path={RESET_PASSWORD} element={<ResetPasswordForm/>}/>

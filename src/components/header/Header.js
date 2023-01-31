@@ -79,7 +79,7 @@ export function Header() {
                 </button>
                 <ul className={'menu'} id={'list-menu'}>
                     <li>
-                        <NavLink to={THIS} onClick={closeToogleMenu}>Головна</NavLink>
+                        <NavLink to={THIS} onClick={closeHandler}>Головна</NavLink>
                     </li>
                     <li>
                         <a onClick={openSubMenuOne}>Послуги</a>

@@ -26,8 +26,12 @@ import {
     WORD_SWAL_SUCCESS,
     WORD_SWAL_TEXT_ERROR,
     WORD_SWAL_USER_CREATED,
-    WORD_TOKEN
+    WORD_TOKEN, WORLD_AUTORIZATION
 } from "../../config/wordsConstants";
+import {FIND_FOTO_URL} from "../../config/URL";
+import {useNavigate} from "react-router-dom";
+import {APIServise} from "./index";
+import {LOGIN} from "../../config/headerConstants";
 
 export const login = (email, password) => {
     return async dispatch => {
@@ -49,10 +53,20 @@ export const auth = () => {
         try {
             const response = await axios.get(`${URL.REFRESH_URL}`,
                 {withCredentials: true});
-
+             //console.log(response);
+            // if(!response) {
+            //     const navigate = useNavigate();
+            //     dispatch(APIServise.logout());
+            //     localStorage.removeItem(WORD_TOKEN);
+            //     navigate(LOGIN);
+            // }
             localStorage.setItem(WORD_TOKEN, response.data.tokenPair.access_token);
             dispatch(setUser(response.data.user));
             dispatch(setRole(response.data.user.role));
+
+            if(!response) {
+                dispatch(APIServise.logout());
+            }
 
             return response.data.user;
         } catch (e) {
@@ -60,9 +74,19 @@ export const auth = () => {
         }
     }
 };
+export const getUserForToken = async () => {
+        try {
+            const response = await axios.get(`${FIND_FOTO_URL}`,
+                {withCredentials: true});
+// console.log(response.data.user_id._id);
+            return response.data;
+        } catch (e) {
+            console.log(e);
+        }
+};
 export const registration = async (name, email, password, role, passwordToo, foto) => {
     try {
-        console.log("foto", foto);
+
         await AuthService.registration(name, email, password, role, passwordToo, foto);
 
         if (!role) {
@@ -168,6 +192,25 @@ export const sentUser = async (text, userEmail, topic) => {
         SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
     }
 };
+// export const getUserById = async (id) => {
+//     try {
+//         const response = await UserService.getUserById(id);
+//
+//         return response.data;
+//     } catch (e) {
+//         // SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
+//     }
+// };
+export const setFoto = async (foto) => {
+    try {
+
+        const response = await UserService.foto(foto);
+
+        return response.data;
+    } catch (e) {
+        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
+    }
+};
 export const setProducts = async (product) => {
     try {
 
@@ -239,6 +282,7 @@ export const updateStatusOrder = async (id, status) => {
 };
 export const getOrdersById = async (id) => {
     try {
+
         return await OrderService.userById(id);
     } catch (e) {
         console.log(e.response.data.message);
@@ -365,10 +409,10 @@ export const editAdressData = async (id, sity, numberNP) => {
         SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
     }
 };
-export const createCalendarEvent = async (title, date, description, time) => {
+export const createCalendarEvent = async (title, date, description, time, id) => {
     try {
 
-        const response = await HomeService.createCalendarEvent(title, date, description, time);
+        const response = await HomeService.createCalendarEvent(title, date, description, time, id);
 
         return response.data;
     } catch (e) {
@@ -379,6 +423,16 @@ export const getCalendarEvent = async (startDateQuery, endDateQuery) => {
     try {
 
         const response = await HomeService.getCalendarEvent(startDateQuery, endDateQuery);
+
+        return response.data;
+    } catch (e) {
+        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
+    }
+};
+export const getCalendarEventForId = async (id) => {
+    try {
+
+        const response = await HomeService.getCalendarEventForId(id);
 
         return response.data;
     } catch (e) {
