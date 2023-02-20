@@ -22,7 +22,12 @@ export function Contacts() {
 
     useEffect(() => {
         if(localStorage.getItem(WORD_TOKEN)) {
-            dispatch(APIServise.auth());
+            dispatch(APIServise.auth()).then(res => {
+                if(res===undefined) {
+                    localStorage.removeItem(WORD_TOKEN)
+                    document.location.reload();
+                }
+            })
         }
     }, []);
 

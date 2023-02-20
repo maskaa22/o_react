@@ -10,20 +10,21 @@ import {useDispatch} from "react-redux";
 import {useEffect} from "react";
 import {WORD_TOKEN} from "../../config/wordsConstants";
 import {APIServise} from "../servises";
-import {IsAuthFunction} from "../utils/function";
 
 export function HairStyles() {
 
-    IsAuthFunction();
+    const dispatch = useDispatch();
 
-
-    // const dispatch = useDispatch();
-    //
-    // useEffect(() => {
-    //     if(localStorage.getItem(WORD_TOKEN)) {
-    //         dispatch(APIServise.auth());
-    //     }
-    // }, []);
+    useEffect(() => {
+        if(localStorage.getItem(WORD_TOKEN)) {
+            dispatch(APIServise.auth()).then(res => {
+                if(res===undefined) {
+                    localStorage.removeItem(WORD_TOKEN)
+                    document.location.reload();
+                }
+            })
+        }
+    }, []);
 
     return (
         <div>

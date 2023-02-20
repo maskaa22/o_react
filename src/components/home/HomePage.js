@@ -12,20 +12,21 @@ import {Comments} from "./Comments";
 import {HomeFunction, scrollTopTop, Up} from "../utils/function";
 import {Main} from "./Main";
 import {Works2} from "./Works2";
-import {WORD_TOKEN} from "../../config/wordsConstants";
+import {WORD_AUTH, WORD_TOKEN} from "../../config/wordsConstants";
 
 export function HomePage() {
+
     const dispatch = useDispatch();
 
-    const isAuth = useSelector(state => state.user.isAuth);
-
-
     useEffect(() => {
-        if(!isAuth) {
-            localStorage.removeItem(WORD_TOKEN);
-        } else
         if(localStorage.getItem(WORD_TOKEN)) {
-            dispatch(APIServise.auth());
+            dispatch(APIServise.auth()).then(res => {
+                if(res===undefined) {
+                    localStorage.removeItem(WORD_TOKEN);
+                    localStorage.removeItem(WORD_AUTH);
+                    document.location.reload();
+                }
+            })
         }
     }, []);
 

@@ -5,7 +5,13 @@ import './ProductCart.css';
 import './ProductCart@media.css';
 import {setProduct} from "../reducers/actionCreators";
 import {SwalFunction} from "../utils/function";
-import {WORD_SWAL_ERROR, WORD_SWAL_NOT_AUTORIZE, WORD_SWAL_OK} from "../../config/wordsConstants";
+import {
+    WORD_SWAL_ERROR,
+    WORD_SWAL_NOT_AUTORIZE,
+    WORD_SWAL_OK,
+    WORD_SWAL_PRODUCT_ADD,
+    WORD_SWAL_SUCCESS
+} from "../../config/wordsConstants";
 import {AUTH_URL} from "../../config/URL";
 
 export function ProductCart({product}) {
@@ -36,6 +42,7 @@ export function ProductCart({product}) {
                                     });
                                     if (!isInArray) {
                                         dispatch(setProduct(product));
+                                        SwalFunction(WORD_SWAL_PRODUCT_ADD, '', WORD_SWAL_SUCCESS, WORD_SWAL_OK, false, 1000);
                                     }
                                 } else SwalFunction(WORD_SWAL_NOT_AUTORIZE, '', WORD_SWAL_ERROR, WORD_SWAL_OK, true);
                             }}/>

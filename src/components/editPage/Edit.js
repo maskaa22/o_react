@@ -8,7 +8,7 @@ import {APIServise} from "../servises";
 import {Input} from "../utils";
 import {NewPochta} from "../newPochta";
 import {StyleForPassword, StyleIconOk} from '../utils/function'
-import {WORLD_ADMIN, WORLD_USER} from "../../config/wordsConstants";
+import {WORD_TOKEN, WORLD_ADMIN, WORLD_USER} from "../../config/wordsConstants";
 import Avatar from '@mui/material/Avatar';
 
 import {AUTH_URL} from "../../config/URL";
@@ -33,7 +33,7 @@ export function Edit() {
 
 
     useEffect(() => {
-        if (localStorage.getItem('token')) {
+        if (localStorage.getItem(WORD_TOKEN)) {
             APIServise.getUserForToken().then(user => setImgById(user.user_id.foto))
         }
     }, []);
@@ -105,8 +105,10 @@ export function Edit() {
                             </div>
                             <div className={'full-center margin-input'}>
                                 <div className={'input-center-full'}>
-                                    <Input value={surname} setValue={setSurname} placeholder={currentUser.surname}
+                                    <Input value={surname} setValue={setSurname}
+                                           placeholder={currentUser.surname ? currentUser.surname : 'Введіть прізвище'}
                                            type={'text'}/>
+
                                 </div>
                             </div>
                             <div className={'full-center margin-input'}>
@@ -117,7 +119,8 @@ export function Edit() {
                             </div>
                             <div className={'full-center margin-input-last'}>
                                 <div className={'input-center-full'}>
-                                    <Input value={phone} setValue={setPhone} placeholder={currentUser.phone}
+                                    <Input value={phone} setValue={setPhone}
+                                           placeholder={currentUser.phone ? currentUser.phone : 'Введіть телефон'}
                                            type={'number'}/>
                                 </div>
                             </div>
@@ -153,23 +156,26 @@ export function Edit() {
                                 </div>
                                 <FiCheck className={`icon_ok notVisible`} id={'icon'}/>
                             </div>
-                            <div className={`full-center margin-input `}>
-                                <div className={`input-center-full  inp`}>
-                                    <input className="input-focus" value={sity} readOnly={true}
-                                           placeholder={currentUser.nameSity}/>
+                            {role === WORLD_USER &&
+                            <div>
+                                <div className={`full-center margin-input `}>
+                                    <div className={`input-center-full  inp`}>
+                                        <input className="input-focus" value={sity} readOnly={true}
+                                               placeholder={currentUser.nameSity ? currentUser.nameSity : '<= Оберіть місто'}/>
+                                    </div>
+                                </div>
+                                <div className={`full-center margin-input `}>
+                                    <div className={`input-center-full  inp-last`}>
+                                        {
+                                            sity &&
+                                                <input className="input-focus" value={`Відділення № ${numberNP}`}
+                                                       placeholder={currentUser.nameDepartment ? `Відділення № ${currentUser.nameDepartment}` : 'Оберіть відділення'}
+                                                       readOnly={true}/>
+                                        }
+                                    </div>
                                 </div>
                             </div>
-                            <div className={`full-center margin-input `}>
-                                <div className={`input-center-full  inp-last`}>
-                                    {
-                                        numberNP ?
-                                            <input className="input-focus"
-                                                   value={`Відділення № ${numberNP}`} readOnly={true}/> :
-                                            <input className="input-focus" placeholder={`Відділення № ${currentUser.nameDepartment}`}
-                                                   readOnly={true}/>
-                                    }
-                                </div>
-                            </div>
+                            }
                         </div>
                     </div>
                     <div className={'full-center margin-input'}>

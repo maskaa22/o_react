@@ -1,4 +1,4 @@
-import {Link, Route, Routes} from "react-router-dom";
+import {Link, Outlet, Route, Routes, useNavigate} from "react-router-dom";
 import {MdNavigateNext} from "react-icons/md";
 import React, {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
@@ -31,30 +31,38 @@ import {Orders} from "../orders";
 import {Users} from "../users";
 import {Records} from "../records/Records";
 import {
-    WORD_ACTIVE_MENU_CATEGORY,
+    WORD_ACTIVE_MENU_CATEGORY, WORD_AUTH,
     WORD_CATEGORY_MENU,
     WORD_NO_SCROLL,
-    WORD_SMALL_MENU_ADMIN_CLIENT
+    WORD_SMALL_MENU_ADMIN_CLIENT, WORD_TOKEN
 } from "../../config/wordsConstants";
+import {LOGIN} from "../../config/headerConstants";
 
-export function AdminHomePage() {
-    const [users, setUsers] = useState([]);
+export function AdminHomePage({setUsers}) {
+    // const [users, setUsers] = useState([]);
 
     const dispatch = useDispatch();
 
     async function getUser() {
         try {
             const response = await APIServise.getUsers();
-            setUsers(response.data);
+            if(response!==undefined) {
+                setUsers(response.data);
+            }
         } catch (e) {
             console.log(e);
         }
     }
+    const navigate = useNavigate();
 
     useEffect(() => {
-        if (localStorage.getItem('token')) {
-            dispatch(APIServise.auth());
-            getUser();
+        if (localStorage.getItem(WORD_TOKEN)) {
+            dispatch(APIServise.auth()).then(req => {
+                if(req===undefined) {
+                    navigate(LOGIN);
+                }
+                getUser();
+            });
         }
 
     }, []);
@@ -130,15 +138,7 @@ export function AdminHomePage() {
             </div>
             <div className={'home-page'}>
                 <div className={'small-content-admin-client'}>
-                    <Routes>
-                        <Route path={THIS} element={<Edit/>}/>
-                        <Route path={CLIENTS} element={<Users items={users}/>}/>
-                        <Route path={RECORDS} element={<Records/>}/>
-                        <Route path={PRODUCTS} element={<CreateProduct/>}/>
-                        <Route path={ORDERS} element={<Orders/>}/>
-                        <Route path={ARCHIVE_ORDERS} element={<ArchiveOrders/>}/>
-                        <Route path={ANALYSIS} element={<Analysis/>}/>
-                    </Routes>
+                    <Outlet/>
                 </div>
             </div>
         </div>

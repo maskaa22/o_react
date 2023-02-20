@@ -1,19 +1,21 @@
-import {Link, Route, Routes} from "react-router-dom";
+import {Link, Route, Routes, useNavigate} from "react-router-dom";
 import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 
 import {APIServise} from "../servises";
 import {CLIENT, CLIENT_ORDERS, CLIENT_RECORDS, ORDERS, RECORDS, THIS} from "../../config/homeConstants";
 import {closeToogleMenu, handleClick, ifOpenPageAddActiveClass, openToogleMenu, ViewFunction} from "../utils/function";
-import {Edit} from "../editPage";
-import {UserOrders} from "../orders";
 import {MdNavigateNext} from "react-icons/md";
 import {
     WORD_ACTIVE_MENU_CATEGORY,
     WORD_CATEGORY_MENU,
     WORD_NO_SCROLL,
-    WORD_SMALL_MENU_ADMIN_CLIENT, WORD_TOKEN
+    WORD_SMALL_MENU_ADMIN_CLIENT,
+    WORD_TOKEN
 } from "../../config/wordsConstants";
+import {LOGIN} from "../../config/headerConstants";
+import {Edit} from "../editPage";
+import {UserOrders} from "../orders";
 import {ClientRecords} from "../clientRecords";
 
 export function ClientHomePage() {
@@ -21,18 +23,17 @@ export function ClientHomePage() {
     const [user, setUser] = useState([]);
 
     const dispatch = useDispatch();
-
-    const isAuth = useSelector(state => state.user.isAuth);
-
+    const navigate = useNavigate();
 
     useEffect(() => {
-        if(!isAuth) {
-            localStorage.removeItem(WORD_TOKEN);
-        } else
-        if (localStorage.getItem('token')) {
-        dispatch(APIServise.auth());
-        APIServise.getUserForToken().then(user => {
-            setUser(user.user_id._id)})
+        if (localStorage.getItem(WORD_TOKEN)) {
+            dispatch(APIServise.auth()).then(req => {
+                if (req === undefined) {
+                    navigate(LOGIN);
+                } else {
+                    setUser(req.id);
+                }
+            })
         }
     }, []);
 

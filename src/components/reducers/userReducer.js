@@ -1,4 +1,4 @@
-import {LOGOUT, SET_ROLE, SET_USER} from './actionTypes'
+import {LOGOUT, SET_AUTH, SET_ROLE, SET_USER} from './actionTypes'
 import {WORD_TOKEN} from "../../config/wordsConstants";
 
 const defaultState = {
@@ -27,6 +27,11 @@ export default function userReducer(state = defaultState, action) {
                 ...state,
                 currentUser: {},
                 isAuth: false
+            }
+        case SET_AUTH:
+            return {
+                ...state,
+                isAuth: true,
             }
 
         default:

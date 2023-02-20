@@ -1,6 +1,6 @@
 module.exports = {
     ABOUT_AS: '/about_as',
-    ADMIN_ALL: '/admin/*',
+    ADMIN_ALL: '/admin',
     ACTIVATE_TOKEN_URL: 'auth/activate/:token',
     CLIENT_ALL: '/user/*',
     CONTACT: '/contact',

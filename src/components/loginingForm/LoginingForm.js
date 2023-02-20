@@ -13,6 +13,8 @@ import {
     WORD_REGISTR,
     WORD_REGISTRATION
 } from "../../config/wordsConstants";
+import {StyleDivOk, StyleForPassword, StyleIconOk} from "../utils/function";
+import {FiCheck} from "react-icons/fi";
 
 export function LoginingForm({role, handleClose}) {
 
@@ -21,6 +23,9 @@ export function LoginingForm({role, handleClose}) {
     const [password, setPassword] = useState('');
     const [passwordToo, setPasswordToo] = useState('');
     const [border, setBorder] = useState('');
+
+    const location = useLocation();
+    const isLogin = location.pathname === LOGIN;
 
     useEffect(() => {
         if (!role) {
@@ -31,8 +36,11 @@ export function LoginingForm({role, handleClose}) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const location = useLocation();
-    const isLogin = location.pathname === LOGIN;
+    const block_check = document.getElementById('block_check_login');
+
+    function stylePassword() {
+        StyleForPassword(password, block_check)
+    }
 
     return (
         <div>
@@ -51,15 +59,19 @@ export function LoginingForm({role, handleClose}) {
                     <Input value={email} setValue={setEmail} type={'text'} placeholder={'Введіть email'}
                            className={'input-margin'}/>
                     <Input value={password} setValue={setPassword} type={'password'} placeholder={'Введіть пароль'}
-                           className={'input-margin'}/>
+                           className={'input-margin'} id="pass-old" onInput={stylePassword}/>
+                    <div className={'input-center-full'} id="block_check_login">
+                    </div>
                     {
                         !isLogin && <Input value={passwordToo} setValue={setPasswordToo} type={'password'} placeholder={'Повторіть пароль'}
-                                         className={'input-margin'}/>
+                                         className={'input-margin'} id="pass-new" onInput={stylePassword}/>
                     }
                     <button className={'form_btn'} onClick={() => {
                         {
                             isLogin ? dispatch(APIServise.login(email, password)).then(rez => {
-                                if (rez) navigate(THIS);
+                                if (rez) {
+                                    navigate(THIS);
+                                }
                             }) : APIServise.registration(name, email, password, role, passwordToo, '').then(rez => {
                                 if (!role) {
                                     if (rez) navigate(LOGIN);

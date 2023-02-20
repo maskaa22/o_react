@@ -15,10 +15,9 @@ export function Comments() {
                             <img src={Foto1} className={'personPhoto'} alt={'Головна'}/></div>
                     </div>
                     <div className={'comment-item-p'}>
-                        <p className={'comment-p'}>Lorem ipsum dolor sit amet, eu soleat causae virtute vix. Ut
-                            dicant labores pro. </p>
-                        <p className={'p small'}>Lorem ipsum dolor sit amet, eu soleat causae virtute vix. Ut dicant
-                            labores pro. </p>
+                        <p className={'comment-p'}>Дякую за чудову стрижку та хорошу бесіду під час неї. Всім
+                            задоволений.</p>
+                        <p className={'p small'}>Вільям Август, 15.09.2022</p>
                     </div>
                 </div>
             </div>
@@ -29,10 +28,9 @@ export function Comments() {
                             <img src={Foto2} className={'personPhoto'} alt={'Головна'}/></div>
                     </div>
                     <div className={'comment-item-p'}>
-                        <p className={'comment-p'}>Lorem ipsum dolor sit amet, eu soleat causae virtute vix. Ut
-                            dicant labores pro. </p>
-                        <p className={'p small'}>Lorem ipsum dolor sit amet, eu soleat causae virtute vix. Ut dicant
-                            labores pro. </p>
+                        <p className={'comment-p'}>Мені сподобалось, як Ви уклали моє волосся. Укладка протрималася
+                            досить довго. Дякую.</p>
+                        <p className={'p small'}>Лариса Володимирівна, 17.09.2022</p>
                     </div>
                 </div>
             </div>
@@ -43,10 +41,8 @@ export function Comments() {
                             <img src={Foto3} className={'personPhoto'} alt={'Головна'}/></div>
                     </div>
                     <div className={'comment-item-p'}>
-                        <p className={'comment-p'}>Lorem ipsum dolor sit amet, eu soleat causae virtute vix. Ut
-                            dicant labores pro. </p>
-                        <p className={'p small'}>Lorem ipsum dolor sit amet, eu soleat causae virtute vix. Ut dicant
-                            labores pro. </p>
+                        <p className={'comment-p'}>Від моєї зачіски всі були в захваті. Обов'язково прийду ще.</p>
+                        <p className={'p small'}>Аліна Шатенко, 03.12.2022</p>
                     </div>
                 </div>
             </div>
@@ -57,10 +53,8 @@ export function Comments() {
                             <img src={Foto4} className={'personPhoto'} alt={'Головна'}/></div>
                     </div>
                     <div className={'comment-item-p'}>
-                        <p className={'comment-p'}>Lorem ipsum dolor sit amet, eu soleat causae virtute vix. Ut
-                            dicant labores pro. </p>
-                        <p className={'p small'}>Lorem ipsum dolor sit amet, eu soleat causae virtute vix. Ut dicant
-                            labores pro. </p>
+                        <p className={'comment-p'}>Дякую! Мені дуже сподобалося, наступного разу прийду з сином.</p>
+                        <p className={'p small'}>Алік Вінтер, 12.01.2023</p>
                     </div>
                 </div>
             </div>

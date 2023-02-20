@@ -57,3 +57,7 @@
     margin: 15px 10px 0 10px;
     cursor: pointer;
 }
+
+#block_check_login {
+    height: 5px;
+}

@@ -2,7 +2,7 @@ import * as React from 'react';
 import {useEffect, useState} from 'react';
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 import './BasketPage.css';
 import './BasketPage@media.css';
@@ -12,10 +12,10 @@ import {BasketCart} from "../basketCart";
 import {BUY_URL} from "../../config/URL";
 import {delAllProduct} from "../reducers/actionCreators";
 import {InfoForBuy} from "../infoForBuy";
-import {PRODUCTS} from "../../config/headerConstants";
+import {LOGIN, PRODUCTS} from "../../config/headerConstants";
 import {store} from "../reducers";
 import {TbBasketOff} from "react-icons/tb";
-import {WORD_LOCALES, WORD_MONEY, WORD_OPTIONS, WORD_WAITING} from "../../config/wordsConstants";
+import {WORD_AUTH, WORD_LOCALES, WORD_MONEY, WORD_OPTIONS, WORD_TOKEN, WORD_WAITING} from "../../config/wordsConstants";
 
 export function BasketPage() {
 
@@ -31,6 +31,20 @@ export function BasketPage() {
     useEffect(() => {
         setCount(1);
         setStatus(WORD_WAITING)
+    }, []);
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if(localStorage.getItem(WORD_TOKEN)) {
+            dispatch(APIServise.auth()).then(res => {
+                if(res===undefined) {
+                    localStorage.removeItem(WORD_AUTH);
+                    navigate(LOGIN);
+                }
+            })
+        }
     }, []);
 
     let summa = 0;
@@ -94,8 +108,6 @@ export function BasketPage() {
     };
 
     const month = new Date().toLocaleString(WORD_LOCALES, {month: WORD_OPTIONS});
-
-    const navigate = useNavigate();
 
     const handleCheckout = () => {
         axios

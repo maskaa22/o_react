@@ -22,8 +22,6 @@ export function UserOrders() {
         return () => {
             isMounted = false;
         }
-
-
 }, []);
 
     return (

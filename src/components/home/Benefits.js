@@ -19,12 +19,11 @@ export function Benefits() {
                 </div>
             </div>
             <div className={'circle-grid'}>
-                <p className={'p'}>Lorem ipsum dolor sit amet, eu soleat causae virtute vix. Ut dicant labores
-                    pro. </p>
-                <p className={'p'}>Lorem ipsum dolor sit amet, eu soleat causae virtute vix. Ut dicant labores
-                    pro. </p>
-                <p className={'p'}>Lorem ipsum dolor sit amet, eu soleat causae virtute vix. Ut dicant labores
-                    pro. </p></div>
+                <p className={'p'}>Відчуття стилю, бачення Вашого нового образу не залишить байдужим ні тендітну леді,
+                    ні поважного джентельмена. </p>
+                <p className={'p'}>Швидкість в поєднанні з навиками - велика сила. </p>
+                <p className={'p'}>Студія краси дозволяє не тільки внести зовнішні позитивні корективи, але і вирівняти
+                    емоційний фон. </p></div>
         </div>
     );
 }

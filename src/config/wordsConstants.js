@@ -5,6 +5,7 @@ module.exports = {
     WORD_ADD: 'add',
     WORLD_ADMIN: 'admin',
     WORD_ARRAY: 'array',
+    WORD_AUTH: 'Auth',
     WORD_AUTORIZ: 'Авторизуватися',
     WORD_AUTORIZATING: 'Авторизація',
     WORLD_AUTORIZATION: 'autorization',

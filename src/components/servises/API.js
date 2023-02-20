@@ -14,7 +14,7 @@ import {store} from "../reducers";
 import {SwalFunction} from "../utils/function";
 import {URL} from "../../config";
 import {
-    WORD_ACTIVETING,
+    WORD_ACTIVETING, WORD_AUTH,
     WORD_RESET,
     WORD_SWAL_CATEGORY_CREATED,
     WORD_SWAL_ERROR,
@@ -39,6 +39,8 @@ export const login = (email, password) => {
             const response = await AuthService.login(email, password);
 
             localStorage.setItem(WORD_TOKEN, response.data.access_token);
+            //localStorage.setItem(WORD_AUTH, 'true');
+
             dispatch(setUser(response.data.user));
             dispatch(setRole(response.data.user.role));
 
@@ -53,13 +55,7 @@ export const auth = () => {
         try {
             const response = await axios.get(`${URL.REFRESH_URL}`,
                 {withCredentials: true});
-             //console.log(response);
-            // if(!response) {
-            //     const navigate = useNavigate();
-            //     dispatch(APIServise.logout());
-            //     localStorage.removeItem(WORD_TOKEN);
-            //     navigate(LOGIN);
-            // }
+
             localStorage.setItem(WORD_TOKEN, response.data.tokenPair.access_token);
             dispatch(setUser(response.data.user));
             dispatch(setRole(response.data.user.role));
@@ -78,7 +74,7 @@ export const getUserForToken = async () => {
         try {
             const response = await axios.get(`${FIND_FOTO_URL}`,
                 {withCredentials: true});
-// console.log(response.data.user_id._id);
+
             return response.data;
         } catch (e) {
             console.log(e);
@@ -139,6 +135,8 @@ export const logout = () => {
         try {
             await AuthService.logout();
 
+            //localStorage.removeItem(WORD_AUTH)
+
             dispatch(userLogout());
 
         } catch (e) {
@@ -150,7 +148,7 @@ export const getUsers = async () => {
     try {
         return await UserService.users();
     } catch (e) {
-        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
+        //SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
     }
 };
 
@@ -360,7 +358,7 @@ export const deleteOrder = async (id) => {
 };
 export const deleteProduct = async (number) => {
     try {
-
+console.log(number);
         const response = await ProductService.deleteProduct(number);
 
         SwalFunction(WORD_SWAL_READY, '', WORD_SWAL_SUCCESS, WORD_SWAL_OK, false, 3500);
