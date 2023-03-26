@@ -34,14 +34,17 @@ export default function ProductCategory({
                     onClick={() => {
                         setProductCategoryCheck(productCategoryCheck = !productCategoryCheck);
                         closeToogleMenu(WORD_CATEGORY_MENU, WORD_PRODUCT_MENU_BLOCK, WORD_ACTIVE_MENU_CATEGORY, WORD_NO_SCROLL);
-                        dispatch(APIServise.categoriesFilter(category._id, page, 2)).then(response => {
+                        dispatch(APIServise.categoriesFilter(category._id, page, 10)).then(response => {
+                            if (response.data.page > response.data.pages) {
+                                dispatch(APIServise.categoriesFilter(category._id, 1, 10)).then(response => {
+                                    setFilter(response.data.docs);
+                                    setOffset(0);
+                                });
+                            } else
+                                setFilter(response.data.docs);
                             setOffset(0);
-                            if (response.data.total === 0 || response.data.page > response.data.pages) {
-                                console.log('Картинка нет товаров на єтой странице');
-                            }
                             setCategory_id(category._id);
                             setProductFilter(response.data);
-                            setFilter(response.data.docs);
                             dispatch(setCategory());
                             setCategoriName(category.category_name);
                             openFilterName();

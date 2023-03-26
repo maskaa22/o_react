@@ -1,4 +1,6 @@
+import React, {useEffect, useState} from "react";
 import {Route, Routes} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 import {AboutAsPage} from "../aboutAs";
 import {
@@ -12,42 +14,43 @@ import {
     LOGIN,
     LOGIN_RESET_PASSWORD,
     MENS_HAIRCUT,
-    PRODUCTS, PRODUCTS_ORDERS,
+    PRODUCTS,
+    PRODUCTS_ORDERS,
     REGISTRATION,
     RESET_PASSWORD,
     THIS,
     WOMENS_HAIRCUT
 } from "../../config/headerConstants";
+import {ActiveForm, LoginingForm, ResetPasswordForm, WritingEmailForm} from "../loginingForm";
 import {AdminHomePage} from "../admin";
+import {Analysis} from "../ analysis";
+import {ANALYSIS, ARCHIVE_ORDERS, CLIENTS, ORDERS, PRODUCTS_CREATE, RECORDS} from "../../config/homeConstants";
+import {APIServise} from "../servises";
+import {ArchiveOrders} from "../archive";
+import {BasketPage} from "../basket";
 import {ClientHomePage} from "../client";
 import {Contacts} from "../contacts";
+import {CreateProduct} from "../createProduct";
+import {Edit} from "../editPage";
 import {HairColor} from "../hairColor";
 import {HairStyles} from "../hairStyles";
 import {HomePage} from "../home";
-import {ActiveForm, LoginingForm, ResetPasswordForm, WritingEmailForm} from "../loginingForm";
 import {MensHaircut} from "../mensHaircut";
-import {ProductsPage} from "../productsPage";
-import {WomensHaircut} from "../womensHaircut";
-import {useSelector} from "react-redux";
-import React, {useEffect, useState} from "react";
-import {WORD_TOKEN, WORLD_ADMIN, WORLD_USER} from "../../config/wordsConstants";
-import {APIServise} from "../servises";
-import {store} from "../reducers";
-import {setAuth, setRole} from "../reducers/actionCreators";
-import {Edit} from "../editPage";
-import {ANALYSIS, ARCHIVE_ORDERS, CLIENTS, ORDERS, PRODUCTS_CREATE, RECORDS} from "../../config/homeConstants";
-import {Records} from "../records/Records";
-import {CreateProduct} from "../createProduct";
 import {Orders} from "../orders";
-import {ArchiveOrders} from "../archive";
-import {Analysis} from "../ analysis";
+import {ProductsPage} from "../productsPage";
+import {Records} from "../records/Records";
+import {setAuth, setRole} from "../reducers/actionCreators";
+import {store} from "../reducers";
 import {Users} from "../users";
-import {BasketPage} from "../basket";
+import {WomensHaircut} from "../womensHaircut";
+import {WORD_TOKEN, WORLD_ADMIN, WORLD_USER} from "../../config/wordsConstants";
 
 export function App() {
 
     const isAuth = useSelector(state => state.user.isAuth);
     const role = useSelector(state => state.user.role);
+
+    const [users, setUsers] = useState([]);
 
     useEffect(() => {
         if (isAuth === false) {
@@ -59,8 +62,6 @@ export function App() {
             }
         }
     }, [isAuth]);
-
-    const [users, setUsers] = useState([]);
 
     return (
         <div className={'main'}>
@@ -75,19 +76,19 @@ export function App() {
                     <Route path={ABOUT_AS} element={<AboutAsPage/>}/>
                     <Route path={CONTACT} element={<Contacts/>}/>
 
-                    { (isAuth && role===WORLD_ADMIN) &&
-                        <Route path={ADMIN_ALL} element={<AdminHomePage setUsers={setUsers}/>}>
-                            <Route index element={<Edit/>}/>
-                            <Route path={CLIENTS} element={<Users items={users}/>}/>
-                            <Route path={RECORDS} element={<Records/>}/>
-                            <Route path={PRODUCTS_CREATE} element={<CreateProduct/>}/>
-                            <Route path={ORDERS} element={<Orders/>}/>
-                            <Route path={ARCHIVE_ORDERS} element={<ArchiveOrders/>}/>
-                            <Route path={ANALYSIS} element={<Analysis/>}/>
-                        </Route>
+                    {(isAuth && role === WORLD_ADMIN) &&
+                    <Route path={ADMIN_ALL} element={<AdminHomePage setUsers={setUsers}/>}>
+                        <Route index element={<Edit/>}/>
+                        <Route path={CLIENTS} element={<Users items={users}/>}/>
+                        <Route path={RECORDS} element={<Records/>}/>
+                        <Route path={PRODUCTS_CREATE} element={<CreateProduct/>}/>
+                        <Route path={ORDERS} element={<Orders/>}/>
+                        <Route path={ARCHIVE_ORDERS} element={<ArchiveOrders/>}/>
+                        <Route path={ANALYSIS} element={<Analysis/>}/>
+                    </Route>
                     }
-                    { isAuth && <Route path={PRODUCTS_ORDERS} element={<BasketPage/>}/>}
-                    { (isAuth && role===WORLD_USER) && <Route path={CLIENT_ALL} element={<ClientHomePage/>}/>}
+                    {isAuth && <Route path={PRODUCTS_ORDERS} element={<BasketPage/>}/>}
+                    {(isAuth && role === WORLD_USER) && <Route path={CLIENT_ALL} element={<ClientHomePage/>}/>}
 
                     <Route path={REGISTRATION} element={<LoginingForm/>}/>
                     <Route path={LOGIN} element={<LoginingForm/>}/>

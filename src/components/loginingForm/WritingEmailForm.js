@@ -4,11 +4,11 @@ import './LoginingForm.css';
 import {Input} from "../utils";
 import {sendEmailForResetPassword} from "../servises/API";
 
-export function WritingEmailForm ()
-{
+export function WritingEmailForm() {
+
     const [email, setEmail] = useState('');
 
-    return(
+    return (
         <div className={'flex'}>
             <div className={'form border'}>
                 <div className="form_header">Введіть email</div>

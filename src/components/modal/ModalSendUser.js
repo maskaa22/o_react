@@ -1,6 +1,7 @@
 import {useState} from "react";
 
-import './Modal.css'
+import './Modal.css';
+import './Modal@media.css';
 import {APIServise} from "../servises";
 import {Input} from "../utils";
 import {SwalFunction} from "../utils/function";
@@ -21,7 +22,8 @@ export function ModalSendUser({handleClose, userEmail}) {
                     <div className={'margin_right_small'}>Отримувач:</div>
                     <span>{userEmail}</span></div>
                 <div className={'auto margin_all_send'}>
-                    <Input value={topic} setValue={setTopic} placeholder={'Введіть тему'}/></div>
+                    <Input value={topic} setValue={setTopic} placeholder={'Введіть тему'}
+                           className={'input-send-email'}/></div>
                 <div className={'auto flex'}>
                     <textarea cols="35" rows="7" placeholder={'Ввести текст'}
                               onChange={(event) => setText(event.target.value)}/>
@@ -31,7 +33,7 @@ export function ModalSendUser({handleClose, userEmail}) {
                         APIServise.sentUser(text, userEmail, topic).then(() => {
                             handleClose();
                             SwalFunction(WORD_SWAL_LATER_SEND, '', WORD_SWAL_SUCCESS, WORD_SWAL_OK, false, 3500);
-                        })
+                        });
                     }}>Відправити
                     </button>
                 </div>

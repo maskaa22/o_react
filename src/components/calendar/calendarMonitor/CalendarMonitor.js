@@ -2,11 +2,12 @@ import {GrFormNext, GrFormPrevious} from "react-icons/gr";
 import {MdToday} from "react-icons/md";
 import React from 'react';
 
-import './CalendarMonitor.css'
+import './CalendarMonitor.css';
 import {ButtonsWrapper, DivWrapper, TextWrapper, TitleWrapper} from "../CalendarCSS";
 
 
 const CalendarMonitor = ({today, prevHandler, todayHandler, nextHandler}) => {
+
     return (
         <DivWrapper>
             <div>

@@ -11,19 +11,22 @@ import {
     modelNameNovaPochta
 } from "../../config/constants";
 import {NEW_POCHTA_URL} from "../../config/URL";
+import {SwalFunction} from "../utils/function";
 import {
+    WORD_FAILED_TO_FETCH,
     WORD_HIDDEN,
-    WORD_POST, WORD_SWAL_ERROR, WORD_SWAL_OK,
+    WORD_POST,
+    WORD_SWAL_ERROR,
+    WORD_SWAL_OK,
     WORD_SWAL_TEXT_ERROR,
     WORD_VISIBLE,
     WORD_VISIBLE_N_P
 } from "../../config/wordsConstants";
-import {SwalFunction} from "../utils/function";
 
 export function NewPochta({setSity, setNumberNP, setVisibleSity, setVisibleNumber}) {
 
-    const [nameSity, setNameSity] = useState('');
     const [nameDepartment, setNameDepartment] = useState('');
+    const [nameSity, setNameSity] = useState('');
     const [value, setValue] = useState(WORD_HIDDEN);
 
     const sity = {
@@ -51,7 +54,7 @@ export function NewPochta({setSity, setNumberNP, setVisibleSity, setVisibleNumbe
     const handleChangeDepartment = (event) => {
         setNameDepartment(event);
         setNumberNP(event);
-        setVisibleNumber(WORD_VISIBLE)
+        setVisibleNumber(WORD_VISIBLE);
     };
 
     return (
@@ -70,7 +73,6 @@ export function NewPochta({setSity, setNumberNP, setVisibleSity, setVisibleNumbe
                                 )
                                     .then((response) => response.json())
                                     .then(({data}) => {
-
                                         resolve(
                                             data.map(({Description}) => ({
                                                 value: Description,
@@ -79,7 +81,7 @@ export function NewPochta({setSity, setNumberNP, setVisibleSity, setVisibleNumbe
                                         );
                                     })
                                     .catch((reject) => {
-                                        SwalFunction(WORD_SWAL_TEXT_ERROR, reject, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
+                                        SwalFunction(WORD_SWAL_TEXT_ERROR, WORD_FAILED_TO_FETCH, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
                                     });
                             });
                         }}
@@ -104,7 +106,6 @@ export function NewPochta({setSity, setNumberNP, setVisibleSity, setVisibleNumbe
                                 )
                                     .then((response) => response.json())
                                     .then(({data}) => {
-
                                         resolve(
                                             data.map(({Description, Number}, index) => ({
                                                 value: Number,
@@ -114,7 +115,7 @@ export function NewPochta({setSity, setNumberNP, setVisibleSity, setVisibleNumbe
                                         );
                                     })
                                     .catch((reject) => {
-                                        SwalFunction(WORD_SWAL_TEXT_ERROR, reject, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
+                                        SwalFunction(WORD_SWAL_TEXT_ERROR, WORD_FAILED_TO_FETCH, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
                                     });
                             });
                         }}

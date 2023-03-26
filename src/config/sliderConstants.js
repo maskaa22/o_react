@@ -19,16 +19,19 @@ export const slideColor = [
     {url: `http://localhost:3000${color2}`},
     {url: `http://localhost:3000${color3}`}
 ];
+
 export const slideStyles = [
     {url: `http://localhost:3000${styles1}`},
     {url: `http://localhost:3000${styles2}`},
     {url: `http://localhost:3000${styles3}`}
 ];
+
 export const slidesMan = [
     {url: `http://localhost:3000${man1}`},
     {url: `http://localhost:3000${man2}`},
     {url: `http://localhost:3000${man3}`}
 ];
+
 export const slideWoman = [
     {url: `http://localhost:3000${woman1}`},
     {url: `http://localhost:3000${woman2}`},

@@ -2,6 +2,7 @@ import './AboutAsPage.css';
 import './AboutAsPage@media.css';
 
 export function History() {
+
     return (
         <div className={'img-hear margin-bottom-about'}>
             <div className={'grid-history'}>

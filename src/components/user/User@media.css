@@ -1,6 +1,31 @@
-@media screen and (min-width: 801px) {
+@media screen and (min-width: 1920px) {
+    .header-table {
+        font-size: 3vh;
+    }
+
+    .records, .cell-table {
+        font-size: 2.5vh;
+    }
+
+    .name-date {
+        right: 40px;
+    }
+
+    .btn-ok {
+        height: 30px;
+        font-size: 2vh;
+    }
+
     .btn-fond-size {
-        font-size: 15px;
+        font-size: 30px;
+        height: 50px;
+    }
+}
+
+@media screen and (min-width: 801px) and (max-width: 1900px) {
+    .btn-fond-size {
+        font-size: 2.5vh;
+        height: 40px;
     }
 }
 

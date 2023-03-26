@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {useEffect, useState} from 'react';
 import axios from "axios";
-import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
 
 import './BasketPage.css';
 import './BasketPage@media.css';
-import '../productsPage/ProductsPage.css'
+import '../productsPage/ProductsPage.css';
 import {APIServise} from "../servises";
 import {BasketCart} from "../basketCart";
 import {BUY_URL} from "../../config/URL";
@@ -22,24 +22,23 @@ export function BasketPage() {
     const currentProduct = useSelector(state => state.product.currentProduct);
     const currentUser = useSelector(state => state.user.currentUser);
 
-    const [count, setCount] = useState();
     const [cart, setCart] = useState(currentProduct);
-    const [status, setStatus] = useState('');
+    const [count, setCount] = useState();
     const [pay, setPay] = useState('');
-
-
-    useEffect(() => {
-        setCount(1);
-        setStatus(WORD_WAITING)
-    }, []);
+    const [status, setStatus] = useState('');
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     useEffect(() => {
-        if(localStorage.getItem(WORD_TOKEN)) {
+        setCount(1);
+        setStatus(WORD_WAITING);
+    }, []);
+
+    useEffect(() => {
+        if (localStorage.getItem(WORD_TOKEN)) {
             dispatch(APIServise.auth()).then(res => {
-                if(res===undefined) {
+                if (res === undefined) {
                     localStorage.removeItem(WORD_AUTH);
                     navigate(LOGIN);
                 }
@@ -50,13 +49,13 @@ export function BasketPage() {
     let summa = 0;
 
     cart.forEach(el => {
-        summa += Number.parseFloat(el.totalPrice)
+        summa += Number.parseFloat(el.totalPrice);
     });
 
     const increase = (id) => {
         setCart((cart) => {
-            return cart.map((product) => {
 
+            return cart.map((product) => {
                 if (product._id === id) {
 
                     return {
@@ -65,25 +64,26 @@ export function BasketPage() {
                         totalPrice: (+product.count + 1) * product.price,
                     };
                 }
-                return product
+                return product;
             })
         })
     };
 
     const decrease = (id) => {
         setCart((cart) => {
-            console.log(cart);
-            return cart.map((product) => {
 
+            return cart.map((product) => {
                 if (product.id === id) {
+
                     const newCount = product.count - 1 > 1 ? product.count - 1 : 1;
+
                     return {
                         ...product,
                         count: newCount,
                         totalPrice: newCount * product.price,
                     };
                 }
-                return product
+                return product;
             })
         })
     };
@@ -94,15 +94,17 @@ export function BasketPage() {
 
     const changeValue = (id, value) => {
         setCart((cart) => {
+
             return cart.map((product) => {
                 if (product._id === id) {
+
                     return {
                         ...product,
                         count: value,
                         totalPrice: value * product.price
                     }
                 }
-                return product
+                return product;
             })
         })
     };
@@ -116,16 +118,15 @@ export function BasketPage() {
                 userId: currentUser._id,
             })
             .then((response) => {
-                console.log(response);
                 if (response.data.url) {
                     window.location.href = response.data.url;
                 }
-
             })
             .catch((err) => console.log(err.message));
     };
 
     function showCheck() {
+
         return (
             <div>
                 <div>
@@ -133,6 +134,7 @@ export function BasketPage() {
                     <div className={'basket_check btn_last'}>
                         {
                             cart.map((product, i) => {
+
                                 return (
                                     <BasketCart
                                         product={product}
@@ -141,7 +143,6 @@ export function BasketPage() {
                                         increase={increase}
                                         decrease={decrease}
                                         changeValue={changeValue}
-
                                         money={summa * count} setPay={setPay}
                                     />
                                 );
@@ -158,6 +159,7 @@ export function BasketPage() {
                             <button className={'check'} onClick={() => {
                                 APIServise.setOrder(currentUser.id, currentUser.name, currentUser.surname, currentUser.phone,
                                     currentUser.nameSity, currentUser.nameDepartment, pay, cart, status, summa * count, month);
+                                APIServise.dateAnalizy(month, summa);
                                 if (pay === WORD_MONEY) {
                                     navigate(PRODUCTS);
                                     store.dispatch(delAllProduct());
@@ -165,7 +167,6 @@ export function BasketPage() {
                                 if (pay !== '' && pay !== WORD_MONEY) {
                                     handleCheckout();
                                 }
-                                APIServise.dateAnalizy(month, summa);
                             }}>Оформити
                             </button>
                         </div>
@@ -176,6 +177,7 @@ export function BasketPage() {
     }
 
     function showNothing() {
+
         return (
             <div>
                 <h1 className={'basket-h1'}>Додайте товари в корзину</h1>
@@ -187,10 +189,8 @@ export function BasketPage() {
     return (
         <div>
             {
-                currentProduct.length > 0 ?
-                    showCheck() : showNothing()
+                currentProduct.length > 0 ? showCheck() : showNothing()
             }
         </div>
-
     );
 }

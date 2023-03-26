@@ -1,25 +1,24 @@
-import {Record} from "../record";
 import * as React from "react";
 import {useEffect, useState} from "react";
-import {APIServise} from "../servises";
-import {useSelector} from "react-redux";
 
-export function ClientRecords ()
-{
+import {APIServise} from "../servises";
+import {Record} from "../record";
+
+export function ClientRecords() {
 
     const [events, setEvents] = useState([]);
 
-    const location = window. location.pathname;
+    const location = window.location.pathname;
     const locationSplit = location.split('/:');
     const locationSplitOneItem = locationSplit[1];
 
     useEffect(() => {
         APIServise.getCalendarEventForId(locationSplitOneItem).then(rez => {
             setEvents(rez);
-        })
+        });
     }, []);
 
-    return(
+    return (
         <div>
             <h2>Мої записи</h2>
             <div className={'center-table'}>
@@ -36,7 +35,6 @@ export function ClientRecords ()
                         events.map(event => <Record event={event} key={event._id} user/>)
                     }
                 </div>
-
             </div>
         </div>
     );

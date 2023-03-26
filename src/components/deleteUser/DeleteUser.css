@@ -19,6 +19,7 @@
     cursor: pointer;
     background-color: white;
     height: fit-content;
+    border: none;
 }
 
 .close_del i {

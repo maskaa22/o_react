@@ -1,0 +1,14 @@
+@media screen and (min-width: 1920px) {
+    .close_del {
+        font-size: 2vh;
+    }
+
+    .delete_user {
+        width: 650px;
+        margin-top: 350px;
+    }
+
+    .close_del {
+        left: 95%;
+    }
+}

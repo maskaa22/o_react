@@ -1,3 +1,21 @@
+@media screen and (min-width: 1920px) {
+    .servise-info-h1 {
+        font-size: 5vh;
+    }
+
+    .servise-info-p {
+        font-size: 2.5vh;
+    }
+
+    .hears-item-p {
+        font-size: 3vh;
+    }
+
+    .hears-item-icon {
+        font-size: 4vh;
+    }
+}
+
 @media screen and (max-width: 800px) {
     .hears-item-icon {
         font-size: 25px;

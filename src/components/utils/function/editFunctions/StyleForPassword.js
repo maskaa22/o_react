@@ -8,11 +8,11 @@ export function StyleForPassword(number, block_check) {
 
     for (let i = 0; i < number.length; i++) {
         if (!is_s && s_letters.indexOf(number[i]) !== -1) {
-            is_s = true
+            is_s = true;
         } else if (!is_b && b_letters.indexOf(number[i]) !== -1) {
-            is_b = true
+            is_b = true;
         } else if (!is_d && digits.indexOf(number[i]) !== -1) {
-            is_d = true
+            is_d = true;
         }
     }
 

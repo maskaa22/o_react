@@ -1,0 +1,24 @@
+@media screen and (min-width: 1920px) {
+    .form {
+        width: 800px;
+        height: auto;
+        margin-top: 300px;
+    }
+
+    .left {
+        left: 48%;
+    }
+
+    .form_header {
+        font-size: 50px;
+    }
+
+    .form_btn {
+        height: 60px;
+        font-size: 2vh;
+    }
+
+    .login-reset-password {
+        font-size: 2vh;
+    }
+}

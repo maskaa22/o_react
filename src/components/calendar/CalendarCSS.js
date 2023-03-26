@@ -5,7 +5,7 @@ export const GridWrapper = styled.div`
   grid-template-columns: repeat(7, 1fr);
   grid-gap: 1px;
   background-color: ${props => props.isHeader ? '#5c549f' : '#79cbb8'};
-  ${props => props.isHeader && 'border-bottom: 1px solid #79cbb8'}
+  ${props => props.isHeader && 'border-bottom: 1px solid #79cbb8'};
 `;
 
 export const CellWrapper = styled.div`

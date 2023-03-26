@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-import './Modal.css'
+import './Modal.css';
 import {APIServise} from "../servises";
 import {Input} from "../utils";
 

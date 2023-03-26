@@ -1,3 +1,39 @@
+@media screen and (min-width: 1920px) {
+    .number-orders, .color_label {
+        font-size: 4vh;
+    }
+
+    .product-list, .margin-top-summa, .full-screen-status {
+        font-size: 3vh;
+    }
+
+    .css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input.css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input.css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input,
+    .css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
+        font-size: 2.5vh;
+        color: #47008e;
+        font-weight: bolder;
+    }
+
+    .select_status_label label, .select_value label {
+        font-size: 2.5vh;
+        color: #47008e;
+    }
+
+    .check_order {
+        font-size: 3vh;
+    }
+
+    .status {
+        width: 80%;
+        height: 50px;
+        font-size: 3vh;
+    }
+
+    .select_value {
+        width: 260px;
+    }
+}
+
 @media screen and (max-width: 600px) {
     .orders-h2 {
         display: block;

@@ -1,7 +1,7 @@
+import {BsArrowUpCircle} from "react-icons/bs";
+import {MdClose, MdNavigateNext} from "react-icons/md";
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {BsArrowUpCircle} from "react-icons/bs";
-import {MdClose, MdNavigateNext} from "react-icons/md"
 
 import './ProductsPage.css';
 import './ProductPage@media.css';
@@ -23,21 +23,22 @@ import {
     WORD_ACTIVE_MENU_CATEGORY,
     WORD_CATEGORY_MENU,
     WORD_NO_SCROLL,
-    WORD_PRODUCT_MENU_BLOCK, WORD_TOKEN
+    WORD_PRODUCT_MENU_BLOCK,
+    WORD_TOKEN
 } from "../../config/wordsConstants";
 
 export function ProductsPage() {
 
-    const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
     const [categoriName, setCategoriName] = useState([]);
-    const [paginate, setPaginate] = useState([]);
+    const [category_id, setCategory_id] = useState([]);
+    const [filter, setFilter] = useState([]);
+    const [offset, setOffset] = useState(0);
     const [page, setPage] = useState([]);
     const [pageFilter, setPageFilter] = useState([]);
+    const [paginate, setPaginate] = useState([]);
+    const [products, setProducts] = useState([]);
     const [productFilter, setProductFilter] = useState([]);
-    const [filter, setFilter] = useState([]);
-    const [category_id, setCategory_id] = useState([]);
-    const [offset, setOffset] = useState(0);
 
     const filterFlag = useSelector(state => state.product.filterFlag);
 
@@ -45,15 +46,15 @@ export function ProductsPage() {
 
     useEffect(() => {
         APIServise.getCategories().then(respons => {
-            setCategories(respons.data)
+            setCategories(respons.data);
         });
-        if(localStorage.getItem(WORD_TOKEN)) {
+        if (localStorage.getItem(WORD_TOKEN)) {
             dispatch(APIServise.auth()).then(res => {
-                if(res===undefined) {
-                    localStorage.removeItem(WORD_TOKEN)
+                if (res === undefined) {
+                    localStorage.removeItem(WORD_TOKEN);
                     document.location.reload();
                 }
-            })
+            });
         }
     }, []);
 
@@ -118,7 +119,6 @@ export function ProductsPage() {
                                                                         setOffset={setOffset}
                                                                         setCategoriName={setCategoriName}
 
-
                             />)
                         }
                     </div>
@@ -128,27 +128,25 @@ export function ProductsPage() {
                         <div className={'filter-name'}>
                             <div>{categoriName}</div>
                         </div>
-                        {!filterFlag &&
-                        products.map(product => <ProductCart key={product._id} product={product}/>)
-                        }
-                        {filterFlag &&
-                        filter.map(product => <ProductCart key={product._id} product={product}/>)
-                        }
+                        <div className={'courseContainer'}>
+                            {!filterFlag ?
+                                products.map(product => <ProductCart key={product._id} product={product}/>) :
+                                filter.map(product => <ProductCart key={product._id} product={product}/>)
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
             <div className={'product-flex'}>
                 <div className={'product-menu'}/>
                 <div className={'row'}>
-                    {!filterFlag &&
-                    <PaginationProductCategory
-                        paginate={paginate} thisPage={thisPage}
-                        category_id={category_id} setFilter={setFilter}/>
-                    }
-                    {filterFlag &&
-                    <PaginationProductCategory
-                        paginate={productFilter} thisPage={thisPageFilter}
-                        category_id={category_id} setFilter={setFilter}/>
+                    {!filterFlag ?
+                        <PaginationProductCategory
+                            paginate={paginate} thisPage={thisPage}
+                            category_id={category_id} setFilter={setFilter}/> :
+                        <PaginationProductCategory
+                            paginate={productFilter} thisPage={thisPageFilter}
+                            category_id={category_id} setFilter={setFilter}/>
                     }
                 </div>
             </div>

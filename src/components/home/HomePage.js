@@ -1,6 +1,6 @@
 import {BsArrowUpCircle} from "react-icons/bs";
+import {useDispatch} from "react-redux";
 import React, {useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
 
 import './Home.css';
 import './Home@media.css';
@@ -19,14 +19,14 @@ export function HomePage() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if(localStorage.getItem(WORD_TOKEN)) {
+        if (localStorage.getItem(WORD_TOKEN)) {
             dispatch(APIServise.auth()).then(res => {
-                if(res===undefined) {
+                if (res === undefined) {
                     localStorage.removeItem(WORD_TOKEN);
                     localStorage.removeItem(WORD_AUTH);
                     document.location.reload();
                 }
-            })
+            });
         }
     }, []);
 
@@ -53,7 +53,6 @@ export function HomePage() {
                 <div className={'circle-flex-item'}><h1 className={'h1-home'}>Записатися</h1></div>
                 <Calendar/>
             </div>
-
         </div>
     );
 }

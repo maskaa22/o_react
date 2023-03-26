@@ -1,7 +1,8 @@
 import ReactPaginate from 'react-paginate';
 import {useDispatch, useSelector} from "react-redux";
 
-import './Pagination.css'
+import './Pagination.css';
+import './Pagination@media.css';
 import {APIServise} from "../servises";
 
 export function PaginationProductCategory({paginate, category_id, setFilter, thisPage}) {
@@ -18,7 +19,7 @@ export function PaginationProductCategory({paginate, category_id, setFilter, thi
         !filterFlag &&
         thisPage(selectedPage + 1);
         filterFlag &&
-        dispatch(APIServise.categoriesFilter(category_id, selectedPage + 1, 2)).then(response => {
+        dispatch(APIServise.categoriesFilter(category_id, selectedPage + 1, 10)).then(response => {
             thisPage(selectedPage + 1);
             setFilter(response.data.docs);
         });
@@ -38,7 +39,6 @@ export function PaginationProductCategory({paginate, category_id, setFilter, thi
                     selectedPageRel={"canonical"}
                 />
             }
-
         </div>
     );
 }

@@ -1,3 +1,9 @@
+@media screen and (max-width: 1920px) {
+    h4 {
+        font-size: 3vh;
+    }
+}
+
 @media screen and (max-width: 800px) {
     .analyz-h2 {
         display: none;

@@ -1,34 +1,34 @@
 import {HiBadgeCheck} from "react-icons/hi";
+import {useDispatch} from "react-redux";
+import {useEffect} from "react";
 
 import '../mensHaircut/MansHaircut.css';
 import '../mensHaircut/MansHaircut@media.css';
+import {APIServise} from "../servises";
 import Mens from '../../images/big-foto/Group 5.png';
-import smallFoto from '../../images/servises/stylesHear/1.png';
 import Slider from "../slider/Slider";
 import {slideStyles} from "../../config/sliderConstants";
-import {useDispatch} from "react-redux";
-import {useEffect} from "react";
+import smallFoto from '../../images/servises/stylesHear/1.png';
 import {WORD_TOKEN} from "../../config/wordsConstants";
-import {APIServise} from "../servises";
 
 export function HairStyles() {
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if(localStorage.getItem(WORD_TOKEN)) {
+        if (localStorage.getItem(WORD_TOKEN)) {
             dispatch(APIServise.auth()).then(res => {
-                if(res===undefined) {
-                    localStorage.removeItem(WORD_TOKEN)
+                if (res === undefined) {
+                    localStorage.removeItem(WORD_TOKEN);
                     document.location.reload();
                 }
-            })
+            });
         }
     }, []);
 
     return (
         <div>
-            <img src={Mens} alt={'Men'}/>
+            <img src={Mens} alt={'Men'} className={'submenu-img'}/>
             <div className={'container'}>
                 <div className={'servise-info'}>
                     <h1 className={'servise-info-h1'}>Професійна зачіска</h1>
@@ -87,7 +87,6 @@ export function HairStyles() {
                     </div>
                 </div>
             </div>
-
         </div>
     );
 }

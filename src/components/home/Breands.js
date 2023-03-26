@@ -1,12 +1,13 @@
 import './Home.css';
 import './Home@media.css';
-import One from '../../images/brends/1.png'
-import Five from '../../images/brends/5.png'
-import Four from '../../images/brends/4.png'
-import Three from '../../images/brends/3.png'
-import Two from '../../images/brends/2.png'
+import Five from '../../images/brends/5.png';
+import Four from '../../images/brends/4.png';
+import One from '../../images/brends/1.png';
+import Three from '../../images/brends/3.png';
+import Two from '../../images/brends/2.png';
 
 export function Breands() {
+
     return (
         <div className={'img-hear img-breands'}>
             <div className={'container'}>

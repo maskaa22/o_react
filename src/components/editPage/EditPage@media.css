@@ -1,3 +1,21 @@
+@media screen and (min-width: 1920px) {
+    .edit-h2 {
+        font-size: 5vh;
+    }
+
+    .download-foto-margin {
+        font-size: 2.5vh;
+    }
+
+    .active-email {
+        font-size: 2vh;
+    }
+
+    .btn-save {
+        font-size: 3.5vh;
+    }
+}
+
 @media screen and (max-width: 800px) {
     .border-box {
         margin: 15px 25px;

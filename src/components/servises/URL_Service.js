@@ -1,28 +1,31 @@
 import axios from "axios";
 
 import {
-    AUTH, AUTH_ACTIVATE_TOKEN_URL, AUTH_EMAIL_FOR_RESET_PASSWORD,
+    AUTH,
+    AUTH_ACTIVATE_TOKEN_URL,
+    AUTH_EMAIL_FOR_RESET_PASSWORD,
     AUTH_LOGIN,
     AUTH_LOGOUT,
     AUTH_REFRESH,
     AUTH_REGISTRATION,
     CATEGORY,
     HOME,
-    HOME_FIND, ORDER_BY_USER,
+    HOME_FIND,
+    ORDER_BY_USER,
     PRODUCT_ARCHIVE_ORDER,
     PRODUCT_ORDER_ANALYZE,
     PRODUCT_ORDERS,
-    PRODUCT_ORDERS_ANALYZE_VISUAL,
-    PRODUCT_ORDERS_FILTER, RESET_PASSWORD_,
+    PRODUCT_ORDERS_FILTER,
+    RESET_PASSWORD_,
     USERS,
     USERS_ADRESS,
+    USERS_ANALYZE,
     USERS_CONTACT,
     USERS_SEND
 } from "../../config/serviseConstants";
 import {CONTACT, PRODUCTS, UPLOAD} from "../../config/headerConstants";
 import {URL} from "../../config";
 import {WORD_SWAL_NOT_AUTORIZE, WORD_TOKEN} from "../../config/wordsConstants";
-import {activateEmail, resetPassword, sendEmailForResetPassword} from "./API";
 
 const api = axios.create({
     withCredentials: true,
@@ -49,7 +52,7 @@ api.interceptors.response.use((config) => {
 
             return api.request(originalRequest);
         } catch (e) {
-            console.log(WORD_SWAL_NOT_AUTORIZE, e)
+            console.log(WORD_SWAL_NOT_AUTORIZE, e);
         }
     }
     throw error;
@@ -111,10 +114,6 @@ export class OrderService {
         return api.get(PRODUCT_ORDERS)
     }
 
-    static async ordersByVisualAnalis() {
-        return api.get(PRODUCT_ORDERS_ANALYZE_VISUAL)
-    }
-
     static async ordersByFilter(status) {
         return api.get(PRODUCT_ORDERS_FILTER, {params: {status}})
     }
@@ -153,10 +152,6 @@ export class OrderService {
 
     static async analyzeOrder(month, summa) {
         return api.post(PRODUCT_ORDER_ANALYZE, {month, summa})
-    }
-
-    static async updateAnalyzeOrder(month, summa) {
-        return api.patch(PRODUCT_ORDER_ANALYZE, {month, summa})
     }
 
     static async updateStatus(_id, status) {
@@ -223,6 +218,10 @@ export class UserService {
     static async getUserById(_id) {
         return api.get(`${USERS}/${_id}`, {params: {_id}})
     }
+
+    static async usersAnalyze() {
+        return api.get(USERS_ANALYZE)
+    }
 }
 
 export class HomeService {
@@ -254,6 +253,7 @@ export class FotoService {
     static async saveFoto(user_id, img) {
         return api.post(UPLOAD, {user_id, img})
     }
+
     static async fotoById(user_id) {
         return api.get('/upload_files', {params: {user_id}})
     }

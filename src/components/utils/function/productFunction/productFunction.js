@@ -17,7 +17,7 @@ export function openFilterName() {
     filter.classList.add('no-name');
 
     if (filter.classList.contains('filter-name-no')) {
-        filter.classList.remove('filter-name-no')
+        filter.classList.remove('filter-name-no');
     }
 }
 
@@ -34,7 +34,7 @@ export function ifOpenPageAddActiveClass() {
 
     for (let i = 12; i < elsP.length; i++) {
         if (window.location.href === elsP[i].href) {
-            elsP[i].children[0].classList.add('active-menu')
+            elsP[i].children[0].classList.add('active-menu');
         }
     }
 }

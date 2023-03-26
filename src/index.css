@@ -1,22 +1,24 @@
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 body {
-  margin: 0;
-  height: 100%;
-  font-family: 'Ledger', serif
+    margin: 0;
+    height: 100%;
+    font-family: 'Ledger', serif
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
 .wr {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
+
 .main {
-  flex: 1 1 auto;
+    flex: 1 1 auto;
 }

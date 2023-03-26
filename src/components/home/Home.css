@@ -230,11 +230,7 @@ hr {
     border-radius: 0 0 1vw 1vw;
 }
 
-.two-slide {
-    position: relative;
-}
-
-.one-slide {
+.two-slide, .one-slide {
     position: relative;
 }
 

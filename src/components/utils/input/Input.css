@@ -38,3 +38,7 @@ input {
 .calendar-width {
     width: 60%;
 }
+
+.input-basket-update {
+    font-size: 2vh;
+}

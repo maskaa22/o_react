@@ -1,0 +1,79 @@
+@media screen and (min-width: 1920px) {
+    textarea {
+        font-size: 2.5vh;
+        margin: 10px 0 0;
+    }
+
+    .flex_start {
+        font-size: 3vh;
+    }
+
+    .modal-content {
+        width: 600px;
+    }
+
+    .close {
+        font-size: 2.5vh;
+    }
+
+    .select-product label {
+        font-size: 2.5vh;
+    }
+
+    .position {
+        padding: 20px 0 0;
+        font-size: 2.5vh;
+    }
+
+    .select-product {
+        bottom: 60px;
+    }
+
+    .css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input.css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input.css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input {
+        font-size: 2.5vh;
+        color: #47008e;
+        font-weight: bolder;
+    }
+
+    li.MuiMenuItem-root.MuiMenuItem-gutters.MuiButtonBase-root.css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
+        font-size: 2vh;
+        font-weight: bold;
+        color: #47008e;
+    }
+
+    .add {
+        width: 500px;
+    }
+
+    .create_event {
+        width: 750px;
+        margin-top: 300px;
+    }
+
+    .css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input.css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input.css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input,
+    .css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
+        font-size: 2.5vh;
+        color: #47008e;
+        font-weight: bolder;
+    }
+
+    .css-1m7of93-MuiFormControl-root label,
+    .css-1qn1dhn-MuiFormControl-root label {
+        font-size: 2.5vh;
+        color: #47008e;
+    }
+
+    .css-jd1zyo-MuiSelect-select-MuiInputBase-input-MuiInput-input.css-jd1zyo-MuiSelect-select-MuiInputBase-input-MuiInput-input.css-jd1zyo-MuiSelect-select-MuiInputBase-input-MuiInput-input {
+        font-size: 3vh;
+        font-weight: 700;
+        color: #47008e;
+    }
+
+    .css-1m7of93-MuiFormControl-root {
+        width: 300px;
+    }
+
+    .css-1qn1dhn-MuiFormControl-root {
+        width: 165px;
+    }
+}

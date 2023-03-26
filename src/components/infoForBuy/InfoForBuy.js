@@ -15,18 +15,18 @@ import {WORD_CART, WORD_CART_UK, WORD_CASH, WORD_HIDEN, WORD_MONEY, WORD_SUCCESS
 export function InfoForBuy({setPay}) {
 
     const [name, setName] = useState('');
-    const [surname, setSurname] = useState('');
-    const [phone, setPhone] = useState('');
-    const [stateName, setStateName] = useState(true);
-    const [stateInput, setStateInput] = useState(false);
-    const [stateNameAdress, setStateNameAdress] = useState(true);
-    const [stateAdress, setStateAdress] = useState(false);
-    const [sity, setSity] = useState('');
     const [numberNP, setNumberNP] = useState('');
-    const [visibleSity, setVisibleSity] = useState(WORD_HIDEN);
-    const [visibleNumber, setVisibleNumber] = useState(WORD_HIDEN);
-    const [value, setValue] = React.useState('');
+    const [phone, setPhone] = useState('');
+    const [sity, setSity] = useState('');
+    const [stateAdress, setStateAdress] = useState(false);
+    const [stateInput, setStateInput] = useState(false);
+    const [stateName, setStateName] = useState(true);
+    const [stateNameAdress, setStateNameAdress] = useState(true);
     const [success, setSuccess] = useState(WORD_SUCCESS);
+    const [surname, setSurname] = useState('');
+    const [value, setValue] = React.useState('');
+    const [visibleNumber, setVisibleNumber] = useState(WORD_HIDEN);
+    const [visibleSity, setVisibleSity] = useState(WORD_HIDEN);
 
     const currentUser = useSelector(state => state.user.currentUser);
 
@@ -44,11 +44,18 @@ export function InfoForBuy({setPay}) {
             <div className={'basket_check'}>
                 <div className={'flex__space__between'}>
                     <p className={'data_name'}>Контактні дані</p>
-                    <button className={'update'} onClick={() => {
-                        setStateName(false);
-                        setStateInput(true);
-                    }}>Змінити
-                    </button>
+                    {
+                        stateName ? <button className={'update'} onClick={() => {
+                                setStateName(false);
+                                setStateInput(true);
+                            }}>Змінити
+                            </button> :
+                            <div className={'close-date'} onClick={() => {
+                                setStateInput(false);
+                                setStateName(true);
+                            }}><i className="fa fa-times" aria-hidden="true"/>
+                            </div>
+                    }
                 </div>
                 {
                     stateName &&
@@ -60,12 +67,15 @@ export function InfoForBuy({setPay}) {
                 {
                     stateInput &&
                     <div className={'data_input'}>
-                        <Input value={name} setValue={setName} placeholder={currentUser.name}/>
-                        <Input value={surname} setValue={setSurname} placeholder={currentUser.surname}/>
-                        <Input value={phone} setValue={setPhone} placeholder={currentUser.phone}/>
+                        <Input value={name} setValue={setName} placeholder={currentUser.name}
+                               className={'input-basket-update'}/>
+                        <Input value={surname} setValue={setSurname} placeholder={currentUser.surname}
+                               className={'input-basket-update'}/>
+                        <Input value={phone} setValue={setPhone} placeholder={currentUser.phone}
+                               className={'input-basket-update'}/>
                         <div className={'d_flex edit-date-margin'}>
                             <button className={'check save'} onClick={() => {
-                                APIServise.editContactData(currentUser.id, name, surname, phone)
+                                APIServise.editContactData(currentUser.id, name, surname, phone);
                                 setStateInput(false);
                                 setStateName(true);
                             }}>Продовжити
@@ -77,11 +87,18 @@ export function InfoForBuy({setPay}) {
             <div className={'basket_check'}>
                 <div className={'flex__space__between'}>
                     <p className={'data_name'}>Доставка</p>
-                    <button className={'update'} onClick={() => {
-                        setStateNameAdress(false);
-                        setStateAdress(true);
-                    }}>Змінити
-                    </button>
+                    {
+                        stateNameAdress ? <button className={'update'} onClick={() => {
+                                setStateNameAdress(false);
+                                setStateAdress(true);
+                            }}>Змінити
+                            </button> :
+                            <div className={'close'} onClick={() => {
+                                setStateNameAdress(true);
+                                setStateAdress(false);
+                            }}><i className="fa fa-times" aria-hidden="true"/>
+                            </div>
+                    }
                 </div>
                 {
                     stateNameAdress &&
@@ -106,7 +123,6 @@ export function InfoForBuy({setPay}) {
                         </div>
                         <div className={'d_flex edit-date-margin-last'}>
                             <button className={'check save'} onClick={() => {
-                                //TODO функция редактирования данних
                                 APIServise.editAdressData(currentUser.id, sity, numberNP);
                                 setStateNameAdress(true);
                                 setStateAdress(false);

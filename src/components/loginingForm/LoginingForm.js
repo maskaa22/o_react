@@ -1,11 +1,13 @@
+import {NavLink, useLocation, useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
-import {NavLink, useLocation, useNavigate} from "react-router-dom";
 
-import './LoginingForm.css'
+import './LoginingForm.css';
+import './LoginingForm@media.css';
 import {APIServise} from "../servises";
 import {Input} from "../utils";
 import {LOGIN, LOGIN_RESET_PASSWORD, THIS} from "../../config/headerConstants";
+import {StyleForPassword} from "../utils/function";
 import {
     WORD_AUTORIZ,
     WORD_AUTORIZATING,
@@ -13,16 +15,14 @@ import {
     WORD_REGISTR,
     WORD_REGISTRATION
 } from "../../config/wordsConstants";
-import {StyleDivOk, StyleForPassword, StyleIconOk} from "../utils/function";
-import {FiCheck} from "react-icons/fi";
 
 export function LoginingForm({role, handleClose}) {
 
-    const [name, setName] = useState('');
+    const [border, setBorder] = useState('');
     const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     const [passwordToo, setPasswordToo] = useState('');
-    const [border, setBorder] = useState('');
 
     const location = useLocation();
     const isLogin = location.pathname === LOGIN;
@@ -39,7 +39,7 @@ export function LoginingForm({role, handleClose}) {
     const block_check = document.getElementById('block_check_login');
 
     function stylePassword() {
-        StyleForPassword(password, block_check)
+        StyleForPassword(password, block_check);
     }
 
     return (
@@ -63,8 +63,9 @@ export function LoginingForm({role, handleClose}) {
                     <div className={'input-center-full'} id="block_check_login">
                     </div>
                     {
-                        !isLogin && <Input value={passwordToo} setValue={setPasswordToo} type={'password'} placeholder={'Повторіть пароль'}
-                                         className={'input-margin'} id="pass-new" onInput={stylePassword}/>
+                        !isLogin && <Input value={passwordToo} setValue={setPasswordToo} type={'password'}
+                                           placeholder={'Повторіть пароль'}
+                                           className={'input-margin'} id="pass-new" onInput={stylePassword}/>
                     }
                     <button className={'form_btn'} onClick={() => {
                         {
@@ -81,7 +82,8 @@ export function LoginingForm({role, handleClose}) {
                     }}>{isLogin ? WORD_AUTORIZ : WORD_REGISTRATION}
                     </button>
                     {
-                        isLogin && <NavLink to={LOGIN_RESET_PASSWORD} className={'login-reset-password'}>Забули пароль?</NavLink>
+                        isLogin &&
+                        <NavLink to={LOGIN_RESET_PASSWORD} className={'login-reset-password'}>Забули пароль?</NavLink>
                     }
                 </div>
             </div>

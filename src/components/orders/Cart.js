@@ -9,10 +9,10 @@ export default function Cart({cart}) {
     const role = useSelector(state => state.user.role);
 
     return (
-        <div>
+        <div className={'product-list'}>
             {
                 cart.map(c =>
-                    <div key={c._id} className={'justify-content-around'}>
+                    <div key={c._id} className={'orders-justify-content-between'}>
                         <div>
                             {role === WORLD_ADMIN && <li>Инв. № - {c.inventoryNumber}</li>}
                             {role === WORLD_USER && <li>{c.product_name}</li>}

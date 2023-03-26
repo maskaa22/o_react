@@ -1,6 +1,5 @@
-
-
 import {useNavigate} from "react-router-dom";
+
 import {REGISTRATION} from "../../config/headerConstants";
 
 export function ModalRegister({handleClose}) {
@@ -13,7 +12,6 @@ export function ModalRegister({handleClose}) {
                 <button className={'close_del'} onClick={handleClose}><i className="fa fa-times"
                                                                          aria-hidden="true"/></button>
                 <h2 className={'h2'}>Зареєструйтеся</h2>
-
                 <div className={'btn-position'}>
                     <button className={'btn-add'} onClick={() => {
                         navigate(REGISTRATION)

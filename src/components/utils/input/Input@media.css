@@ -1,0 +1,27 @@
+@media screen and (min-width: 1920px) {
+    .input-contact-send {
+        font-size: 2vh;
+    }
+
+    .input-edit-info, .input-create-product, .input-del {
+        font-size: 2.5vh;
+    }
+
+    .input-margin {
+        margin: 10px;
+        font-size: 2vh;
+    }
+
+    .input-del-user {
+        width: 94%;
+        font-size: 2.5vh;
+    }
+
+    .input-send-email {
+        font-size: 2.25vh;
+    }
+
+    .calendar-width, .input-calendar-date {
+        font-size: 3vh;
+    }
+}

@@ -4,7 +4,8 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 
-import './Modal.css'
+import './Modal.css';
+import './Modal@media.css';
 import {Input} from "../utils";
 import {useSelector} from "react-redux";
 
@@ -12,8 +13,8 @@ export function ModalCalendar({handleClose, date, eventCreateHandler, unix, newT
 
     const currentUser = useSelector(state => state.user.currentUser);
 
-    const [type, setType] = React.useState('');
     const [time, setTime] = React.useState('');
+    const [type, setType] = React.useState('');
 
     const handleChangeType = (event) => {
         setType(event.target.value);
@@ -28,12 +29,13 @@ export function ModalCalendar({handleClose, date, eventCreateHandler, unix, newT
                 <button className={'close_del'} onClick={handleClose}><i className="fa fa-times"
                                                                          aria-hidden="true"/></button>
                 <h2 className={'h2'}>Записатися</h2>
-                <div className={'auto margin_right flex_space_between'}>
+                <div className={'flex_space_between'}>
                     <Input value={currentUser.name} readOnly className={'calendar-width'}/>
-                    <div className={'input_date_width'}><Input value={date} readOnly/></div>
+                    <div className={'input_date_width'}><Input value={date} readOnly className={'input-calendar-date'}/>
+                    </div>
                 </div>
-                <div className={'auto flex_space_between margin_all_select'}>
-                    <FormControl size="small" variant="standard" sx={{minWidth: 178}}>
+                <div className={'flex_space_between'}>
+                    <FormControl size="small" variant="standard" sx={{minWidth: 178}} className={'left-'}>
                         <InputLabel id="demo-simple-select-label">Вибрати тип</InputLabel>
                         <Select
                             className={'standard'}
@@ -66,7 +68,7 @@ export function ModalCalendar({handleClose, date, eventCreateHandler, unix, newT
                 </div>
                 <div className={'btn-position'}>
                     <button className={'btn-add'} onClick={() => {
-                        eventCreateHandler(currentUser.name, unix, type, time, currentUser._id)
+                        eventCreateHandler(currentUser.name, unix, type, time, currentUser._id);
                     }}>Зберегти
                     </button>
                 </div>

@@ -30,5 +30,5 @@ export function Up() {
 }
 
 export function scrollTopTop() {
-    window.scrollTo({top: 0})
+    window.scrollTo({top: 0});
 }

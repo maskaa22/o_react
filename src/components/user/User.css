@@ -55,6 +55,9 @@
     position: relative;
     top: -2px;
     align-items: center;
+    background-color: #79cbb8;
+    border: none;
+    cursor: pointer;
 }
 
 .flex-fot-content {

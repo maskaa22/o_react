@@ -6,6 +6,7 @@ import Foto3 from "../../images/foto-5.png";
 import Foto4 from "../../images/foto-4.jpg";
 
 export function Comments() {
+
     return (
         <div className={'comments'}>
             <div className={'comment comment-one'}>

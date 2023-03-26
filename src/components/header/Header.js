@@ -5,7 +5,6 @@ import {GiExitDoor} from "react-icons/gi";
 import {ImUserPlus} from "react-icons/im";
 import {IoMdExit} from "react-icons/io";
 import {NavLink, useNavigate} from "react-router-dom";
-import {RiMapPinUserFill} from "react-icons/ri";
 import {useDispatch, useSelector} from "react-redux";
 
 import "./Header.css";
@@ -25,9 +24,9 @@ import {
 } from "../../config/headerConstants";
 import {ADMIN, CLIENT} from "../../config/homeConstants";
 import {APIServise} from "../servises";
+import {closeToogleMenu, openToogleMenu} from "../utils/function";
 import {delFilter} from "../reducers/actionCreators";
 import Logo from "../../images/logo-header.png";
-import {closeToogleMenu, openToogleMenu} from "../utils/function";
 import {WORLD_ADMIN, WORLD_AUTORIZATION, WORLD_USER} from "../../config/wordsConstants";
 
 export function Header() {
@@ -36,6 +35,7 @@ export function Header() {
     const role = useSelector(state => state.user.role);
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const links = document.getElementsByClassName("navbar");
     let URL = window.location.pathname;
@@ -45,8 +45,6 @@ export function Header() {
             links[i].classList.add("active");
         }
     }
-
-    const navigate = useNavigate();
 
     function openSubMenuOne() {
         const subLinkOne = document.getElementById('sub-link-one');
@@ -115,7 +113,7 @@ export function Header() {
                         <NavLink to={CONTACT} onClick={closeHandler}>Контакти</NavLink>
                     </li>
                     <li>
-                        <a onClick={openSubMenuTwo}><IoMdExit className=" icon_basket link-a"/></a>
+                        <a onClick={openSubMenuTwo} className={'link-a'}><IoMdExit className=" icon_basket"/></a>
                         <ul className={'submenu'} id={'sub-link-two'}>
                             {
                                 !isAuth &&
@@ -146,14 +144,17 @@ export function Header() {
                                 }}><NavLink to={LOGIN} onClick={closeHandler}><GiExitDoor
                                     className=" icon_login link-a"/>Вихід</NavLink></li>
                             }
-
                         </ul>
                     </li>
                     <li>
                         {
-                            isAuth &&
+                            (isAuth && role === WORLD_USER) &&
                             <NavLink to={PRODUCTS_ORDERS} onClick={closeHandler}><BsBasket2
                                 className=" icon_basket link-a"/></NavLink>
+                        }
+                        {
+                            (isAuth && role === WORLD_ADMIN) &&
+                            <div className={'div-admin'}>Адмін</div>
                         }
                     </li>
                 </ul>

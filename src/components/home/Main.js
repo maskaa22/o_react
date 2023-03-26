@@ -26,7 +26,6 @@ export function Main() {
                 <source src={VideoWebm} type={'video/webm'}/>
                 <source src={VideoMp4} type={'video/mp4'}/>
             </video>
-
         </div>
     );
 }

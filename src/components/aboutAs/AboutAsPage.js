@@ -1,13 +1,14 @@
-import './AboutAsPage.css';
-import './AboutAsPage@media.css';
-import About from '../../images/big-foto/Group 4.png'
-import {AboutAs} from "./AboutAs";
-import {History} from "./History";
-import {Team} from "./Team";
 import {useDispatch} from "react-redux";
 import {useEffect} from "react";
-import {WORD_TOKEN} from "../../config/wordsConstants";
+
+import './AboutAsPage.css';
+import './AboutAsPage@media.css';
+import About from '../../images/big-foto/Group 4.png';
+import {AboutAs} from "./AboutAs";
 import {APIServise} from "../servises";
+import {History} from "./History";
+import {Team} from "./Team";
+import {WORD_TOKEN} from "../../config/wordsConstants";
 
 export function AboutAsPage() {
 
@@ -21,7 +22,7 @@ export function AboutAsPage() {
 
     return (
         <div>
-            <img src={About} alt={'About'}/>
+            <img src={About} alt={'About'} className={'submenu-img'}/>
             <div className={'container'}>
                 <AboutAs/>
             </div>

@@ -14,8 +14,8 @@ export function Records() {
 
     moment.updateLocale(WORD_LANGUAGE, {week: {dow: 1}});
 
-    const [today, setToday] = useState(moment());
     const [events, setEvents] = useState([]);
+    const [today, setToday] = useState(moment());
 
     const startMonth = today.clone().startOf(WORD_MONTH).format('X');
     const endMonth = today.clone().endOf(WORD_MONTH).format('X');
@@ -23,7 +23,7 @@ export function Records() {
     useEffect(() => {
         getCalendarEvent(startMonth, endMonth).then(rez => {
             setEvents(rez);
-        })
+        });
     }, [today]);
 
     return (

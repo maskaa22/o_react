@@ -5,19 +5,20 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 
-import './Modal.css'
+import './Modal.css';
 import {APIServise} from "../servises";
 import {Input} from "../utils";
 
 export function ModalCreateProduct({active, setActive, categories}) {
 
-    const [nameProduct, setNameProduct] = useState('');
-    const [titleProduct, setTitleProduct] = useState('');
     const [categoryProduct, setCategoryProduct] = useState('');
-    const [priceProduct, setPriceProduct] = useState('');
     const [countProduct, setCountProduct] = useState(1);
-    const [inventoryNumber, setInventoryNumber] = useState('');
     const [file, setFile] = useState(null);
+    const [inventoryNumber, setInventoryNumber] = useState('');
+    const [nameProduct, setNameProduct] = useState('');
+    const [ml, setMl] = useState('');
+    const [priceProduct, setPriceProduct] = useState('');
+    const [titleProduct, setTitleProduct] = useState('');
 
     useEffect(() => {
         setCountProduct(1);
@@ -29,7 +30,7 @@ export function ModalCreateProduct({active, setActive, categories}) {
 
     const selectFile = e => {
         setFile(e.target.files[0]);
-    }
+    };
 
     const addProduct = () => {
         const formData = new FormData();
@@ -40,9 +41,10 @@ export function ModalCreateProduct({active, setActive, categories}) {
         formData.append('totalPrice', priceProduct);
         formData.append('count', `${countProduct}`);
         formData.append('inventoryNumber', inventoryNumber);
+        formData.append('dosage', ml);
         formData.append('img', file);
-        APIServise.setProducts(formData)
-    }
+        APIServise.setProducts(formData);
+    };
 
     return (
         <div className={active ? 'modal active' : 'modal'} onClick={() => setActive(false)}>
@@ -71,38 +73,42 @@ export function ModalCreateProduct({active, setActive, categories}) {
                                 </Select>
                             </FormControl>
                         </div>
-                    <Input value={nameProduct} setValue={setNameProduct}
-                           placeholder={'Назва товара'} className={'input-create-product-margin'}/>
+                        <Input value={nameProduct} setValue={setNameProduct}
+                               placeholder={'Назва товара'}
+                               className={'input-create-product-margin input-create-product'}/>
 
-                    <Input value={titleProduct} setValue={setTitleProduct}
-                           placeholder={'Короткий опис товара'} className={'input-create-product-margin'}/>
+                        <Input value={titleProduct} setValue={setTitleProduct}
+                               placeholder={'Короткий опис товара'}
+                               className={'input-create-product-margin input-create-product'}/>
 
+                        <Input value={ml} setValue={setMl}
+                               placeholder={'Дозування (мл)'}
+                               className={'input-create-product-margin input-create-product'}/>
 
-                    <Input value={priceProduct} setValue={setPriceProduct}
-                           placeholder={'Ціна товара'} className={'input-create-product-margin'}/>
-                    <Input value={inventoryNumber} setValue={setInventoryNumber}
-                           placeholder={'Інвентарний номер'} className={'input-create-product-margin'}/>
+                        <Input value={priceProduct} setValue={setPriceProduct}
+                               placeholder={'Ціна товара'}
+                               className={'input-create-product-margin input-create-product'}/>
+                        <Input value={inventoryNumber} setValue={setInventoryNumber}
+                               placeholder={'Інвентарний номер'}
+                               className={'input-create-product-margin input-create-product'}/>
 
-                    <div className={'position'}>
+                        <div className={'position'}>
                             <label htmlFor="file-upload" className="custom-file-upload">
                                 <i className="fa fa-cloud-upload"/> Загрузити фото товара
                             </label>
                             <input id="file-upload" type="file" onChange={selectFile}/>
 
-                    </div>
-                    <div className={'btn-position'}>
-                        <button className={'btn-add'}
-                                onClick={() => {
-                                    addProduct()
-                                    // APIServise.setProducts(nameProduct, titleProduct, priceProduct, categoryProduct,
-                                    //     priceProduct, countProduct, inventoryNumber, );
-                                }}>
-                            <p>Додати товар</p>
-                        </button>
-                    </div>
+                        </div>
+                        <div className={'btn-position'}>
+                            <button className={'btn-add'}
+                                    onClick={() => {
+                                        addProduct();
+                                    }}>
+                                <p>Додати товар</p>
+                            </button>
+                        </div>
                     </form>
                 </div>
-
             </div>
         </div>
     );

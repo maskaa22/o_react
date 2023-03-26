@@ -6,7 +6,7 @@ const defaultState = {
     filter: [],
     filterFlag: false,
     page: 1,
-}
+};
 
 export default function productReducer(state = defaultState, action) {
     switch (action.type) {

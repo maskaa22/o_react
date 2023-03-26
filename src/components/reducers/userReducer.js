@@ -1,4 +1,4 @@
-import {LOGOUT, SET_AUTH, SET_ROLE, SET_USER} from './actionTypes'
+import {LOGOUT, SET_AUTH, SET_ROLE, SET_USER} from './actionTypes';
 import {WORD_TOKEN} from "../../config/wordsConstants";
 
 const defaultState = {
@@ -6,7 +6,7 @@ const defaultState = {
     isAuth: false,
     role: '',
     isLoading: false,
-}
+};
 
 export default function userReducer(state = defaultState, action) {
     switch (action.type) {

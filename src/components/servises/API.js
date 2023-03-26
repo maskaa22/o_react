@@ -1,20 +1,23 @@
 import axios from 'axios';
 
+import {APIServise} from "./index";
 import {
     AuthService,
     CategoryService,
-    ContactService, FotoService,
+    ContactService,
+    FotoService,
     HomeService,
     OrderService,
     ProductService,
     UserService
-} from './URL_Service'
+} from './URL_Service';
 import {filterProduct, setProduct, setRole, setUser, userLogout} from "../reducers/actionCreators";
+import {FIND_FOTO_URL} from "../../config/URL";
 import {store} from "../reducers";
 import {SwalFunction} from "../utils/function";
 import {URL} from "../../config";
 import {
-    WORD_ACTIVETING, WORD_AUTH,
+    WORD_ACTIVETING,
     WORD_RESET,
     WORD_SWAL_CATEGORY_CREATED,
     WORD_SWAL_ERROR,
@@ -26,12 +29,8 @@ import {
     WORD_SWAL_SUCCESS,
     WORD_SWAL_TEXT_ERROR,
     WORD_SWAL_USER_CREATED,
-    WORD_TOKEN, WORLD_AUTORIZATION
+    WORD_TOKEN
 } from "../../config/wordsConstants";
-import {FIND_FOTO_URL} from "../../config/URL";
-import {useNavigate} from "react-router-dom";
-import {APIServise} from "./index";
-import {LOGIN} from "../../config/headerConstants";
 
 export const login = (email, password) => {
     return async dispatch => {
@@ -39,7 +38,6 @@ export const login = (email, password) => {
             const response = await AuthService.login(email, password);
 
             localStorage.setItem(WORD_TOKEN, response.data.access_token);
-            //localStorage.setItem(WORD_AUTH, 'true');
 
             dispatch(setUser(response.data.user));
             dispatch(setRole(response.data.user.role));
@@ -60,7 +58,7 @@ export const auth = () => {
             dispatch(setUser(response.data.user));
             dispatch(setRole(response.data.user.role));
 
-            if(!response) {
+            if (!response) {
                 dispatch(APIServise.logout());
             }
 
@@ -71,14 +69,14 @@ export const auth = () => {
     }
 };
 export const getUserForToken = async () => {
-        try {
-            const response = await axios.get(`${FIND_FOTO_URL}`,
-                {withCredentials: true});
+    try {
+        const response = await axios.get(`${FIND_FOTO_URL}`,
+            {withCredentials: true});
 
-            return response.data;
-        } catch (e) {
-            console.log(e);
-        }
+        return response.data;
+    } catch (e) {
+        console.log(e);
+    }
 };
 export const registration = async (name, email, password, role, passwordToo, foto) => {
     try {
@@ -135,8 +133,6 @@ export const logout = () => {
         try {
             await AuthService.logout();
 
-            //localStorage.removeItem(WORD_AUTH)
-
             dispatch(userLogout());
 
         } catch (e) {
@@ -148,7 +144,6 @@ export const getUsers = async () => {
     try {
         return await UserService.users();
     } catch (e) {
-        //SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
     }
 };
 
@@ -190,18 +185,8 @@ export const sentUser = async (text, userEmail, topic) => {
         SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
     }
 };
-// export const getUserById = async (id) => {
-//     try {
-//         const response = await UserService.getUserById(id);
-//
-//         return response.data;
-//     } catch (e) {
-//         // SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
-//     }
-// };
 export const setFoto = async (foto) => {
     try {
-
         const response = await UserService.foto(foto);
 
         return response.data;
@@ -211,7 +196,6 @@ export const setFoto = async (foto) => {
 };
 export const setProducts = async (product) => {
     try {
-
         const response = await ProductService.product(product);
 
         SwalFunction(WORD_SWAL_PRODUCT_ADD, '', WORD_SWAL_SUCCESS, WORD_SWAL_OK, false, 3500);
@@ -224,7 +208,6 @@ export const setProducts = async (product) => {
 export const categoriesFilter = (checkCategory, page, limit) => {
     return async dispatch => {
         try {
-
             const response = await CategoryService.filtreCategories(checkCategory, page, limit);
 
             dispatch(filterProduct());
@@ -237,10 +220,9 @@ export const categoriesFilter = (checkCategory, page, limit) => {
 };
 export const setOrder = async (user_id, user_name, surname, phone, nameSity, nameDepartment, pay, cart, status, summa, month) => {
     try {
-
         const response = await OrderService.order(user_id, user_name, surname, phone, nameSity, nameDepartment, pay, cart, status, summa, month);
 
-        SwalFunction(WORD_SWAL_ORDER_SEND, '', WORD_SWAL_SUCCESS, WORD_SWAL_OK, false, 3500)
+        SwalFunction(WORD_SWAL_ORDER_SEND, '', WORD_SWAL_SUCCESS, WORD_SWAL_OK, false, 3500);
 
         return response;
     } catch (e) {
@@ -249,20 +231,23 @@ export const setOrder = async (user_id, user_name, surname, phone, nameSity, nam
 };
 export const getOrders = async () => {
     try {
+
         return await OrderService.orders();
     } catch (e) {
         SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
     }
 };
-export const getOrdersByVisualAnaliz = async () => {
+export const getUsersAnalyze = async () => {
     try {
-        return await OrderService.ordersByVisualAnalis();
+
+        return await UserService.usersAnalyze();
     } catch (e) {
         SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
     }
 };
 export const getOrdersByFilter = async (status) => {
     try {
+
         return await OrderService.ordersByFilter(status);
     } catch (e) {
         SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
@@ -270,7 +255,6 @@ export const getOrdersByFilter = async (status) => {
 };
 export const updateStatusOrder = async (id, status) => {
     try {
-
         const response = await OrderService.updateStatus(id, status);
 
         return response.data;
@@ -288,6 +272,7 @@ export const getOrdersById = async (id) => {
 };
 export const saveFoto = async (id, img) => {
     try {
+
         return await FotoService.saveFoto(id, img);
     } catch (e) {
         console.log(e.response.data.message);
@@ -295,6 +280,7 @@ export const saveFoto = async (id, img) => {
 };
 export const getFoto = async (id) => {
     try {
+
         return await FotoService.fotoById(id);
     } catch (e) {
         console.log(e.response.data.message);
@@ -309,18 +295,7 @@ export const getAnalyze = async () => {
 };
 export const dateAnalizy = async (month, summa) => {
     try {
-
         const response = await OrderService.analyzeOrder(month, summa);
-
-        return response.data;
-    } catch (e) {
-        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
-    }
-};
-export const updateDateAnalizy = async (month, summa) => {
-    try {
-
-        const response = await OrderService.updateAnalyzeOrder(month, summa);
 
         return response.data;
     } catch (e) {
@@ -329,7 +304,6 @@ export const updateDateAnalizy = async (month, summa) => {
 };
 export const archiveOrder = async (id) => {
     try {
-
         const response = await OrderService.archiveOrder(id);
 
         SwalFunction(WORD_SWAL_READY, '', WORD_SWAL_SUCCESS, WORD_SWAL_OK, false, 3500);
@@ -341,6 +315,7 @@ export const archiveOrder = async (id) => {
 };
 export const getArchiveOrders = async () => {
     try {
+
         return await OrderService.getArchiveOrders();
     } catch (e) {
         SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
@@ -348,7 +323,6 @@ export const getArchiveOrders = async () => {
 };
 export const deleteOrder = async (id) => {
     try {
-
         const response = await OrderService.deleteArchiveOrder(id);
 
         return response.data;
@@ -358,7 +332,6 @@ export const deleteOrder = async (id) => {
 };
 export const deleteProduct = async (number) => {
     try {
-console.log(number);
         const response = await ProductService.deleteProduct(number);
 
         SwalFunction(WORD_SWAL_READY, '', WORD_SWAL_SUCCESS, WORD_SWAL_OK, false, 3500);
@@ -381,7 +354,6 @@ export const editPage = async (id, name, surname, email, phone, oldPassword, num
 };
 export const editContactData = async (id, name, surname, phone) => {
     try {
-
         const response = await UserService.editContactData(id, name, surname, phone);
 
         store.dispatch(setUser(response.data));
@@ -395,7 +367,6 @@ export const editContactData = async (id, name, surname, phone) => {
 };
 export const editAdressData = async (id, sity, numberNP) => {
     try {
-
         const response = await UserService.editAdressData(id, sity, numberNP);
 
         store.dispatch(setUser(response.data));
@@ -409,7 +380,6 @@ export const editAdressData = async (id, sity, numberNP) => {
 };
 export const createCalendarEvent = async (title, date, description, time, id) => {
     try {
-
         const response = await HomeService.createCalendarEvent(title, date, description, time, id);
 
         return response.data;
@@ -419,7 +389,6 @@ export const createCalendarEvent = async (title, date, description, time, id) =>
 };
 export const getCalendarEvent = async (startDateQuery, endDateQuery) => {
     try {
-
         const response = await HomeService.getCalendarEvent(startDateQuery, endDateQuery);
 
         return response.data;
@@ -429,7 +398,6 @@ export const getCalendarEvent = async (startDateQuery, endDateQuery) => {
 };
 export const getCalendarEventForId = async (id) => {
     try {
-
         const response = await HomeService.getCalendarEventForId(id);
 
         return response.data;
@@ -439,7 +407,6 @@ export const getCalendarEventForId = async (id) => {
 };
 export const getFindEventInRow = async (date) => {
     try {
-
         const response = await HomeService.getFindEvent(date);
 
         return response.data;

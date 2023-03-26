@@ -7,6 +7,7 @@ import './Fotter@media.css';
 import Logo from "../../images/logo-header.png";
 
 export function Footer() {
+
     return (
         <div className={'footer'}>
             <div className={'container'}>

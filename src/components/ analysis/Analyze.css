@@ -30,4 +30,11 @@ h4 {
     color: white;
     padding: 5px;
     align-items: center;
+    background-color: #79cbb8;
+    border: none;
+    cursor: pointer;
+}
+
+.margin-for-last {
+    margin-bottom: 50px;
 }

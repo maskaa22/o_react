@@ -1,10 +1,10 @@
+import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 
 import './LoginingForm.css';
 import {Input} from "../utils";
-import {resetPassword} from "../servises/API";
 import {LOGIN} from "../../config/headerConstants";
-import {useNavigate} from "react-router-dom";
+import {resetPassword} from "../servises/API";
 
 export function ResetPasswordForm() {
 
@@ -26,7 +26,9 @@ export function ResetPasswordForm() {
                 <Input value={passwordToo} setValue={setPasswordToo} type={'password'} placeholder={"Повторіть пароль"}
                        className={'input-margin'}/>
                 <button className={'form_btn'} onClick={() => {
-                    resetPassword(password, passwordToo, id[1]).then(res => { if (res) navigate(LOGIN)});
+                    resetPassword(password, passwordToo, id[1]).then(res => {
+                        if (res) navigate(LOGIN);
+                    });
                 }}>Змінити
                 </button>
             </div>

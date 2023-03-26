@@ -1,35 +1,213 @@
-@media screen and (min-width: 800px) {
-    .info_card {
-        font-size: 15px;
+@media screen and (max-width: 1240px) {
+    .heading, .price {
+        font-size: 2vh;
     }
 
-    .card-small-size {
-        font-size: 12px;
+    .desc {
+        font-size: 1.8vh;
+    }
+
+    .buy {
+        height: 3.5vh;
+    }
+
+    .price {
+        width: 45%;
+    }
+}
+
+@media screen and (min-width: 1024px) and (min-height: 768px) {
+    .price {
+        width: 60%;
+    }
+
+    .heading {
+        font-size: 2vh;
+    }
+
+    .desc {
+        font-size: 1.8vh;
+    }
+}
+
+@media screen and (max-width: 970px) {
+    .courseCard {
+        height: 40vh;
+    }
+}
+
+@media screen and (max-width: 914px) and (min-height: 412px) {
+    .courseCard {
+        height: 60vh;
+    }
+
+    .heading, .price {
+        font-size: 3vh;
+    }
+
+    .desc {
+        font-size: 2.5vh;
+    }
+
+    .buy {
+        height: 4.5vh;
+    }
+}
+
+@media screen and (max-width: 912px) and (min-height: 1366px) {
+    .courseCard {
+        width: 35%;
+    }
+
+    .desc {
+        font-size: 1.5vh;
+    }
+
+    .price {
+        width: 55%;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .courseCard {
+        width: 23%;
+    }
+
+}
+
+@media screen and (max-width: 840px) {
+    .heading {
+        font-size: 2.5vh;
+    }
+}
+
+@media screen and (max-width: 820px) and (min-height: 1180px) {
+    .courseCard {
+        width: 40%;
+    }
+
+    .heading {
+        font-size: 2vh;
+    }
+
+    .desc {
+        font-size: 1.5vh;
     }
 }
 
 @media screen and (max-width: 800px) {
-    .column {
-        width: 50%;
+    .courseCard {
+        height: 55vh;
+        width: 30%;
     }
 
-    .info_card {
-        font-size: 20px;
+    .heading, .price {
+        font-size: 3vh;
     }
 
-    .card-small-size {
-        font-size: 15px;
+    .desc {
+        font-size: 2vh;
+    }
+
+    .buy {
+        height: 4vh;
+    }
+}
+
+@media screen and (max-width: 768px) and (min-height: 1024px) {
+    .courseCard {
+        width: 40%;
+    }
+
+    .heading, .price {
+        font-size: 2.5vh;
+    }
+
+    .buy {
+        height: 3.5vh;
+    }
+}
+
+@media screen and (max-width: 680px) {
+    .heading {
+        font-size: 2.7vh;
+    }
+
+    .courseCard {
+        height: 50vh;
+    }
+
+    .price {
+        font-size: 2.4vh;
+    }
+
+    .buy {
+        height: 3.7vh;
+    }
+
+    .desc {
+        font-size: 1.8vh;
     }
 }
 
 @media screen and (max-width: 600px) {
-    .column {
-        width: 100%;
-        display: block;
+    .courseCard {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 540px) and (min-height: 720px) {
+    .heading {
+        font-size: 2.5vh;
+    }
+}
+
+@media screen and (max-width: 490px) {
+    .heading {
+        font-size: 2.5vh;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .heading, .price {
+        font-size: 2.2vh;
     }
 
-    .card {
-        width: 60vw;
-        margin: 1vw 5vw;
+    .buy {
+        height: 3.5vh;
+    }
+
+    .courseCard {
+        width: 70%;
+        height: 65vh;
+    }
+}
+
+@media screen and (max-width: 400px) {
+
+    .heading {
+        font-size: 3vh;
+    }
+
+    .desc {
+        font-size: 2.5vh;
+    }
+
+    .price {
+        font-size: 3.5vh;
+    }
+
+    .buy {
+        height: 4.5vh;
+    }
+
+    .price {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .price {
+        font-size: 3vh;
     }
 }

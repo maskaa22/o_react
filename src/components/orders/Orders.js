@@ -21,12 +21,12 @@ import {
 
 export function Orders() {
 
-    const [orders, setOrders] = useState();
     const [filter, setFilter] = React.useState('');
+    const [orders, setOrders] = useState();
 
     useEffect(() => {
         APIServise.getOrders().then(respons => {
-            setOrders(respons.data)
+            setOrders(respons.data);
         });
     }, []);
 

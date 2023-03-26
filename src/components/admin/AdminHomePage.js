@@ -1,6 +1,6 @@
-import {Link, Outlet, Route, Routes, useNavigate} from "react-router-dom";
+import {Link, Outlet, useNavigate} from "react-router-dom";
 import {MdNavigateNext} from "react-icons/md";
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import {useDispatch} from "react-redux";
 
 import "./AdminHomePage.css";
@@ -12,59 +12,45 @@ import {
     ADMIN_ORDERS,
     ADMIN_PRODUCT,
     ADMIN_RECORDS,
-    ADMIN_USERS,
-    ANALYSIS,
-    ARCHIVE_ORDERS,
-    CLIENTS,
-    ORDERS,
-    RECORDS,
-    THIS,
-    PRODUCTS
+    ADMIN_USERS
 } from "../../config/homeConstants";
-import {Analysis} from "../ analysis";
 import {APIServise} from "../servises";
-import {ArchiveOrders} from "../archive";
 import {closeToogleMenu, handleClick, ifOpenPageAddActiveClass, openToogleMenu, ViewFunction} from "../utils/function";
-import {CreateProduct} from "../createProduct";
-import {Edit} from "../editPage";
-import {Orders} from "../orders";
-import {Users} from "../users";
-import {Records} from "../records/Records";
+import {LOGIN} from "../../config/headerConstants";
 import {
-    WORD_ACTIVE_MENU_CATEGORY, WORD_AUTH,
+    WORD_ACTIVE_MENU_CATEGORY,
     WORD_CATEGORY_MENU,
     WORD_NO_SCROLL,
-    WORD_SMALL_MENU_ADMIN_CLIENT, WORD_TOKEN
+    WORD_SMALL_MENU_ADMIN_CLIENT,
+    WORD_TOKEN
 } from "../../config/wordsConstants";
-import {LOGIN} from "../../config/headerConstants";
 
 export function AdminHomePage({setUsers}) {
-    // const [users, setUsers] = useState([]);
 
     const dispatch = useDispatch();
 
     async function getUser() {
         try {
             const response = await APIServise.getUsers();
-            if(response!==undefined) {
+            if (response !== undefined) {
                 setUsers(response.data);
             }
         } catch (e) {
             console.log(e);
         }
     }
+
     const navigate = useNavigate();
 
     useEffect(() => {
         if (localStorage.getItem(WORD_TOKEN)) {
             dispatch(APIServise.auth()).then(req => {
-                if(req===undefined) {
+                if (req === undefined) {
                     navigate(LOGIN);
                 }
                 getUser();
             });
         }
-
     }, []);
 
     ViewFunction();
@@ -100,7 +86,7 @@ export function AdminHomePage({setUsers}) {
                         <Link to={ADMIN_USERS} className={'color_purple click-item'}>
                             <button className={'home_item click-item category'} onClick={() => {
                                 closeMenuHome();
-                                getUser()
+                                getUser();
                             }}>Клієнти <MdNavigateNext className={'non-icon'}/></button>
                         </Link>
                     </div>

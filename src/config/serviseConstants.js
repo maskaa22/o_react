@@ -14,12 +14,12 @@ module.exports = {
     PRODUCT_ARCHIVE_ORDER: '/products/archive_order',
     PRODUCT_ORDER_ANALYZE: '/products/order_analyze',
     PRODUCT_ORDERS: '/products/orders',
-    PRODUCT_ORDERS_ANALYZE_VISUAL: '/products/order_analyze_visual',
     PRODUCT_ORDERS_FILTER: '/products/orders_filter',
     PRODUCTS: '/products',
     RESET_PASSWORD_: '/auth/:user_id/reset-password',
     USERS: '/users',
     USERS_ADRESS: '/users/adress',
+    USERS_ANALYZE: '/users/analyze',
     USERS_CONTACT: '/users/contact',
     USERS_SEND: '/users/send'
 };

@@ -69,9 +69,6 @@ export function Order({orders, del, visible}) {
                                         <div className={'center end'}>
                                             <button className={'status'} onClick={() => {
                                                 APIServise.updateStatusOrder(order._id, status);
-                                                if (status === WORD_READY) {
-                                                    APIServise.updateDateAnalizy(order.month, order.summa);
-                                                }
                                                 window.location.reload();
                                             }}>Змінити
                                             </button>

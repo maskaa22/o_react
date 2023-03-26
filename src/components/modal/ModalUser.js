@@ -3,10 +3,10 @@ import {Box, Modal} from "@mui/material";
 
 import {DeleteUser} from "../deleteUser";
 import {LoginingForm} from "../loginingForm";
-import {ModalSendUser} from "./ModalSendUser";
 import {ModalCalendar} from "./ModalCalendar";
-import {WORLD_ADMIN} from "../../config/wordsConstants";
 import {ModalRegister} from "./ModalRegister";
+import {ModalSendUser} from "./ModalSendUser";
+import {WORLD_ADMIN} from "../../config/wordsConstants";
 
 export function ModalUser({
                               openWindow,

@@ -20,6 +20,7 @@ module.exports = {
     WORD_DEL: 'del',
     WORD_EVERY: 'все',
     WORD_EXPECTED: 'очікується',
+    WORD_FAILED_TO_FETCH: 'Сервіс Нової почти тимчасово не працює',
     WORD_HIDEN: 'hiden',
     WORD_HIDDEN: 'hidden-n-p',
     WORD_HIDDEN_ONLY: 'hidden',

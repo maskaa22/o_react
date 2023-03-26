@@ -1,11 +1,4 @@
-import {
-    DEL_PRODUCT,
-    DEL_FILTER,
-    DEL__All_PRODUCT,
-    SET_CATEGORY,
-    SET_FILTER,
-    SET_PRODUCT,
-} from '../actionTypes'
+import {DEL__All_PRODUCT, DEL_FILTER, DEL_PRODUCT, SET_CATEGORY, SET_FILTER, SET_PRODUCT,} from '../actionTypes';
 
 export const delAllProduct = () => ({type: DEL__All_PRODUCT});
 export const delFilter = () => ({type: DEL_FILTER});

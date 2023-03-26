@@ -14,6 +14,15 @@
     text-align: center;
 }
 
+.number-orders {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #5400a8;
+}
+
+.margin-top-summa {
+    margin-top: 15px;
+}
+
 .filter {
     padding: 0;
     margin: 25px auto;
@@ -23,6 +32,16 @@
     display: flex;
     justify-content: space-around;
     text-align: center;
+}
+
+.product-list {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.orders-justify-content-between {
+    display: flex;
+    justify-content: space-between;
 }
 
 .select_status {
@@ -37,6 +56,9 @@
     margin-top: 10px;
     align-items: center;
     color: white;
+    cursor: pointer;
+    background-color: #79cbb8;
+    border: none;
 }
 
 .archive {

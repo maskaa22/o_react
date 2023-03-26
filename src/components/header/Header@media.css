@@ -1,7 +1,29 @@
+@media screen and (min-width: 1920px) {
+    .header {
+        height: 80px;
+    }
+
+    .menu {
+        margin-top: 10px;
+    }
+}
+
 @media screen and (min-width: 1000px) {
     .menu > li {
         position: relative;
         padding: 0 3vw;
+    }
+
+    .menu a, .div-admin {
+        font-size: 2.5vh;
+    }
+
+    .active-menu {
+        border-color: #79CBB8FF;
+    }
+
+    .menu > li > .link-a {
+        font-size: 3.5vh;
     }
 }
 
@@ -65,7 +87,6 @@
         transition: .3s;
         color: black;
         background-color: white;
-
     }
 
     .menu.active-menu-header {
