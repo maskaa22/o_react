@@ -39,7 +39,7 @@
     box-shadow: 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.15);
     outline: none;
     font-family: "Noto Sans", sans-serif;
-    font-size: 2.5vh;
+    font-size: 2vh;
     text-align: left;
     text-overflow: ellipsis;
     line-height: 36px;
@@ -132,7 +132,7 @@
     overflow: hidden;
 }
 
-.select-search:not(.is-loading):not(.select-search--multiple)
+.select-search:not(.is-loading):not(.select-search--multiple),
 .select-search__value::after {
     transform: rotate(45deg);
     border-right: 1px solid #000;

@@ -80,7 +80,7 @@ export function Header() {
                         <NavLink to={THIS} onClick={closeHandler}>Головна</NavLink>
                     </li>
                     <li>
-                        <a onClick={openSubMenuOne}>Послуги</a>
+                        <a onClick={openSubMenuOne} className={'cursor-pointer'}>Послуги</a>
                         <ul className={'submenu'} id={'sub-link-one'}>
                             <li>
                                 <NavLink to={MENS_HAIRCUT} onClick={closeHandler}>Чоловічі
@@ -113,7 +113,7 @@ export function Header() {
                         <NavLink to={CONTACT} onClick={closeHandler}>Контакти</NavLink>
                     </li>
                     <li>
-                        <a onClick={openSubMenuTwo} className={'link-a'}><IoMdExit className=" icon_basket"/></a>
+                        <a onClick={openSubMenuTwo} className={'link-a cursor-pointer'}><IoMdExit className=" icon_basket"/></a>
                         <ul className={'submenu'} id={'sub-link-two'}>
                             {
                                 !isAuth &&

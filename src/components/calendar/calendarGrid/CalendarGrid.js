@@ -40,7 +40,7 @@ const CalendarGrid = ({startDay, today, totalDays, events, openFormHandler, setT
                                      key={dayItem.unix()} isWeekend={dayItem.day() === 6 || dayItem.day() === 0}
                                      isSelectedMonth={isSelectedMonth(dayItem)} onClick={() => {
                             getFindEventInRow(dayItem.unix()).then(res => setTime(res));
-                            openFormHandler(dayItem.format('DD.MM.YYYY'), dayItem.unix());
+                            openFormHandler(dayItem.format('DD.MM.YYYY'), dayItem.unix(), moment().unix());
                         }}>
                             <RowInCell>
                                 <ShowDayWrapper>

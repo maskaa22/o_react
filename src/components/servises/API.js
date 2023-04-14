@@ -114,7 +114,7 @@ export const resetPassword = async (password, passwordToo, id) => {
     try {
         await AuthService.resetPassword(password, passwordToo, id);
 
-        SwalFunction(WORD_RESET, '', WORD_SWAL_SUCCESS, WORD_SWAL_OK, false, 3500);
+        SwalFunction(WORD_RESET, '', WORD_SWAL_SUCCESS, WORD_SWAL_OK, false, 1500);
 
     } catch (e) {
         SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);

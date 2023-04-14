@@ -10,11 +10,11 @@ import {CalendarMonitor} from "./calendarMonitor";
 import {createCalendarEvent, getCalendarEvent} from "../servises/API";
 import {endDateQuery, nextHandler, prevHandler, startDateQuery, todayHandler, totalDays} from "../utils/function";
 import {ModalUser} from "../modal";
-import {WORD_MONTH, WORD_WEEK, WORLD_USER} from "../../config/wordsConstants";
+import {WORD_CALENDAR, WORD_MONTH, WORD_WEEK, WORLD_UK, WORLD_USER} from "../../config/wordsConstants";
 
 export function Calendar() {
 
-    moment.updateLocale('uk', {week: {dow: 1}});
+    moment.updateLocale(WORLD_UK, {week: {dow: 1}});
 
     const [events, setEvents] = useState([]);
     const [date, setDate] = useState('');
@@ -35,11 +35,13 @@ export function Calendar() {
             setEvents(rez);
         });
     }, [today]);
-
-    const openFormHandler = (todayDate, unixDate) => {
+    const openFormHandler = (todayDate, unixDate, now) => {
         setDate(todayDate);
         setUnix(unixDate);
-        setOpenWindow(true);
+
+        if(unixDate > now) {
+            setOpenWindow(true);
+        }
     };
 
     const eventCreateHandler = (title, date, description, time, id) => {
@@ -55,7 +57,7 @@ export function Calendar() {
         <>
             {
                 (isAuth && role === WORLD_USER) &&
-                <ModalUser openWindow={openWindow} handleClose={handleClose} calendar={'calendar'} date={date}
+                <ModalUser openWindow={openWindow} handleClose={handleClose} calendar={WORD_CALENDAR} date={date}
                            eventCreateHandler={eventCreateHandler} unix={unix} time={time}/>
             }
             {
@@ -67,7 +69,7 @@ export function Calendar() {
                                      todayHandler={() => todayHandler(setToday)}
                                      nextHandler={() => nextHandler(setToday)}/>
                     <CalendarGrid startDay={startDay} today={today} totalDays={totalDays} events={events}
-                                  openFormHandler={openFormHandler} setTime={setTime}/>
+                                  openFormHandler={openFormHandler} setTime={setTime} />
                 </ShadowWrapper>
             </CalendarWrapper>
         </>

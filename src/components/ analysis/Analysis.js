@@ -50,7 +50,7 @@ export function Analysis() {
             <div className={'div_btn_analyz'}>
                 <button className={'btn_analyz btn-fond-size'}
                         onClick={() => ELSXFunction(HeadingUsers, users, 'Звіт по користувачах.xlsx')}>Експортувати
-                    статуси в EXEL
+                    графік в EXEL
                 </button>
             </div>
             <Analys_status_order data={users}/>
