@@ -17,9 +17,11 @@ module.exports = {
     PRODUCT_ORDERS_FILTER: '/products/orders_filter',
     PRODUCTS: '/products',
     RESET_PASSWORD_: '/auth/:user_id/reset-password',
+    UPLOAD_FILES: '/upload_files',
     USERS: '/users',
     USERS_ADRESS: '/users/adress',
     USERS_ANALYZE: '/users/analyze',
     USERS_CONTACT: '/users/contact',
-    USERS_SEND: '/users/send'
+    USERS_SEND: '/users/send',
+    SEND_ACTIVE_EMAIL: '/auth/send-active-email',
 };

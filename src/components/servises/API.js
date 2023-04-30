@@ -425,3 +425,15 @@ export const sentEmail = async (name, email, phone, text) => {
         SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
     }
 };
+export const sentActiveEmail = async (id, name, email) => {
+    try {
+        //console.log(id, name, email);
+        const response = await AuthService.sentActiveEmail(id, name, email);
+
+        SwalFunction(WORD_SWAL_LATER_SEND, '', WORD_SWAL_SUCCESS, WORD_SWAL_OK, false, 3500);
+
+        return response.data;
+    } catch (e) {
+        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
+    }
+};

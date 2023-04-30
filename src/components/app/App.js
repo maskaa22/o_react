@@ -1,30 +1,12 @@
 import React, {useEffect, useState} from "react";
-import {Route, Routes} from "react-router-dom";
+import {Navigate, Route, Routes} from "react-router-dom";
 import {useSelector} from "react-redux";
 
 import {AboutAsPage} from "../aboutAs";
-import {
-    ABOUT_AS,
-    ACTIVATE_TOKEN_URL,
-    ADMIN_ALL,
-    CLIENT_ALL,
-    CONTACT,
-    HAIR_COLOR,
-    HAIR_STYLES,
-    LOGIN,
-    LOGIN_RESET_PASSWORD,
-    MENS_HAIRCUT,
-    PRODUCTS,
-    PRODUCTS_ORDERS,
-    REGISTRATION,
-    RESET_PASSWORD,
-    THIS,
-    WOMENS_HAIRCUT
-} from "../../config/headerConstants";
+import {CLIENT_ALL} from "../../config/headerConstants";
 import {ActiveForm, LoginingForm, ResetPasswordForm, WritingEmailForm} from "../loginingForm";
 import {AdminHomePage} from "../admin";
 import {Analysis} from "../ analysis";
-import {ANALYSIS, ARCHIVE_ORDERS, CLIENTS, ORDERS, PRODUCTS_CREATE, RECORDS} from "../../config/homeConstants";
 import {APIServise} from "../servises";
 import {ArchiveOrders} from "../archive";
 import {BasketPage} from "../basket";
@@ -67,38 +49,36 @@ export function App() {
         <div className={'main'}>
             <div className={'all-container'}>
                 <Routes>
-                    <Route path={THIS} element={<HomePage/>}/>
-                    <Route path={MENS_HAIRCUT} element={<MensHaircut/>}/>
-                    <Route path={WOMENS_HAIRCUT} element={<WomensHaircut/>}/>
-                    <Route path={HAIR_STYLES} element={<HairStyles/>}/>
-                    <Route path={HAIR_COLOR} element={<HairColor/>}/>
-                    <Route path={PRODUCTS} element={<ProductsPage/>}/>
-                    <Route path={ABOUT_AS} element={<AboutAsPage/>}/>
-                    <Route path={CONTACT} element={<Contacts/>}/>
+                    <Route path={'/'} element={<HomePage/>}/>
+                    <Route path={'/mens_haircut'} element={<MensHaircut/>}/>
+                    <Route path={'/womens_haircut'} element={<WomensHaircut/>}/>
+                    <Route path={'/hairstyles'} element={<HairStyles/>}/>
+                    <Route path={'/hair_color'} element={<HairColor/>}/>
+                    <Route path={'/products'} element={<ProductsPage/>}/>
+                    <Route path={'/about_as'} element={<AboutAsPage/>}/>
+                    <Route path={'/contact'} element={<Contacts/>}/>
 
                     {(isAuth && role === WORLD_ADMIN) &&
-                    <Route path={ADMIN_ALL} element={<AdminHomePage setUsers={setUsers}/>}>
+                    <Route path={'/admin'} element={<AdminHomePage setUsers={setUsers}/>}>
                         <Route index element={<Edit/>}/>
-                        <Route path={CLIENTS} element={<Users items={users}/>}/>
-                        <Route path={RECORDS} element={<Records/>}/>
-                        <Route path={PRODUCTS_CREATE} element={<CreateProduct/>}/>
-                        <Route path={ORDERS} element={<Orders/>}/>
-                        <Route path={ARCHIVE_ORDERS} element={<ArchiveOrders/>}/>
-                        <Route path={ANALYSIS} element={<Analysis/>}/>
+                        <Route path={'users'} element={<Users items={users}/>}/>
+                        <Route path={'records'} element={<Records/>}/>
+                        <Route path={'products'} element={<CreateProduct/>}/>
+                        <Route path={'orders'} element={<Orders/>}/>
+                        <Route path={'archive_orders'} element={<ArchiveOrders/>}/>
+                        <Route path={'analysis'} element={<Analysis/>}/>
                     </Route>
                     }
-                    {isAuth && <Route path={PRODUCTS_ORDERS} element={<BasketPage/>}/>}
+                    {isAuth && <Route path={'/products/orders'} element={<BasketPage/>}/>}
                     {(isAuth && role === WORLD_USER) && <Route path={CLIENT_ALL} element={<ClientHomePage/>}/>}
 
-                    <Route path={REGISTRATION} element={<LoginingForm/>}/>
-                    <Route path={LOGIN} element={<LoginingForm/>}/>
-                    <Route path={RESET_PASSWORD} element={<ResetPasswordForm/>}/>
-                    <Route path={LOGIN_RESET_PASSWORD} element={<WritingEmailForm/>}/>
-                    <Route path={ACTIVATE_TOKEN_URL} element={<ActiveForm/>}/>
+                    <Route path={'/registration'} element={isAuth ? <Navigate to={'/'}/> : <LoginingForm/>}/>
+                    <Route path={'/login'} element={isAuth ? <Navigate to={'/'}/> : <LoginingForm/>}/>
+                    <Route path={'/:user_id/reset-password'} element={<ResetPasswordForm/>}/>
+                    <Route path={'/login-reset-password'} element={<WritingEmailForm/>}/>
+                    <Route path={'auth/activate/:token'} element={<ActiveForm/>}/>
                 </Routes>
             </div>
         </div>
     );
 }
-
-export default App;

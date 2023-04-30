@@ -16,7 +16,7 @@ import {
     PRODUCT_ORDER_ANALYZE,
     PRODUCT_ORDERS,
     PRODUCT_ORDERS_FILTER,
-    RESET_PASSWORD_,
+    RESET_PASSWORD_, SEND_ACTIVE_EMAIL, UPLOAD_FILES,
     USERS,
     USERS_ADRESS,
     USERS_ANALYZE,
@@ -90,6 +90,10 @@ export class AuthService {
 
     static async auth() {
         return api.get(AUTH_REFRESH, {withCredentials: true})
+    }
+
+    static async sentActiveEmail(_id, name, email) {
+        return api.post(SEND_ACTIVE_EMAIL, {_id, name, email})
     }
 }
 
@@ -255,6 +259,6 @@ export class FotoService {
     }
 
     static async fotoById(user_id) {
-        return api.get('/upload_files', {params: {user_id}})
+        return api.get(UPLOAD_FILES, {params: {user_id}})
     }
 }

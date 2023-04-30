@@ -1,5 +1,6 @@
 import Avatar from '@mui/material/Avatar';
 import {FiCheck} from "react-icons/fi";
+import * as React from "react";
 import {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 
@@ -11,6 +12,7 @@ import {Input} from "../utils";
 import {NewPochta} from "../newPochta";
 import {StyleForPassword, StyleIconOk} from '../utils/function';
 import {WORD_TOKEN, WORLD_ADMIN, WORLD_USER} from "../../config/wordsConstants";
+import {RiSendPlaneFill} from "react-icons/ri";
 
 
 export function Edit() {
@@ -28,8 +30,8 @@ export function Edit() {
     const [phone, setPhone] = useState('');
     const [sity, setSity] = useState('');
     const [surname, setSurname] = useState('');
-    const [visibleNumber, setVisibleNumber] = useState('none');
-    const [visibleSity, setVisibleSity] = useState('none');
+    // const [visibleNumber, setVisibleNumber] = useState('none');
+    // const [visibleSity, setVisibleSity] = useState('none');
 
 
     useEffect(() => {
@@ -87,9 +89,11 @@ export function Edit() {
                     </div>
                     <div>
                         <div className={'full-center margin-input'}>
-                            <div
-                                className={currentUser.is_active === false ? `input-center-full ${activeEmail}` : `input-center-full ${nonActiveEmail}`}>
-                                Підтвердіть пошту
+                            <div onClick={() => {
+                                APIServise.sentActiveEmail(currentUser._id, currentUser.name, currentUser.email);
+                            }}
+                                 className={currentUser.is_active === false ? `input-center-full ${activeEmail}` : `input-center-full ${nonActiveEmail}`}>
+                                Підтвердіть пошту<RiSendPlaneFill className={'i-active-email'}/>
                             </div>
                         </div>
                     </div>
@@ -122,8 +126,7 @@ export function Edit() {
                                 </div>
                             </div>
                             {role === WORLD_USER &&
-                            <NewPochta setSity={setSity} setNumberNP={setNumberNP}
-                                       setVisibleSity={setVisibleSity} setVisibleNumber={setVisibleNumber}/>
+                            <NewPochta setSity={setSity} setNumberNP={setNumberNP}/>
                             }
                         </div>
                         <div>

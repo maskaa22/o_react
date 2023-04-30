@@ -108,4 +108,12 @@
 .active-email {
     text-align: center;
     color: red;
+    border: 1px solid red;
+    width: fit-content;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.i-active-email {
+    font-size: 2vh;
 }
