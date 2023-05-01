@@ -6,7 +6,7 @@ import {useSelector} from "react-redux";
 
 import './EditPage.css';
 import './EditPage@media.css';
-import {APIServise} from "../servises";
+import {setFoto, getUserForToken, sentActiveEmail, editPage} from "../servises";
 import {AUTH_URL} from "../../config/URL";
 import {Input} from "../utils";
 import {NewPochta} from "../newPochta";
@@ -36,7 +36,7 @@ export function Edit() {
 
     useEffect(() => {
         if (localStorage.getItem(WORD_TOKEN)) {
-            APIServise.getUserForToken().then(user => setImgById(user.user_id.foto));
+            getUserForToken().then(user => setImgById(user.user_id.foto));
         }
     }, []);
 
@@ -64,7 +64,7 @@ export function Edit() {
         const formData = new FormData();
         formData.append('_id', currentUser._id);
         formData.append('foto', e.target.files[0]);
-        APIServise.setFoto(formData)
+        setFoto(formData)
             .then(user => setImgById(user.foto));
     };
 
@@ -90,7 +90,7 @@ export function Edit() {
                     <div>
                         <div className={'full-center margin-input'}>
                             <div onClick={() => {
-                                APIServise.sentActiveEmail(currentUser._id, currentUser.name, currentUser.email);
+                                sentActiveEmail(currentUser._id, currentUser.name, currentUser.email);
                             }}
                                  className={currentUser.is_active === false ? `input-center-full ${activeEmail}` : `input-center-full ${nonActiveEmail}`}>
                                 Підтвердіть пошту<RiSendPlaneFill className={'i-active-email'}/>
@@ -182,12 +182,12 @@ export function Edit() {
                     <div className={'full-center margin-input'}>
                         {role === WORLD_ADMIN &&
                         <button className={'btn-save'} type='submit' onClick={() => {
-                            APIServise.editPage(currentUser._id, name, surname, email, phone, oldPassword, number, numberToo);
+                            editPage(currentUser._id, name, surname, email, phone, oldPassword, number, numberToo);
                         }}>Змінити та зберегти</button>
                         }
                         {role === WORLD_USER &&
                         <button className={'btn-save'} type='submit' onClick={() => {
-                            APIServise.editPage(currentUser._id, name, surname, email, phone, oldPassword, number, numberToo,
+                            editPage(currentUser._id, name, surname, email, phone, oldPassword, number, numberToo,
                                 sity, numberNP);
                         }}>Змінити та зберегти</button>
                         }

@@ -2,7 +2,7 @@ import {useState} from "react";
 
 import './CreateProduct.css';
 import './CreateProduct@media.css';
-import {APIServise} from "../servises";
+import {deleteProduct, getCategories} from "../servises";
 import {Input} from "../utils";
 import {ModalCreateCategory, ModalCreateProduct} from '../modal';
 import {WORD_ADD, WORD_DEL} from "../../config/wordsConstants";
@@ -25,7 +25,7 @@ export function CreateProduct() {
                 <button className={'big-btn'} onClick={
                     () => {
                         setModalActiveProduct(true);
-                        APIServise.getCategories().then(respons => {
+                        getCategories().then(respons => {
                             setCategories(respons.data);
                         });
                     }
@@ -48,7 +48,7 @@ export function CreateProduct() {
                            className={'input-del'}/>
                     <div className={'btn-position'}>
                         <button className={'btn-add margin-add-null'} onClick={() => {
-                            APIServise.deleteProduct(number);
+                            deleteProduct(number);
                             setDelProduct(WORD_DEL);
                         }}>Видалити
                         </button>

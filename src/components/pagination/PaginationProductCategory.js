@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 
 import './Pagination.css';
 import './Pagination@media.css';
-import {APIServise} from "../servises";
+import {categoriesFilter} from "../servises";
 
 export function PaginationProductCategory({paginate, category_id, setFilter, thisPage}) {
 
@@ -19,7 +19,7 @@ export function PaginationProductCategory({paginate, category_id, setFilter, thi
         !filterFlag &&
         thisPage(selectedPage + 1);
         filterFlag &&
-        dispatch(APIServise.categoriesFilter(category_id, selectedPage + 1, 10)).then(response => {
+        dispatch(categoriesFilter(category_id, selectedPage + 1, 10)).then(response => {
             thisPage(selectedPage + 1);
             setFilter(response.data.docs);
         });

@@ -4,7 +4,7 @@ import React from "react";
 import './Analyze.css';
 import './Analyze@media.css';
 
-export function Analys_profit({analyze}) {
+export function AnalysProfit({analyze}) {
 
     const scale = {
         summa: {

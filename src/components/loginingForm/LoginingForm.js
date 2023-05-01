@@ -4,8 +4,7 @@ import {useDispatch} from "react-redux";
 
 import './LoginingForm.css';
 import './LoginingForm@media.css';
-import {APIServise} from "../servises";
-// import {Input} from "../utils";
+import {registration, login} from "../servises";
 import {LOGIN, LOGIN_RESET_PASSWORD, THIS} from "../../config/headerConstants";
 import {StyleForPassword} from "../utils/function";
 import {
@@ -36,16 +35,6 @@ export function LoginingForm({role, handleClose}) {
     const location = useLocation();
     const isLogin = location.pathname === LOGIN;
 
-    // useEffect(() => {
-    //     if(emailError==='' || passwordError==='' || nameError==='' || passwordTooError===''
-    //     ) {
-    //         setFormValid(true);
-    //     } else {
-    //         setFormValid(false);
-    //     }
-    // }, [emailError, nameError, passwordError, passwordTooError]);
-
-
     useEffect(() => {
         if(!isLogin) {
             if (nameError !== '' || emailError !== '' || passwordError !== '' || passwordTooError !== '') {
@@ -61,13 +50,13 @@ export function LoginingForm({role, handleClose}) {
                 }
         }
 
-    }, [emailError, nameError, passwordError, passwordTooError]);
+    }, [emailError, nameError, passwordError, passwordTooError, isLogin]);
 
     useEffect(() => {
         if (!role) {
             setBorder(WORD_BORDER);
         }
-    }, []);
+    }, [role]);
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -144,6 +133,7 @@ export function LoginingForm({role, handleClose}) {
             case 'passwordToo':
                 setPasswordTooDirty(true);
                 break;
+            default: console.log('Помилка');
         }
     };
 
@@ -185,25 +175,21 @@ export function LoginingForm({role, handleClose}) {
                     <div className={'error-input'}>{passwordTooError}</div>}
 
                     <button disabled={formValid} className={'form_btn'} onClick={() => {
-                        {
-                            isLogin ? dispatch(APIServise.login(email, password)).then(rez => {
+                            isLogin ? dispatch(login(email, password)).then(rez => {
                                 if (rez) {
                                     navigate(THIS);
                                 }
-                            }) : APIServise.registration(name, email, password, role, passwordToo, '').then(rez => {
+                            }) : registration(name, email, password, role, passwordToo, '').then(rez => {
                                 if (!role) {
                                     if (rez) navigate(LOGIN);
                                 } else window.location.reload();
                             })
-                        }
                     }}>{isLogin ? WORD_AUTORIZ : WORD_REGISTRATION}
                     </button>
                     {
                         isLogin &&
                         <NavLink to={LOGIN_RESET_PASSWORD} className={'login-reset-password'}>Забули пароль?</NavLink>
                     }
-
-
                 </div>
             </div>
         </div>

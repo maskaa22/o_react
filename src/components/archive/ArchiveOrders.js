@@ -1,7 +1,7 @@
 import * as React from "react";
 import {useEffect, useState} from "react";
 
-import {APIServise} from "../servises";
+import {getArchiveOrders} from "../servises";
 import {Order} from "../order";
 
 export function ArchiveOrders() {
@@ -9,7 +9,7 @@ export function ArchiveOrders() {
     const [orders, setOrders] = useState();
 
     useEffect(() => {
-        APIServise.getArchiveOrders().then(respons => {
+        getArchiveOrders().then(respons => {
             setOrders(respons.data);
         });
     }, []);

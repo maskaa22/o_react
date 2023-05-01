@@ -7,7 +7,7 @@ import {CLIENT_ALL} from "../../config/headerConstants";
 import {ActiveForm, LoginingForm, ResetPasswordForm, WritingEmailForm} from "../loginingForm";
 import {AdminHomePage} from "../admin";
 import {Analysis} from "../ analysis";
-import {APIServise} from "../servises";
+import {getUserForToken} from "../servises";
 import {ArchiveOrders} from "../archive";
 import {BasketPage} from "../basket";
 import {ClientHomePage} from "../client";
@@ -38,7 +38,7 @@ export function App() {
         if (isAuth === false) {
             if (localStorage.getItem(WORD_TOKEN)) {
                 store.dispatch(setAuth());
-                APIServise.getUserForToken().then(user => {
+                getUserForToken().then(user => {
                     store.dispatch(setRole(user.user_id.role));
                 })
             }

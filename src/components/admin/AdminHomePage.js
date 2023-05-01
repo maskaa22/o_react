@@ -14,7 +14,7 @@ import {
     ADMIN_RECORDS,
     ADMIN_USERS
 } from "../../config/homeConstants";
-import {APIServise} from "../servises";
+import {auth, getUsers} from "../servises";
 import {closeToogleMenu, handleClick, ifOpenPageAddActiveClass, openToogleMenu, ViewFunction} from "../utils/function";
 import {LOGIN} from "../../config/headerConstants";
 import {
@@ -29,29 +29,41 @@ export function AdminHomePage({setUsers}) {
 
     const dispatch = useDispatch();
 
-    async function getUser() {
-        try {
-            const response = await APIServise.getUsers();
-            if (response !== undefined) {
-                setUsers(response.data);
-            }
-        } catch (e) {
-            console.log(e);
-        }
-    }
+    // async function getUser() {
+    //     try {
+    //         const response = await getUsers();
+    //         if (response !== undefined) {
+    //             setUsers(response.data);
+    //         }
+    //     } catch (e) {
+    //         console.log(e);
+    //     }
+    // }
+
+    // const getUser = useCallback(() => {
+    //         const response = getUsers();
+    //         if (response !== undefined) {
+    //             setUsers(response.data);
+    //         }
+    // }, [setUsers])
 
     const navigate = useNavigate();
 
     useEffect(() => {
         if (localStorage.getItem(WORD_TOKEN)) {
-            dispatch(APIServise.auth()).then(req => {
+            dispatch(auth()).then(req => {
                 if (req === undefined) {
                     navigate(LOGIN);
                 }
-                getUser();
-            });
+                //getUser();
+                getUsers().then(response => {
+                    if (response !== undefined) {
+                        setUsers(response.data);
+                    }
+                });
+            })
         }
-    }, []);
+    }, [dispatch, navigate, setUsers]);
 
     ViewFunction();
 
@@ -79,45 +91,51 @@ export function AdminHomePage({setUsers}) {
                     <div className={'padding padding-last'}>
                         <Link to={ADMIN} className={'color_purple click-item'}>
                             <button className={'home_item click-item category'}
-                                    onClick={closeMenuHome}>Редагувати <MdNavigateNext className={'non-icon'}/></button>
+                                    onClick={closeMenuHome}>Редагувати <MdNavigateNext className={'non-icon'}/>
+                            </button>
                         </Link>
                     </div>
                     <div className={'padding'}>
                         <Link to={ADMIN_USERS} className={'color_purple click-item'}>
                             <button className={'home_item click-item category'} onClick={() => {
                                 closeMenuHome();
-                                getUser();
+                                // getUser();
                             }}>Клієнти <MdNavigateNext className={'non-icon'}/></button>
                         </Link>
                     </div>
                     <div className={'padding'}>
                         <Link to={ADMIN_RECORDS} className={'color_purple click-item'}>
                             <button className={'home_item click-item category'}
-                                    onClick={closeMenuHome}>Записи <MdNavigateNext className={'non-icon'}/></button>
+                                    onClick={closeMenuHome}>Записи <MdNavigateNext className={'non-icon'}/>
+                            </button>
                         </Link>
                     </div>
                     <div className={'padding'}>
                         <Link to={ADMIN_PRODUCT} className={'color_purple click-item'}>
                             <button className={'home_item click-item category'}
-                                    onClick={closeMenuHome}>Товари <MdNavigateNext className={'non-icon'}/></button>
+                                    onClick={closeMenuHome}>Товари <MdNavigateNext className={'non-icon'}/>
+                            </button>
                         </Link>
                     </div>
                     <div className={'padding'}>
                         <Link to={ADMIN_ORDERS} className={'color_purple click-item'}>
                             <button className={'home_item click-item category'}
-                                    onClick={closeMenuHome}>Замовлення <MdNavigateNext className={'non-icon'}/></button>
+                                    onClick={closeMenuHome}>Замовлення <MdNavigateNext className={'non-icon'}/>
+                            </button>
                         </Link>
                     </div>
                     <div className={'padding'}>
                         <Link to={ADMIN_ARCHIVE_ORDERS} className={'color_purple click-item'}>
                             <button className={'home_item click-item category'}
-                                    onClick={closeMenuHome}>Архів <MdNavigateNext className={'non-icon'}/></button>
+                                    onClick={closeMenuHome}>Архів <MdNavigateNext className={'non-icon'}/>
+                            </button>
                         </Link>
                     </div>
                     <div className={'padding'}>
                         <Link to={ADMIN_ANALYSIS} className={'color_purple click-item'}>
                             <button className={'home_item click-item category'}
-                                    onClick={closeMenuHome}>Звіти <MdNavigateNext className={'non-icon'}/></button>
+                                    onClick={closeMenuHome}>Звіти <MdNavigateNext className={'non-icon'}/>
+                            </button>
                         </Link>
                     </div>
                 </div>

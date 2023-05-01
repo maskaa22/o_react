@@ -4,7 +4,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 
-import {APIServise} from "../servises";
+import {deleteOrder, archiveOrder, updateStatusOrder} from "../servises";
 import Cart from "../orders/Cart";
 import {WORD_ACCEPTED, WORD_EXPECTED, WORD_PROCESSING, WORD_READY, WORD_SEND} from "../../config/wordsConstants";
 
@@ -61,14 +61,14 @@ export function Order({orders, del, visible}) {
                                     {order.status === WORD_READY ?
                                         <div className={`center end ${del}`}>
                                             <button className={'status archive'} onClick={() => {
-                                                APIServise.archiveOrder(order._id);
+                                                archiveOrder(order._id);
                                                 window.location.reload();
                                             }}>В архив
                                             </button>
                                         </div> :
                                         <div className={'center end'}>
                                             <button className={'status'} onClick={() => {
-                                                APIServise.updateStatusOrder(order._id, status);
+                                                updateStatusOrder(order._id, status);
                                                 window.location.reload();
                                             }}>Змінити
                                             </button>
@@ -76,7 +76,7 @@ export function Order({orders, del, visible}) {
                                     }
                                     <div className={`center end ${visible}`}>
                                         <button className={'status'} onClick={() => {
-                                            APIServise.deleteOrder(order._id);
+                                            deleteOrder(order._id);
                                             window.location.reload();
                                         }}>Видалити
                                         </button>

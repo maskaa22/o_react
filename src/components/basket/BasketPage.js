@@ -7,7 +7,7 @@ import {useNavigate} from "react-router-dom";
 import './BasketPage.css';
 import './BasketPage@media.css';
 import '../productsPage/ProductsPage.css';
-import {APIServise} from "../servises";
+import {setOrder, auth, dateAnalizy} from "../servises";
 import {BasketCart} from "../basketCart";
 import {BUY_URL} from "../../config/URL";
 import {delAllProduct} from "../reducers/actionCreators";
@@ -37,14 +37,14 @@ export function BasketPage() {
 
     useEffect(() => {
         if (localStorage.getItem(WORD_TOKEN)) {
-            dispatch(APIServise.auth()).then(res => {
+            dispatch(auth()).then(res => {
                 if (res === undefined) {
                     localStorage.removeItem(WORD_AUTH);
                     navigate(LOGIN);
                 }
             })
         }
-    }, []);
+    }, [dispatch, navigate]);
 
     let summa = 0;
 
@@ -157,9 +157,9 @@ export function BasketPage() {
                         </div>
                         <div className={'check-div'}>
                             <button className={'check'} onClick={() => {
-                                APIServise.setOrder(currentUser.id, currentUser.name, currentUser.surname, currentUser.phone,
+                                setOrder(currentUser.id, currentUser.name, currentUser.surname, currentUser.phone,
                                     currentUser.nameSity, currentUser.nameDepartment, pay, cart, status, summa * count, month);
-                                APIServise.dateAnalizy(month, summa);
+                                dateAnalizy(month, summa);
                                 if (pay === WORD_MONEY) {
                                     navigate(PRODUCTS);
                                     store.dispatch(delAllProduct());

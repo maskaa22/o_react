@@ -7,7 +7,7 @@ import Select from '@mui/material/Select';
 
 import './Orders.css';
 import './Orders@media.css';
-import {APIServise} from "../servises";
+import {getOrders, getOrdersByFilter} from "../servises";
 import {Order} from "../order";
 import {
     WORD_ACCEPTED,
@@ -25,14 +25,14 @@ export function Orders() {
     const [orders, setOrders] = useState();
 
     useEffect(() => {
-        APIServise.getOrders().then(respons => {
+        getOrders().then(respons => {
             setOrders(respons.data);
         });
     }, []);
 
     const handleChangeFilter = (event) => {
         setFilter(event.target.value);
-        APIServise.getOrdersByFilter(event.target.value).then(respons => {
+        getOrdersByFilter(event.target.value).then(respons => {
             setOrders(respons.data);
         });
     };

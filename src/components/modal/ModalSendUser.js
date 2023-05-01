@@ -2,7 +2,7 @@ import {useState} from "react";
 
 import './Modal.css';
 import './Modal@media.css';
-import {APIServise} from "../servises";
+import {sentUser} from "../servises";
 import {Input} from "../utils";
 import {SwalFunction} from "../utils/function";
 import {WORD_SWAL_LATER_SEND, WORD_SWAL_OK, WORD_SWAL_SUCCESS} from "../../config/wordsConstants";
@@ -30,7 +30,7 @@ export function ModalSendUser({handleClose, userEmail}) {
                 </div>
                 <div className={'btn-position'}>
                     <button className={'btn-add'} onClick={() => {
-                        APIServise.sentUser(text, userEmail, topic).then(() => {
+                        sentUser(text, userEmail, topic).then(() => {
                             handleClose();
                             SwalFunction(WORD_SWAL_LATER_SEND, '', WORD_SWAL_SUCCESS, WORD_SWAL_OK, false, 3500);
                         });

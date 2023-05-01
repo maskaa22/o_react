@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 
 import './Orders.css';
 import './Orders@media.css';
-import {APIServise} from "../servises";
+import {getOrdersById} from "../servises";
 import Cart from "./Cart";
 
 export function UserOrders() {
@@ -16,7 +16,7 @@ export function UserOrders() {
 
     useEffect(() => {
         let isMounted = true;
-        APIServise.getOrdersById(locationSplitOneItem).then(respons => {
+        getOrdersById(locationSplitOneItem).then(respons => {
             if (isMounted) {
                 setOrders(respons.data);
             }
@@ -24,7 +24,7 @@ export function UserOrders() {
         return () => {
             isMounted = false;
         }
-    }, []);
+    }, [locationSplitOneItem]);
 
     return (
         <>

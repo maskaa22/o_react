@@ -3,7 +3,7 @@ import {useDispatch} from "react-redux";
 
 import './AboutAsPage.css';
 import './AboutAsPage@media.css';
-import {APIServise} from "../servises";
+import {auth} from "../servises";
 import VideoMp4 from "../../video/aboutAs.mp4";
 import VideoWebm from "../../video/aboutAs.webm";
 import {WORD_TOKEN} from "../../config/wordsConstants";
@@ -14,14 +14,14 @@ export function AboutAs() {
 
     useEffect(() => {
         if (localStorage.getItem(WORD_TOKEN)) {
-            dispatch(APIServise.auth()).then(res => {
+            dispatch(auth()).then(res => {
                 if (res === undefined) {
                     localStorage.removeItem(WORD_TOKEN);
                     document.location.reload();
                 }
             })
         }
-    }, []);
+    }, [dispatch]);
 
     return (
         <div className={'margin-bottom-about'}>

@@ -6,7 +6,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 
 import './Modal.css';
-import {APIServise} from "../servises";
+import {setProducts} from "../servises";
 import {Input} from "../utils";
 
 export function ModalCreateProduct({active, setActive, categories}) {
@@ -14,6 +14,8 @@ export function ModalCreateProduct({active, setActive, categories}) {
     const [categoryProduct, setCategoryProduct] = useState('');
     const [countProduct, setCountProduct] = useState(1);
     const [file, setFile] = useState(null);
+    // const [file, setFile] = useState('');
+
     const [inventoryNumber, setInventoryNumber] = useState('');
     const [nameProduct, setNameProduct] = useState('');
     const [ml, setMl] = useState('');
@@ -43,7 +45,7 @@ export function ModalCreateProduct({active, setActive, categories}) {
         formData.append('inventoryNumber', inventoryNumber);
         formData.append('dosage', ml);
         formData.append('img', file);
-        APIServise.setProducts(formData);
+        setProducts(formData);
     };
 
     return (

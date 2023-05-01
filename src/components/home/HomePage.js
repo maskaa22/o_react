@@ -4,7 +4,7 @@ import React, {useEffect} from "react";
 
 import './Home.css';
 import './Home@media.css';
-import {APIServise} from "../servises";
+import {auth} from "../servises";
 import {Benefits} from "./Benefits";
 import {Breands} from "./Breands";
 import {Calendar} from "../calendar";
@@ -20,7 +20,7 @@ export function HomePage() {
 
     useEffect(() => {
         if (localStorage.getItem(WORD_TOKEN)) {
-            dispatch(APIServise.auth()).then(res => {
+            dispatch(auth()).then(res => {
                 if (res === undefined) {
                     localStorage.removeItem(WORD_TOKEN);
                     localStorage.removeItem(WORD_AUTH);
@@ -28,7 +28,7 @@ export function HomePage() {
                 }
             });
         }
-    }, []);
+    }, [dispatch]);
 
     HomeFunction();
     Up();

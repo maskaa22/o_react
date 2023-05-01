@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-import {APIServise} from "./index";
 import {
     AuthService,
     CategoryService,
@@ -59,7 +58,7 @@ export const auth = () => {
             dispatch(setRole(response.data.user.role));
 
             if (!response) {
-                dispatch(APIServise.logout());
+                dispatch(logout());
             }
 
             return response.data.user;

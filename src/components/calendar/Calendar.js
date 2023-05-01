@@ -7,7 +7,7 @@ import {useSelector} from "react-redux";
 import {CalendarWrapper, ShadowWrapper} from "./CalendarCSS";
 import {CalendarGrid} from "./calendarGrid";
 import {CalendarMonitor} from "./calendarMonitor";
-import {createCalendarEvent, getCalendarEvent} from "../servises/API";
+import {createCalendarEvent, getCalendarEvent} from "../servises";
 import {endDateQuery, nextHandler, prevHandler, startDateQuery, todayHandler, totalDays} from "../utils/function";
 import {ModalUser} from "../modal";
 import {WORD_CALENDAR, WORD_MONTH, WORD_WEEK, WORLD_UK, WORLD_USER} from "../../config/wordsConstants";
@@ -34,7 +34,8 @@ export function Calendar() {
         getCalendarEvent(startDateQuery(startDay), endDateQuery(startDay)).then(rez => {
             setEvents(rez);
         });
-    }, [today]);
+    }, [today, startDay]);
+
     const openFormHandler = (todayDate, unixDate, now) => {
         setDate(todayDate);
         setUnix(unixDate);

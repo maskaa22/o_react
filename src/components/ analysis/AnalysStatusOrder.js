@@ -4,7 +4,7 @@ import {Axis, Chart, Geom, Legend, Tooltip} from "bizcharts";
 import './Analyze.css';
 import './Analyze@media.css';
 
-export function Analys_status_order({data}) {
+export function AnalysStatusOrder({data}) {
 
     const scale = {
         count: {

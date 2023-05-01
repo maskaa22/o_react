@@ -6,7 +6,7 @@ import {useDispatch} from "react-redux";
 
 import './Contacts.css';
 import './Contacts@media.css';
-import {APIServise} from "../servises";
+import {auth, sentEmail} from "../servises";
 import {Input} from "../utils";
 import Women from '../../images/big-foto/Group 9.png';
 import {WORD_TOKEN} from "../../config/wordsConstants";
@@ -22,14 +22,14 @@ export function Contacts() {
 
     useEffect(() => {
         if (localStorage.getItem(WORD_TOKEN)) {
-            dispatch(APIServise.auth()).then(res => {
+            dispatch(auth()).then(res => {
                 if (res === undefined) {
                     localStorage.removeItem(WORD_TOKEN);
                     document.location.reload();
                 }
             })
         }
-    }, []);
+    }, [dispatch]);
 
     return (
         <div>
@@ -63,7 +63,7 @@ export function Contacts() {
                 </div>
             </div>
             <div>
-                <iframe
+                <iframe title={'map'}
                     src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d8553.068030343416!2d30.628751791574437!3d50.406775786310156!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sru!2sua!4v1672059328158!5m2!1sru!2sua"
                     width="100%" height="400" style={{border: 0}} allowFullScreen="" loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"/>
@@ -82,7 +82,7 @@ export function Contacts() {
                           onChange={(event) => setText(event.target.value)} className={'contact-area'}/>
                 <div className={'contact-button-flex'}>
                     <button className={'form_btn contact-button'} onClick={() => {
-                        APIServise.sentEmail(name, email, phone, text);
+                        sentEmail(name, email, phone, text);
                     }}>Відправити
                     </button>
                 </div>

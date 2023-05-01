@@ -7,7 +7,7 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import {useSelector} from "react-redux";
 
-import {APIServise} from "../servises";
+import {editAdressData, editContactData} from "../servises";
 import {Input} from "../utils";
 import {NewPochta} from "../newPochta";
 import {WORD_CART, WORD_CART_UK, WORD_CASH, WORD_HIDEN, WORD_MONEY, WORD_SUCCESS} from "../../config/wordsConstants";
@@ -22,11 +22,14 @@ export function InfoForBuy({setPay}) {
     const [stateInput, setStateInput] = useState(false);
     const [stateName, setStateName] = useState(true);
     const [stateNameAdress, setStateNameAdress] = useState(true);
-    const [success, setSuccess] = useState(WORD_SUCCESS);
+    // const [success, setSuccess] = useState(WORD_SUCCESS);
+
     const [surname, setSurname] = useState('');
     const [value, setValue] = React.useState('');
     const [visibleNumber, setVisibleNumber] = useState(WORD_HIDEN);
     const [visibleSity, setVisibleSity] = useState(WORD_HIDEN);
+
+    const success = WORD_SUCCESS;
 
     const currentUser = useSelector(state => state.user.currentUser);
 
@@ -75,7 +78,7 @@ export function InfoForBuy({setPay}) {
                                className={'input-basket-update'}/>
                         <div className={'d_flex edit-date-margin'}>
                             <button className={'check save'} onClick={() => {
-                                APIServise.editContactData(currentUser.id, name, surname, phone);
+                                editContactData(currentUser.id, name, surname, phone);
                                 setStateInput(false);
                                 setStateName(true);
                             }}>Продовжити
@@ -123,7 +126,7 @@ export function InfoForBuy({setPay}) {
                         </div>
                         <div className={'d_flex edit-date-margin-last'}>
                             <button className={'check save'} onClick={() => {
-                                APIServise.editAdressData(currentUser.id, sity, numberNP);
+                                editAdressData(currentUser.id, sity, numberNP);
                                 setStateNameAdress(true);
                                 setStateAdress(false);
                                 setVisibleSity(WORD_HIDEN);

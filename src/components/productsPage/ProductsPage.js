@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 
 import './ProductsPage.css';
 import './ProductPage@media.css';
-import {APIServise} from "../servises";
+import {getProducts, auth, getCategories} from "../servises";
 import {
     closeFilterName,
     closeToogleMenu,
@@ -45,21 +45,21 @@ export function ProductsPage() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        APIServise.getCategories().then(respons => {
+        getCategories().then(respons => {
             setCategories(respons.data);
         });
         if (localStorage.getItem(WORD_TOKEN)) {
-            dispatch(APIServise.auth()).then(res => {
+            dispatch(auth()).then(res => {
                 if (res === undefined) {
                     localStorage.removeItem(WORD_TOKEN);
                     document.location.reload();
                 }
             });
         }
-    }, []);
+    }, [dispatch]);
 
     useEffect(() => {
-        APIServise.getProducts(page, 10).then(respons => {
+        getProducts(page, 10).then(respons => {
             setProducts(respons.data.docs);
             setPaginate(respons.data);
         });

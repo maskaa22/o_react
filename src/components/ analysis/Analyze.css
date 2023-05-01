@@ -18,7 +18,7 @@ h4 {
 
 .div_btn_analyz {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     width: 93%;
 }
 

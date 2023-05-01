@@ -1,7 +1,7 @@
 import * as React from "react";
 import {useEffect, useState} from "react";
 
-import {APIServise} from "../servises";
+import {getCalendarEventForId} from "../servises";
 import {Record} from "../record";
 
 export function ClientRecords() {
@@ -13,10 +13,10 @@ export function ClientRecords() {
     const locationSplitOneItem = locationSplit[1];
 
     useEffect(() => {
-        APIServise.getCalendarEventForId(locationSplitOneItem).then(rez => {
+        getCalendarEventForId(locationSplitOneItem).then(rez => {
             setEvents(rez);
         });
-    }, []);
+    }, [locationSplitOneItem]);
 
     return (
         <div>

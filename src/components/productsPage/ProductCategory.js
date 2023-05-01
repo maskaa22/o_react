@@ -4,7 +4,7 @@ import {useState} from "react";
 
 import './ProductsPage.css';
 import './ProductPage@media.css';
-import {APIServise} from "../servises";
+import {categoriesFilter} from "../servises";
 import {closeToogleMenu, openFilterName} from "../utils/function";
 import {setCategory} from "../reducers/actionCreators";
 import {
@@ -34,9 +34,9 @@ export default function ProductCategory({
                     onClick={() => {
                         setProductCategoryCheck(productCategoryCheck = !productCategoryCheck);
                         closeToogleMenu(WORD_CATEGORY_MENU, WORD_PRODUCT_MENU_BLOCK, WORD_ACTIVE_MENU_CATEGORY, WORD_NO_SCROLL);
-                        dispatch(APIServise.categoriesFilter(category._id, page, 10)).then(response => {
+                        dispatch(categoriesFilter(category._id, page, 10)).then(response => {
                             if (response.data.page > response.data.pages) {
-                                dispatch(APIServise.categoriesFilter(category._id, 1, 10)).then(response => {
+                                dispatch(categoriesFilter(category._id, 1, 10)).then(response => {
                                     setFilter(response.data.docs);
                                     setOffset(0);
                                 });

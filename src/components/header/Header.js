@@ -23,7 +23,7 @@ import {
     WOMENS_HAIRCUT
 } from "../../config/headerConstants";
 import {ADMIN, CLIENT} from "../../config/homeConstants";
-import {APIServise} from "../servises";
+import {logout} from "../servises";
 import {closeToogleMenu, openToogleMenu} from "../utils/function";
 import {delFilter} from "../reducers/actionCreators";
 import Logo from "../../images/logo-header.png";
@@ -80,7 +80,7 @@ export function Header() {
                         <NavLink to={THIS} onClick={closeHandler}>Головна</NavLink>
                     </li>
                     <li>
-                        <a onClick={openSubMenuOne} className={'cursor-pointer'}>Послуги</a>
+                        <button onClick={openSubMenuOne} className={'cursor-pointer'}>Послуги</button>
                         <ul className={'submenu'} id={'sub-link-one'}>
                             <li>
                                 <NavLink to={MENS_HAIRCUT} onClick={closeHandler}>Чоловічі
@@ -113,7 +113,7 @@ export function Header() {
                         <NavLink to={CONTACT} onClick={closeHandler}>Контакти</NavLink>
                     </li>
                     <li>
-                        <a onClick={openSubMenuTwo} className={'link-a cursor-pointer'}><IoMdExit className=" icon_basket"/></a>
+                        <button onClick={openSubMenuTwo} className={'link-a cursor-pointer'}><IoMdExit className=" icon_basket"/></button>
                         <ul className={'submenu'} id={'sub-link-two'}>
                             {
                                 !isAuth &&
@@ -138,7 +138,7 @@ export function Header() {
                             {
                                 isAuth &&
                                 <li onClick={() => {
-                                    dispatch(APIServise.logout());
+                                    dispatch(logout());
                                     localStorage.removeItem(WORLD_AUTORIZATION);
                                     navigate(LOGIN);
                                 }}><NavLink to={LOGIN} onClick={closeHandler}><GiExitDoor

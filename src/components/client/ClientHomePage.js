@@ -2,7 +2,7 @@ import {Link, Route, Routes, useNavigate} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
 
-import {APIServise} from "../servises";
+import {auth} from "../servises";
 import {CLIENT, CLIENT_ORDERS, CLIENT_RECORDS, ORDERS, RECORDS, THIS} from "../../config/homeConstants";
 import {closeToogleMenu, handleClick, ifOpenPageAddActiveClass, openToogleMenu, ViewFunction} from "../utils/function";
 import {MdNavigateNext} from "react-icons/md";
@@ -27,7 +27,7 @@ export function ClientHomePage() {
 
     useEffect(() => {
         if (localStorage.getItem(WORD_TOKEN)) {
-            dispatch(APIServise.auth()).then(req => {
+            dispatch(auth()).then(req => {
                 if (req === undefined) {
                     navigate(LOGIN);
                 } else {
@@ -35,7 +35,7 @@ export function ClientHomePage() {
                 }
             })
         }
-    }, []);
+    }, [dispatch, navigate]);
 
     ViewFunction();
 

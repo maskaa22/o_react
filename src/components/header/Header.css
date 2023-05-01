@@ -20,10 +20,16 @@
     flex: 1;
 }
 
-.menu a {
+.menu button, .menu a {
     padding: .5rem 1rem;
     color: inherit;
     display: inline-block;
+}
+
+.menu button {
+    background-color: transparent;
+    border: none;
+    font-family: 'Ledger', serif;
 }
 
 .cursor-pointer {

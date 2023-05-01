@@ -1,6 +1,6 @@
 import React from "react";
 
-import {App} from "../app/App";
+import {App} from "../app";
 import {Header} from "../header";
 import {Footer} from "../footer";
 

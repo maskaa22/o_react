@@ -2,7 +2,7 @@ import {useState} from "react";
 
 import './DeleteUser.css';
 import './DeleteUser@media.css';
-import {APIServise} from "../servises";
+import {deleteUser} from "../servises";
 import {Input} from "../utils";
 
 export function DeleteUser({handleClose}) {
@@ -21,7 +21,7 @@ export function DeleteUser({handleClose}) {
                 </div>
                 <div className={'btn-position'}>
                     <button className={'btn-add'} onClick={() => {
-                        APIServise.deleteUser(emailUser);
+                        deleteUser(emailUser);
                         window.location.reload();
                     }}>Видалити
                     </button>

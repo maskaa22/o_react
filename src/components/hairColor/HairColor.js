@@ -4,7 +4,7 @@ import {useEffect} from "react";
 
 import '../mensHaircut/MansHaircut.css';
 import '../mensHaircut/MansHaircut@media.css';
-import {APIServise} from "../servises";
+import {auth} from "../servises";
 import Mens from '../../images/big-foto/Group 6.png';
 import Slider from "../slider/Slider";
 import {slideColor} from "../../config/sliderConstants";
@@ -17,14 +17,14 @@ export function HairColor() {
 
     useEffect(() => {
         if (localStorage.getItem(WORD_TOKEN)) {
-            dispatch(APIServise.auth()).then(res => {
+            dispatch(auth()).then(res => {
                 if (res === undefined) {
                     localStorage.removeItem(WORD_TOKEN);
                     document.location.reload();
                 }
             });
         }
-    }, []);
+    }, [dispatch]);
 
     return (
         <div>

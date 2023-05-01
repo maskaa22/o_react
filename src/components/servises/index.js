@@ -1,4 +1,2 @@
-module.exports = {
-    APIServise: require('./API'),
-    URLServise: require('./URL_Service')
-};
+export * from './API';
+export * from './URL_Service';

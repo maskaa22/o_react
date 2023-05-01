@@ -1,7 +1,7 @@
 import {useState} from "react";
 
 import './Modal.css';
-import {APIServise} from "../servises";
+import {createCategory} from "../servises";
 import {Input} from "../utils";
 
 export function ModalCreateCategory({active, setActive}) {
@@ -18,7 +18,7 @@ export function ModalCreateCategory({active, setActive}) {
                        className={'input-del-user'}/>
                 <div className={'btn-position'}>
                     <button className={'btn-add'} onClick={() => {
-                        APIServise.createCategory(nameCategory);
+                        createCategory(nameCategory);
                     }}>Створити
                     </button>
                 </div>

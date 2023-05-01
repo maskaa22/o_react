@@ -3,9 +3,9 @@ import {useEffect, useState} from "react";
 
 import './Analyze.css';
 import './Analyze@media.css';
-import {Analys_profit} from "./Analys_profit";
-import {Analys_status_order} from "./Analys_status_order";
-import {APIServise} from "../servises";
+import {AnalysProfit} from "./AnalysProfit";
+import {AnalysStatusOrder} from "./AnalysStatusOrder";
+import {getUsersAnalyze, getAnalyze} from "../servises";
 import {ELSXFunction} from "../utils/function";
 
 export function Analysis() {
@@ -14,10 +14,10 @@ export function Analysis() {
     const [users, setUsers] = useState();
 
     useEffect(() => {
-        APIServise.getAnalyze().then(respons => {
+        getAnalyze().then(respons => {
             setAnalyze(respons.data);
         });
-        APIServise.getUsersAnalyze().then(respons => {
+        getUsersAnalyze().then(respons => {
             setUsers(respons.data);
         });
     }, []);
@@ -45,7 +45,7 @@ export function Analysis() {
                     прибутки в EXEL
                 </button>
             </div>
-            <Analys_profit analyze={analyze}/>
+            <AnalysProfit analyze={analyze}/>
             <h4 className={'analyz-h4'}>Графік кількості зареєструвань на сайті по місяцях</h4>
             <div className={'div_btn_analyz'}>
                 <button className={'btn_analyz btn-fond-size'}
@@ -53,7 +53,7 @@ export function Analysis() {
                     графік в EXEL
                 </button>
             </div>
-            <Analys_status_order data={users}/>
+            <AnalysStatusOrder data={users}/>
         </div>
     );
 }
