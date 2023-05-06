@@ -5,8 +5,8 @@ import './Analyze.css';
 import './Analyze@media.css';
 import {AnalysProfit} from "./AnalysProfit";
 import {AnalysStatusOrder} from "./AnalysStatusOrder";
-import {getUsersAnalyze, getAnalyze} from "../servises";
-import {ELSXFunction} from "../utils/function";
+import {getUsersAnalyze, getAnalyze} from "../../servises";
+import {ELSXFunction} from "../../utils/function";
 
 export function Analysis() {
 

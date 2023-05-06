@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 
 import './Pagination.css';
 import './Pagination@media.css';
-import {categoriesFilter} from "../servises";
+import {categoriesFilter} from "../../servises";
 
 export function PaginationProductCategory({paginate, category_id, setFilter, thisPage}) {
 

@@ -1,4 +1,4 @@
-import {WORD_HIDDEN_ONLY, WORD_VISIBLE} from "../../../../config/wordsConstants";
+import {WORD_HIDDEN_ONLY, WORD_VISIBLE} from "../../../config/wordsConstants";
 
 export function StyleIconOk(diag_nap_uchr, diag_osn, icon) {
 

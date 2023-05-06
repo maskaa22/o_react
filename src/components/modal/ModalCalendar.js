@@ -6,7 +6,7 @@ import Select from "@mui/material/Select";
 
 import './Modal.css';
 import './Modal@media.css';
-import {Input} from "../utils";
+import {Input} from "../../utils";
 import {useSelector} from "react-redux";
 
 export function ModalCalendar({handleClose, date, eventCreateHandler, unix, newTime}) {

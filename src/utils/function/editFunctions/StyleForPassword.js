@@ -1,4 +1,4 @@
-import {b_letters, digits, s_letters} from "../../../../config/functionConstants";
+import {b_letters, digits, s_letters} from "../../../config/functionConstants";
 
 export function StyleForPassword(number, block_check) {
 

@@ -22,10 +22,10 @@ import {
     USERS_ANALYZE,
     USERS_CONTACT,
     USERS_SEND
-} from "../../config/serviseConstants";
-import {CONTACT, PRODUCTS, UPLOAD} from "../../config/headerConstants";
-import {URL} from "../../config";
-import {WORD_SWAL_NOT_AUTORIZE, WORD_TOKEN} from "../../config/wordsConstants";
+} from "../config/serviseConstants";
+import {CONTACT, PRODUCTS, UPLOAD} from "../config/headerConstants";
+import {URL} from "../config";
+import {WORD_SWAL_NOT_AUTORIZE, WORD_TOKEN} from "../config/wordsConstants";
 
 const api = axios.create({
     withCredentials: true,

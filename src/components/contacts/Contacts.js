@@ -6,8 +6,8 @@ import {useDispatch} from "react-redux";
 
 import './Contacts.css';
 import './Contacts@media.css';
-import {auth, sentEmail} from "../servises";
-import {Input} from "../utils";
+import {auth, sentEmail} from "../../servises";
+import {Input} from "../../utils";
 import Women from '../../images/big-foto/Group 9.png';
 import {WORD_TOKEN} from "../../config/wordsConstants";
 

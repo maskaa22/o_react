@@ -1,5 +1,5 @@
 import {LOGOUT, SET_AUTH, SET_ROLE, SET_USER} from './actionTypes';
-import {WORD_TOKEN} from "../../config/wordsConstants";
+import {WORD_TOKEN} from "../config/wordsConstants";
 
 const defaultState = {
     currentUser: {},

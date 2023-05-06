@@ -11,7 +11,7 @@ import {
     RowInCell,
     ShowDayWrapper
 } from "../CalendarCSS";
-import {getFindEventInRow} from "../../servises/API";
+import {getFindEventInRow} from "../../../servises";
 import {WORD_DAY, WORD_MONTH} from "../../../config/wordsConstants";
 
 const CalendarGrid = ({startDay, today, totalDays, events, openFormHandler, setTime}) => {

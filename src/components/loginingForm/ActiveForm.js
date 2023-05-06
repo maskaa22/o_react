@@ -1,5 +1,5 @@
 import './LoginingForm.css';
-import {activateEmail} from "../servises/API";
+import {activateEmail} from "../../servises";
 
 export function ActiveForm() {
 

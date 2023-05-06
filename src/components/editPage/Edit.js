@@ -6,11 +6,11 @@ import {useSelector} from "react-redux";
 
 import './EditPage.css';
 import './EditPage@media.css';
-import {setFoto, getUserForToken, sentActiveEmail, editPage} from "../servises";
+import {setFoto, getUserForToken, sentActiveEmail, editPage} from "../../servises";
 import {AUTH_URL} from "../../config/URL";
-import {Input} from "../utils";
+import {Input} from "../../utils";
 import {NewPochta} from "../newPochta";
-import {StyleForPassword, StyleIconOk} from '../utils/function';
+import {StyleForPassword, StyleIconOk} from '../../utils/function';
 import {WORD_TOKEN, WORLD_ADMIN, WORLD_USER} from "../../config/wordsConstants";
 import {RiSendPlaneFill} from "react-icons/ri";
 

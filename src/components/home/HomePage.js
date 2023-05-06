@@ -4,12 +4,12 @@ import React, {useEffect} from "react";
 
 import './Home.css';
 import './Home@media.css';
-import {auth} from "../servises";
+import {auth} from "../../servises";
 import {Benefits} from "./Benefits";
 import {Breands} from "./Breands";
 import {Calendar} from "../calendar";
 import {Comments} from "./Comments";
-import {HomeFunction, scrollTopTop, Up} from "../utils/function";
+import {HomeFunction, scrollTopTop, Up} from "../../utils/function";
 import {Main} from "./Main";
 import {Works2} from "./Works2";
 import {WORD_AUTH, WORD_TOKEN} from "../../config/wordsConstants";

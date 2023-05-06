@@ -11,7 +11,7 @@ import {
     modelNameNovaPochta
 } from "../../config/constants";
 import {NEW_POCHTA_URL} from "../../config/URL";
-import {SwalFunction} from "../utils/function";
+import {SwalFunction} from "../../utils/function";
 import {
     WORD_FAILED_TO_FETCH,
     WORD_HIDDEN,

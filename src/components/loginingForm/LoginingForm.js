@@ -4,9 +4,9 @@ import {useDispatch} from "react-redux";
 
 import './LoginingForm.css';
 import './LoginingForm@media.css';
-import {registration, login} from "../servises";
+import {registration, login} from "../../servises";
 import {LOGIN, LOGIN_RESET_PASSWORD, THIS} from "../../config/headerConstants";
-import {StyleForPassword} from "../utils/function";
+import {StyleForPassword} from "../../utils/function";
 import {
     WORD_AUTORIZ,
     WORD_AUTORIZATING,

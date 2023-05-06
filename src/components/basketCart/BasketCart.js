@@ -1,12 +1,12 @@
 import * as React from "react";
-import {delProduct} from "../reducers/actionCreators";
+import {delProduct} from "../../reducers/actionCreators";
 import {MdDeleteForever} from "react-icons/md";
 import {useDispatch} from "react-redux";
 
 import '../countProduct/Count.css';
 import {AUTH_URL} from "../../config/URL";
 import {Count} from "../countProduct";
-import priceFormatter from "../utils/priceFormatter/priceFormatter";
+import priceFormatter from "../../utils/priceFormatter/priceFormatter";
 
 export function BasketCart({product, deleteProduct, increase, decrease, changeValue}) {
 

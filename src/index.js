@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 
 import './index.css';
 import {HTML} from "./components/html";
-import {store} from "./components/reducers";
+import {store} from "./reducers";
 
 ReactDOM.render(
     <React.StrictMode>

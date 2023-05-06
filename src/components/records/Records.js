@@ -5,8 +5,8 @@ import 'moment/locale/uk';
 
 import './Records.css';
 import './Records@media.css';
-import {getCalendarEvent} from "../servises/API";
-import {nextHandler, prevHandler, todayHandler} from "../utils/function";
+import {getCalendarEvent} from "../../servises";
+import {nextHandler, prevHandler, todayHandler} from "../../utils/function";
 import {Record} from "../record";
 import {WORD_LANGUAGE, WORD_MONTH} from "../../config/wordsConstants";
 
@@ -24,7 +24,7 @@ export function Records() {
         getCalendarEvent(startMonth, endMonth).then(rez => {
             setEvents(rez);
         });
-    }, [today]);
+    }, [today, startMonth, endMonth]);
 
     return (
         <div>

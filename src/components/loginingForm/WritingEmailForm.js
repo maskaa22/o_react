@@ -1,8 +1,8 @@
 import {useState} from "react";
 
 import './LoginingForm.css';
-import {Input} from "../utils";
-import {sendEmailForResetPassword} from "../servises/API";
+import {Input} from "../../utils";
+import {sendEmailForResetPassword} from "../../servises";
 
 export function WritingEmailForm() {
 

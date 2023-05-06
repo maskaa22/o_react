@@ -23,9 +23,9 @@ import {
     WOMENS_HAIRCUT
 } from "../../config/headerConstants";
 import {ADMIN, CLIENT} from "../../config/homeConstants";
-import {logout} from "../servises";
-import {closeToogleMenu, openToogleMenu} from "../utils/function";
-import {delFilter} from "../reducers/actionCreators";
+import {logout} from "../../servises";
+import {closeToogleMenu, openToogleMenu} from "../../utils/function";
+import {delFilter} from "../../reducers/actionCreators";
 import Logo from "../../images/logo-header.png";
 import {WORLD_ADMIN, WORLD_AUTORIZATION, WORLD_USER} from "../../config/wordsConstants";
 

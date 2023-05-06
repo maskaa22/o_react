@@ -7,7 +7,7 @@ import Select from '@mui/material/Select';
 
 import './Orders.css';
 import './Orders@media.css';
-import {getOrders, getOrdersByFilter} from "../servises";
+import {getOrders, getOrdersByFilter} from "../../servises";
 import {Order} from "../order";
 import {
     WORD_ACCEPTED,
@@ -23,12 +23,17 @@ export function Orders() {
 
     const [filter, setFilter] = React.useState('');
     const [orders, setOrders] = useState();
+    const [newStatus, setNewStatus] = useState('');
+    const [flag, setFlag] = useState(false);
+
 
     useEffect(() => {
         getOrders().then(respons => {
             setOrders(respons.data);
         });
-    }, []);
+        setNewStatus('');
+        setFlag(false);
+    }, [setOrders, newStatus, flag]);
 
     const handleChangeFilter = (event) => {
         setFilter(event.target.value);
@@ -58,7 +63,7 @@ export function Orders() {
                     </Select>
                 </FormControl>
             </div>
-            <Order orders={orders} del={false} visible={WORD_HIDEN}/>
+            <Order orders={orders} del={false} visible={WORD_HIDEN} setNewStatus={setNewStatus} setFlag={setFlag}/>
         </div>
     );
 }

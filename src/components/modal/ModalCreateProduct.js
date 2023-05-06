@@ -6,8 +6,8 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 
 import './Modal.css';
-import {setProducts} from "../servises";
-import {Input} from "../utils";
+import {setProducts} from "../../servises";
+import {Input} from "../../utils";
 
 export function ModalCreateProduct({active, setActive, categories}) {
 

@@ -6,7 +6,7 @@ import '../user/User.css'
 import {ModalUser} from "../modal";
 import User from "../user/User";
 
-export function Users({items}) {
+export function Users({items, setDelUser}) {
 
     const [openCreateWindow, setOpenCreateWindow] = React.useState(false);
     const [openDeleteUser, setOpenDeleteUser] = React.useState(false);
@@ -21,7 +21,7 @@ export function Users({items}) {
         <div>
             <h2>Список користувачів</h2>
             <ModalUser openWindow={openCreateWindow} handleClose={handleCloseCreate} role={'admin'}/>
-            <ModalUser openWindow={openDeleteUser} handleClose={handleCloseDelete} del={'del'}/>
+            <ModalUser openWindow={openDeleteUser} handleClose={handleCloseDelete} del={'del'} setDelUser={setDelUser}/>
             <ModalUser openWindow={openSendUser} handleClose={handleCloseSend} send={'send'} userEmail={userEmail}/>
             <div className={'flex-fot-content'}>
                 <div className={'centric'}>

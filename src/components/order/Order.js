@@ -4,11 +4,11 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 
-import {deleteOrder, archiveOrder, updateStatusOrder} from "../servises";
+import {deleteOrder, archiveOrder, updateStatusOrder} from "../../servises";
 import Cart from "../orders/Cart";
 import {WORD_ACCEPTED, WORD_EXPECTED, WORD_PROCESSING, WORD_READY, WORD_SEND} from "../../config/wordsConstants";
 
-export function Order({orders, del, visible}) {
+export function Order({orders, del, visible, setNewStatus, setFlag, hiden, setDeleteOrder}) {
 
     const [status, setStatus] = React.useState('');
 
@@ -58,29 +58,38 @@ export function Order({orders, del, visible}) {
                                         </Select>
                                     </FormControl>
                                     }
-                                    {order.status === WORD_READY ?
+                                    {(status=== WORD_READY || order.status=== WORD_READY)  ?
                                         <div className={`center end ${del}`}>
                                             <button className={'status archive'} onClick={() => {
-                                                archiveOrder(order._id);
-                                                window.location.reload();
+                                                archiveOrder(order._id).then(req => {
+                                                    if(req) {
+                                                        setFlag(true);
+                                                    }
+                                                });
                                             }}>В архив
                                             </button>
                                         </div> :
-                                        <div className={'center end'}>
+                                        <div className={`center end ${hiden}`}>
                                             <button className={'status'} onClick={() => {
-                                                updateStatusOrder(order._id, status);
-                                                window.location.reload();
+                                                updateStatusOrder(order._id, status).then(req => {
+                                                    if(req) {
+                                                        setNewStatus(req.status);
+                                                    }
+                                                });
                                             }}>Змінити
                                             </button>
                                         </div>
                                     }
-                                    <div className={`center end ${visible}`}>
-                                        <button className={'status'} onClick={() => {
-                                            deleteOrder(order._id);
-                                            window.location.reload();
-                                        }}>Видалити
-                                        </button>
-                                    </div>
+                                        <div className={`center end ${visible}`}>
+                                            <button className={'status'} onClick={() => {
+                                                deleteOrder(order._id).then(req => {
+                                                    if(req) {
+                                                        setDeleteOrder(true);
+                                                    }
+                                                });
+                                            }}>Видалити
+                                            </button>
+                                        </div>
                                 </div>
                             </div>
                         </div>

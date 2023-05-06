@@ -1,8 +1,8 @@
 import {useState} from "react";
 
 import './Modal.css';
-import {createCategory} from "../servises";
-import {Input} from "../utils";
+import {createCategory} from "../../servises";
+import {Input} from "../../utils";
 
 export function ModalCreateCategory({active, setActive}) {
 

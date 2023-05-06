@@ -7,13 +7,13 @@ import {useNavigate} from "react-router-dom";
 import './BasketPage.css';
 import './BasketPage@media.css';
 import '../productsPage/ProductsPage.css';
-import {setOrder, auth, dateAnalizy} from "../servises";
+import {setOrder, auth, dateAnalizy} from "../../servises";
 import {BasketCart} from "../basketCart";
 import {BUY_URL} from "../../config/URL";
-import {delAllProduct} from "../reducers/actionCreators";
+import {delAllProduct} from "../../reducers/actionCreators";
 import {InfoForBuy} from "../infoForBuy";
 import {LOGIN, PRODUCTS} from "../../config/headerConstants";
-import {store} from "../reducers";
+import {store} from "../../reducers";
 import {TbBasketOff} from "react-icons/tb";
 import {WORD_AUTH, WORD_LOCALES, WORD_MONEY, WORD_OPTIONS, WORD_TOKEN, WORD_WAITING} from "../../config/wordsConstants";
 

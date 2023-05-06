@@ -4,9 +4,9 @@ import {useState} from "react";
 
 import './ProductsPage.css';
 import './ProductPage@media.css';
-import {categoriesFilter} from "../servises";
-import {closeToogleMenu, openFilterName} from "../utils/function";
-import {setCategory} from "../reducers/actionCreators";
+import {categoriesFilter} from "../../servises";
+import {closeToogleMenu, openFilterName} from "../../utils/function";
+import {setCategory} from "../../reducers/actionCreators";
 import {
     WORD_ACTIVE_MENU_CATEGORY,
     WORD_CATEGORY_MENU,

@@ -5,7 +5,7 @@ import './AboutAsPage.css';
 import './AboutAsPage@media.css';
 import About from '../../images/big-foto/Group 4.png';
 import {AboutAs} from "./AboutAs";
-import {auth} from "../servises";
+import {auth} from "../../servises";
 import {History} from "./History";
 import {Team} from "./Team";
 import {WORD_TOKEN} from "../../config/wordsConstants";

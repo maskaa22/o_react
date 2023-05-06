@@ -2,9 +2,9 @@ import {Link, Route, Routes, useNavigate} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
 
-import {auth} from "../servises";
+import {auth} from "../../servises";
 import {CLIENT, CLIENT_ORDERS, CLIENT_RECORDS, ORDERS, RECORDS, THIS} from "../../config/homeConstants";
-import {closeToogleMenu, handleClick, ifOpenPageAddActiveClass, openToogleMenu, ViewFunction} from "../utils/function";
+import {closeToogleMenu, handleClick, ifOpenPageAddActiveClass, openToogleMenu, ViewFunction} from "../../utils/function";
 import {MdNavigateNext} from "react-icons/md";
 import {
     WORD_ACTIVE_MENU_CATEGORY,

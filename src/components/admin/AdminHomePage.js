@@ -14,8 +14,14 @@ import {
     ADMIN_RECORDS,
     ADMIN_USERS
 } from "../../config/homeConstants";
-import {auth, getUsers} from "../servises";
-import {closeToogleMenu, handleClick, ifOpenPageAddActiveClass, openToogleMenu, ViewFunction} from "../utils/function";
+import {auth, getUsers} from "../../servises";
+import {
+    closeToogleMenu,
+    handleClick,
+    ifOpenPageAddActiveClass,
+    openToogleMenu,
+    ViewFunction
+} from "../../utils/function";
 import {LOGIN} from "../../config/headerConstants";
 import {
     WORD_ACTIVE_MENU_CATEGORY,
@@ -25,27 +31,9 @@ import {
     WORD_TOKEN
 } from "../../config/wordsConstants";
 
-export function AdminHomePage({setUsers}) {
+export function AdminHomePage({setUsers, setDelUser, delUser}) {
 
     const dispatch = useDispatch();
-
-    // async function getUser() {
-    //     try {
-    //         const response = await getUsers();
-    //         if (response !== undefined) {
-    //             setUsers(response.data);
-    //         }
-    //     } catch (e) {
-    //         console.log(e);
-    //     }
-    // }
-
-    // const getUser = useCallback(() => {
-    //         const response = getUsers();
-    //         if (response !== undefined) {
-    //             setUsers(response.data);
-    //         }
-    // }, [setUsers])
 
     const navigate = useNavigate();
 
@@ -55,15 +43,15 @@ export function AdminHomePage({setUsers}) {
                 if (req === undefined) {
                     navigate(LOGIN);
                 }
-                //getUser();
                 getUsers().then(response => {
                     if (response !== undefined) {
                         setUsers(response.data);
                     }
                 });
+                setDelUser(false);
             })
         }
-    }, [dispatch, navigate, setUsers]);
+    }, [dispatch, navigate, setUsers, delUser, setDelUser]);
 
     ViewFunction();
 
@@ -99,7 +87,6 @@ export function AdminHomePage({setUsers}) {
                         <Link to={ADMIN_USERS} className={'color_purple click-item'}>
                             <button className={'home_item click-item category'} onClick={() => {
                                 closeMenuHome();
-                                // getUser();
                             }}>Клієнти <MdNavigateNext className={'non-icon'}/></button>
                         </Link>
                     </div>

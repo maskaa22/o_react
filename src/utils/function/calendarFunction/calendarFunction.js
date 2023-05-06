@@ -1,7 +1,7 @@
 import moment from "moment";
 import 'moment/locale/uk';
 
-import {WORD_DAY, WORD_LANGUAGE, WORD_MONTH} from "../../../../config/wordsConstants";
+import {WORD_DAY, WORD_LANGUAGE, WORD_MONTH} from "../../../config/wordsConstants";
 
 moment.updateLocale(WORD_LANGUAGE, {week: {dow: 1}});
 

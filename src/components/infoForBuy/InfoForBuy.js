@@ -7,8 +7,8 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import {useSelector} from "react-redux";
 
-import {editAdressData, editContactData} from "../servises";
-import {Input} from "../utils";
+import {editAdressData, editContactData} from "../../servises";
+import {Input} from "../../utils";
 import {NewPochta} from "../newPochta";
 import {WORD_CART, WORD_CART_UK, WORD_CASH, WORD_HIDEN, WORD_MONEY, WORD_SUCCESS} from "../../config/wordsConstants";
 

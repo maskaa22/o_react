@@ -2,9 +2,9 @@ import {useState} from "react";
 
 import './Modal.css';
 import './Modal@media.css';
-import {sentUser} from "../servises";
-import {Input} from "../utils";
-import {SwalFunction} from "../utils/function";
+import {sentUser} from "../../servises";
+import {Input} from "../../utils";
+import {SwalFunction} from "../../utils/function";
 import {WORD_SWAL_LATER_SEND, WORD_SWAL_OK, WORD_SWAL_SUCCESS} from "../../config/wordsConstants";
 
 export function ModalSendUser({handleClose, userEmail}) {

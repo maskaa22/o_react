@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 
 import './ProductsPage.css';
 import './ProductPage@media.css';
-import {getProducts, auth, getCategories} from "../servises";
+import {getProducts, auth, getCategories} from "../../servises";
 import {
     closeFilterName,
     closeToogleMenu,
@@ -14,8 +14,8 @@ import {
     openToogleMenu,
     scrollTopTop,
     Up
-} from "../utils/function";
-import {delFilter} from "../reducers/actionCreators";
+} from "../../utils/function";
+import {delFilter} from "../../reducers/actionCreators";
 import {PaginationProductCategory} from "../pagination";
 import {ProductCart} from "../productCart";
 import ProductCategory from "./ProductCategory";

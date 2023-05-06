@@ -20,7 +20,8 @@ export function ModalUser({
                               eventCreateHandler,
                               unix,
                               time,
-                              register
+                              register,
+                              setDelUser
                           }) {
 
     return (
@@ -36,7 +37,7 @@ export function ModalUser({
                         role && <LoginingForm role={WORLD_ADMIN} handleClose={handleClose}/>
                     }
                     {
-                        del && <DeleteUser handleClose={handleClose}/>
+                        del && <DeleteUser handleClose={handleClose} setDelUser={setDelUser}/>
                     }
                     {
                         register && <ModalRegister handleClose={handleClose}/>

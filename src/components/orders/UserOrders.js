@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 
 import './Orders.css';
 import './Orders@media.css';
-import {getOrdersById} from "../servises";
+import {getOrdersById} from "../../servises";
 import Cart from "./Cart";
 
 export function UserOrders() {

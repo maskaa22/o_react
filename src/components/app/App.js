@@ -7,7 +7,7 @@ import {CLIENT_ALL} from "../../config/headerConstants";
 import {ActiveForm, LoginingForm, ResetPasswordForm, WritingEmailForm} from "../loginingForm";
 import {AdminHomePage} from "../admin";
 import {Analysis} from "../ analysis";
-import {getUserForToken} from "../servises";
+import {getUserForToken} from "../../servises";
 import {ArchiveOrders} from "../archive";
 import {BasketPage} from "../basket";
 import {ClientHomePage} from "../client";
@@ -21,8 +21,8 @@ import {MensHaircut} from "../mensHaircut";
 import {Orders} from "../orders";
 import {ProductsPage} from "../productsPage";
 import {Records} from "../records/Records";
-import {setAuth, setRole} from "../reducers/actionCreators";
-import {store} from "../reducers";
+import {setAuth, setRole} from "../../reducers/actionCreators";
+import {store} from "../../reducers";
 import {Users} from "../users";
 import {WomensHaircut} from "../womensHaircut";
 import {WORD_TOKEN, WORLD_ADMIN, WORLD_USER} from "../../config/wordsConstants";
@@ -33,6 +33,7 @@ export function App() {
     const role = useSelector(state => state.user.role);
 
     const [users, setUsers] = useState([]);
+    const [delUser, setDelUser] = useState(false);
 
     useEffect(() => {
         if (isAuth === false) {
@@ -59,9 +60,10 @@ export function App() {
                     <Route path={'/contact'} element={<Contacts/>}/>
 
                     {(isAuth && role === WORLD_ADMIN) &&
-                    <Route path={'/admin'} element={<AdminHomePage setUsers={setUsers}/>}>
+                    <Route path={'/admin'}
+                           element={<AdminHomePage setUsers={setUsers} setDelUser={setDelUser} delUser={delUser}/>}>
                         <Route index element={<Edit/>}/>
-                        <Route path={'users'} element={<Users items={users}/>}/>
+                        <Route path={'users'} element={<Users items={users} setDelUser={setDelUser}/>}/>
                         <Route path={'records'} element={<Records/>}/>
                         <Route path={'products'} element={<CreateProduct/>}/>
                         <Route path={'orders'} element={<Orders/>}/>

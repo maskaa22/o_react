@@ -3,8 +3,8 @@ import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 
 import './Autorization.css';
-import {APIServise} from "../servises";
-import {Input} from "../utils";
+import {APIServise} from "../../servises";
+import {Input} from "../../utils";
 import {THIS} from "../../config/headerConstants";
 
 export function Autorization() {

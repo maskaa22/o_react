@@ -3,7 +3,7 @@ import {useDispatch} from "react-redux";
 
 import './AboutAsPage.css';
 import './AboutAsPage@media.css';
-import {auth} from "../servises";
+import {auth} from "../../servises";
 import VideoMp4 from "../../video/aboutAs.mp4";
 import VideoWebm from "../../video/aboutAs.webm";
 import {WORD_TOKEN} from "../../config/wordsConstants";

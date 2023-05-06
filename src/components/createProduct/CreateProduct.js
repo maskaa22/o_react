@@ -2,8 +2,8 @@ import {useState} from "react";
 
 import './CreateProduct.css';
 import './CreateProduct@media.css';
-import {deleteProduct, getCategories} from "../servises";
-import {Input} from "../utils";
+import {deleteProduct, getCategories} from "../../servises";
+import {Input} from "../../utils";
 import {ModalCreateCategory, ModalCreateProduct} from '../modal';
 import {WORD_ADD, WORD_DEL} from "../../config/wordsConstants";
 

@@ -11,10 +11,10 @@ import {
     UserService
 } from './URL_Service';
 import {filterProduct, setProduct, setRole, setUser, userLogout} from "../reducers/actionCreators";
-import {FIND_FOTO_URL} from "../../config/URL";
+import {FIND_FOTO_URL} from "../config/URL";
 import {store} from "../reducers";
 import {SwalFunction} from "../utils/function";
-import {URL} from "../../config";
+import {URL} from "../config";
 import {
     WORD_ACTIVETING,
     WORD_RESET,
@@ -29,7 +29,7 @@ import {
     WORD_SWAL_TEXT_ERROR,
     WORD_SWAL_USER_CREATED,
     WORD_TOKEN
-} from "../../config/wordsConstants";
+} from "../config/wordsConstants";
 
 export const login = (email, password) => {
     return async dispatch => {

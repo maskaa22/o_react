@@ -19,6 +19,7 @@ module.exports = {
     WORD_DATA: 'data',
     WORD_DAY: 'day',
     WORD_DEL: 'del',
+    WORD_DEL_USER: 'Користувач видалений',
     WORD_EVERY: 'все',
     WORD_EXPECTED: 'очікується',
     WORD_FAILED_TO_FETCH: 'Сервіс Нової почти тимчасово не працює',

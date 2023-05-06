@@ -2,9 +2,9 @@ import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 
 import './LoginingForm.css';
-import {Input} from "../utils";
+import {Input} from "../../utils";
 import {LOGIN} from "../../config/headerConstants";
-import {resetPassword} from "../servises/API";
+import {resetPassword} from "../../servises";
 
 export function ResetPasswordForm() {
 

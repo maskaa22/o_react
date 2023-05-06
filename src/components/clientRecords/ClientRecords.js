@@ -1,7 +1,7 @@
 import * as React from "react";
 import {useEffect, useState} from "react";
 
-import {getCalendarEventForId} from "../servises";
+import {getCalendarEventForId} from "../../servises";
 import {Record} from "../record";
 
 export function ClientRecords() {

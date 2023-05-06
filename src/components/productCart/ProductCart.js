@@ -5,8 +5,8 @@ import {useDispatch, useSelector} from "react-redux";
 import './ProductCart.css';
 import './ProductCart@media.css';
 import {AUTH_URL} from "../../config/URL";
-import {setProduct} from "../reducers/actionCreators";
-import {SwalFunction} from "../utils/function";
+import {setProduct} from "../../reducers/actionCreators";
+import {SwalFunction} from "../../utils/function";
 import {
     WORD_SWAL_ERROR,
     WORD_SWAL_NOT_AUTORIZE,

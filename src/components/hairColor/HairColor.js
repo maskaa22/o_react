@@ -4,7 +4,7 @@ import {useEffect} from "react";
 
 import '../mensHaircut/MansHaircut.css';
 import '../mensHaircut/MansHaircut@media.css';
-import {auth} from "../servises";
+import {auth} from "../../servises";
 import Mens from '../../images/big-foto/Group 6.png';
 import Slider from "../slider/Slider";
 import {slideColor} from "../../config/sliderConstants";

@@ -1,7 +1,7 @@
 import FileSaver from "file-saver";
 
-import {FILE_TYPE} from "../../../../config/constants";
-import {WORD_ARRAY, WORD_DATA, WORD_XLSX} from "../../../../config/wordsConstants";
+import {FILE_TYPE} from "../../../config/constants";
+import {WORD_ARRAY, WORD_DATA, WORD_XLSX} from "../../../config/wordsConstants";
 
 export function ELSXFunction(Heading, newData, nameFile) {
     const XLSX = require('xlsx');
