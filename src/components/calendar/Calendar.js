@@ -1,5 +1,5 @@
 import * as React from "react";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import moment from 'moment';
 import 'moment/locale/uk';
 import {useSelector} from "react-redux";
@@ -23,6 +23,8 @@ export function Calendar() {
     const [unix, setUnix] = useState('');
     const [openWindow, setOpenWindow] = React.useState(false);
 
+    const tempEvent = useRef();
+
     const handleClose = () => setOpenWindow(false);
 
     const isAuth = useSelector(state => state.user.isAuth);
@@ -30,11 +32,15 @@ export function Calendar() {
 
     const startDay = today.clone().startOf(WORD_MONTH).startOf(WORD_WEEK);
 
-    useEffect(() => {
+    tempEvent.current = () => {
         getCalendarEvent(startDateQuery(startDay), endDateQuery(startDay)).then(rez => {
             setEvents(rez);
         });
-    }, [today, startDay]);
+    };
+
+    useEffect(() => {
+        tempEvent.current();
+    }, [today]);
 
     const openFormHandler = (todayDate, unixDate, now) => {
         setDate(todayDate);
@@ -54,6 +60,7 @@ export function Calendar() {
         });
     };
 
+
     return (
         <>
             {
@@ -66,9 +73,11 @@ export function Calendar() {
             }
             <CalendarWrapper>
                 <ShadowWrapper>
-                    <CalendarMonitor today={today} prevHandler={() => prevHandler(setToday)}
+                    <CalendarMonitor today={today}
+                                     prevHandler={() => prevHandler(setToday)}
                                      todayHandler={() => todayHandler(setToday)}
-                                     nextHandler={() => nextHandler(setToday)}/>
+                                     nextHandler={() => nextHandler(setToday)}
+                    />
                     <CalendarGrid startDay={startDay} today={today} totalDays={totalDays} events={events}
                                   openFormHandler={openFormHandler} setTime={setTime} />
                 </ShadowWrapper>

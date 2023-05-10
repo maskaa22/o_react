@@ -69,3 +69,10 @@
     margin-bottom: 20px;
     width: 50%;
 }
+
+.error-input-center {
+    color: red;
+    font-size: 2vh;
+    text-align: center;
+    width: 100%;
+}

@@ -92,13 +92,12 @@ export function LoginingForm({role, handleClose}) {
         } else {
             setEmailError('');
         }
-
     };
 
     const passwordHandler = (e) => {
         setPassword(e.target.value);
-        if (e.target.value.length < 4 || e.target.value.length > 20) {
-            setPasswordError('Пароль повинен бути від 4 до 20 символів');
+        if (e.target.value.length < 4) {
+            setPasswordError('Пароль повинен бути від 4 символів');
         } else {
             setPasswordError('');
         }
@@ -109,8 +108,8 @@ export function LoginingForm({role, handleClose}) {
 
     const passwordTooHandler = (e) => {
         setPasswordToo(e.target.value);
-        if (e.target.value.length < 4 || e.target.value.length > 20) {
-            setPasswordTooError('Пароль повинен бути від 4 до 20 символів');
+        if (e.target.value.length < 4) {
+            setPasswordTooError('Пароль повинен бути від 4 символів');
         } else {
             setPasswordTooError('');
         }
@@ -160,7 +159,7 @@ export function LoginingForm({role, handleClose}) {
                     <input value={password} onChange={e => passwordHandler(e)} type={'password'}
                            placeholder={'Введіть пароль'}
                            className={'input-margin input-focus'} id="pass-old" onBlur={e => blurHandler(e)}
-                           onInput={stylePassword} name={'password'} maxLength="20" minLength="4"/>
+                           onInput={stylePassword} name={'password'} minLength="4"/>
                     <div className={'input-center-full'} id="block_check_login">
                     </div>
                     {(passwordDirty && passwordError) && <div className={'error-input'}>{passwordError}</div>}
@@ -169,7 +168,7 @@ export function LoginingForm({role, handleClose}) {
                                            placeholder={'Повторіть пароль'} name={'passwordToo'}
                                            onBlur={e => blurHandler(e)}
                                            className={'input-margin input-focus'} id="pass-new" onInput={stylePassword}
-                                           maxLength="20" minLength="4"/>
+                                           minLength="4"/>
                     }
                     {(!isLogin && passwordTooDirty && passwordTooError) &&
                     <div className={'error-input'}>{passwordTooError}</div>}
