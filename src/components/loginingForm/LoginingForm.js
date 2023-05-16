@@ -96,7 +96,7 @@ export function LoginingForm({role, handleClose}) {
 
     const passwordHandler = (e) => {
         setPassword(e.target.value);
-        if (e.target.value.length < 4) {
+        if ((e.target.value.length < 4) && !isLogin) {
             setPasswordError('Пароль повинен бути від 4 символів');
         } else {
             setPasswordError('');
@@ -156,10 +156,18 @@ export function LoginingForm({role, handleClose}) {
                            className={'input-margin input-focus'} name={'email'}
                             onBlur={e => blurHandler(e)}/>
                     {(emailDirty && emailError) && <div className={'error-input'}>{emailError}</div>}
-                    <input value={password} onChange={e => passwordHandler(e)} type={'password'}
-                           placeholder={'Введіть пароль'}
-                           className={'input-margin input-focus'} id="pass-old" onBlur={e => blurHandler(e)}
-                           onInput={stylePassword} name={'password'} minLength="4"/>
+                    {
+                        isLogin ?
+                            <input value={password} onChange={e => passwordHandler(e)} type={'password'}
+                                   placeholder={'Введіть пароль'}
+                                   className={'input-margin input-focus'} id="pass-old"
+                                   onInput={stylePassword} name={'password'}/>
+                             :
+                        <input value={password} onChange={e => passwordHandler(e)} type={'password'}
+                        placeholder={'Введіть пароль'}
+                        className={'input-margin input-focus'} id="pass-old" onBlur={e => blurHandler(e)}
+                        onInput={stylePassword} name={'password'} minLength="4"/>
+                    }
                     <div className={'input-center-full'} id="block_check_login">
                     </div>
                     {(passwordDirty && passwordError) && <div className={'error-input'}>{passwordError}</div>}
