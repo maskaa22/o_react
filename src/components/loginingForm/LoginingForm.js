@@ -189,7 +189,7 @@ export function LoginingForm({role, handleClose}) {
                             //         navigate(THIS);
                             //     }
                             // }) : 
-                            registration(name, email, password, role, passwordToo, '').then(rez => {
+                            : registration(name, email, password, role, passwordToo, '').then(rez => {
                                 if (!role) {
                                     if (rez) navigate(LOGIN);
                                 } 
