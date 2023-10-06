@@ -183,16 +183,7 @@ export function LoginingForm({role, handleClose}) {
                     <div className={'error-input'}>{passwordTooError}</div>}
 
                     <button disabled={formValid} className={'form_btn'} onClick={() => {
-                            // isLogin ? dispatch(login(email, password)).then(rez => {
-                            //     if (rez) {
-                            //         navigate(THIS);
-                            //     }
-                            // }) : registration(name, email, password, role, passwordToo, '').then(rez => {
-                            //     if (!role) {
-                            //         if (rez) navigate(LOGIN);
-                            //     } 
-                            //     else window.location.reload();
-                            // })
+                            
                     }}>{isLogin ? WORD_AUTORIZ : WORD_REGISTRATION}
                     </button>
                     {
