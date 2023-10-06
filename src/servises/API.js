@@ -35,6 +35,7 @@ export const login = (email, password) => {
     return async dispatch => {
         try {
             const response = await AuthService.login(email, password);
+            console.log(response);
 
             localStorage.setItem(WORD_TOKEN, response.data.access_token);
 
