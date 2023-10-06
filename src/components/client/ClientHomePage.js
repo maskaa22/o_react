@@ -25,17 +25,17 @@ export function ClientHomePage() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     if (localStorage.getItem(WORD_TOKEN)) {
-    //         dispatch(auth()).then(req => {
-    //             if (req === undefined) {
-    //                 navigate(LOGIN);
-    //             } else {
-    //                 setUser(req.id);
-    //             }
-    //         })
-    //     }
-    // }, [dispatch, navigate]);
+    useEffect(() => {
+        if (localStorage.getItem(WORD_TOKEN)) {
+            dispatch(auth()).then(req => {
+                if (req === undefined) {
+                    navigate(LOGIN);
+                } else {
+                    setUser(req.id);
+                }
+            })
+        }
+    }, [dispatch, navigate]);
 
     ViewFunction();
 

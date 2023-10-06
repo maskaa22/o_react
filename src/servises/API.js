@@ -45,6 +45,7 @@ export const login = (email, password) => {
 
             return response.data.user;
         } catch (e) {
+            console.log('ERRRRRRRR');
             SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
         }
     }

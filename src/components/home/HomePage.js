@@ -18,17 +18,17 @@ export function HomePage() {
 
     const dispatch = useDispatch();
 
-    // useEffect(() => {
-    //     if (localStorage.getItem(WORD_TOKEN)) {
-    //         dispatch(auth()).then(res => {
-    //             if (res === undefined) {
-    //                 localStorage.removeItem(WORD_TOKEN);
-    //                 localStorage.removeItem(WORD_AUTH);
-    //                 document.location.reload();
-    //             }
-    //         });
-    //     }
-    // }, [dispatch]);
+    useEffect(() => {
+        if (localStorage.getItem(WORD_TOKEN)) {
+            dispatch(auth()).then(res => {
+                if (res === undefined) {
+                    localStorage.removeItem(WORD_TOKEN);
+                    localStorage.removeItem(WORD_AUTH);
+                    document.location.reload();
+                }
+            });
+        }
+    }, [dispatch]);
 
     HomeFunction();
     Up();

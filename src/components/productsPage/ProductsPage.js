@@ -48,14 +48,14 @@ export function ProductsPage() {
         getCategories().then(respons => {
             setCategories(respons.data);
         });
-        // if (localStorage.getItem(WORD_TOKEN)) {
-        //     dispatch(auth()).then(res => {
-        //         if (res === undefined) {
-        //             localStorage.removeItem(WORD_TOKEN);
-        //             document.location.reload();
-        //         }
-        //     });
-        // }
+        if (localStorage.getItem(WORD_TOKEN)) {
+            dispatch(auth()).then(res => {
+                if (res === undefined) {
+                    localStorage.removeItem(WORD_TOKEN);
+                    document.location.reload();
+                }
+            });
+        }
     }, [dispatch]);
 
     useEffect(() => {
