@@ -34,6 +34,7 @@ import {
 export const login = (email, password) => {
     return async dispatch => {
         try {
+            console.log('111111');
             const response = await AuthService.login(email, password);
             console.log(response);
 
