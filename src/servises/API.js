@@ -38,7 +38,7 @@ export const login = (email, password) => {
             const response = await AuthService.login(email, password);
             
 
-            localStorage.setItem(WORD_TOKEN, response.data.access_token);
+            localStorage.setItem(WORD_TOKEN, response.data.tokenPair.access_token);
 
             dispatch(setUser(response.data.user));
             dispatch(setRole(response.data.user.role));
