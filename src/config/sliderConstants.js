@@ -15,9 +15,9 @@ import man2 from '../images/servises/menHears/Group12.png';
 import man3 from '../images/servises/menHears/Group13.png';
 
 export const slideColor = [
-    {url: `http://localhost:3000${color1}`},
-    {url: `http://localhost:3000${color2}`},
-    {url: `http://localhost:3000${color3}`}
+    {url: `https://o-react.vercel.app${color1}`},
+    {url: `https://o-react.vercel.app${color2}`},
+    {url: `https://o-react.vercel.app${color3}`}
 ];
 
 export const slideStyles = [
