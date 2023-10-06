@@ -6,7 +6,7 @@ import {AboutAsPage} from "../aboutAs";
 import {CLIENT_ALL} from "../../config/headerConstants";
 import {ActiveForm, LoginingForm, ResetPasswordForm, WritingEmailForm} from "../loginingForm";
 import {AdminHomePage} from "../admin";
-import {Analysis} from "../ analysis";
+import {Analysis} from "../analysis";
 import {getUserForToken} from "../../servises";
 import {ArchiveOrders} from "../archive";
 import {BasketPage} from "../basket";
