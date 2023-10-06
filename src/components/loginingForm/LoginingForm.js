@@ -184,7 +184,7 @@ export function LoginingForm({role, handleClose}) {
                     <button disabled={formValid} className={'form_btn'} onClick={() => {
                             isLogin ? dispatch(login(email, password)).then(rez => {
                                 if (rez) {
-                                    navigate(THIS);
+                                    //navigate(THIS);
                                 }
                             }) : registration(name, email, password, role, passwordToo, '').then(rez => {
                                 if (!role) {
