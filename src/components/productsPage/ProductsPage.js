@@ -63,6 +63,7 @@ export function ProductsPage() {
             setProducts(respons.data.docs);
             setPaginate(respons.data);
         });
+        console.log('5555');
     }, [page]);
 
     function thisPage(page) {
