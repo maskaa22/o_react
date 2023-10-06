@@ -75,7 +75,7 @@ export function App() {
                     {(isAuth && role === WORLD_USER) && <Route path={CLIENT_ALL} element={<ClientHomePage/>}/>}
 
                     <Route path={'/registration'} element={isAuth ? <Navigate to={'/'}/> : <LoginingForm/>}/>
-                    <Route path={'/login'} element={isAuth ? <Navigate to={'/'}/> : <LoginingForm/>}/>
+                    <Route path={'/login'} element={ <LoginingForm/>}/>
                     <Route path={'/:user_id/reset-password'} element={<ResetPasswordForm/>}/>
                     <Route path={'/login-reset-password'} element={<WritingEmailForm/>}/>
                     <Route path={'auth/activate/:token'} element={<ActiveForm/>}/>
