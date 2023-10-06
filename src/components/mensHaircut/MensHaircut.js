@@ -15,16 +15,16 @@ export function MensHaircut() {
 
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        if (localStorage.getItem(WORD_TOKEN)) {
-            dispatch(auth()).then(res => {
-                if (res === undefined) {
-                    localStorage.removeItem(WORD_TOKEN);
-                    document.location.reload();
-                }
-            });
-        }
-    }, [dispatch]);
+    // useEffect(() => {
+    //     if (localStorage.getItem(WORD_TOKEN)) {
+    //         dispatch(auth()).then(res => {
+    //             if (res === undefined) {
+    //                 localStorage.removeItem(WORD_TOKEN);
+    //                 document.location.reload();
+    //             }
+    //         });
+    //     }
+    // }, [dispatch]);
 
     return (
         <div>

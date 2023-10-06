@@ -48,14 +48,14 @@ export function ProductsPage() {
         getCategories().then(respons => {
             setCategories(respons.data);
         });
-        if (localStorage.getItem(WORD_TOKEN)) {
-            dispatch(auth()).then(res => {
-                if (res === undefined) {
-                    localStorage.removeItem(WORD_TOKEN);
-                    document.location.reload();
-                }
-            });
-        }
+        // if (localStorage.getItem(WORD_TOKEN)) {
+        //     dispatch(auth()).then(res => {
+        //         if (res === undefined) {
+        //             localStorage.removeItem(WORD_TOKEN);
+        //             document.location.reload();
+        //         }
+        //     });
+        // }
     }, [dispatch]);
 
     useEffect(() => {
@@ -63,7 +63,6 @@ export function ProductsPage() {
             setProducts(respons.data.docs);
             setPaginate(respons.data);
         });
-        console.log('5555');
     }, [page]);
 
     function thisPage(page) {
