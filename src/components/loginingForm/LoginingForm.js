@@ -33,6 +33,7 @@ export function LoginingForm({role, handleClose}) {
     const [formValid, setFormValid] = useState(true);
 
     const location = useLocation();
+    console.log(location);
     const isLogin = location.pathname === LOGIN;
 
     useEffect(() => {
