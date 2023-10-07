@@ -19,7 +19,7 @@ export function Edit({userForEdit}) {
 
     const currentUser = useSelector(state => state.user.currentUser);
     const role = useSelector(state => state.user.role);
-
+console.log(currentUser, "EDIT PAGE");
     const [email, setEmail] = useState('');
     const [imgById, setImgById] = useState('');
     const [number, setNumber] = useState('');
