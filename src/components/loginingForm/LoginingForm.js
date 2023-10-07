@@ -192,7 +192,7 @@ export function LoginingForm({role, handleClose}) {
                                 if (!role) {
                                     if (rez) navigate(LOGIN);
                                 } 
-                                else window.location.reload();
+                                //else window.location.reload();
                             })
                     }}>{isLogin ? WORD_AUTORIZ : WORD_REGISTRATION}
                     </button>
