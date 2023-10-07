@@ -35,21 +35,23 @@ export function App() {
 
     const [users, setUsers] = useState([]);
     const [delUser, setDelUser] = useState(false);
+    const [userForEdit, setUserForEdit] = useState('');
 
     useEffect(() => {
         console.log(isAuth);
         if(isAuth) {
             console.log(currentUser);
+            setUserForEdit(currentUser);
         }
-        else if (isAuth === false) {
-            if (localStorage.getItem(WORD_TOKEN)) {
-                store.dispatch(setAuth());
-                getUserForToken().then(user => {
-                    console.log(user);
-                    store.dispatch(setRole(user.user_id.role));
-                })
-            }
-        }
+        // else if (isAuth === false) {
+        //     if (localStorage.getItem(WORD_TOKEN)) {
+        //         store.dispatch(setAuth());
+        //         getUserForToken().then(user => {
+        //             console.log(user);
+        //             store.dispatch(setRole(user.user_id.role));
+        //         })
+        //     }
+        // }
     }, [isAuth]);
 
     return (
@@ -68,7 +70,7 @@ export function App() {
                     {(isAuth && role === WORLD_ADMIN) &&
                     <Route path={'/admin'}
                            element={<AdminHomePage setUsers={setUsers} setDelUser={setDelUser} delUser={delUser}/>}>
-                        <Route index element={<Edit/>}/>
+                        <Route index element={<Edit userForEdit={userForEdit}/>}/>
                         <Route path={'users'} element={<Users items={users} setDelUser={setDelUser}/>}/>
                         <Route path={'records'} element={<Records/>}/>
                         <Route path={'products'} element={<CreateProduct/>}/>

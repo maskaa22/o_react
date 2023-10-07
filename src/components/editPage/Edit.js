@@ -15,7 +15,7 @@ import {WORD_TOKEN, WORLD_ADMIN, WORLD_USER} from "../../config/wordsConstants";
 import {RiSendPlaneFill} from "react-icons/ri";
 
 
-export function Edit() {
+export function Edit({userForEdit}) {
 
     const currentUser = useSelector(state => state.user.currentUser);
     const role = useSelector(state => state.user.role);
