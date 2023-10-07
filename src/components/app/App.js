@@ -31,13 +31,17 @@ export function App() {
 
     const isAuth = useSelector(state => state.user.isAuth);
     const role = useSelector(state => state.user.role);
+    const currentUser = useSelector(state => state.user.currentUser);
 
     const [users, setUsers] = useState([]);
     const [delUser, setDelUser] = useState(false);
 
     useEffect(() => {
         console.log(isAuth);
-        if (isAuth === false) {
+        if(isAuth) {
+            console.log(currentUser);
+        }
+        else if (isAuth === false) {
             if (localStorage.getItem(WORD_TOKEN)) {
                 store.dispatch(setAuth());
                 getUserForToken().then(user => {
