@@ -36,6 +36,7 @@ export function App() {
     const [delUser, setDelUser] = useState(false);
 
     useEffect(() => {
+        console.log(isAuth);
         if (isAuth === false) {
             if (localStorage.getItem(WORD_TOKEN)) {
                 store.dispatch(setAuth());
