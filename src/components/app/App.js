@@ -35,16 +35,16 @@ export function App() {
     const [users, setUsers] = useState([]);
     const [delUser, setDelUser] = useState(false);
 
-    // useEffect(() => {
-    //     if (isAuth === false) {
-    //         if (localStorage.getItem(WORD_TOKEN)) {
-    //             store.dispatch(setAuth());
-    //             getUserForToken().then(user => {
-    //                 store.dispatch(setRole(user.user_id.role));
-    //             })
-    //         }
-    //     }
-    // }, [isAuth]);
+    useEffect(() => {
+        if (isAuth === false) {
+            if (localStorage.getItem(WORD_TOKEN)) {
+                store.dispatch(setAuth());
+                getUserForToken().then(user => {
+                    store.dispatch(setRole(user.user_id.role));
+                })
+            }
+        }
+    }, [isAuth]);
 
     return (
         <div className={'main'}>
