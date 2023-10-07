@@ -40,6 +40,7 @@ export function App() {
             if (localStorage.getItem(WORD_TOKEN)) {
                 store.dispatch(setAuth());
                 getUserForToken().then(user => {
+                    console.log(user);
                     store.dispatch(setRole(user.user_id.role));
                 })
             }
