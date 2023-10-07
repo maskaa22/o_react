@@ -36,7 +36,9 @@ export function Edit() {
 
     useEffect(() => {
         if (localStorage.getItem(WORD_TOKEN)) {
-            getUserForToken().then(user => setImgById(user.user_id.foto));
+            getUserForToken().then(user => {
+                console.log(user);
+                setImgById(user.user_id.foto)});
         }
     }, []);
 
