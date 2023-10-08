@@ -29,16 +29,16 @@ export function ClientHomePage() {
 
     useEffect(() => {
         console.log(currentUser);
-        // if (localStorage.getItem(WORD_TOKEN)) {
-        //     dispatch(auth()).then(req => {
-        //         console.log(req);
-        //         if (req === undefined) {
-        //             navigate(LOGIN);
-        //         } else {
-        //             setUser(req.id);
-        //         }
-        //     })
-        // }
+        if (localStorage.getItem(WORD_TOKEN)) {
+            dispatch(auth()).then(req => {
+                console.log(req);
+                if (req === undefined) {
+                    navigate(LOGIN);
+                } else {
+                    setUser(req.id);
+                }
+            })
+        }
     }, [dispatch, navigate]);
 
     ViewFunction();
