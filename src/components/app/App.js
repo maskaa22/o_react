@@ -43,7 +43,7 @@ export function App() {
         //     console.log(currentUser);
         //     setUserForEdit(currentUser);
         // }
-        else if (isAuth === false) {
+         if (isAuth === false) {
             if (localStorage.getItem(WORD_TOKEN)) {
                 store.dispatch(setAuth());
                 getUserForToken().then(user => {
