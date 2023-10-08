@@ -30,7 +30,7 @@ export function ClientHomePage({currentUser}) {
     useEffect(() => {
         
         if (localStorage.getItem(WORD_TOKEN)) {
-            console.log(currentUser);
+            console.log(currentUser._id);
             // dispatch(auth()).then(req => {
             //     console.log(req);
             //     if (req === undefined) {
@@ -88,8 +88,8 @@ export function ClientHomePage({currentUser}) {
             <div className={'home-page'}>
                 <Routes>
                     <Route path={THIS} element={<Edit/>}/>
-                    <Route path={`${ORDERS}/:${user}`} element={<UserOrders/>}/>
-                    <Route path={`${RECORDS}/:${user}`} element={<ClientRecords/>}/>
+                    <Route path={`${ORDERS}/:${currentUser._id}`} element={<UserOrders/>}/>
+                    <Route path={`${RECORDS}/:${currentUser._id}`} element={<ClientRecords/>}/>
                 </Routes>
             </div>
         </div>
