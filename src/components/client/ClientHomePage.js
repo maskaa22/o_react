@@ -28,16 +28,17 @@ export function ClientHomePage() {
     
 
     useEffect(() => {
-        console.log('CLIENT');
+        
         if (localStorage.getItem(WORD_TOKEN)) {
-            dispatch(auth()).then(req => {
-                console.log(req);
-                if (req === undefined) {
-                    navigate(LOGIN);
-                } else {
-                    setUser(req.id);
-                }
-            })
+            console.log('CLIENT');
+            // dispatch(auth()).then(req => {
+            //     console.log(req);
+            //     if (req === undefined) {
+            //         navigate(LOGIN);
+            //     } else {
+            //         setUser(req.id);
+            //     }
+            // })
         }
     }, [dispatch, navigate]);
 
