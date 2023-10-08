@@ -24,13 +24,13 @@ export function ClientHomePage() {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
+    const currentUser = useSelector(state => state.user.currentUser);
     
 
     useEffect(() => {
         
         if (localStorage.getItem(WORD_TOKEN)) {
-            console.log('CLIENT');
+            console.log(currentUser);
             // dispatch(auth()).then(req => {
             //     console.log(req);
             //     if (req === undefined) {
