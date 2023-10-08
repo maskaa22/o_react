@@ -38,8 +38,8 @@ export function ClientHomePage({currentUser}) {
                 } else {
                     setUser(req.id);
                 }
-            })
-        }
+            }
+        
     }, [dispatch, navigate]);
 
     ViewFunction();
