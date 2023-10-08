@@ -18,13 +18,13 @@ import {Edit} from "../editPage";
 import {UserOrders} from "../orders";
 import {ClientRecords} from "../clientRecords";
 
-export function ClientHomePage() {
+export function ClientHomePage({currentUser}) {
 
     const [user, setUser] = useState([]);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const currentUser = useSelector(state => state.user.currentUser);
+ 
     
 
     useEffect(() => {

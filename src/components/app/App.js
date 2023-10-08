@@ -80,7 +80,7 @@ export function App() {
                     </Route>
                     }
                     {isAuth && <Route path={'/products/orders'} element={<BasketPage/>}/>}
-                    {(isAuth && role === WORLD_USER) && <Route path={CLIENT_ALL} element={<ClientHomePage/>}/>}
+                    {(isAuth && role === WORLD_USER) && <Route path={CLIENT_ALL} element={<ClientHomePage currentUser={currentUser}/>}/>}
 
                     <Route path={'/registration'} element={isAuth ? <Navigate to={'/'}/> : <LoginingForm/>}/>
                     <Route path={'/login'} element={isAuth ? <Navigate to={'/'}/> : <LoginingForm/>}/>
