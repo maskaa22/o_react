@@ -25,10 +25,10 @@ export function ClientHomePage() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const currentUser = useSelector(state => state.user.currentUser);
+    
 
     useEffect(() => {
-        console.log(currentUser);
+        console.log('CLIENT');
         if (localStorage.getItem(WORD_TOKEN)) {
             dispatch(auth()).then(req => {
                 console.log(req);
