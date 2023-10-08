@@ -31,15 +31,15 @@ export function ClientHomePage({currentUser}) {
         
         if (localStorage.getItem(WORD_TOKEN)) {
             // console.log(currentUser._id);
-            // dispatch(auth()).then(req => {
-            //     console.log(req);
+             dispatch(auth()).then(req => {
+                 console.log(req);
                 if (req === undefined) {
                     navigate(LOGIN);
                 } else {
                     setUser(req.id);
                 }
-            }
-        
+            })
+        }
     }, [dispatch, navigate]);
 
     ViewFunction();
