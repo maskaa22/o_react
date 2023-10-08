@@ -21,12 +21,12 @@ export function HomePage() {
     useEffect(() => {
         if (localStorage.getItem(WORD_TOKEN)) {
             dispatch(auth()).then(res => {
-                // if (res === undefined) {
-                    console.log(res, 'HOME');
-                //     localStorage.removeItem(WORD_TOKEN);
-                //     localStorage.removeItem(WORD_AUTH);
-                //     document.location.reload();
-                // }
+                if (res === undefined) {
+                 
+                    localStorage.removeItem(WORD_TOKEN);
+                    localStorage.removeItem(WORD_AUTH);
+                    document.location.reload();
+                }
             });
         }
     }, [dispatch]);

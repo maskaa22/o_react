@@ -38,20 +38,20 @@ export function App() {
     const [userForEdit, setUserForEdit] = useState('');
 
     useEffect(() => {
-        console.log(isAuth);
-        if(isAuth) {
-            console.log(currentUser);
-            setUserForEdit(currentUser);
-        }
-        // else if (isAuth === false) {
-        //     if (localStorage.getItem(WORD_TOKEN)) {
-        //         store.dispatch(setAuth());
-        //         getUserForToken().then(user => {
-        //             console.log(user);
-        //             store.dispatch(setRole(user.user_id.role));
-        //         })
-        //     }
+        // console.log(isAuth);
+        // if(isAuth) {
+        //     console.log(currentUser);
+        //     setUserForEdit(currentUser);
         // }
+        else if (isAuth === false) {
+            if (localStorage.getItem(WORD_TOKEN)) {
+                store.dispatch(setAuth());
+                getUserForToken().then(user => {
+                    console.log(user);
+                    store.dispatch(setRole(user.user_id.role));
+                })
+            }
+        }
     }, [isAuth]);
 
     return (

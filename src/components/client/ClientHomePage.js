@@ -30,14 +30,14 @@ export function ClientHomePage({currentUser}) {
     useEffect(() => {
         
         if (localStorage.getItem(WORD_TOKEN)) {
-            console.log(currentUser._id);
-            dispatch(auth()).then(req => {
-                console.log(req);
-                // if (req === undefined) {
-                //     navigate(LOGIN);
-                // } else {
-                //     setUser(req.id);
-                // }
+            // console.log(currentUser._id);
+            // dispatch(auth()).then(req => {
+            //     console.log(req);
+                if (req === undefined) {
+                    navigate(LOGIN);
+                } else {
+                    setUser(req.id);
+                }
             })
         }
     }, [dispatch, navigate]);
@@ -88,8 +88,8 @@ export function ClientHomePage({currentUser}) {
             <div className={'home-page'}>
                 <Routes>
                     <Route path={THIS} element={<Edit/>}/>
-                    <Route path={`${ORDERS}/:${currentUser._id}`} element={<UserOrders/>}/>
-                    <Route path={`${RECORDS}/:${currentUser._id}`} element={<ClientRecords/>}/>
+                    <Route path={`${ORDERS}/:${user}`} element={<UserOrders/>}/>
+                    <Route path={`${RECORDS}/:${user}`} element={<ClientRecords/>}/>
                 </Routes>
             </div>
         </div>

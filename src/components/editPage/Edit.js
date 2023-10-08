@@ -34,12 +34,12 @@ console.log(currentUser, "EDIT PAGE");
     // const [visibleSity, setVisibleSity] = useState('none');
 
 
-    // useEffect(() => {
-    //     if (localStorage.getItem(WORD_TOKEN)) {
-    //         getUserForToken().then(user => {
-    //             setImgById(user.user_id.foto)});
-    //     }
-    // }, []);
+    useEffect(() => {
+        if (localStorage.getItem(WORD_TOKEN)) {
+            getUserForToken().then(user => {
+                setImgById(user.user_id.foto)});
+        }
+    }, []);
 
     const block_check = document.getElementById('block_check');
 
