@@ -21,12 +21,13 @@ export function HomePage() {
     useEffect(() => {
         if (localStorage.getItem(WORD_TOKEN)) {
             dispatch(auth()).then(res => {
-                if (res === undefined) {
-                 
-                    localStorage.removeItem(WORD_TOKEN);
-                    localStorage.removeItem(WORD_AUTH);
-                    document.location.reload();
-                }
+                console.log(res, "RES");
+                // if (res === undefined) {
+                    
+                //     localStorage.removeItem(WORD_TOKEN);
+                //     localStorage.removeItem(WORD_AUTH);
+                //     document.location.reload();
+                // }
             });
         }
     }, [dispatch]);
