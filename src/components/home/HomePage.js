@@ -35,6 +35,7 @@ export function HomePage() {
     HomeFunction();
     Up();
 console.log(localStorage.getItem(WORD_TOKEN));
+console.log(document.cookie);
     return (
         <div>
             <div className={'upward'} onClick={scrollTopTop}><BsArrowUpCircle className="icon-up"/></div>
