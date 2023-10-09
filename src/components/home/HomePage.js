@@ -30,7 +30,7 @@ export function HomePage() {
                 // }
             });
         }
-    }, [dispatch, localStorage.getItem(WORD_TOKEN)]);
+    }, [dispatch]);
 
     HomeFunction();
     Up();
