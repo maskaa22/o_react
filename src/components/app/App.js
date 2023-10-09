@@ -43,15 +43,17 @@ export function App() {
         //     console.log(currentUser);
         //     setUserForEdit(currentUser);
         // }
-         if (isAuth === false) {
-            if (localStorage.getItem(WORD_TOKEN)) {
-                store.dispatch(setAuth());
-                getUserForToken().then(user => {
-                    console.log(user);
-                    store.dispatch(setRole(user.user_id.role));
-                })
-            }
-        }
+
+
+        //  if (isAuth === false) {
+        //     if (localStorage.getItem(WORD_TOKEN)) {
+        //         store.dispatch(setAuth());
+        //         getUserForToken().then(user => {
+        //             console.log(user);
+        //             store.dispatch(setRole(user.user_id.role));
+        //         })
+        //     }
+        // }
     }, [isAuth]);
 
     return (
