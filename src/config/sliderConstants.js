@@ -29,7 +29,7 @@ export const slideStyles = [
 export const slidesMan = [
     {url: `https://o-react.vercel.app${man1}`},
     {url: `https://o-react.vercel.app${man2}`},
-    {url: `https://o-react.vercel.app0${man3}`}
+    {url: `https://o-react.vercel.app${man3}`}
 ];
 
 export const slideWoman = [
