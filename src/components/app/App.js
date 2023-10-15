@@ -36,7 +36,8 @@ export function App() {
     const [users, setUsers] = useState([]);
     const [delUser, setDelUser] = useState(false);
     const [userForEdit, setUserForEdit] = useState('');
-
+    
+    const dispatch = useDispatch();
     useEffect(() => {
         // console.log(isAuth);
         // if(isAuth) {
@@ -45,8 +46,12 @@ export function App() {
         // }
 
 
-        // 
-    }, [isAuth]);
+        if (localStorage.getItem(WORD_TOKEN)) {
+            dispatch(auth()).then(req => {
+                console.log(req)
+            })
+        }
+    }, [isAuth, dispatch]);
 
     return (
         <div className={'main'}>

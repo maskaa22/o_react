@@ -25,8 +25,6 @@ export function ClientHomePage({currentUser}) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
  
-    
-console.log(currentUser, "CLIENT PAGE");
 
     // useEffect(() => {
         
@@ -55,7 +53,7 @@ console.log(currentUser, "CLIENT PAGE");
     function closeMenuHome() {
         closeToogleMenu(WORD_CATEGORY_MENU, WORD_SMALL_MENU_ADMIN_CLIENT, WORD_ACTIVE_MENU_CATEGORY, WORD_NO_SCROLL);
     }
-console.log(user, 'USER_ID')
+
     return (
         <div className={'adminHomePage'}>
             <div className={'home-menu'}>
