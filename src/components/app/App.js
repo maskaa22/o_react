@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Navigate, Route, Routes} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
 
 import {AboutAsPage} from "../aboutAs";
 import {CLIENT_ALL} from "../../config/headerConstants";
@@ -26,6 +26,7 @@ import {store} from "../../reducers";
 import {Users} from "../users";
 import {WomensHaircut} from "../womensHaircut";
 import {WORD_TOKEN, WORLD_ADMIN, WORLD_USER} from "../../config/wordsConstants";
+import {auth} from "../../servises";
 
 export function App() {
 
@@ -36,8 +37,9 @@ export function App() {
     const [users, setUsers] = useState([]);
     const [delUser, setDelUser] = useState(false);
     const [userForEdit, setUserForEdit] = useState('');
-    
+
     const dispatch = useDispatch();
+
     useEffect(() => {
         // console.log(isAuth);
         // if(isAuth) {
