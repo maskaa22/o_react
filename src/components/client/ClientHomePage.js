@@ -28,20 +28,20 @@ export function ClientHomePage({currentUser}) {
     
 console.log(currentUser, "CLIENT PAGE");
 
-    useEffect(() => {
+    // useEffect(() => {
         
-        if (localStorage.getItem(WORD_TOKEN)) {
-            // console.log(currentUser._id);
-             dispatch(auth()).then(req => {
-                 console.log(req);
-               // if (req === undefined) {
-                //    navigate(LOGIN);
-               //} else {
-                    setUser(req.id);
-               // }
-            })
-        }
-    }, [dispatch, navigate]);
+    //     if (localStorage.getItem(WORD_TOKEN)) {
+    //         // console.log(currentUser._id);
+    //          dispatch(auth()).then(req => {
+    //              console.log(req);
+    //            // if (req === undefined) {
+    //             //    navigate(LOGIN);
+    //            //} else {
+    //                 setUser(req.id);
+    //            // }
+    //         })
+    //     }
+    // }, [dispatch, navigate]);
 
     ViewFunction();
 
@@ -73,13 +73,13 @@ console.log(user, 'USER_ID')
                         </Link>
                     </div>
                     <div className={'padding'}>
-                        <Link to={`${CLIENT_ORDERS}/:${user}`} className={'color_purple click-item'}>
+                        <Link to={`${CLIENT_ORDERS}/:${currentUser._id}`} className={'color_purple click-item'}>
                             <button className={'home_item click-item category'}
                                     onClick={closeMenuHome}>Замовлення<MdNavigateNext className={'non-icon'}/></button>
                         </Link>
                     </div>
                     <div className={'padding'}>
-                        <Link to={`${CLIENT_RECORDS}/:${user}`} className={'color_purple click-item'}>
+                        <Link to={`${CLIENT_RECORDS}/:${currentUser._id}`} className={'color_purple click-item'}>
                             <button className={'home_item click-item category'}
                                     onClick={closeMenuHome}>Записи<MdNavigateNext className={'non-icon'}/></button>
                         </Link>
@@ -89,8 +89,8 @@ console.log(user, 'USER_ID')
             <div className={'home-page'}>
                 <Routes>
                     <Route path={THIS} element={<Edit/>}/>
-                    <Route path={`${ORDERS}/:${user}`} element={<UserOrders/>}/>
-                    <Route path={`${RECORDS}/:${user}`} element={<ClientRecords/>}/>
+                    <Route path={`${ORDERS}/:${currentUser._id}`} element={<UserOrders/>}/>
+                    <Route path={`${RECORDS}/:${currentUser._id}`} element={<ClientRecords/>}/>
                 </Routes>
             </div>
         </div>
