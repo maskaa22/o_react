@@ -21,19 +21,19 @@ export const slideColor = [
 ];
 
 export const slideStyles = [
-    {url: `http://localhost:3000${styles1}`},
-    {url: `http://localhost:3000${styles2}`},
-    {url: `http://localhost:3000${styles3}`}
+    {url: `https://o-react.vercel.app${styles1}`},
+    {url: `https://o-react.vercel.app${styles2}`},
+    {url: `https://o-react.vercel.app${styles3}`}
 ];
 
 export const slidesMan = [
-    {url: `http://localhost:3000${man1}`},
-    {url: `http://localhost:3000${man2}`},
-    {url: `http://localhost:3000${man3}`}
+    {url: `https://o-react.vercel.app${man1}`},
+    {url: `https://o-react.vercel.app${man2}`},
+    {url: `https://o-react.vercel.app0${man3}`}
 ];
 
 export const slideWoman = [
-    {url: `http://localhost:3000${woman1}`},
-    {url: `http://localhost:3000${woman2}`},
-    {url: `http://localhost:3000${woman3}`}
+    {url: `https://o-react.vercel.app${woman1}`},
+    {url: `https://o-react.vercel.app${woman2}`},
+    {url: `https://o-react.vercel.app${woman3}`}
 ];
