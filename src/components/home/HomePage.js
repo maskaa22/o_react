@@ -34,7 +34,7 @@ export function HomePage() {
 
     HomeFunction();
     Up();
-console.log(localStorage.getItem(WORD_TOKEN));
+
 
     return (
         <div>
