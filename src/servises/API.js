@@ -58,7 +58,7 @@ export const auth = () => {
         try {
             const response = await axios.get(`${URL.REFRESH_URL}`,
                 {withCredentials: true});
-
+console.log(response, "AUTH")
             localStorage.setItem(WORD_TOKEN, response.data.tokenPair.access_token);
             dispatch(setUser(response.data.user));
             dispatch(setRole(response.data.user.role));
