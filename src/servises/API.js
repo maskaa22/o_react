@@ -34,11 +34,7 @@ import {
 export const login = (email, password) => {
     return async dispatch => {
         try {
-            console.log('LOGININGGGG22222');
             const response = await AuthService.login(email, password);
-            console.log('------------------');
-            console.log(response);
-            console.log('------------------');
 
             localStorage.setItem(WORD_TOKEN, response.data.access_token);
 
@@ -47,8 +43,6 @@ export const login = (email, password) => {
 
             return response.data.user;
         } catch (e) {
-            console.log('ERRRRRRRR');
-    
             SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
         }
     }
@@ -58,7 +52,7 @@ export const auth = () => {
         try {
             const response = await axios.get(`${URL.REFRESH_URL}`,
                 {withCredentials: true});
-console.log(response, "AUTH")
+
             localStorage.setItem(WORD_TOKEN, response.data.tokenPair.access_token);
             dispatch(setUser(response.data.user));
             dispatch(setRole(response.data.user.role));

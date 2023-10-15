@@ -40,16 +40,15 @@ export function AdminHomePage({setUsers, setDelUser, delUser}) {
     useEffect(() => {
         if (localStorage.getItem(WORD_TOKEN)) {
             dispatch(auth()).then(req => {
-                console.log(req);
-                // if (req === undefined) {
-                //     navigate(LOGIN);
-                // }
-                // getUsers().then(response => {
-                //     if (response !== undefined) {
-                //         setUsers(response.data);
-                //     }
-                // });
-                // setDelUser(false);
+                if (req === undefined) {
+                    navigate(LOGIN);
+                }
+                getUsers().then(response => {
+                    if (response !== undefined) {
+                        setUsers(response.data);
+                    }
+                });
+                setDelUser(false);
             })
         }
     }, [dispatch, navigate, setUsers, delUser, setDelUser]);
