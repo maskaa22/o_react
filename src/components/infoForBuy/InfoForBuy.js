@@ -63,8 +63,8 @@ export function InfoForBuy({setPay}) {
                 {
                     stateName &&
                     <div className={'data_div'}>
-                        <div> {currentUser.name} {currentUser.surname}</div>
-                        <div>{currentUser.phone} </div>
+                        <div> {currentUser.name} {currentUser.surname ? currentUser.surname : 'Введіть призвіще'}</div>
+                        <div>{currentUser.phone ? currentUser.phone : 'Введіть номер'} </div>
                     </div>
                 }
                 {
