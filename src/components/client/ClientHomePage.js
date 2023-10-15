@@ -33,11 +33,11 @@ export function ClientHomePage({currentUser}) {
             // console.log(currentUser._id);
              dispatch(auth()).then(req => {
                  console.log(req);
-                if (req === undefined) {
-                    navigate(LOGIN);
-                } else {
+               // if (req === undefined) {
+                //    navigate(LOGIN);
+               //} else {
                     setUser(req.id);
-                }
+               // }
             })
         }
     }, [dispatch, navigate]);
@@ -54,7 +54,7 @@ export function ClientHomePage({currentUser}) {
     function closeMenuHome() {
         closeToogleMenu(WORD_CATEGORY_MENU, WORD_SMALL_MENU_ADMIN_CLIENT, WORD_ACTIVE_MENU_CATEGORY, WORD_NO_SCROLL);
     }
-
+console.log(user, 'USER_ID')
     return (
         <div className={'adminHomePage'}>
             <div className={'home-menu'}>
