@@ -72,9 +72,9 @@ export function InfoForBuy({setPay}) {
                     <div className={'data_input'}>
                         <Input value={name} setValue={setName} placeholder={currentUser.name}
                                className={'input-basket-update'}/>
-                        <Input value={surname} setValue={setSurname} placeholder={currentUser.surname}
+                        <Input value={surname} setValue={setSurname} placeholder={currentUser.surname ? currentUser.surname : 'Введіть призвіще'}
                                className={'input-basket-update'}/>
-                        <Input value={phone} setValue={setPhone} placeholder={currentUser.phone}
+                        <Input value={phone} setValue={setPhone} placeholder={currentUser.phone ? currentUser.phone : 'Введіть номер'}
                                className={'input-basket-update'}/>
                         <div className={'d_flex edit-date-margin'}>
                             <button className={'check save'} onClick={() => {

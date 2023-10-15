@@ -19,10 +19,11 @@ import {
     WORD_SWAL_ERROR,
     WORD_SWAL_OK,
     WORD_SWAL_TEXT_ERROR,
-    WORD_VISIBLE_N_P
+    WORD_VISIBLE_N_P,
+    WORD_VISIBLE
 } from "../../config/wordsConstants";
 
-export function NewPochta({setSity, setNumberNP}) {
+export function NewPochta({setSity, setNumberNP, setVisibleSity, setVisibleNumber}) {
 
     // const [nameDepartment, setNameDepartment] = useState('');
     const [nameSity, setNameSity] = useState('');
@@ -47,13 +48,13 @@ export function NewPochta({setSity, setNumberNP}) {
         setNameSity(event);
         setSity(event);
         setValue(WORD_VISIBLE_N_P);
-        // setVisibleSity(WORD_VISIBLE);
+         setVisibleSity(WORD_VISIBLE);
     };
 
     const handleChangeDepartment = (event) => {
         // setNameDepartment(event);
         setNumberNP(event);
-        // setVisibleNumber(WORD_VISIBLE);
+         setVisibleNumber(WORD_VISIBLE);
     };
 
     return (
