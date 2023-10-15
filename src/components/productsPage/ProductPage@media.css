@@ -122,6 +122,7 @@
     .left-title {
         font-size: 20px;
         padding: 10px 0 0 10px;
+        color: #47008e;
     }
 
     .right-title {
@@ -142,5 +143,5 @@
         padding: 0;
         width: 100%;
     }
-    
+
 }
