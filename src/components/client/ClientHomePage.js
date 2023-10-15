@@ -18,7 +18,7 @@ import {Edit} from "../editPage";
 import {UserOrders} from "../orders";
 import {ClientRecords} from "../clientRecords";
 
-export function ClientHomePage({currentUser}) {
+export function ClientHomePage() {
 
     const [user, setUser] = useState([]);
 
