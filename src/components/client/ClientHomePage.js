@@ -25,7 +25,8 @@ export function ClientHomePage({currentUser}) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
  
-    
+    const currentUser = useSelector(state => state.user.currentUser);
+console.log(currentUser, "CLIENT PAGE");
 
     useEffect(() => {
         
