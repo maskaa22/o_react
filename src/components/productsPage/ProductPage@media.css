@@ -136,3 +136,11 @@
         bottom: 0;
     }
 }
+
+@media screen and (max-width: 290px) { 
+    .row {
+        padding: 0;
+        width: 100%;
+    }
+    
+}
