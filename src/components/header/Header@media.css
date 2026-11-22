@@ -1,10 +1,24 @@
+/* Вища шапка на комп'ютері (на телефоні лишається 50px — від цього залежать мобільні панелі).
+   Це значення дублюється у героя головної: --hm-header-h у HomeModern.css, тримати синхронно. */
+@media screen and (min-width: 800px) {
+    .header {
+        height: 64px;
+        padding: 0 var(--hd-pad);   /* вміст шапки — у колонці контенту */
+    }
+
+    .menu {
+        height: 64px;
+    }
+}
+
 @media screen and (min-width: 1920px) {
     .header {
         height: 80px;
     }
 
     .menu {
-        margin-top: 10px;
+        height: 80px;
+        margin-top: 0;
     }
 }
 
@@ -56,7 +70,7 @@
 
     .menu > li {
         position: relative;
-        padding: 0 1vw;
+        padding: 0 clamp(2px, 0.5vw, 10px);   /* було 1vw — пункти ближче один до одного */
     }
 
     .submenu li {
@@ -75,6 +89,55 @@
 
     .submenu a {
         padding: 10px;
+    }
+
+    /* Дві іконки (акаунт і кошик / "Адмін") — поруч у правому куті.
+       Виводимо їх із потоку, тож решта пунктів, як і раніше, рівномірно розтягується
+       по шапці, а справа лишаємо запас, щоб "Контакти" не наїхали на іконки. */
+    .menu {
+        justify-content: flex-end;   /* пункти збиті справа, поруч з іконками */
+        padding-right: 150px;        /* відступ від іконок (акаунт + кошик займають ~105px справа) */
+    }
+
+    .menu > li:nth-last-child(-n+2) {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        padding: 0;
+    }
+
+    .menu > li:nth-last-child(-n+2) > .link-a {
+        padding: .5rem .65rem;
+    }
+
+    /* Випадаюче меню акаунта. Пункт тепер flex із align-items: center, а в такому
+       контейнері абсолютно позиціоноване підменю без top центрується по вертикалі
+       і "їде" вгору — тому позиція задана явно: одразу під іконкою (як у "Послуги"),
+       праворуч притиснута до іконки, щоб не виходити за край екрана. */
+    .menu > li:nth-last-child(-n+2) .submenu {
+        top: calc(50% + 26px);
+        left: auto;
+        right: 0;
+    }
+
+    .menu > li:last-child {
+        right: var(--hd-pad);
+    }
+
+    .menu > li:nth-last-child(2) {
+        right: calc(var(--hd-pad) + 48px);
+    }
+
+    /* немає другої іконки (гість / адмін без кошика) — акаунт стає в самий куток */
+    .menu > li:nth-last-child(2):has(+ li:empty) {
+        right: var(--hd-pad);
+    }
+
+    /* замість кошика напис "Адмін" — він ширший, тож відсуваємо акаунт далі */
+    .menu > li:nth-last-child(2):has(+ li > .div-admin) {
+        right: calc(var(--hd-pad) + 72px);
     }
 }
 

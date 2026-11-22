@@ -1,4 +1,9 @@
 .header {
+    /* бічний відступ, що вирівнює вміст шапки по колонці контенту сторінки
+       (та сама ширина, що в .hm-container: до 1160px, мінімум 24px з боків) */
+    --hd-pad: max(24px, calc((100% - 1160px) / 2));
+
+    box-sizing: border-box;
     width: 100%;
     height: 50px;
     background: var(--hm-grad-dark);
