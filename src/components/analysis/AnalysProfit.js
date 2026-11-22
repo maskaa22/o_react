@@ -19,7 +19,7 @@ export function AnalysProfit({analyze}) {
                       label={{
                           style: {
                               fontSize: 20,
-                              fill: '#47008e',
+                              fill: '#2c1203',
                               fontWeight: 'bold',
                           }
                       }}/>
@@ -28,13 +28,13 @@ export function AnalysProfit({analyze}) {
                           formatter: val => `${val} грн.`,
                           style: {
                               fontSize: 20,
-                              fill: '#47008e',
+                              fill: '#2c1203',
                               fontWeight: 'bold',
                           }
                       }}/>
                 <Tooltip shared/>
-                <Geom type="line" position="month*summa" color="#47008e" size={2} shape="smooth"/>
-                <Geom type="point" position="month*summa" color="#47008e" size={4} shape="circle"/>
+                <Geom type="line" position="month*summa" color="#2c1203" size={2} shape="smooth"/>
+                <Geom type="point" position="month*summa" color="#2c1203" size={4} shape="circle"/>
             </Chart>
         </div>
     );

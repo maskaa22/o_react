@@ -19,7 +19,7 @@ export function AnalysStatusOrder({data}) {
                       label={{
                           style: {
                               fontSize: 20,
-                              fill: '#47008e',
+                              fill: '#2c1203',
                               fontWeight: 'bold',
                           }
                       }}/>
@@ -27,7 +27,7 @@ export function AnalysStatusOrder({data}) {
                       label={{
                           style: {
                               fontSize: 20,
-                              fill: '#47008e',
+                              fill: '#2c1203',
                               fontWeight: 'bold',
                           }
                       }}/>
@@ -37,7 +37,7 @@ export function AnalysStatusOrder({data}) {
                         itemName={{
                             spacing: 10,
                             style: {
-                                fill: "#47008e",
+                                fill: "#2c1203",
                                 fontSize: 18,
                                 fontWeight: 'bold'
                             }

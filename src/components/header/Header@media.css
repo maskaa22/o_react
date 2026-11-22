@@ -19,7 +19,7 @@
     }
 
     .active-menu {
-        border-color: #79CBB8FF;
+        border-color: var(--hm-accent);
     }
 
     .menu > li > .link-a {
@@ -33,7 +33,7 @@
     }
 
     .active {
-        border-bottom: 2px solid white;
+        border-bottom: 2px solid var(--hm-accent);
     }
 
     .menu > li:hover > .submenu {
@@ -60,7 +60,7 @@
     }
 
     .submenu li {
-        background-color: #e4def1;
+        background-color: var(--hm-submenu);
         color: black;
     }
 
@@ -70,7 +70,7 @@
     }
 
     .submenu li:hover {
-        background-color: #efebf6;
+        background-color: var(--hm-submenu-hover);
     }
 
     .submenu a {
@@ -116,7 +116,7 @@
     }
 
     .menu a:hover {
-        background-color: rgb(120 201 184 / 40%);
+        background-color: rgb(var(--hm-accent-rgb) / 40%);
     }
 
     .menu > li {
@@ -170,7 +170,7 @@
         transition: .3s;
         list-style: none;
         position: relative;
-        background-color: #e4def1;
+        background-color: var(--hm-submenu);
         flex: 1 1 100%;
         margin: 20px 0 0 0;
     }

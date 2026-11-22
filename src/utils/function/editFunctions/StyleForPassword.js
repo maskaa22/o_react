@@ -36,7 +36,7 @@ export function StyleForPassword(number, block_check) {
         block_check.style.backgroundColor = '#b266ff';
     } else if (number.length >= 8 && rating >= 3) {
         block_check.style.width = "93%";
-        block_check.style.backgroundColor = '#79cbb8';
+        block_check.style.backgroundColor = 'var(--hm-accent)';
     } else if (number.length >= 6 && rating === 1) {
         block_check.style.width = "10%";
         block_check.style.backgroundColor = '#ff89f7';
@@ -45,6 +45,6 @@ export function StyleForPassword(number, block_check) {
         block_check.style.backgroundColor = '#b266ff';
     } else if (number.length >= 6 && rating === 4) {
         block_check.style.width = "93%";
-        block_check.style.backgroundColor = '#79cbb8';
+        block_check.style.backgroundColor = 'var(--hm-accent)';
     }
 }

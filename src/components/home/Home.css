@@ -11,7 +11,7 @@
 }
 
 .full-screen__body {
-    background: linear-gradient(to right, #78c9b854 46%, #47008e6e 100%);
+    background: linear-gradient(to right, rgba(var(--hm-accent-rgb), 0.33) 46%, rgba(var(--hm-purple-rgb), 0.43) 100%);
     padding: 50px 15px;
     position: relative;
     z-index: 2;
@@ -47,27 +47,69 @@
     left: 26%;
 }
 
+/* Кнопка "нагору" — спільна для головної та сторінки товарів */
 .upward {
     position: fixed;
-    bottom: 700px;
-    right: 2vw;
-    background-size: cover;
+    right: 24px;
+    bottom: 24px;
+    z-index: 20;
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border: 1px solid rgba(var(--hm-accent-rgb), 0.4);
+    border-radius: 50%;
+    background: var(--hm-grad-dark);
+    color: var(--hm-accent);
+    box-shadow: 0 10px 28px rgba(var(--hm-deep-rgb), 0.35);
     cursor: pointer;
     visibility: hidden;
     opacity: 0;
-    transition: 0.5s;
-    z-index: 1;
-    color: #47008e;
+    transform: translateY(16px);
+    transition: opacity .35s ease, transform .35s ease, visibility .35s,
+    background-color .2s ease, color .2s ease, box-shadow .2s ease;
 }
 
 .upward.active-scroll {
-    bottom: 4vw;
     visibility: visible;
     opacity: 1;
+    transform: translateY(0);
+}
+
+.upward:hover {
+    background: var(--hm-accent);
+    color: var(--hm-ink);
+    box-shadow: 0 14px 34px rgba(var(--hm-accent-rgb), 0.45);
+}
+
+.upward.active-scroll:hover {
+    transform: translateY(-3px);
+}
+
+.upward:focus-visible {
+    outline: 3px solid var(--hm-accent);
+    outline-offset: 3px;
 }
 
 .icon-up {
-    font-size: 4vw;
+    font-size: 20px;
+    stroke-width: 0.6;
+}
+
+@media (max-width: 600px) {
+    .upward {
+        right: 16px;
+        bottom: 16px;
+        width: 44px;
+        height: 44px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .upward {
+        transition: none;
+    }
 }
 
 .h1-home {
@@ -125,12 +167,12 @@
     font-size: 4vw;
     height: 100%;
     border-radius: 20px;
-    box-shadow: 0 0 20px 10px #428b87;
+    box-shadow: 0 0 20px 10px var(--hm-accent-deep);
     font-family: 'Ledger', serif;
     animation: flashing-button 1.5s ease infinite;
     border: none;
     cursor: pointer;
-    background-color: #79CBB8FF;
+    background-color: var(--hm-accent);
     padding: 0.2vw;
     color: white;
 }
@@ -166,8 +208,8 @@
 }
 
 .circle-home {
-    background-color: #78c9b8;
-    box-shadow: 0 0 20px 5px #78c9b8;
+    background-color: var(--hm-accent);
+    box-shadow: 0 0 20px 5px var(--hm-accent);
     width: 15vw;
     height: 15vw;
     border-radius: 50%;
@@ -239,7 +281,7 @@ hr {
 }
 
 .p-slide-center {
-    background-color: #3001958c;
+    background-color: rgba(var(--hm-purple-rgb), 0.55);
     border-radius: 0 0 5px 5px;
     color: white;
 }
@@ -299,7 +341,7 @@ hr {
 }
 
 .comment {
-    background-color: #30019521;
+    background-color: rgba(var(--hm-purple-rgb), 0.13);
     position: relative;
     border-radius: 1vw;
 }

@@ -6,7 +6,7 @@
 }
 
 .contact-info-item {
-    background-color: #30019521;
+    background-color: rgba(var(--hm-purple-rgb), 0.13);
     height: 200px;
     border-radius: 5px 5px 0 0;
     box-shadow: 6px -3px 9px 2px rgb(0 0 0 / 20%);
@@ -32,7 +32,7 @@
 }
 
 .contact-icon {
-    color: #78c9b8;
+    color: var(--hm-accent);
 }
 
 .contact-info-item p {

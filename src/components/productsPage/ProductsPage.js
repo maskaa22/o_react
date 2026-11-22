@@ -1,4 +1,4 @@
-import {BsArrowUpCircle} from "react-icons/bs";
+import {BsArrowUp} from "react-icons/bs";
 import {MdClose, MdNavigateNext} from "react-icons/md";
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
@@ -84,7 +84,9 @@ export function ProductsPage() {
 
     return (
         <div>
-            <div className={'upward'} onClick={scrollTopTop}><BsArrowUpCircle className="icon-up"/></div>
+            <button type={'button'} className={'upward'} onClick={scrollTopTop} aria-label={'Нагору'}>
+                <BsArrowUp className="icon-up"/>
+            </button>
             <div className={'product-flex'}>
                 <div className={'category-menu'} id={'category-menu'}
                      onClick={() => openToogleMenu(WORD_CATEGORY_MENU, WORD_PRODUCT_MENU_BLOCK, WORD_ACTIVE_MENU_CATEGORY, WORD_NO_SCROLL)}>

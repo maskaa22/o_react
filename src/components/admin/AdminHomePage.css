@@ -16,9 +16,9 @@
 .home_item {
     width: 100%;
     padding: 5px;
-    border: 2px solid #47008e;
+    border: 2px solid var(--hm-purple);
     border-radius: 5px;
-    color: #47008e;
+    color: var(--hm-purple);
     cursor: pointer;
     background-color: white;
     font-size: 15px;
@@ -27,7 +27,7 @@
 }
 
 .active-item {
-    border-color: #79CBB8FF;
-    background-color: #79cbb8;
+    border-color: var(--hm-accent);
+    background-color: var(--hm-accent);
     color: white;
 }

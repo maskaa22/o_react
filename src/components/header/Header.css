@@ -1,7 +1,9 @@
 .header {
     width: 100%;
     height: 50px;
-    background: linear-gradient(to right, #78c9b8 46%, #47008e 100%);
+    background: var(--hm-grad-dark);
+    box-shadow: 0 2px 16px rgba(var(--hm-deep-rgb), 0.25);
+    z-index: 5;
     color: white;
     display: flex;
     justify-content: center;
@@ -59,5 +61,5 @@ a {
 }
 
 .div-admin {
-    color: #78c9b8;
+    color: var(--hm-accent);
 }

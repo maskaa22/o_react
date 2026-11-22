@@ -7,7 +7,7 @@ export function SwalFunction(title, text, icon, confirmButtonText, showConfirmBu
         icon: icon,
         confirmButtonText: confirmButtonText,
         showConfirmButton: showConfirmButton,
-        confirmButtonColor: '#47008e',
+        confirmButtonColor: 'var(--hm-purple)',
         timer: timer
     });
 }

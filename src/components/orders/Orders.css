@@ -16,7 +16,7 @@
 
 .number-orders {
     margin-bottom: 20px;
-    border-bottom: 1px solid #5400a8;
+    border-bottom: 1px solid var(--hm-purple);
 }
 
 .margin-top-summa {
@@ -57,12 +57,12 @@
     align-items: center;
     color: white;
     cursor: pointer;
-    background-color: #79cbb8;
+    background-color: var(--hm-accent);
     border: none;
 }
 
 .archive {
-    background-color: #47008e;
+    background-color: var(--hm-purple);
     color: white;
 }
 
@@ -71,7 +71,7 @@
 }
 
 .user {
-    border-bottom: 2px solid #47008e;
+    border-bottom: 2px solid var(--hm-purple);
 }
 
 .width {
@@ -84,11 +84,11 @@
 }
 
 .select_all_border {
-    border: 2px solid #47008e;
+    border: 2px solid var(--hm-purple);
 }
 
 .select_status_label label {
-    color: #47008e;
+    color: var(--hm-purple);
     font-weight: bold;
     font-size: 20px;
 }
@@ -108,7 +108,7 @@
 }
 
 .color_label {
-    color: #47008e;
+    color: var(--hm-purple);
 }
 
 .очікується {
@@ -116,7 +116,7 @@
 }
 
 .прийнято {
-    border: 2px solid #5400a8;
+    border: 2px solid var(--hm-purple);
 }
 
 .обробка {
@@ -128,7 +128,7 @@
 }
 
 .готово {
-    border: 2px solid #79cbb8;
+    border: 2px solid var(--hm-accent);
 }
 
 .orders-h2 {
@@ -141,7 +141,7 @@
 
 .h1-text-align-center {
     text-align: center;
-    color: #553a9a;
+    color: var(--hm-ink-soft);
 }
 
 .margin-right-date {

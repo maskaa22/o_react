@@ -26,7 +26,7 @@
     background-image: linear-gradient(180deg, #FFFFFF80 60%, #FFFFFF00 100%);
     border-radius: 1vw 1vw 0 0;
     padding: 30px;
-    color: #47008e;
+    color: var(--hm-purple);
     font-size: 20px;
 }
 

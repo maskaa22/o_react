@@ -22,7 +22,7 @@ img {
 .courseDetails {
     height: 30%;
     width: 100%;
-    background-color: #79CBB8FF;
+    background-color: var(--hm-accent);
 }
 
 .heading {
@@ -49,7 +49,7 @@ img {
 .courseSellPoint {
     height: 10%;
     width: 100%;
-    background-color: #79CBB8FF;
+    background-color: var(--hm-accent);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -71,7 +71,7 @@ img {
     justify-content: center;
     align-items: center;
     font-size: 2.5vh;
-    color: #47008e;
+    color: var(--hm-purple);
 }
 
 .buy-button {

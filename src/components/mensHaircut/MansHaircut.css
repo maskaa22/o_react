@@ -31,7 +31,7 @@
 }
 
 .hears-item-icon {
-    color: #79cbb8;
+    color: var(--hm-accent);
     font-size: 30px;
 }
 
