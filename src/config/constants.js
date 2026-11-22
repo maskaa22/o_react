@@ -1,5 +1,5 @@
 module.exports = {
-    apiKeyNovaPochta: "5c703cd1914493e1e6402384f667e68d",
+    apiKeyNovaPochta: "e55af55d288b5027ed4afdf2214c44ac",
     calledMethodGetCitiesNovaPochta: "getCities",
     calledMethodGeWarehousesNovaPochta: "getWarehouses",
     modelNameNovaPochta: "Address",

@@ -17,7 +17,7 @@ import {BasketCart} from "../basketCart";
 import {BUY_URL} from "../../config/URL";
 import {delAllProduct, setBasket} from "../../reducers/actionCreators";
 import {InfoForBuy} from "../infoForBuy";
-import {LOGIN, PRODUCTS} from "../../config/headerConstants";
+import {LOGIN, PRODUCTS, THIS} from "../../config/headerConstants";
 import {store} from "../../reducers";
 import {WORD_AUTH, WORD_LOCALES, WORD_MONEY, WORD_OPTIONS, WORD_TOKEN, WORD_WAITING} from "../../config/wordsConstants";
 import priceFormatter from "../../utils/priceFormatter/priceFormatter";
@@ -151,7 +151,8 @@ export function BasketPage() {
             currentUser.nameSity, currentUser.nameDepartment, pay, cart, status, total, month);
         dateAnalizy(month, summa);
         if (pay === WORD_MONEY) {
-            navigate(PRODUCTS);
+            // після оформлення — на головну (раніше вело в каталог товарів)
+            navigate(THIS);
             store.dispatch(delAllProduct());
         }
         if (pay !== '' && pay !== WORD_MONEY) {
