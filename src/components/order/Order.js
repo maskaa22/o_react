@@ -1,108 +1,141 @@
 import * as React from "react";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
+import {FaBoxOpen, FaMapMarkerAlt, FaPhoneAlt, FaRegCalendarAlt, FaRegTrashAlt, FaRegUser} from "react-icons/fa";
 
+import '../admin/AdminPagesModern.css';
+import '../orders/UserOrdersModern.css';   // спільні з кабінетом клієнта стилі позначки статусу й списку товарів
+import './OrderModern.css';
 import {deleteOrder, archiveOrder, updateStatusOrder} from "../../servises";
 import Cart from "../orders/Cart";
+import {CustomSelect} from "../modal/CustomSelect";
 import {WORD_ACCEPTED, WORD_EXPECTED, WORD_PROCESSING, WORD_READY, WORD_SEND} from "../../config/wordsConstants";
 
-export function Order({orders, del, visible, setNewStatus, setFlag, hiden, setDeleteOrder}) {
+// Колір позначки статусу — ті самі статуси, що й у кабінеті клієнта
+const STATUS_TONE = {
+    'очікується': 'wait',
+    'прийнято': 'accepted',
+    'обробка': 'processing',
+    'відправлено': 'sent',
+    'готово': 'done'
+};
+
+const STATUS_OPTIONS = [WORD_EXPECTED, WORD_ACCEPTED, WORD_PROCESSING, WORD_SEND, WORD_READY]
+    .map(status => ({value: status, label: status}));
+
+/*
+ * Одна картка замовлення в адмінці. Власний стан вибору статусу в кожної картки: раніше він був
+ * спільним для всього списку, тож вибір статусу в одному замовленні "обирався" в усіх.
+ *
+ * mode = 'active'  — сторінка "Замовлення": змінити статус або, коли готово, перенести в архів;
+ * mode = 'archive' — сторінка "Архів": лише видалення.
+ */
+function OrderCard({order, number, mode, setNewStatus, setFlag, setDeleteOrder}) {
 
     const [status, setStatus] = React.useState('');
 
-    const handleChange = (event) => {
-        setStatus(event.target.value);
-    };
+    // Логіка як і була: коли замовлення вже "готово" або обрано статус "готово" — показуємо "В архів"
+    const toArchive = status === WORD_READY || order.status === WORD_READY;
+
+    const date = new Date(order.createdAt);
 
     return (
-        <div>
-            {
-                orders?.map((order, i) =>
-                    <div key={order._id} className={`check_order ${order.status}`}>
-                        <div className={'center color_label'}>
-                            <div>Замовлення № {i + 1}</div>
-                        </div>
-                        <div className={'center'}>
-                            <div className={'user width'}>ПІБ: {order.user_name} {order.surname}</div>
-                        </div>
-                        <div className={'center'}>
-                            <div className={'user width'}>Адреса доставки: м. {order.nameSity}, відділ.
-                                №{order.nameDepartment}</div>
-                        </div>
-                        <div className={'center'}>
-                            <div className={'user width'}>Телефон: {order.phone}</div>
-                        </div>
-                        <Cart cart={order.cart}/>
-                        <div className={'center'}>
-                            <div className={'width'}>Загальна сума: {order.summa} грн.</div>
-                        </div>
-                        <div className={'center'}>
-                            <div className={'width justify-content-between'}>Статус: {order.status}
-                                <div className={'select_value select_status_color_label'}>
-                                    {order.status !== WORD_READY &&
-                                    <FormControl fullWidth size="small">
-                                        <InputLabel id="demo-simple-select-label">Вибрати статус</InputLabel>
-                                        <Select
-                                            className={'select_all_border'}
-                                            id="demo-simple-select"
-                                            value={status}
-                                            onChange={handleChange}
-                                        >
-                                            <MenuItem value={WORD_EXPECTED}>очікується</MenuItem>
-                                            <MenuItem value={WORD_ACCEPTED}>прийнято</MenuItem>
-                                            <MenuItem value={WORD_PROCESSING}>обробка</MenuItem>
-                                            <MenuItem value={WORD_SEND}>відправлено</MenuItem>
-                                            <MenuItem value={WORD_READY}>готово</MenuItem>
-                                        </Select>
-                                    </FormControl>
-                                    }
-                                    {(status=== WORD_READY || order.status=== WORD_READY)  ?
-                                        <div className={`center end ${del}`}>
-                                            <button className={'status archive'} onClick={() => {
-                                                archiveOrder(order._id).then(req => {
-                                                    if(req) {
-                                                        setFlag(true);
-                                                    }
-                                                });
-                                            }}>В архив
-                                            </button>
-                                        </div> :
-                                        <div className={`center end ${hiden}`}>
-                                            <button className={'status'} onClick={() => {
-                                                updateStatusOrder(order._id, status).then(req => {
-                                                    if(req) {
-                                                        setNewStatus(req.status);
-                                                    }
-                                                });
-                                            }}>Змінити
-                                            </button>
-                                        </div>
-                                    }
-                                        <div className={`center end ${visible}`}>
-                                            <button className={'status'} onClick={() => {
-                                                deleteOrder(order._id).then(req => {
-                                                    if(req) {
-                                                        setDeleteOrder(true);
-                                                    }
-                                                });
-                                            }}>Видалити
-                                            </button>
-                                        </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className={'center'}>
-                            <div className={'width flex-date'}>
-                                <div className={'margin-right-date'}>Дата замовлення:</div>
-                                <div>{new Date(order.createdAt).toISOString().split('T')[0]}</div>
-                            </div>
-                        </div>
+        <article className={'ao-card'}>
+            <header className={'ao-card__head'}>
+                <h3 className={'ao-card__title'}>Замовлення № {number}</h3>
+                <span className={`uo-status uo-status--${STATUS_TONE[order.status] || 'default'}`}>
+                    {order.status}
+                </span>
+            </header>
 
+            <ul className={'ao-meta'}>
+                <li><FaRegUser aria-hidden={'true'}/><span>{order.user_name} {order.surname}</span></li>
+                <li><FaPhoneAlt aria-hidden={'true'}/><span>{order.phone}</span></li>
+                <li><FaMapMarkerAlt aria-hidden={'true'}/>
+                    <span>м. {order.nameSity}, відділ. №{order.nameDepartment}</span></li>
+            </ul>
+
+            <Cart cart={order.cart}/>
+
+            <div className={'ao-total'}>
+                <span>
+                    <FaRegCalendarAlt aria-hidden={'true'}/>
+                    {isNaN(date.getTime()) ? '' : date.toLocaleDateString('uk-UA')}
+                </span>
+                <strong>{order.summa} грн.</strong>
+            </div>
+
+            <div className={'ao-actions'}>
+                {mode === 'active' && order.status !== WORD_READY &&
+                    <div className={'ao-actions__select'}>
+                        <CustomSelect id={`status-${order._id}`} value={status} onChange={setStatus}
+                                      options={STATUS_OPTIONS} placeholder={'Вибрати статус'}/>
                     </div>
-                ).reverse()
-            }
+                }
+
+                {mode === 'active' && (toArchive ?
+                    <button type={'button'} className={'adm-btn adm-btn--ghost'} onClick={() => {
+                        archiveOrder(order._id).then(req => {
+                            if (req) {
+                                setFlag(true);
+                            }
+                        });
+                    }}>В архів</button> :
+                    <button type={'button'} className={'adm-btn adm-btn--primary'} disabled={status === ''}
+                            onClick={() => {
+                                updateStatusOrder(order._id, status).then(req => {
+                                    if (req) {
+                                        setNewStatus(req.status);
+                                    }
+                                });
+                            }}>Змінити</button>
+                )}
+
+                {mode === 'archive' &&
+                    <button type={'button'} className={'adm-btn adm-btn--ghost adm-btn--danger'} onClick={() => {
+                        // видалення з архіву незворотне — питаємо підтвердження
+                        if (!window.confirm(`Видалити замовлення № ${number} з архіву?`)) return;
+
+                        deleteOrder(order._id).then(req => {
+                            if (req) {
+                                setDeleteOrder(true);
+                            }
+                        });
+                    }}>
+                        <FaRegTrashAlt aria-hidden={'true'}/> Видалити
+                    </button>
+                }
+            </div>
+        </article>
+    );
+}
+
+export function Order({orders, mode = 'active', setNewStatus, setFlag, setDeleteOrder}) {
+
+    // поки замовлення вантажаться (orders ще undefined), нічого не показуємо
+    if (!orders) return null;
+
+    if (orders.length === 0) {
+        return (
+            <div className={'adm-card'}>
+                <div className={'adm-empty'}>
+                    <span className={'adm-empty__icon'}><FaBoxOpen aria-hidden={'true'}/></span>
+                    <h3>{mode === 'archive' ? 'Архів порожній' : 'Замовлень немає'}</h3>
+                    <p>{mode === 'archive' ?
+                        'Сюди потрапляють виконані замовлення.' :
+                        'Нових замовлень поки немає, або жодне не підходить під обраний фільтр.'}</p>
+                </div>
+            </div>
+        );
+    }
+
+    // Нумерація за порядком створення (найстаріше = 1), а показуємо найновіші першими — як і було
+    const numbered = orders.map((order, i) => ({order, number: i + 1})).reverse();
+
+    return (
+        <div className={'ao-list'}>
+            {numbered.map(({order, number}) => (
+                <OrderCard key={order._id} order={order} number={number} mode={mode}
+                           setNewStatus={setNewStatus} setFlag={setFlag} setDeleteOrder={setDeleteOrder}/>
+            ))}
         </div>
     );
 }

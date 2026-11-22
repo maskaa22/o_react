@@ -356,3 +356,30 @@
         transition: none;
     }
 }
+
+/* ---------- CustomSelect поза модальними вікнами (напр. вибір статусу в картці замовлення) ----------
+   Кнопка має власний вигляд і не залежить від обгортки .mm. */
+.mm-select .mm-select__btn {
+    width: 100%;
+    margin: 0;
+    padding: 11px 44px 11px 16px;
+    background: #fff;
+    border: 1px solid rgba(var(--hm-purple-rgb), 0.18);
+    border-radius: 14px;
+    outline: none;
+    font-family: 'Manrope', 'Ledger', system-ui, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--hm-ink);
+    transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.mm-select .mm-select__btn:focus-visible {
+    border-color: var(--hm-accent);
+    box-shadow: 0 0 0 4px rgba(var(--hm-accent-rgb), 0.22);
+}
+
+.mm-select__list {
+    font-family: 'Manrope', 'Ledger', system-ui, sans-serif;
+}
