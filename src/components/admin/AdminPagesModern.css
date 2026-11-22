@@ -258,6 +258,82 @@
     color: #fff;
 }
 
+/* кнопка видалення — червоніє при наведенні */
+.adm .adm-icon-btn--danger:hover {
+    background: #c0392b;
+    border-color: #c0392b;
+    color: #fff;
+}
+
+/* назва товару з мініатюрою */
+.adm-product {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.adm-product img {
+    flex: none;
+    width: 44px;
+    height: 44px;
+    object-fit: cover;
+    border-radius: 12px;
+    background: var(--hm-muted);
+}
+
+/* ---------- Пагінація під таблицею (ту саму пагінацію використовує й каталог) ---------- */
+
+.adm .paginate {
+    margin-top: 24px;
+}
+
+.adm .pagination {
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.adm .pagination > li > a {
+    display: grid;
+    place-items: center;
+    min-width: 42px;
+    height: 42px;
+    padding: 0 12px;
+    background: #fff;
+    border: 1px solid var(--adm-line);
+    border-radius: 999px;
+    color: var(--hm-ink);
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color .2s ease;
+}
+
+.adm .pagination > li > a:hover {
+    background: var(--hm-soft);
+}
+
+.adm .pagination > li.active > a,
+.adm .pagination > li.active > a:hover,
+.adm .pagination > li.active > a:focus {
+    background: var(--hm-purple);
+    border-color: var(--hm-purple);
+    color: #fff;
+}
+
+.adm .pagination > li.disabled > a {
+    opacity: 0.35;
+    cursor: default;
+}
+
+.adm .pagination > li:first-child > a,
+.adm .pagination > li:last-child > a {
+    border-radius: 999px;
+}
+
 /* ---------- Порожній стан ---------- */
 
 .adm-empty {
