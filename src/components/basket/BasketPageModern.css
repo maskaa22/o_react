@@ -454,6 +454,16 @@
     margin-top: 12px;
 }
 
+/* Поле "№ відділення" з'являється лише після вибору міста (NewPochta перемикає hidden-n-p / visible-n-p).
+   Селектори довші за загальні правила .full-center зі старих стилів, які інакше показували б його одразу. */
+.bk .full-center.hidden-n-p {
+    display: none;
+}
+
+.bk .full-center.visible-n-p {
+    display: block;
+}
+
 /* ---------- Спосіб оплати ---------- */
 
 .bk-pay {
