@@ -1,72 +1,201 @@
-.margin-bottom-about {
-    margin-bottom: 40px;
+/* ==========================================================================
+   Сторінка "Про нас". Спільні класи sv-* (герой, секції, заголовки, картка запису)
+   беруться з ServicePage.css, тут — лише те, що специфічне для цієї сторінки (ab-*).
+   ========================================================================== */
+
+/* ---------- Хто ми такі: відео + текст ---------- */
+
+.ab-video {
+    position: relative;
+    margin: 0;
 }
 
-.img-hear {
-    background-image: url('../../images/lokon1.png');
-    background-position: 50% 50%;
-    background-size: cover;
-    background-attachment: fixed;
+/* акцентна рамка-зсув позаду відео, як у фото на сторінках послуг */
+.ab-video::before {
+    content: '';
+    position: absolute;
+    inset: 18px -18px -18px 18px;
+    border: 2px solid var(--hm-accent);
+    border-radius: var(--sv-radius);
+    opacity: 0.55;
 }
 
-.flex-about {
-    display: flex;
-    justify-content: space-between;
+.ab-video__item {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--sv-radius);
+    background: var(--hm-ink);
+    box-shadow: var(--sv-shadow-lg);
 }
 
-.grid-history {
+/* ---------- Три тези на темному фоні ---------- */
+
+.ab-history {
+    position: relative;
+    isolation: isolate;
+    padding: clamp(28px, 3.5vw, 48px) 0;
+    background:
+        radial-gradient(800px 320px at 85% 0%, rgba(var(--hm-accent-rgb), 0.18), transparent 70%),
+        var(--hm-grad-dark);
+    color: #fff;
+}
+
+.ab-history__grid {
     display: grid;
-    margin: 20px;
     grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
 }
 
-.history {
-    margin: 30px;
-    background-color: transparent;
-    background-image: linear-gradient(180deg, #FFFFFF80 60%, #FFFFFF00 100%);
-    border-radius: 1vw 1vw 0 0;
-    padding: 30px;
-    color: var(--hm-purple);
-    font-size: 20px;
+.ab-history__card {
+    position: relative;
+    padding: 22px 24px 24px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    transition: transform .3s ease, background-color .3s ease, border-color .3s ease;
 }
 
-.header-about {
-    text-align: center;
-    color: white;
+.ab-history__card:hover {
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(var(--hm-accent-rgb), 0.55);
 }
 
-.about-h1 {
-    text-align: center;
+.ab-history__num {
+    display: block;
+    margin-bottom: 10px;
+    font-family: 'Playfair Display', 'Ledger', Georgia, serif;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--hm-brown-light);
 }
 
-.about-video-item {
-    width: 300px;
+.ab-history__card p {
+    margin: 0;
+    font-size: clamp(15px, 1.2vw, 17px);
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.88);
 }
 
-.about-p-full {
-    margin: 10px 40px;
-}
+/* ---------- Команда ---------- */
 
-.about-p-last {
-    margin-top: 15px;
-    font-size: 12px;
-}
-
-.team-h1 {
-    text-align: center;
-}
-
-.teams-gallery {
+.ab-team {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-gap: 15px;
+    gap: 24px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
-.team-img {
-    border-radius: 5px 5px 0 0;
-    box-shadow: 6px -3px 9px 2px rgb(0 0 0 / 20%);
+/* Портретна картка: фото на всю картку, ім'я — на темному градієнті знизу.
+   Усі фото чорно-білі, тож різні фони (сірий, білий, блакитний) не розбивають ряд;
+   при наведенні фото повертає кольори. */
+.ab-card {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    aspect-ratio: 3 / 4;
+    background: var(--hm-ink);
+    border-radius: 24px;
+    box-shadow: var(--sv-shadow);
+    transition: transform .4s ease, box-shadow .4s ease;
 }
 
-.teams-gallery p {
-    text-align: center;
+.ab-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--sv-shadow-lg);
+}
+
+.ab-card__photo {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 15%;
+    filter: grayscale(1) contrast(1.05) brightness(0.95);
+    transition: filter .5s ease, transform .8s cubic-bezier(.2, .7, .2, 1);
+}
+
+.ab-card:hover .ab-card__photo {
+    filter: none;
+    transform: scale(1.05);
+}
+
+/* затемнення знизу під ім'я, плюс легке тепле тонування всього фото */
+.ab-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+        linear-gradient(180deg, transparent 45%, rgba(var(--hm-ink-rgb), 0.9) 100%),
+        rgba(var(--hm-purple-rgb), 0.12);
+}
+
+.ab-card__caption {
+    position: absolute;
+    left: 24px;
+    right: 24px;
+    bottom: 22px;
+}
+
+.ab-card__line {
+    display: block;
+    width: 32px;
+    height: 3px;
+    margin-bottom: 12px;
+    border-radius: 3px;
+    background: var(--hm-grad-accent);
+    transition: width .4s ease;
+}
+
+.ab-card:hover .ab-card__line {
+    width: 56px;
+}
+
+.ab-card__name {
+    margin: 0;
+    font-family: 'Playfair Display', 'Ledger', Georgia, serif;
+    font-size: clamp(18px, 1.7vw, 22px);
+    font-weight: 700;
+    line-height: 1.2;
+    color: #fff;
+}
+
+/* ---------- Адаптив ---------- */
+
+@media (max-width: 900px) {
+    .ab-history__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ab-team {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .ab-video {
+        max-width: 560px;
+        margin-inline: auto;
+        width: 100%;
+    }
+
+    .ab-video::before {
+        inset: 12px -12px -12px 12px;
+    }
+}
+
+@media (max-width: 420px) {
+    .ab-team {
+        grid-template-columns: 1fr;
+    }
+
+    .ab-card {
+        aspect-ratio: 4 / 5;
+    }
 }

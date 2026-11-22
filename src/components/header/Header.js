@@ -4,7 +4,7 @@ import {BsBasket2} from "react-icons/bs";
 import {GiExitDoor} from "react-icons/gi";
 import {ImUserPlus} from "react-icons/im";
 import {IoMdExit} from "react-icons/io";
-import {NavLink, useNavigate} from "react-router-dom";
+import {NavLink, useLocation, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 
 import "./Header.css";
@@ -36,6 +36,12 @@ export function Header() {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    // "Послуги" — це кнопка, а не посилання, тож NavLink сам її не підсвітить.
+    // Підкреслюємо її, коли відкрита одна зі сторінок послуг.
+    const {pathname} = useLocation();
+    const servicesActive = [MENS_HAIRCUT, WOMENS_HAIRCUT, HAIR_STYLES, HAIR_COLOR]
+        .some(path => pathname === path || pathname === `${path}/`);
 
     const links = document.getElementsByClassName("navbar");
     let URL = window.location.pathname;
@@ -80,7 +86,8 @@ export function Header() {
                         <NavLink to={THIS} onClick={closeHandler}>Головна</NavLink>
                     </li>
                     <li>
-                        <button onClick={openSubMenuOne} className={'cursor-pointer'}>Послуги</button>
+                        <button onClick={openSubMenuOne}
+                                className={`cursor-pointer${servicesActive ? ' active' : ''}`}>Послуги</button>
                         <ul className={'submenu'} id={'sub-link-one'}>
                             <li>
                                 <NavLink to={MENS_HAIRCUT} onClick={closeHandler}>Чоловічі

@@ -1,78 +1,296 @@
-.contact-info {
-    margin: 0 0 60px;
+/* ==========================================================================
+   Сторінка "Контакти". Спільні класи sv-* (герой, секції, заголовки, кнопка) беруться
+   з ServicePage.css; тут — ct-*.
+
+   Поля форми стилізовані з вищою специфічністю (.ct-field input / textarea), бо в проєкті
+   є ГЛОБАЛЬНІ правила для input (Input.css) і textarea (Modal.css), які інакше протекли б сюди.
+   ========================================================================== */
+
+/* ---------- Картки з контактами ---------- */
+
+/* однакові відступи зверху й знизу, щоб картки не впиралися в білий блок нижче */
+.ct-info-section {
+    padding: clamp(32px, 4.5vw, 64px) 0;
+}
+
+.ct-info {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 40px;
+    gap: 24px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
-.contact-info-item {
-    background-color: rgba(var(--hm-purple-rgb), 0.13);
-    height: 200px;
-    border-radius: 5px 5px 0 0;
-    box-shadow: 6px -3px 9px 2px rgb(0 0 0 / 20%);
-}
-
-.contact-icon-center, .contact-icon-circle {
+/* вся картка — посилання (дзвінок, лист, маршрут) */
+.ct-info__card {
+    position: relative;
+    isolation: isolate;
     display: flex;
-    justify-content: center;
-}
-
-.contact-icon-circle {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    background-color: white;
     align-items: center;
-    font-size: 25px;
-    margin: 20px;
+    gap: 20px;
+    height: 100%;
+    padding: 26px 28px;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid var(--sv-line);
+    border-radius: 22px;
+    box-shadow: var(--sv-shadow);
+    color: inherit;
+    text-decoration: none;
+    transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
 }
 
-.icon-second {
-    font-size: 35px;
+/* м'яке акцентне світіння в кутку картки */
+.ct-info__card::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    z-index: -1;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(var(--hm-accent-rgb), 0.22), transparent);
+    transition: transform .5s ease;
 }
 
-.contact-icon {
-    color: var(--hm-accent);
+.ct-info__card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--sv-shadow-lg);
+    border-color: rgba(var(--hm-accent-rgb), 0.65);
 }
 
-.contact-info-item p {
-    text-align: center;
+.ct-info__card:hover::before {
+    transform: scale(1.4);
 }
 
-.contact-info-p-first {
-    font-size: 25px;
-    margin-bottom: 5px;
-}
-
-.contact-h1 {
-    text-align: center;
-    margin-top: 40px;
-}
-
-.contact-grid {
+.ct-info__icon {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 30px;
-    margin-bottom: 20px;
+    flex: none;
+    place-items: center;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: var(--hm-grad-accent);
+    font-size: 22px;
+    color: var(--hm-ink);
+    box-shadow: 0 10px 24px rgba(var(--hm-accent-rgb), 0.38);
+    transition: transform .3s ease;
 }
 
-.contact-area {
-    width: 100%;
+.ct-info__card:hover .ct-info__icon {
+    transform: scale(1.08) rotate(-6deg);
 }
 
-.contact-button-flex {
+.ct-info__body {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
 }
 
-.contact-button {
-    margin-bottom: 20px;
-    width: 50%;
+.ct-info__label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--hm-accent-deep);
 }
 
-.error-input-center {
-    color: red;
-    font-size: 2vh;
-    text-align: center;
+/* цифри телефону — рівні (lining), а не старовинні з низхідними елементами */
+.ct-info__value {
+    font-size: clamp(17px, 1.5vw, 20px);
+    font-weight: 800;
+    line-height: 1.3;
+    font-variant-numeric: lining-nums;
+    color: var(--hm-ink);
+    overflow-wrap: anywhere;
+}
+
+.ct-info__hint {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--hm-ink-soft);
+    opacity: 0.75;
+    transition: color .2s ease, opacity .2s ease;
+}
+
+.ct-info__hint svg {
+    font-size: 11px;
+    transition: transform .25s ease;
+}
+
+.ct-info__card:hover .ct-info__hint {
+    color: var(--hm-accent-deep);
+    opacity: 1;
+}
+
+.ct-info__card:hover .ct-info__hint svg {
+    transform: translateX(4px);
+}
+/* ---------- Форма + карта ---------- */
+
+.ct-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(24px, 3vw, 40px);
+    align-items: stretch;
+}
+
+.ct-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: clamp(24px, 3vw, 40px);
+    background: var(--hm-surface);
+    border: 1px solid var(--sv-line);
+    border-radius: var(--sv-radius);
+    box-shadow: var(--sv-shadow);
+}
+
+.ct-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.ct-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.ct-field label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--hm-ink-soft);
+}
+
+.ct-field input,
+.ct-field textarea {
+    box-sizing: border-box;
     width: 100%;
+    margin: 0;
+    padding: 14px 16px;
+    background: #fff;
+    border: 1px solid rgba(var(--hm-purple-rgb), 0.18);
+    border-radius: 14px;
+    outline: none;
+    transform: none;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--hm-ink);
+    transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.ct-field textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.ct-field input::placeholder,
+.ct-field textarea::placeholder {
+    font-weight: 500;
+    color: rgba(var(--hm-purple-rgb), 0.4);
+}
+
+.ct-field input:focus,
+.ct-field textarea:focus {
+    border-color: var(--hm-accent);
+    box-shadow: 0 0 0 4px rgba(var(--hm-accent-rgb), 0.22);
+}
+
+.ct-field input[aria-invalid="true"] {
+    border-color: #c0392b;
+}
+
+.ct-field input[aria-invalid="true"]:focus {
+    box-shadow: 0 0 0 4px rgba(192, 57, 43, 0.15);
+}
+
+/* number-поле без стрілочок */
+.ct-field input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.ct-field input[type="number"]::-webkit-outer-spin-button,
+.ct-field input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.ct-error {
+    font-size: 13px;
+    font-weight: 600;
+    color: #c0392b;
+}
+
+.ct-submit {
+    align-self: flex-start;
+    margin-top: 4px;
+    border: 0;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.ct-submit:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+.ct-map {
+    position: relative;
+    min-height: 420px;
+    overflow: hidden;
+    border-radius: var(--sv-radius);
+    background: var(--hm-muted);
+    box-shadow: var(--sv-shadow-lg);
+}
+
+.ct-map iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    /* трохи тепліша карта, щоб не вибивалась із палітри */
+    filter: saturate(0.8) sepia(0.15);
+}
+
+/* ---------- Адаптив ---------- */
+
+@media (max-width: 900px) {
+    .ct-info {
+        grid-template-columns: 1fr;
+    }
+
+    .ct-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ct-map {
+        min-height: 320px;
+    }
+}
+
+@media (max-width: 600px) {
+    .ct-row {
+        grid-template-columns: 1fr;
+    }
+
+    .ct-submit {
+        align-self: stretch;
+        justify-content: center;
+    }
 }

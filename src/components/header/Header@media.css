@@ -50,6 +50,12 @@
         border-bottom: 2px solid var(--hm-accent);
     }
 
+    /* кнопка "Послуги" має border: none (.menu button), тож їй підкреслення задаємо окремо,
+       з вищою специфічністю */
+    .menu button.active {
+        border-bottom: 2px solid var(--hm-accent);
+    }
+
     .menu > li:hover > .submenu {
         opacity: 1;
         pointer-events: auto;

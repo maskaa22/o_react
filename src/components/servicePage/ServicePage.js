@@ -71,7 +71,7 @@ export function ServicePage({
                         <h2 className={'sv-title'}>Наші роботи</h2>
                     </header>
                     {gallery ? (
-                        <TiltedGridHero images={gallery} aspectRatio={galleryAspect} tileHeight={46} axis={50} speed={5}
+                        <TiltedGridHero images={gallery} aspectRatio={galleryAspect} tileHeight={46} axis={50} speed={11}
                                         className={'sv-tilted'}/>
                     ) : (
                         <div className={'sv-gallery'}>

@@ -1,33 +1,35 @@
-import './AboutAsPage.css';
-import './AboutAsPage@media.css';
-
 import FirstMen from '../../images/teams/1.png';
 import FirstWomen from '../../images/teams/3.png';
 import SecondMen from '../../images/teams/2.png';
 import SecondWomen from '../../images/teams/4.png';
 
+const TEAM = [
+    {photo: FirstMen, name: 'Андрій Шмигаль'},
+    {photo: SecondMen, name: 'Артем Венгер'},
+    {photo: FirstWomen, name: 'Світлана Мигдаль'},
+    {photo: SecondWomen, name: 'Сніжана Гурко'}
+];
+
 export function Team() {
     return (
-        <div className={'margin-bottom-about'}>
-            <h1 className={'team-h1'}>Наша команда</h1>
-            <div className={'teams-gallery'}>
-                <div className={'teams-items'}>
-                    <img src={FirstMen} className={'team-img'} alt={'Men'}/>
-                    <p>Андрій Шмигаль</p>
-                </div>
-                <div className={'teams-items'}>
-                    <img src={SecondMen} className={'team-img'} alt={'Men'}/>
-                    <p>Артем Венгер</p>
-                </div>
-                <div className={'teams-items'}>
-                    <img src={FirstWomen} className={'team-img'} alt={'Women'}/>
-                    <p>Світлана Мигдаль</p>
-                </div>
-                <div className={'teams-items'}>
-                    <img src={SecondWomen} className={'team-img'} alt={'Women'}/>
-                    <p>Сніжана Гурко</p>
-                </div>
+        <section className={'sv-section'}>
+            <div className={'sv-container'}>
+                <header className={'sv-head'}>
+                    <span className={'sv-eyebrow'}>Майстри</span>
+                    <h2 className={'sv-title'}>Наша команда</h2>
+                </header>
+                <ul className={'ab-team'}>
+                    {TEAM.map(member => (
+                        <li key={member.name} className={'ab-card'}>
+                            <img src={member.photo} alt={member.name} className={'ab-card__photo'} loading={'lazy'}/>
+                            <div className={'ab-card__caption'}>
+                                <span className={'ab-card__line'} aria-hidden={'true'}/>
+                                <p className={'ab-card__name'}>{member.name}</p>
+                            </div>
+                        </li>
+                    ))}
+                </ul>
             </div>
-        </div>
+        </section>
     );
 }
