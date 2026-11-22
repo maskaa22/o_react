@@ -1,0 +1,461 @@
+/* ==========================================================================
+   Сторінки входу й реєстрації в новому дизайні (префікс lf-).
+   Старі правила LoginingForm.css лишаються для сторінок скидання пароля та активації,
+   а ще вони містять ГЛОБАЛЬНІ правила (input:valid / input:invalid, button:disabled),
+   тому поля й кнопка тут перекривають їх вищою специфічністю.
+   ========================================================================== */
+
+.lf-page,
+.lf-modal {
+    --lf-line: rgba(var(--hm-purple-rgb), 0.14);
+    font-family: 'Manrope', 'Ledger', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color: var(--hm-ink);
+}
+
+.lf-page *, .lf-page *::before, .lf-page *::after,
+.lf-modal *, .lf-modal *::before, .lf-modal *::after {
+    box-sizing: border-box;
+}
+
+/* ---------- Сторінка: дві колонки ---------- */
+
+.lf-page {
+    /* висота шапки сайту (див. Header@media.css: 50px на телефоні, 64px на комп'ютері, 80px від 1920px) */
+    --lf-header-h: 50px;
+
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    /* мінімум — один екран під шапкою, щоб коротка форма входу не залишала футер посеред екрана */
+    min-height: calc(100vh - var(--lf-header-h));
+    min-height: calc(100svh - var(--lf-header-h));
+    background: var(--hm-surface);
+}
+
+@media (min-width: 800px) {
+    .lf-page {
+        --lf-header-h: 64px;
+    }
+}
+
+@media (min-width: 1920px) {
+    .lf-page {
+        --lf-header-h: 80px;
+    }
+}
+
+/* Ліва бренд-панель: фото під коричневим затемненням */
+.lf-brand {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;   /* текст внизу панелі */
+    gap: 40px;
+    padding: clamp(28px, 4vw, 56px);
+    overflow: hidden;
+    background: var(--hm-grad-dark);
+    color: #fff;
+}
+
+.lf-brand__img {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    filter: grayscale(1) contrast(1.05);
+    opacity: 0.32;
+}
+
+.lf-brand::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+        radial-gradient(600px 300px at 90% 100%, rgba(var(--hm-accent-rgb), 0.22), transparent 70%),
+        linear-gradient(180deg, rgba(var(--hm-ink-rgb), 0.35), rgba(var(--hm-ink-rgb), 0.85));
+}
+
+.lf-brand__text h2 {
+    margin: 0;
+    padding: 0;
+    font-family: 'Playfair Display', 'Ledger', Georgia, serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    text-align: left;
+    color: var(--hm-brown-light);
+}
+
+.lf-brand__text p {
+    max-width: 380px;
+    margin: 16px 0 0;
+    font-size: clamp(15px, 1.3vw, 17px);
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.82);
+}
+
+/* Права панель з формою */
+.lf-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(24px, 4vw, 56px);
+}
+
+/* ---------- Картка форми ---------- */
+
+.lf-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 100%;
+    max-width: 440px;
+}
+
+/* У модальному вікні — картка з тінню поверх затемнення */
+.lf-modal {
+    display: flex;
+    justify-content: center;
+    padding: 0 16px;
+}
+
+.lf-modal .lf-card {
+    margin: 8vh auto;
+    padding: 36px 32px 32px;
+    background: #fff;
+    border-radius: 24px;
+    box-shadow: 0 24px 60px rgba(var(--hm-deep-rgb), 0.35);
+}
+
+.lf-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    border: 1px solid var(--lf-line);
+    border-radius: 50%;
+    background: #fff;
+    color: var(--hm-ink);
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color .2s ease;
+}
+
+.lf-close:hover {
+    background: var(--hm-soft);
+}
+
+.lf-title {
+    margin: 0 0 6px;
+    padding: 0;
+    font-family: 'Playfair Display', 'Ledger', Georgia, serif;
+    font-size: clamp(30px, 3.4vw, 40px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    text-align: left;
+    color: var(--hm-ink);
+}
+
+.lf-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.lf-field label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--hm-ink-soft);
+}
+
+/* Селектори довші за глобальні input:valid / input:invalid із LoginingForm.css,
+   щоб вони не фарбували рамку: червоною її робить лише наш aria-invalid */
+.lf-field input,
+.lf-field input:valid:not(:placeholder-shown),
+.lf-field input:invalid:not(:placeholder-shown) {
+    width: 100%;
+    margin: 0;
+    padding: 14px 16px;
+    background: #fff;
+    border: 1px solid var(--lf-line);
+    border-radius: 14px;
+    outline: none;
+    transform: none;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--hm-ink);
+    transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.lf-field input::placeholder {
+    font-weight: 500;
+    color: rgba(var(--hm-purple-rgb), 0.4);
+}
+
+.lf-field input:focus,
+.lf-field input:valid:not(:placeholder-shown):focus,
+.lf-field input:invalid:not(:placeholder-shown):focus {
+    border-color: var(--hm-accent);
+    box-shadow: 0 0 0 4px rgba(var(--hm-accent-rgb), 0.22);
+}
+
+.lf-field input[aria-invalid="true"],
+.lf-field input[aria-invalid="true"]:valid:not(:placeholder-shown),
+.lf-field input[aria-invalid="true"]:invalid:not(:placeholder-shown) {
+    border-color: #c0392b;
+}
+
+.lf-error {
+    font-size: 13px;
+    font-weight: 600;
+    color: #c0392b;
+}
+
+/* Смужка надійності пароля. #block_check_login — це сама смужка, її ширину
+   й колір виставляє StyleForPassword; тут лише доріжка й плавність. */
+.lf-strength {
+    height: 6px;
+    overflow: hidden;
+    border-radius: 6px;
+    background: rgba(var(--hm-purple-rgb), 0.08);
+}
+
+.lf-strength #block_check_login {
+    width: 0;
+    height: 100%;
+    border-radius: 6px;
+    transition: width .3s ease, background-color .3s ease;
+}
+
+/* Підказка з вимогами до пароля (реєстрація) */
+/* Спливашка: з'являється над полем пароля, коли почали вводити (клас is-open додає LoginingForm.js).
+   Над полем, а не під ним, бо внизу лежить "Повторіть пароль" і спливашка його б закривала. */
+.lf-field--pass {
+    position: relative;
+}
+
+.lf-hints {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: calc(100% + 10px);
+    z-index: 10;
+    padding: 14px 16px;
+    background: #fff;
+    border: 1px solid var(--lf-line);
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(var(--hm-deep-rgb), 0.22), 0 4px 12px rgba(var(--hm-deep-rgb), 0.08);
+    font-size: 13px;
+    color: var(--hm-ink-soft);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    pointer-events: none;
+    transition: opacity .2s ease, transform .2s ease, visibility .2s;
+}
+
+.lf-hints.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+}
+
+/* "дзьобик", що показує на поле пароля */
+.lf-hints::after {
+    content: '';
+    position: absolute;
+    left: 32px;
+    bottom: -7px;
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    border-right: 1px solid var(--lf-line);
+    border-bottom: 1px solid var(--lf-line);
+    transform: rotate(45deg);
+}
+
+.lf-hints__title {
+    margin-bottom: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--hm-accent-deep);
+}
+
+.lf-hints ul {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px 14px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.lf-hints li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    line-height: 1.3;
+    transition: color .2s ease;
+}
+
+.lf-hints li svg {
+    flex: none;
+    font-size: 17px;
+    opacity: 0.45;
+}
+
+.lf-hints li.is-ok {
+    color: var(--hm-ink);
+    font-weight: 600;
+}
+
+.lf-hints li.is-ok svg {
+    color: var(--hm-accent-deep);
+    opacity: 1;
+}
+
+.lf-hints li em {
+    margin-left: auto;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.6;
+}
+
+
+@media (max-width: 480px) {
+    .lf-hints ul {
+        grid-template-columns: 1fr;
+    }
+}
+
+.lf-card .lf-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    margin: 6px 0 0;
+    padding: 16px 24px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--hm-grad-accent);
+    color: var(--hm-ink);
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(var(--hm-accent-rgb), 0.4);
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.lf-card .lf-submit:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 36px rgba(var(--hm-accent-rgb), 0.55);
+}
+
+/* перекриває глобальне button:disabled { background: #ccc } */
+.lf-card .lf-submit:disabled {
+    background: var(--hm-grad-accent);
+    opacity: 0.45;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.lf-card .lf-submit:focus-visible,
+.lf-card a:focus-visible,
+.lf-close:focus-visible {
+    outline: 3px solid var(--hm-accent);
+    outline-offset: 3px;
+}
+
+.lf-forgot {
+    align-self: center;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    color: var(--hm-accent-deep);
+    text-decoration: none;
+}
+
+.lf-forgot:hover,
+.lf-switch a:hover {
+    text-decoration: underline;
+}
+
+.lf-switch {
+    margin: 4px 0 0;
+    padding-top: 20px;
+    border-top: 1px solid var(--lf-line);
+    font-size: 15px;
+    text-align: center;
+    color: var(--hm-ink-soft);
+}
+
+.lf-switch a {
+    font-weight: 700;
+    color: var(--hm-accent-deep);
+    text-decoration: none;
+}
+
+/* ---------- Адаптив ---------- */
+
+@media (max-width: 900px) {
+    .lf-page {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;   /* форма розтягується на решту екрана */
+    }
+
+    /* бренд-панель стає вузькою шапкою над формою */
+    .lf-brand {
+        gap: 20px;
+        padding: 28px 24px;
+    }
+
+    .lf-brand__text h2 {
+        font-size: clamp(28px, 7vw, 38px);
+    }
+
+    .lf-brand__text p {
+        font-size: 15px;
+    }
+
+    .lf-panel {
+        padding: 32px 20px 48px;
+    }
+}
+
+@media (max-width: 480px) {
+    .lf-modal .lf-card {
+        padding: 32px 20px 24px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .lf-card .lf-submit,
+    .lf-field input,
+    .lf-strength #block_check_login {
+        transition: none;
+    }
+}

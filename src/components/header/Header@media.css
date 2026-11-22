@@ -46,7 +46,10 @@
         display: none;
     }
 
-    .active {
+    /* Підкреслення активного пункту — лише для пунктів верхнього рівня меню шапки (не для
+       посилань у випадаючому меню). Раніше це було глобальне правило .active, яке чіплялось
+       до будь-чого з таким класом (пагінація, модальні вікна, підменю). */
+    .menu > li > a.active {
         border-bottom: 2px solid var(--hm-accent);
     }
 
@@ -54,6 +57,12 @@
        з вищою специфічністю */
     .menu button.active {
         border-bottom: 2px solid var(--hm-accent);
+    }
+
+    /* іконка акаунта на сторінках входу/реєстрації: змінює колір, без підкреслення */
+    .menu button.link-a.active {
+        border-bottom: 0;
+        color: var(--hm-accent);
     }
 
     .menu > li:hover > .submenu {

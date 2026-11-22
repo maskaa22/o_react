@@ -43,6 +43,10 @@ export function Header() {
     const servicesActive = [MENS_HAIRCUT, WOMENS_HAIRCUT, HAIR_STYLES, HAIR_COLOR]
         .some(path => pathname === path || pathname === `${path}/`);
 
+    // Так само для іконки акаунта: підсвічуємо її на сторінках входу та реєстрації
+    const accountActive = [LOGIN, REGISTRATION]
+        .some(path => pathname === path || pathname === `${path}/`);
+
     const links = document.getElementsByClassName("navbar");
     let URL = window.location.pathname;
     URL = URL.substring(URL.lastIndexOf('/'));
@@ -60,6 +64,17 @@ export function Header() {
     function openSubMenuTwo() {
         const subLinkTwo = document.getElementById('sub-link-two');
         subLinkTwo.classList.toggle('active-sub-link-two');
+    }
+
+    // Гість: клік по іконці одразу веде на вхід (меню з "Вхід / Реєстрація" на комп'ютері
+    // і далі з'являється при наведенні). Авторизований: клік відкриває меню кабінету/виходу.
+    function accountClick() {
+        if (!isAuth) {
+            closeHandler();
+            navigate(LOGIN);
+        } else {
+            openSubMenuTwo();
+        }
     }
 
     function closeHandler() {
@@ -120,7 +135,8 @@ export function Header() {
                         <NavLink to={CONTACT} onClick={closeHandler}>Контакти</NavLink>
                     </li>
                     <li>
-                        <button onClick={openSubMenuTwo} className={'link-a cursor-pointer'}><IoMdExit className=" icon_basket"/></button>
+                        <button onClick={accountClick}
+                                className={`link-a cursor-pointer${accountActive ? ' active' : ''}`}><IoMdExit className=" icon_basket"/></button>
                         <ul className={'submenu'} id={'sub-link-two'}>
                             {
                                 !isAuth &&

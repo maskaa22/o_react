@@ -1,23 +1,31 @@
-import {NavLink, useLocation, useNavigate} from "react-router-dom";
+import {Link, NavLink, useLocation, useNavigate} from "react-router-dom";
+import {MdCheckCircle, MdClose, MdRadioButtonUnchecked} from "react-icons/md";
 import {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
 
+// Старі стилі лишаються підключеними: з них беруть сторінки скидання пароля та активації
 import './LoginingForm.css';
 import './LoginingForm@media.css';
+import './LoginingFormModern.css';
 import {registration, login} from "../../servises";
-import {LOGIN, LOGIN_RESET_PASSWORD, THIS} from "../../config/headerConstants";
+import {LOGIN, LOGIN_RESET_PASSWORD, REGISTRATION, THIS} from "../../config/headerConstants";
 import {StyleForPassword} from "../../utils/function";
+import {b_letters, digits, s_letters} from "../../config/functionConstants";
+import ManPhoto from "../../images/gallery/2.jpg";
+import WomanPhoto from "../../images/gallery/6.jpg";
 import {
     WORD_AUTORIZ,
     WORD_AUTORIZATING,
-    WORD_BORDER,
     WORD_REGISTR,
     WORD_REGISTRATION
 } from "../../config/wordsConstants";
 
+/*
+ * Сторінки /login і /registration. Той самий компонент показується й у модальному вікні адмінки
+ * (тоді передані role та handleClose): без бокової панелі, з кнопкою закриття.
+ */
 export function LoginingForm({role, handleClose}) {
 
-    const [border, setBorder] = useState('');
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
@@ -31,9 +39,12 @@ export function LoginingForm({role, handleClose}) {
     const [passwordError, setPasswordError] = useState('Пароль не може бути пустим');
     const [passwordTooError, setPasswordTooError] = useState('Пароль не може бути пустим');
     const [formValid, setFormValid] = useState(true);
+    // яке з полів пароля зараз у фокусі ('pass' | 'passToo' | ''): від цього залежить показ спливашки з вимогами
+    const [passFocus, setPassFocus] = useState('');
 
     const location = useLocation();
     const isLogin = location.pathname === LOGIN;
+    const isModal = !!role;
 
     useEffect(() => {
         if(!isLogin) {
@@ -52,19 +63,15 @@ export function LoginingForm({role, handleClose}) {
 
     }, [emailError, nameError, passwordError, passwordTooError, isLogin]);
 
-    useEffect(() => {
-        if (!role) {
-            setBorder(WORD_BORDER);
-        }
-    }, [role]);
-
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const block_check = document.getElementById('block_check_login');
-
-    function stylePassword() {
-        StyleForPassword(password, block_check);
+    // Смужку надійності шукаємо в момент введення, а не при малюванні форми: інакше при першому
+    // введенні (напр. якщо почати з пароля або браузер сам його підставив) вона ще не знайдена,
+    // StyleForPassword падає з помилкою, а в режимі розробки це показує червоне вікно помилки.
+    // Береться значення з самого поля, щоб смужка не відставала на один символ.
+    function stylePassword(e) {
+        StyleForPassword(e.target.value, document.getElementById('block_check_login'));
     }
 
     const nameHandler = (e) => {
@@ -136,72 +143,171 @@ export function LoginingForm({role, handleClose}) {
         }
     };
 
-    return (
-        <div>
-            <div className={`flex`}>
-                <div className={`form ${border}`}>
-                    {
-                        role && <button className={'close_del left'} onClick={handleClose}><i className="fa fa-times"
-                        aria-hidden="true"/></button>
-                    }
-                    <div className="form_header">{isLogin ? WORD_AUTORIZATING : WORD_REGISTR}</div>
+    // Та сама дія, що була в onClick кнопки; тепер її викликає ще й Enter у формі
+    const submit = () => {
+        isLogin ? dispatch(login(email, password))
+            .then(rez => {
+                if (rez) {
+                    navigate(THIS);
+                }
+            })
+            : registration(name, email, password, role, passwordToo, '').then(rez => {
+                if (!role) {
+                    if (rez) navigate(LOGIN);
+                }
+                else window.location.reload();
+            })
+    };
 
-                    {!isLogin &&
-                    <input value={name} onChange={e => nameHandler(e)} type={'text'} placeholder={"Введіть ім'я"}
-                           className={'input-margin input-focus'} name={'name'} maxLength="10" minLength="3"
-                           onBlur={e => blurHandler(e)}/>
-                    }
-                    {(!isLogin && nameDirty && nameError) && <div className={'error-input'}>{nameError}</div>}
-                    <input value={email} onChange={e => emailHandler(e)} type={'email'} placeholder={'Введіть email'}
-                           className={'input-margin input-focus'} name={'email'}
-                            onBlur={e => blurHandler(e)}/>
-                    {(emailDirty && emailError) && <div className={'error-input'}>{emailError}</div>}
-                    {
-                        isLogin ?
-                            <input value={password} onChange={e => passwordHandler(e)} type={'password'}
-                                   placeholder={'Введіть пароль'}
-                                   className={'input-margin input-focus'} id="pass-old"
-                                   onInput={stylePassword} name={'password'}/>
-                             :
-                        <input value={password} onChange={e => passwordHandler(e)} type={'password'}
-                        placeholder={'Введіть пароль'}
-                        className={'input-margin input-focus'} id="pass-old" onBlur={e => blurHandler(e)}
-                        onInput={stylePassword} name={'password'} minLength="4"/>
-                    }
-                    <div className={'input-center-full'} id="block_check_login">
-                    </div>
-                    {(passwordDirty && passwordError) && <div className={'error-input'}>{passwordError}</div>}
-                    {
-                        !isLogin && <input value={passwordToo} onChange={e => passwordTooHandler(e)} type={'password'}
-                                           placeholder={'Повторіть пароль'} name={'passwordToo'}
-                                           onBlur={e => blurHandler(e)}
-                                           className={'input-margin input-focus'} id="pass-new" onInput={stylePassword}
-                                           minLength="4"/>
-                    }
-                    {(!isLogin && passwordTooDirty && passwordTooError) &&
-                    <div className={'error-input'}>{passwordTooError}</div>}
+    const onSubmit = (e) => {
+        e.preventDefault();
+        if (!formValid) submit();
+    };
 
-                    <button disabled={formValid} className={'form_btn'} onClick={() => {
-                            isLogin ? dispatch(login(email, password))
-                            .then(rez => {
-                                if (rez) {
-                                    navigate(THIS);
-                                }
-                            })  
-                            : registration(name, email, password, role, passwordToo, '').then(rez => {
-                                if (!role) {
-                                    if (rez) navigate(LOGIN);
-                                } 
-                                else window.location.reload();
-                            })
-                    }}>{isLogin ? WORD_AUTORIZ : WORD_REGISTRATION}
-                    </button>
-                    {
-                        isLogin &&
-                        <NavLink to={LOGIN_RESET_PASSWORD} className={'login-reset-password'}>Забули пароль?</NavLink>
-                    }
+    // Підказка з вимогами до пароля (лише при реєстрації). Обов'язкова вимога одна — мінімум 4 символи
+    // (так перевіряють і форма, і сервер); решта — критерії смужки надійності. Букви — латинські,
+    // бо саме їх рахує StyleForPassword.
+    const hasChar = (set) => [...password].some(ch => set.includes(ch));
+    const passwordRules = [
+        {text: 'Мінімум 4 символи', required: true, ok: password.length >= 4},
+        {text: 'Від 8 символів', ok: password.length >= 8},
+        {text: 'Малі латинські літери (a–z)', ok: hasChar(s_letters)},
+        {text: 'Великі латинські літери (A–Z)', ok: hasChar(b_letters)},
+        {text: 'Цифри (0–9)', ok: hasChar(digits)},
+        {text: 'Паролі збігаються', ok: password !== '' && password === passwordToo}
+    ];
+
+    // Спливашка з'являється, щойно в паролі є хоч один символ і фокус у одному з полів пароля.
+    // Блок завжди змонтований і лише перемикає клас: коли фокус переходить з одного поля на інше,
+    // blur і focus відбуваються в одному кадрі, тож без перемонтування спливашка не блимає.
+    const hintsOpen = !isLogin && passFocus !== '' && password.length > 0;
+
+    const Title = isModal ? 'div' : 'h1';
+
+    const form = (
+        <form className={'lf-card'} onSubmit={onSubmit} noValidate>
+            {isModal &&
+                <button type={'button'} className={'lf-close'} onClick={handleClose} aria-label={'Закрити'}>
+                    <MdClose/>
+                </button>
+            }
+            <Title className={'lf-title'}>{isLogin ? WORD_AUTORIZATING : WORD_REGISTR}</Title>
+
+            {!isLogin &&
+                <div className={'lf-field'}>
+                    <label htmlFor={'lf-name'}>Ім'я</label>
+                    <input id={'lf-name'} value={name} onChange={e => nameHandler(e)} type={'text'}
+                           placeholder={"Введіть ім'я"} name={'name'} maxLength="10" minLength="3"
+                           onBlur={e => blurHandler(e)} autoComplete={'name'}
+                           aria-invalid={nameDirty && !!nameError}/>
+                    {(nameDirty && nameError) && <span className={'lf-error'}>{nameError}</span>}
                 </div>
+            }
+
+            <div className={'lf-field'}>
+                <label htmlFor={'lf-email'}>Email</label>
+                <input id={'lf-email'} value={email} onChange={e => emailHandler(e)} type={'email'}
+                       placeholder={'Введіть email'} name={'email'} onBlur={e => blurHandler(e)}
+                       autoComplete={'email'} aria-invalid={emailDirty && !!emailError}/>
+                {(emailDirty && emailError) && <span className={'lf-error'}>{emailError}</span>}
             </div>
+
+            <div className={'lf-field lf-field--pass'}>
+                <label htmlFor={'pass-old'}>Пароль</label>
+                {isLogin ?
+                    <input value={password} onChange={e => passwordHandler(e)} type={'password'}
+                           placeholder={'Введіть пароль'} id="pass-old" onInput={stylePassword}
+                           name={'password'} onBlur={e => blurHandler(e)} autoComplete={'current-password'}
+                           aria-invalid={passwordDirty && !!passwordError}/>
+                    :
+                    <input value={password} onChange={e => passwordHandler(e)} type={'password'}
+                           placeholder={'Введіть пароль'} id="pass-old"
+                           onFocus={() => setPassFocus('pass')}
+                           onBlur={e => {
+                               blurHandler(e);
+                               setPassFocus('');
+                           }}
+                           onInput={stylePassword} name={'password'} minLength="4"
+                           autoComplete={'new-password'} aria-invalid={passwordDirty && !!passwordError}
+                           aria-describedby={'lf-pass-hints'}/>
+                }
+                {/* смужка надійності пароля: ширину й колір виставляє StyleForPassword через #block_check_login */}
+                <div className={'lf-strength'}>
+                    <div id="block_check_login"/>
+                </div>
+                {!isLogin &&
+                    <div className={`lf-hints${hintsOpen ? ' is-open' : ''}`} id={'lf-pass-hints'} role={'status'}>
+                        <div className={'lf-hints__title'}>Вимоги до пароля</div>
+                        <ul aria-live={'polite'}>
+                            {passwordRules.map(rule => (
+                                <li key={rule.text} className={rule.ok ? 'is-ok' : ''}>
+                                    {rule.ok ? <MdCheckCircle aria-hidden={'true'}/> :
+                                        <MdRadioButtonUnchecked aria-hidden={'true'}/>}
+                                    <span>{rule.text}</span>
+                                    {rule.required && <em>обов'язково</em>}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                }
+                {(passwordDirty && passwordError) && <span className={'lf-error'}>{passwordError}</span>}
+            </div>
+
+            {!isLogin &&
+                <div className={'lf-field'}>
+                    <label htmlFor={'pass-new'}>Повторіть пароль</label>
+                    <input value={passwordToo} onChange={e => passwordTooHandler(e)} type={'password'}
+                           placeholder={'Повторіть пароль'} name={'passwordToo'}
+                           onFocus={() => setPassFocus('passToo')}
+                           onBlur={e => {
+                               blurHandler(e);
+                               setPassFocus('');
+                           }}
+                           id="pass-new" minLength="4" autoComplete={'new-password'}
+                           aria-invalid={passwordTooDirty && !!passwordTooError}/>
+                    {(passwordTooDirty && passwordTooError) &&
+                        <span className={'lf-error'}>{passwordTooError}</span>}
+                </div>
+            }
+
+            <button type={'submit'} disabled={formValid} className={'lf-submit'}>
+                {isLogin ? WORD_AUTORIZ : WORD_REGISTRATION}
+            </button>
+
+            {isLogin &&
+                <NavLink to={LOGIN_RESET_PASSWORD} className={'lf-forgot'}>Забули пароль?</NavLink>
+            }
+
+            {!isModal &&
+                <p className={'lf-switch'}>
+                    {isLogin ? 'Немає акаунта? ' : 'Вже є акаунт? '}
+                    <Link to={isLogin ? REGISTRATION : LOGIN}>{isLogin ? 'Зареєструватися' : 'Увійти'}</Link>
+                </p>
+            }
+        </form>
+    );
+
+    // У модальному вікні — лише картка
+    if (isModal) {
+        return <div className={'lf-modal'}>{form}</div>;
+    }
+
+    return (
+        <div className={'lf-page'}>
+            <aside className={'lf-brand'}>
+                <img src={isLogin ? ManPhoto : WomanPhoto} alt={''} aria-hidden={'true'} className={'lf-brand__img'}/>
+                <div className={'lf-brand__text'}>
+                    <h2>{isLogin ? 'З поверненням' : 'Ласкаво просимо'}</h2>
+                    <p>
+                        {isLogin ?
+                            'Увійдіть, щоб записуватись на стрижки онлайн та стежити за своїми замовленнями.' :
+                            'Створіть акаунт — і записуйтесь у студію онлайн кількома кліками.'}
+                    </p>
+                </div>
+            </aside>
+            <main className={'lf-panel'}>
+                {form}
+            </main>
         </div>
     );
 }

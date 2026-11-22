@@ -1,0 +1,728 @@
+/* ==========================================================================
+   Кошик та оформлення замовлення в новому дизайні (префікс bk-, усе під .bk).
+   Старі стилі BasketPage.css / NewPochta.css лишаються для інших сторінок
+   (профіль, замовлення), тут вони перекриваються вищою специфічністю.
+   ========================================================================== */
+
+.bk {
+    --bk-line: rgba(var(--hm-purple-rgb), 0.12);
+    min-height: 60vh;
+}
+
+.bk-wrap {
+    padding: clamp(32px, 4vw, 56px) 0 clamp(48px, 6vw, 96px);
+}
+
+.bk-head {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: clamp(24px, 3vw, 36px);
+}
+
+.bk-head__title {
+    margin: 0;
+    font-family: 'Playfair Display', 'Ledger', Georgia, serif;
+    font-size: clamp(34px, 4.4vw, 52px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--hm-ink);
+}
+
+.bk-head__count {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--hm-accent-deep);
+}
+
+/* ---------- Розкладка: основна колонка + підсумок ---------- */
+
+.bk-layout {
+    display: grid;
+    /* права колонка: від 320px на вужчих екранах до 420px на широких */
+    grid-template-columns: minmax(0, 1fr) clamp(320px, 34vw, 420px);
+    gap: clamp(24px, 3vw, 40px);
+    align-items: start;
+}
+
+.bk-main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 0;
+}
+
+/* права колонка: підсумок + кроки оформлення. Не липка: разом вони можуть бути вищими за екран */
+.bk-side {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 0;
+}
+
+/* ---------- Товари ---------- */
+
+.bk-items {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.bk-item {
+    display: grid;
+    grid-template-columns: 88px minmax(0, 1fr) auto auto auto;
+    align-items: center;
+    gap: 18px;
+    padding: 14px 18px 14px 14px;
+    background: #fff;
+    border: 1px solid var(--bk-line);
+    border-radius: 20px;
+    box-shadow: var(--sv-shadow);
+}
+
+.bk-item__img {
+    width: 88px;
+    height: 88px;
+    overflow: hidden;
+    border-radius: 14px;
+    background: var(--hm-muted);
+}
+
+/* перекриваємо глобальне .img / img із ProductCart.css та BasketPage.css */
+.bk .bk-item__img img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: none;
+}
+
+.bk-item__info {
+    min-width: 0;
+}
+
+.bk-item__name {
+    margin: 0;
+    font-family: 'Playfair Display', 'Ledger', Georgia, serif;
+    font-size: clamp(17px, 1.5vw, 20px);
+    font-weight: 700;
+    line-height: 1.25;
+    text-align: left;
+    color: var(--hm-ink);
+}
+
+.bk-item__desc {
+    margin: 4px 0 0;
+    font-size: 14px;
+    line-height: 1.45;
+    color: var(--hm-ink-soft);
+    opacity: 0.85;
+}
+
+/* лічильник кількості */
+.bk-qty {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px;
+    background: var(--hm-surface);
+    border: 1px solid var(--bk-line);
+    border-radius: 999px;
+}
+
+.bk .bk-qty__btn {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: #fff;
+    color: var(--hm-ink);
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color .2s ease, color .2s ease;
+}
+
+.bk .bk-qty__btn:hover {
+    background: var(--hm-purple);
+    color: #fff;
+}
+
+.bk .bk-qty__input {
+    width: 44px;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    outline: none;
+    transform: none;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 800;
+    text-align: center;
+    color: var(--hm-ink);
+    -moz-appearance: textfield;
+}
+
+.bk .bk-qty__input::-webkit-outer-spin-button,
+.bk .bk-qty__input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.bk-item__price {
+    min-width: 88px;
+    font-size: 17px;
+    font-weight: 800;
+    font-variant-numeric: lining-nums;
+    text-align: right;
+    white-space: nowrap;
+    color: var(--hm-ink);
+}
+
+.bk .bk-item__del {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 1px solid var(--bk-line);
+    border-radius: 50%;
+    background: #fff;
+    color: var(--hm-ink-soft);
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+}
+
+.bk .bk-item__del:hover {
+    background: #c0392b;
+    border-color: #c0392b;
+    color: #fff;
+}
+
+/* ---------- Картки кроків (контакти, доставка, оплата) ---------- */
+
+.bk-card {
+    padding: clamp(20px, 2.4vw, 28px);
+    background: #fff;
+    border: 1px solid var(--bk-line);
+    border-radius: 22px;
+    box-shadow: var(--sv-shadow);
+}
+
+.bk-card__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.bk .bk-card__title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    font-family: 'Playfair Display', 'Ledger', Georgia, serif;
+    font-size: clamp(20px, 2vw, 24px);
+    font-weight: 700;
+    text-align: left;
+    color: var(--hm-ink);
+}
+
+.bk-step {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--hm-grad-accent);
+    font-family: 'Manrope', 'Ledger', system-ui, sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--hm-ink);
+}
+
+.bk .bk-edit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: auto;
+    padding: 9px 18px;
+    border: 1px solid var(--bk-line);
+    border-radius: 999px;
+    background: #fff;
+    color: var(--hm-ink);
+    font-family: 'Manrope', 'Ledger', system-ui, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color .2s ease, border-color .2s ease;
+}
+
+.bk .bk-edit:hover {
+    background: var(--hm-soft);
+}
+
+.bk .bk-edit--icon {
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    font-size: 20px;
+}
+
+.bk-info {
+    display: grid;
+    gap: 4px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--hm-ink);
+}
+
+/* форми редагування */
+.bk-form {
+    display: grid;
+    gap: 12px;
+}
+
+.bk .bk-input,
+.bk .bk-chosen span {
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding: 14px 16px;
+    background: #fff;
+    border: 1px solid rgba(var(--hm-purple-rgb), 0.18);
+    border-radius: 14px;
+    outline: none;
+    transform: none;
+    font-family: 'Manrope', 'Ledger', system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--hm-ink);
+    transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.bk .bk-input::placeholder {
+    font-weight: 500;
+    color: rgba(var(--hm-purple-rgb), 0.4);
+}
+
+.bk .bk-input:focus {
+    border-color: var(--hm-accent);
+    box-shadow: 0 0 0 4px rgba(var(--hm-accent-rgb), 0.22);
+}
+
+.bk-chosen {
+    display: grid;
+    gap: 8px;
+}
+
+.bk .bk-chosen span {
+    display: block;
+    background: var(--hm-surface);
+    font-weight: 700;
+}
+
+.bk .bk-save {
+    justify-self: start;
+    padding: 14px 30px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--hm-grad-accent);
+    color: var(--hm-ink);
+    font-family: 'Manrope', 'Ledger', system-ui, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 10px 26px rgba(var(--hm-accent-rgb), 0.35);
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.bk .bk-save:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 32px rgba(var(--hm-accent-rgb), 0.5);
+}
+
+/* Вибір міста й відділення (react-select-search). У NewPochta.css ці класи стилізовані
+   глобально, а ним користується й сторінка профілю, тож тут перекриваємо лише всередині .bk */
+.bk .select-search {
+    margin: 0;
+    font-family: 'Manrope', 'Ledger', system-ui, sans-serif;
+}
+
+.bk .select-search__input {
+    height: auto;
+    padding: 14px 16px;
+    border: 1px solid rgba(var(--hm-purple-rgb), 0.18);
+    border-radius: 14px;
+    box-shadow: none;
+    font-family: inherit;
+    font-size: 16px;
+    line-height: 1.4;
+    color: var(--hm-ink);
+}
+
+/* текст не заходить під стрілку */
+.bk .select-search__input {
+    padding-right: 48px;
+}
+
+/* Стрілка-«шеврон». У NewPochta.css вона позиціонується right: 0 (впритул до краю поля) і має
+   розмір 11px, що з нашими відступами давало стрілку на самій рамці. Тут — усередині поля, по центру. */
+.bk .select-search__value::after {
+    box-sizing: border-box;
+    top: 50%;
+    right: 22px;
+    width: 9px;
+    height: 9px;
+    margin-top: -7px;
+    border-right: 2px solid var(--hm-ink-soft);
+    border-bottom: 2px solid var(--hm-ink-soft);
+    transform: rotate(45deg);
+    transition: transform .2s ease;
+}
+
+/* відкритий список: стрілка дивиться вгору */
+.bk .select-search.has-focus .select-search__value::after {
+    margin-top: -2px;
+    transform: rotate(-135deg);
+}
+
+/* індикатор завантаження списку міст — замість стрілки */
+.bk .select-search.is-loading .select-search__value::after {
+    width: 18px;
+    height: 18px;
+    margin-top: -9px;
+    right: 18px;
+    border: 0;
+    background-size: 18px;
+    transform: none;
+}
+
+.bk .select-search:not(.select-search--multiple) .select-search__input:hover,
+.bk .select-search__input:focus {
+    border-color: var(--hm-accent);
+}
+
+.bk .select-search__input:focus {
+    box-shadow: 0 0 0 4px rgba(var(--hm-accent-rgb), 0.22);
+}
+
+.bk .select-search:not(.select-search--multiple) .select-search__select {
+    top: calc(100% + 6px);
+    border: 1px solid var(--bk-line);
+    border-radius: 14px;
+    box-shadow: 0 20px 50px rgba(var(--hm-deep-rgb), 0.2);
+}
+
+.bk .select-search__option,
+.bk .select-search__not-found {
+    height: auto;
+    padding: 11px 16px;
+    font-family: inherit;
+    font-size: 15px;
+    line-height: 1.35;
+}
+
+.bk .select-search__option.is-selected,
+.bk .select-search__option.is-highlighted.is-selected,
+.bk .select-search__option.is-selected:hover {
+    background: var(--hm-purple);
+    color: #fff;
+}
+
+.bk .select-search__option.is-highlighted,
+.bk .select-search__option:not(.is-selected):hover {
+    background: var(--hm-soft);
+}
+
+.bk .full-center,
+.bk .input-center-full {
+    width: 100%;
+    margin: 0;
+}
+
+.bk .select-search-last {
+    margin-top: 12px;
+}
+
+/* ---------- Спосіб оплати ---------- */
+
+.bk-pay {
+    display: grid;
+    /* дві картки поруч, якщо вистачає місця; у вузькій колонці — одна під одною */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+}
+
+.bk-pay__opt {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 18px;
+    background: #fff;
+    border: 1.5px solid var(--bk-line);
+    border-radius: 16px;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--hm-ink);
+    cursor: pointer;
+    transition: border-color .2s ease, background-color .2s ease, box-shadow .2s ease;
+}
+
+.bk-pay__opt svg {
+    flex: none;
+    font-size: 22px;
+    color: var(--hm-accent-deep);
+}
+
+/* справжній радіо-інпут лишається в DOM (для клавіатури й скрінрідерів), але візуально прихований */
+.bk-pay__opt input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.bk-pay__opt:hover {
+    border-color: rgba(var(--hm-accent-rgb), 0.7);
+}
+
+.bk-pay__opt.is-active {
+    border-color: var(--hm-accent);
+    background: rgba(var(--hm-accent-rgb), 0.12);
+    box-shadow: 0 0 0 4px rgba(var(--hm-accent-rgb), 0.18);
+}
+
+.bk-pay__opt:focus-within {
+    outline: 3px solid var(--hm-accent);
+    outline-offset: 2px;
+}
+
+/* ---------- Підсумок ---------- */
+
+.bk-summary {
+    padding: 26px 24px 24px;
+    border-radius: 24px;
+    background: var(--hm-grad-dark);
+    color: #fff;
+    box-shadow: var(--sv-shadow-lg);
+}
+
+.bk .bk-summary__title {
+    margin: 0 0 18px;
+    padding: 0;
+    font-family: 'Playfair Display', 'Ledger', Georgia, serif;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: left;
+    color: var(--hm-brown-light);
+}
+
+.bk-summary__list {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.bk-summary__list div {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.bk-summary__list dt {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.bk-summary__list dd {
+    margin: 0;
+    font-weight: 700;
+}
+
+.bk-total {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 18px 0 20px;
+}
+
+.bk-total span {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.bk-total strong {
+    font-size: 26px;
+    font-weight: 800;
+    font-variant-numeric: lining-nums;
+}
+
+.bk .bk-checkout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 16px 24px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--hm-grad-accent);
+    color: var(--hm-ink);
+    font-family: 'Manrope', 'Ledger', system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(var(--hm-accent-rgb), 0.4);
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.bk .bk-checkout:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 36px rgba(var(--hm-accent-rgb), 0.55);
+}
+
+/* перекриває глобальне button:disabled { background: #ccc } зі старих стилів */
+.bk .bk-checkout:disabled {
+    background: var(--hm-grad-accent);
+    opacity: 0.45;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.bk-summary__hint {
+    margin: 12px 0 0;
+    font-size: 13px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* ---------- Порожній кошик ---------- */
+
+.bk-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: clamp(40px, 8vw, 96px) 20px;
+    text-align: center;
+}
+
+.bk-empty__icon {
+    display: grid;
+    place-items: center;
+    width: 112px;
+    height: 112px;
+    margin-bottom: 8px;
+    border-radius: 50%;
+    background: var(--hm-soft);
+    font-size: 52px;
+    color: var(--hm-purple);
+}
+
+.bk .bk-empty h2 {
+    margin: 0;
+    padding: 0;
+    font-family: 'Playfair Display', 'Ledger', Georgia, serif;
+    font-size: clamp(26px, 3vw, 36px);
+    font-weight: 700;
+    color: var(--hm-ink);
+}
+
+.bk-empty p {
+    max-width: 380px;
+    margin: 0 0 8px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--hm-ink-soft);
+}
+
+/* ---------- Адаптив ---------- */
+
+/* Планшет (768–1024px): права колонка вузька, тому в способі оплати лишаються тільки іконки
+   в один рядок. Підпис не видаляється, а ховається візуально — він лишається для скрінрідерів
+   (і дублюється в title), так само як справжній радіо-інпут. */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .bk-pay {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .bk-pay__opt {
+        justify-content: center;
+        padding: 12px;
+    }
+
+    .bk-pay__opt svg {
+        font-size: 20px;
+    }
+
+    .bk-pay__label {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+    }
+}
+
+/* Одна колонка лише на телефоні (до 767px); з планшета (768px) і більше — дві колонки */
+@media (max-width: 767px) {
+    .bk-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Компактна картка товару (фото + назва в першому рядку, лічильник і ціна під ними):
+   потрібна, коли ліва колонка вузька — на телефоні, а також у двох колонках від 768px до 1200px */
+@media (min-width: 768px) and (max-width: 1200px), (max-width: 767px) {
+    .bk-item {
+        grid-template-columns: 72px minmax(0, 1fr) auto;
+        grid-template-areas:
+            "img info del"
+            "img qty price";
+        gap: 10px 14px;
+        padding: 12px;
+    }
+
+    .bk-item__img {
+        grid-area: img;
+        width: 72px;
+        height: 72px;
+        align-self: start;
+    }
+
+    .bk-item__info { grid-area: info; }
+    .bk-qty { grid-area: qty; justify-self: start; }
+    .bk-item__price { grid-area: price; min-width: 0; }
+    .bk .bk-item__del { grid-area: del; align-self: start; }
+}
+
+@media (max-width: 480px) {
+    .bk-pay {
+        grid-template-columns: 1fr;
+    }
+
+    .bk .bk-save {
+        justify-self: stretch;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .bk *, .bk *::before, .bk *::after {
+        transition: none !important;
+    }
+}

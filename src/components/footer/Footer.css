@@ -13,18 +13,6 @@
     -webkit-font-smoothing: antialiased;
 }
 
-/* тонка акцентна лінія по верху */
-.ft::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    height: 2px;
-    background: var(--hm-grad-accent);
-    opacity: 0.8;
-}
-
 .ft *, .ft *::before, .ft *::after {
     box-sizing: border-box;
 }
