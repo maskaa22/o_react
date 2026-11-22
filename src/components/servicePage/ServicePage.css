@@ -1,0 +1,425 @@
+/* ==========================================================================
+   Сторінка послуги в новому дизайні. Усі класи з префіксом sv-.
+   Кольори — з палітри на :root (src/index.css).
+   ========================================================================== */
+
+.sv {
+    --sv-line: rgba(var(--hm-purple-rgb), 0.12);
+    --sv-shadow: 0 10px 30px rgba(var(--hm-deep-rgb), 0.08);
+    --sv-shadow-lg: 0 24px 60px rgba(var(--hm-deep-rgb), 0.16);
+    --sv-radius: 24px;
+
+    font-family: 'Manrope', 'Ledger', system-ui, sans-serif;
+    color: var(--hm-ink);
+    background: var(--hm-surface);
+    -webkit-font-smoothing: antialiased;
+}
+
+.sv *, .sv *::before, .sv *::after {
+    box-sizing: border-box;
+}
+
+/* У CreateProduct.css є ГЛОБАЛЬНЕ правило h2 { padding: 15px; margin: 0 10px; text-align: center }.
+   Воно тече на весь сайт і додавало заголовкам відступи, через що вони не збігались
+   по лівому краю з текстом під ними. Скидаємо його для цієї сторінки. */
+.sv h2 {
+    padding: 0;
+}
+
+.sv-container {
+    position: relative;
+    width: min(1160px, 100% - 48px);
+    margin-inline: auto;
+}
+
+.sv-section {
+    padding: clamp(48px, 7vw, 96px) 0;
+}
+
+.sv-section--white {
+    background: #fff;
+}
+
+.sv-section--tight {
+    padding-top: 0;
+}
+
+/* ---------- Герой ---------- */
+
+.sv-hero {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: center;
+    min-height: clamp(240px, 32vh, 340px);
+    padding: 48px 0;
+    overflow: hidden;
+    background: var(--hm-grad-dark);
+    color: #fff;
+}
+
+/* Фото в банері має запечений фіолетово-бірюзовий градієнт, тому показуємо його
+   чорно-білим і розчиняємо в коричневому фоні зліва. */
+.sv-hero__img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    width: min(65%, 900px);
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    filter: grayscale(1) contrast(1.05);
+    opacity: 0.5;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 55%);
+    mask-image: linear-gradient(to right, transparent 0%, #000 55%);
+}
+
+.sv-crumbs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.sv-crumbs a {
+    color: var(--hm-accent);
+    text-decoration: none;
+}
+
+.sv-crumbs a:hover {
+    text-decoration: underline;
+}
+
+.sv-hero__title {
+    max-width: 760px;
+    margin: 0;
+    font-family: 'Playfair Display', 'Ledger', Georgia, serif;
+    font-size: clamp(36px, 5.6vw, 68px);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+}
+
+.sv-hero__lead {
+    max-width: 520px;
+    margin: 20px 0 0;
+    font-size: clamp(15px, 1.5vw, 18px);
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* ---------- Вступ: фото + текст ---------- */
+
+.sv-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: clamp(32px, 5vw, 72px);
+    align-items: center;
+}
+
+.sv-intro__photo {
+    position: relative;
+    margin: 0;
+}
+
+/* акцентна рамка-зсув позаду фото */
+.sv-intro__photo::before {
+    content: '';
+    position: absolute;
+    inset: 18px -18px -18px 18px;
+    z-index: 0;
+    border: 2px solid var(--hm-accent);
+    border-radius: var(--sv-radius);
+    opacity: 0.55;
+}
+
+.sv-intro__photo img {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--sv-radius);
+    box-shadow: var(--sv-shadow-lg);
+}
+
+.sv-intro__text p {
+    margin: 0;
+    font-size: clamp(16px, 1.35vw, 18px);
+    line-height: 1.8;
+    color: var(--hm-ink-soft);
+}
+
+.sv-intro__text p + p {
+    margin-top: 20px;
+}
+
+/* перший абзац — виразніший */
+.sv-intro__text p:first-child {
+    color: var(--hm-ink);
+    font-size: clamp(17px, 1.5vw, 20px);
+    font-weight: 500;
+}
+
+/* ---------- Заголовки секцій ---------- */
+
+.sv-head {
+    max-width: 640px;
+    margin: 0 auto clamp(32px, 4.5vw, 56px);
+    text-align: center;
+}
+
+.sv-eyebrow {
+    display: inline-block;
+    margin-bottom: 14px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--hm-accent-deep);
+}
+
+.sv-title {
+    margin: 0;
+    font-family: 'Playfair Display', 'Ledger', Georgia, serif;
+    font-size: clamp(30px, 4vw, 46px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+}
+
+.sv-title::after {
+    content: '';
+    display: block;
+    width: 56px;
+    height: 4px;
+    margin: 20px auto 0;
+    border-radius: 4px;
+    background: var(--hm-grad-accent);
+}
+
+/* ---------- Галерея (слайдер). Слайдер спільний з іншими сторінками,
+   тому перестилізуємо його лише в межах цієї ---------- */
+
+.sv-gallery .containerStyles {
+    height: clamp(220px, 36vw, 480px);
+    overflow: hidden;
+    border-radius: var(--sv-radius);
+    box-shadow: var(--sv-shadow-lg);
+}
+
+.sv-gallery .leftArrowStyles,
+.sv-gallery .rightArrowStyles {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    font-size: 18px;
+    border-radius: 50%;
+    background: rgba(var(--hm-ink-rgb), 0.55);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    user-select: none;
+    transition: background-color .2s ease, color .2s ease, box-shadow .2s ease;
+}
+
+.sv-gallery .leftArrowStyles {
+    left: 20px;
+}
+
+.sv-gallery .rightArrowStyles {
+    right: 20px;
+}
+
+.sv-gallery .leftArrowStyles:hover,
+.sv-gallery .rightArrowStyles:hover {
+    background: var(--hm-accent);
+    color: var(--hm-ink);
+    box-shadow: 0 8px 22px rgba(var(--hm-accent-rgb), 0.45);
+}
+
+/* Крива 3D-стрічка (TiltedGridHero). Їй потрібна визначена висота: розміри плиток
+   рахуються від неї через container query. */
+.sv-tilted {
+    height: clamp(220px, 24vw, 340px);
+}
+
+/* ---------- Перелік видів ---------- */
+
+.sv-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sv-list__item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 22px;
+    background: #fff;
+    border: 1px solid var(--sv-line);
+    border-radius: 16px;
+    box-shadow: var(--sv-shadow);
+    transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+
+.sv-list__item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--sv-shadow-lg);
+    border-color: rgba(var(--hm-accent-rgb), 0.6);
+}
+
+.sv-list__icon {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--hm-soft);
+    font-size: 22px;
+    color: var(--hm-purple);
+}
+
+.sv-list__text {
+    font-size: 17px;
+    font-weight: 700;
+}
+
+/* ---------- Заклик до запису ---------- */
+
+.sv-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: clamp(28px, 4vw, 52px);
+    border-radius: 28px;
+    background: var(--hm-grad-dark);
+    color: #fff;
+    box-shadow: var(--sv-shadow-lg);
+}
+
+.sv-cta__title {
+    margin: 0;
+    font-family: 'Playfair Display', 'Ledger', Georgia, serif;
+    font-size: clamp(24px, 3vw, 36px);
+    font-weight: 700;
+    line-height: 1.15;
+    text-align: left;
+    /* явний колір: без нього заголовок підхоплював темний колір і зливався з фоном картки */
+    color: var(--hm-brown-light);
+}
+
+.sv-cta__text {
+    margin: 12px 0 0;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 16px;
+}
+
+.sv-btn {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 30px;
+    border-radius: 999px;
+    background: var(--hm-grad-accent);
+    color: var(--hm-ink);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none;
+    box-shadow: 0 10px 30px rgba(var(--hm-accent-rgb), 0.4);
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.sv-btn svg {
+    transition: transform .25s ease;
+}
+
+.sv-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 36px rgba(var(--hm-accent-rgb), 0.55);
+}
+
+.sv-btn:hover svg {
+    transform: translateX(4px);
+}
+
+.sv a:focus-visible {
+    outline: 3px solid var(--hm-accent);
+    outline-offset: 3px;
+}
+
+/* ---------- Адаптив ---------- */
+
+@media (max-width: 900px) {
+    .sv-intro {
+        grid-template-columns: 1fr;
+    }
+
+    .sv-intro__photo {
+        max-width: 560px;
+        margin-inline: auto;
+    }
+
+    .sv-intro__photo::before {
+        inset: 12px -12px -12px 12px;
+    }
+
+    .sv-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .sv-container {
+        width: min(1160px, 100% - 32px);
+    }
+
+    .sv-hero__img {
+        width: 100%;
+        opacity: 0.3;
+    }
+
+    .sv-list {
+        grid-template-columns: 1fr;
+    }
+
+    .sv-gallery .leftArrowStyles,
+    .sv-gallery .rightArrowStyles {
+        width: 40px;
+        height: 40px;
+    }
+
+    .sv-gallery .leftArrowStyles { left: 12px; }
+    .sv-gallery .rightArrowStyles { right: 12px; }
+
+    .sv-cta {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .sv-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sv *, .sv *::before, .sv *::after {
+        transition: none !important;
+    }
+}

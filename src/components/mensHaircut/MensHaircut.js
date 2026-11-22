@@ -1,15 +1,34 @@
-import {HiBadgeCheck} from "react-icons/hi";
 import {useDispatch} from "react-redux";
 import {useEffect} from "react";
 
-import './MansHaircut.css';
-import './MansHaircut@media.css';
 import {auth} from "../../servises";
 import Mens from '../../images/big-foto/Group 7.png';
-import Slider from "../slider/Slider";
-import {slidesMan} from "../../config/sliderConstants";
+import {ServicePage} from "../servicePage";
+import man1 from '../../images/servises/menHears/Group11.png';
+import man2 from '../../images/servises/menHears/Group12.png';
+import man3 from '../../images/servises/menHears/Group13.png';
 import smallFoto from '../../images/servises/menHears/1.png';
 import {WORD_TOKEN} from "../../config/wordsConstants";
+
+const PARAGRAPHS = [
+    'Чоловіки не менш за жінок хочуть виглядати привабливо та яскраво. І не важливо де чоловік буде сьогодні : дома, на важливій зустрічі, або на святі – гарна стрижка, це запорука успіху кожного чоловіка. «Olena Studio» працює з професійною косметикою, використовує надійні інструменти для роботи з чоловічими стрижками.',
+    'Ми враховуємо як побажання клієнта, так і структурні особливості його особи, завжди знаходимо найкраще стильове рішення. Тому для нас важливим є індивідуальний підхід, який робить кожну чоловічу стрижку унікальною.',
+    'Розслаблююча атмосфера та високий рівень послуг від майстрів, дозволяють отримати максимум задоволення від процесу чоловічої стрижки.'
+];
+
+// Кожен файл — смужка з 4 портретів (1200×302), тож плитка має співвідношення ~4:1
+const GALLERY = [
+    {src: man1, alt: 'Чоловічі стрижки: приклади'},
+    {src: man2, alt: 'Чоловічі стрижки: приклади'},
+    {src: man3, alt: 'Чоловічі стрижки: приклади'}
+];
+const GALLERY_ASPECT = 1200 / 302;
+
+const HAIRCUTS = [
+    'Мілітарі', 'Майданчик', 'Напівбокс',
+    'Теніс', 'Бокс', 'Цезар',
+    'Прінстон', 'Андеркат', 'Канадка'
+];
 
 export function MensHaircut() {
 
@@ -27,66 +46,17 @@ export function MensHaircut() {
     }, [dispatch]);
 
     return (
-        <div>
-            <img src={Mens} alt={'Men'} className={'submenu-img'}/>
-            <div className={'container'}>
-                <div className={'servise-info'}>
-                    <h1 className={'servise-info-h1'}>Чоловіча стрижка</h1>
-                    <img src={smallFoto} alt={'Men'} className={'servise-info-img'}/>
-                    <p className={'servise-info-p'}>Чоловіки не менш за жінок хочуть виглядати привабливо та яскраво. І
-                        не важливо де чоловік буде сьогодні : дома, на важливій зустрічі, або на святі – гарна стрижка,
-                        це запорука успіху кожного чоловіка. «Olena Studio» працює з професійною косметикою,
-                        використовує надійні інструменти для роботи з чоловічими стрижками.</p>
-                    <p className={'servise-info-p'}>Ми враховуємо як побажання клієнта, так і структурні особливості
-                        його особи, завжди знаходимо
-                        найкраще стильове рішення. Тому для нас важливим є індивідуальний підхід, який робить кожну
-                        чоловічу стрижку унікальною.</p>
-                    <p className={'servise-info-p'}>Розслаблююча атмосфера та високий рівень послуг від майстрів,
-                        дозволяють отримати максимум
-                        задоволення від процесу чоловічої стрижки.</p>
-                </div>
-            </div>
-            <Slider slides={slidesMan}/>
-            <div className={'container'}>
-                <h1 className={'servise-info-h1'}>Види стрижок</h1>
-                <div className={'servise-flex'}>
-                    <div className={'servise-hears'}>
-                        <div>
-                            <div className={'hears-item'}>
-                                <HiBadgeCheck className={'hears-item-icon'}/><p className={'hears-item-p'}>Мілітарі</p>
-                            </div>
-                            <div className={'hears-item'}>
-                                <HiBadgeCheck className={'hears-item-icon'}/><p className={'hears-item-p'}>Майданчик</p>
-                            </div>
-                            <div className={'hears-item'}>
-                                <HiBadgeCheck className={'hears-item-icon'}/><p className={'hears-item-p'}>Напівбокс</p>
-                            </div>
-                        </div>
-                        <div>
-                            <div className={'hears-item'}>
-                                <HiBadgeCheck className={'hears-item-icon'}/><p className={'hears-item-p'}>Теніс</p>
-                            </div>
-                            <div className={'hears-item'}>
-                                <HiBadgeCheck className={'hears-item-icon'}/><p className={'hears-item-p'}>Бокс</p>
-                            </div>
-                            <div className={'hears-item'}>
-                                <HiBadgeCheck className={'hears-item-icon'}/><p className={'hears-item-p'}>Цезар</p>
-                            </div>
-                        </div>
-                        <div>
-                            <div className={'hears-item'}>
-                                <HiBadgeCheck className={'hears-item-icon'}/><p className={'hears-item-p'}>Прінстон</p>
-                            </div>
-                            <div className={'hears-item'}>
-                                <HiBadgeCheck className={'hears-item-icon'}/><p className={'hears-item-p'}>Андеркат</p>
-                            </div>
-                            <div className={'hears-item'}>
-                                <HiBadgeCheck className={'hears-item-icon'}/><p className={'hears-item-p'}>Канадка</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <ServicePage
+            title={'Чоловіча стрижка'}
+            lead={'Чоловіки не менш за жінок хочуть виглядати привабливо та яскраво.'}
+            banner={Mens}
+            photo={smallFoto}
+            photoAlt={'Чоловіча стрижка в Olena Studio'}
+            paragraphs={PARAGRAPHS}
+            gallery={GALLERY}
+            galleryAspect={GALLERY_ASPECT}
+            listTitle={'Види стрижок'}
+            items={HAIRCUTS}
+        />
     );
 }
