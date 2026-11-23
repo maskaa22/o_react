@@ -50,15 +50,11 @@
 }
 
 .navbar-logo-img {
-    width: 40px;
-    height: 40px;
+    /* повний горизонтальний логотип (2172×724, значок + слово): задаємо лише висоту, ширина — за пропорцією.
+       Окремий текстовий напис біля логотипа не потрібен — слово є в самому зображенні. */
+    width: auto;
+    height: 46px;
     margin: 0.5vw;
-}
-
-.navbar-logo-p {
-    font-family: 'Lobster', cursive;
-    margin-left: -10px;
-    font-size: 40px;
 }
 
 a {
@@ -67,4 +63,24 @@ a {
 
 .div-admin {
     color: var(--hm-accent);
+}
+
+/* Верхній рівень меню (Головна, Послуги, Товари…): теж основний шрифт сайту. Раніше посилання успадковували
+   серифний Ledger від body, а кнопка "Послуги" мала його прописаним прямо (.menu button). Розмір не змінюється:
+   його задає 2.5vh у Header@media.css. Правило стоїть нижче за `.menu button`, тому перекриває його. */
+.menu > li > a,
+.menu > li > button,
+.div-admin {
+    font-family: 'Manrope', 'Ledger', system-ui, sans-serif;
+    font-weight: 600;
+}
+
+/* Пункти випадаючого меню (Послуги, акаунт): основний шрифт сайту й менший розмір, ніж у верхньому рівні меню.
+   Селектор довший за `.menu a` у Header@media.css, тому розмір 2.5vh звідти їх не зачіпає. */
+.menu .submenu a {
+    font-family: 'Manrope', 'Ledger', system-ui, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.3;
+    white-space: nowrap;
 }

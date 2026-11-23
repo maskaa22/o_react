@@ -44,7 +44,7 @@ export function AboutAsPage() {
                     </nav>
                     <h1 className={'sv-hero__title'}>Про нас</h1>
                     <p className={'sv-hero__lead'}>
-                        Салон краси «Olena Studio» — це салон з багаторічним досвідом.
+                        Салон краси «Miraé» — це салон з багаторічним досвідом.
                     </p>
                 </div>
             </section>

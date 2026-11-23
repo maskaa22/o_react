@@ -17,7 +17,7 @@ import {
     WOMENS_HAIRCUT
 } from "../../config/headerConstants";
 import {delFilter} from "../../reducers/actionCreators";
-import Logo from "../../images/logo-header.png";
+import Logo from "../../images/logo.png";   // повний логотип: значок + слово
 
 const SERVICES = [
     {to: MENS_HAIRCUT, label: 'Чоловічі стрижки'},
@@ -56,9 +56,8 @@ export function Footer() {
             <div className={'ft-inner'}>
                 <div className={'ft-grid'}>
                     <div className={'ft-brand'}>
-                        <Link to={THIS} className={'ft-logo'} onClick={toTop} aria-label={'Studio — на головну'}>
-                            <img src={Logo} className={'ft-logo__img'} alt={''}/>
-                            <span className={'ft-logo__text'}>Studio</span>
+                        <Link to={THIS} className={'ft-logo'} onClick={toTop} aria-label={'Miraé — на головну'}>
+                            <img src={Logo} className={'ft-logo__img'} alt={'Miraé'}/>
                         </Link>
                         <p className={'ft-tagline'}>
                             Студія краси: стрижки, зачіски та фарбування з увагою до кожної деталі.
@@ -111,7 +110,7 @@ export function Footer() {
                 </div>
 
                 <div className={'ft-bottom'}>
-                    <span>© {new Date().getFullYear()} Studio. Усі права захищено.</span>
+                    <span>© {new Date().getFullYear()} Miraé. Усі права захищено.</span>
                 </div>
             </div>
         </footer>

@@ -29,7 +29,7 @@
     }
 
     .menu a, .menu button, .div-admin {
-        font-size: 2.5vh;
+        font-size: 16px;   /* було 2.5vh (~27px на великому екрані) */
     }
 
     .active-menu {
@@ -193,6 +193,12 @@
         width: 30px;
     }
 
+    /* у повноекранному меню на телефоні пункти підменю трохи більші, щоб зручно натискати */
+    .menu .submenu a {
+        font-size: 16px;
+        white-space: normal;
+    }
+
     .menu a:hover {
         background-color: rgb(var(--hm-accent-rgb) / 40%);
     }
@@ -206,6 +212,11 @@
     .navbar-logo-position {
         position: absolute;
         left: 20px;
+    }
+
+    /* на телефоні шапка 50px, тож логотип нижчий, щоб не виходив за її межі */
+    .navbar-logo-img {
+        height: 36px;
     }
 
     .btn-menu {

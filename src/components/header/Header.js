@@ -26,7 +26,7 @@ import {ADMIN, CLIENT} from "../../config/homeConstants";
 import {logout} from "../../servises";
 import {closeToogleMenu, openToogleMenu} from "../../utils/function";
 import {delFilter} from "../../reducers/actionCreators";
-import Logo from "../../images/logo-header.png";
+import Logo from "../../images/logo.png";   // повний логотип: значок + слово
 import {WORLD_ADMIN, WORLD_AUTORIZATION, WORLD_USER} from "../../config/wordsConstants";
 
 export function Header() {
@@ -86,8 +86,7 @@ export function Header() {
         <div className={'all-container'}>
             <div className={'header'}>
                 <div className={'navbar-logo navbar-logo-position'}>
-                    <img src={Logo} className={'navbar-logo-img'} alt={'Logo'}/>
-                    <p className={'navbar-logo-p'}>Studio</p>
+                    <img src={Logo} className={'navbar-logo-img'} alt={'Miraé'}/>
                 </div>
                 <button className={'btn-menu'}
                         onClick={() => openToogleMenu('btn-menu', 'list-menu', 'active-menu-header', 'no-scroll')}

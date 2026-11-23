@@ -40,14 +40,9 @@
 }
 
 .ft-logo__img {
-    width: 44px;
-    height: auto;
-}
-
-.ft-logo__text {
-    font-family: 'Lobster', cursive;
-    font-size: 40px;
-    line-height: 1;
+    /* повний горизонтальний логотип (значок + слово): задаємо лише висоту */
+    width: auto;
+    height: 48px;
 }
 
 .ft-tagline {

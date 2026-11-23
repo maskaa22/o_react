@@ -37,11 +37,14 @@ html, body {
 }
 
 /* Логотип: тьмяний силует + така сама фігура, що заливається кольором знизу вгору.
-   Форма береться з альфа-каналу logo.png через CSS-маску. */
+   Форма береться з альфа-каналу logo-loader.png через CSS-маску. Це копія нового логотипа з
+   src/images/logo-header.png (552×724): лоадер працює до завантаження React, тож не може імпортувати
+   картинку з src, і копія лежить у public. Змінюєш логотип — скопіюй його сюди ще раз.
+   Іконка вкладки браузера — окремий файл favicon.ico (див. public/index.html). */
 .loader__logo {
     position: relative;
-    width: 150px;
-    aspect-ratio: 1200 / 936;
+    width: 112px;
+    aspect-ratio: 552 / 724;
     filter: drop-shadow(0 0 16px var(--ld-glow));
 }
 
@@ -49,8 +52,8 @@ html, body {
 .loader__fill {
     position: absolute;
     inset: 0;
-    -webkit-mask: url('/logo.png') center / contain no-repeat;
-    mask: url('/logo.png') center / contain no-repeat;
+    -webkit-mask: url('/logo-loader.png') center / contain no-repeat;
+    mask: url('/logo-loader.png') center / contain no-repeat;
 }
 
 .loader__base {
@@ -66,8 +69,10 @@ html, body {
 }
 
 .loader__text {
-    font-family: 'Lobster', cursive;
-    font-size: 34px;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
     line-height: 1;
     color: #fff;
     opacity: 0.9;
@@ -83,36 +88,22 @@ html, body {
     opacity: 0;
 }
 
-/* Смуга прокрутки в кольорах сайту. Без цього під час завантаження праворуч на мить
-   з'являлась світла вертикальна смужка: лоадер (position: fixed) не перекриває
-   доріжку скролбара, а вона за замовчуванням біла. Тут же, а не в src/index.css,
-   щоб стиль діяв ще до завантаження React. */
+/* Смуга прокрутки сторінки (та, що праворуч у вікні) прихована. Прокручувати можна як і раніше:
+   колесом миші, тачпадом, клавішами й пальцем — просто смуга не показується.
+   Внутрішні смуги (списки, вікна з довгим вмістом) лишаються, але в кольорах сайту: scrollbar-color
+   на body успадковується вкладеними елементами. Щоб повернути смугу сторінки — прибери блок html нижче. */
 html {
-    scrollbar-width: thin;
-    scrollbar-color: #c4a484 #1c0b02;   /* повзунок / доріжка */
+    scrollbar-width: none;            /* Firefox */
+    -ms-overflow-style: none;         /* старий Edge */
 }
 
-/* Safari і старіші Chrome, які не знають scrollbar-color */
-@supports not (scrollbar-color: auto) {
-    ::-webkit-scrollbar {
-        width: 10px;
-        height: 10px;
-        background: #1c0b02;
-    }
-
-    ::-webkit-scrollbar-thumb {
-        background: #c4a484;
-        border-radius: 8px;
-        border: 2px solid #1c0b02;
-    }
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;                    /* Chrome, Edge, Safari */
+    width: 0;
+    height: 0;
 }
 
-@media (prefers-reduced-motion: reduce) {
-    .loader__text {
-        animation: none;
-    }
-
-    .loader__fill {
-        transition: none;
-    }
+body {
+    scrollbar-color: #c4a484 #1c0b02;   /* повзунок / доріжка внутрішніх смуг */
 }
