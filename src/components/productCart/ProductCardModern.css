@@ -15,7 +15,7 @@
     border: 1px solid var(--pc-line);
     border-radius: 22px;
     box-shadow: 0 10px 30px rgba(var(--hm-deep-rgb), 0.08);
-    font-family: 'Manrope', 'Ledger', system-ui, sans-serif;
+    font-family: 'Manrope', system-ui, sans-serif;
     transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
 }
 
@@ -52,7 +52,7 @@
 
 .pc__name {
     margin: 0;
-    font-family: 'Playfair Display', 'Ledger', Georgia, serif;
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: clamp(18px, 1.5vw, 21px);
     font-weight: 700;
     line-height: 1.25;

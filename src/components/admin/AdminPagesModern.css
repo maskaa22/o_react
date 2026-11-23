@@ -6,7 +6,7 @@
 
 .adm {
     --adm-line: rgba(var(--hm-purple-rgb), 0.12);
-    font-family: 'Manrope', 'Ledger', system-ui, sans-serif;
+    font-family: 'Manrope', system-ui, sans-serif;
     color: var(--hm-ink);
 }
 
@@ -45,7 +45,7 @@
 .adm .adm-title {
     margin: 0;
     padding: 0;
-    font-family: 'Playfair Display', 'Ledger', Georgia, serif;
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: clamp(24px, 2.6vw, 32px);
     font-weight: 700;
     line-height: 1.15;
@@ -55,7 +55,7 @@
 
 .adm-title small {
     margin-left: 8px;
-    font-family: 'Manrope', 'Ledger', system-ui, sans-serif;
+    font-family: 'Manrope', system-ui, sans-serif;
     font-size: 0.55em;
     font-weight: 700;
     color: var(--hm-accent-deep);
@@ -359,7 +359,7 @@
 
 .adm .adm-empty h3 {
     margin: 0;
-    font-family: 'Playfair Display', 'Ledger', Georgia, serif;
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: 22px;
     font-weight: 700;
 }

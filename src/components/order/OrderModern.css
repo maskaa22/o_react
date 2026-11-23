@@ -51,35 +51,124 @@
     align-items: start;
 }
 
+/* Картка-акордеон. Згорнута: видно лише шапку (однакової висоти в усіх карток), розкрита: панель з деталями. */
 .ao-card {
-    padding: clamp(18px, 2.2vw, 26px);
     background: #fff;
     border: 1px solid var(--adm-line);
     border-radius: 22px;
     box-shadow: var(--sv-shadow);
+    transition: box-shadow .25s ease, border-color .25s ease;
 }
 
-.ao-card__head {
+.ao-card:hover,
+.ao-card.is-open {
+    box-shadow: var(--sv-shadow-lg);
+}
+
+.ao-card.is-open {
+    border-color: rgba(var(--hm-accent-rgb), 0.55);
+}
+
+.adm .ao-card__head {
+    margin: 0;
+    padding: 0;
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+/* вся шапка — кнопка розкриття */
+.adm .ao-card__toggle {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
-    gap: 10px 14px;
-    margin-bottom: 14px;
-    padding-bottom: 14px;
-    border-bottom: 1px solid var(--adm-line);
+    gap: 12px;
+    width: 100%;
+    min-height: 76px;
+    padding: 18px clamp(16px, 2vw, 24px);
+    border: 0;
+    border-radius: 22px;
+    background: transparent;
+    font-family: inherit;
+    text-align: left;
+    color: var(--hm-ink);
+    cursor: pointer;
+    transition: background-color .2s ease;
+}
+
+.adm .ao-card__toggle:hover {
+    background: rgba(var(--hm-accent-rgb), 0.07);
+}
+
+.adm .ao-card__toggle:focus-visible {
+    outline: 3px solid var(--hm-accent);
+    outline-offset: -3px;
 }
 
 .adm .ao-card__title {
-    margin: 0;
-    padding: 0;
-    font-family: 'Playfair Display', 'Ledger', Georgia, serif;
-    font-size: clamp(19px, 1.8vw, 22px);
-    font-weight: 700;
-    text-align: left;
+    flex: 1;
+    min-width: 0;
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: clamp(17px, 1.5vw, 19px);
+    font-weight: 800;
+    font-variant-numeric: lining-nums;
+    line-height: 1.25;
     color: var(--hm-ink);
 }
 
+/* стрілка-шеврон у колі; при розкритті перевертається */
+.ao-card__chev {
+    position: relative;
+    flex: none;
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--adm-line);
+    border-radius: 50%;
+    background: #fff;
+    transition: background-color .2s ease, border-color .2s ease;
+}
+
+.ao-card__chev::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    margin: -6px 0 0 -4px;
+    border-right: 2px solid var(--hm-ink);
+    border-bottom: 2px solid var(--hm-ink);
+    transform: rotate(45deg);
+    transition: transform .25s ease, margin .25s ease;
+}
+
+.ao-card.is-open .ao-card__chev {
+    background: var(--hm-purple);
+    border-color: var(--hm-purple);
+}
+
+.ao-card.is-open .ao-card__chev::after {
+    margin-top: -2px;
+    border-color: #fff;
+    transform: rotate(-135deg);
+}
+
+/* розкрита панель; з'являється плавно (без обрізання висоти, щоб випадаючий список статусу не різався) */
+.ao-card__panel {
+    margin: 0 clamp(16px, 2vw, 24px);
+    padding: 18px 0 clamp(18px, 2vw, 24px);
+    border-top: 1px solid var(--adm-line);
+    animation: ao-open .28s ease both;
+}
+
+@keyframes ao-open {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
 /* дані клієнта */
 .ao-meta {
     display: grid;
@@ -154,6 +243,12 @@
     cursor: not-allowed;
     box-shadow: none;
     transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ao-card__panel {
+        animation: none;
+    }
 }
 
 @media (max-width: 480px) {

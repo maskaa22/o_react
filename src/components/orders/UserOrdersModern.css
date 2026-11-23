@@ -5,7 +5,7 @@
 
 .uo {
     --uo-line: rgba(var(--hm-purple-rgb), 0.12);
-    font-family: 'Manrope', 'Ledger', system-ui, sans-serif;
+    font-family: 'Manrope', system-ui, sans-serif;
     color: var(--hm-ink);
 }
 
@@ -24,7 +24,7 @@
     display: block;           /* у старих стилях .orders-h2 на десктопі прихований */
     margin: 0;
     padding: 0;
-    font-family: 'Playfair Display', 'Ledger', Georgia, serif;
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: clamp(24px, 2.6vw, 32px);
     font-weight: 700;
     line-height: 1.15;
@@ -54,41 +54,123 @@
     align-items: start;
 }
 
+/* Картка-акордеон: згорнута — лише шапка (однакової висоти в усіх карток), розкрита — товари й сума. */
 .uo-order {
-    padding: clamp(18px, 2.2vw, 26px);
     background: #fff;
     border: 1px solid var(--uo-line);
     border-radius: 22px;
     box-shadow: var(--sv-shadow);
-    transition: transform .3s ease, box-shadow .3s ease;
+    transition: box-shadow .25s ease, border-color .25s ease;
 }
 
-.uo-order:hover {
-    transform: translateY(-3px);
+.uo-order:hover,
+.uo-order.is-open {
     box-shadow: var(--sv-shadow-lg);
 }
 
-.uo-order__head {
+.uo-order.is-open {
+    border-color: rgba(var(--hm-accent-rgb), 0.55);
+}
+
+.uo .uo-order__head {
+    margin: 0;
+    padding: 0;
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+/* вся шапка — кнопка розкриття */
+.uo .uo-order__toggle {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
-    gap: 10px 14px;
-    margin-bottom: 14px;
-    padding-bottom: 14px;
-    border-bottom: 1px solid var(--uo-line);
+    gap: 12px;
+    width: 100%;
+    min-height: 76px;
+    padding: 18px clamp(16px, 2vw, 24px);
+    border: 0;
+    border-radius: 22px;
+    background: transparent;
+    font-family: inherit;
+    text-align: left;
+    color: var(--hm-ink);
+    cursor: pointer;
+    transition: background-color .2s ease;
+}
+
+.uo .uo-order__toggle:hover {
+    background: rgba(var(--hm-accent-rgb), 0.07);
+}
+
+.uo .uo-order__toggle:focus-visible {
+    outline: 3px solid var(--hm-accent);
+    outline-offset: -3px;
 }
 
 .uo .uo-order__title {
-    margin: 0;
-    padding: 0;
-    font-family: 'Playfair Display', 'Ledger', Georgia, serif;
-    font-size: clamp(19px, 1.8vw, 22px);
-    font-weight: 700;
-    text-align: left;
+    flex: 1;
+    min-width: 0;
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: clamp(17px, 1.5vw, 19px);
+    font-weight: 800;
+    font-variant-numeric: lining-nums;
+    line-height: 1.25;
     color: var(--hm-ink);
 }
 
+/* стрілка-шеврон у колі; при розкритті перевертається */
+.uo-order__chev {
+    position: relative;
+    flex: none;
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--uo-line);
+    border-radius: 50%;
+    background: #fff;
+    transition: background-color .2s ease, border-color .2s ease;
+}
+
+.uo-order__chev::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    margin: -6px 0 0 -4px;
+    border-right: 2px solid var(--hm-ink);
+    border-bottom: 2px solid var(--hm-ink);
+    transform: rotate(45deg);
+    transition: transform .25s ease, margin .25s ease;
+}
+
+.uo-order.is-open .uo-order__chev {
+    background: var(--hm-purple);
+    border-color: var(--hm-purple);
+}
+
+.uo-order.is-open .uo-order__chev::after {
+    margin-top: -2px;
+    border-color: #fff;
+    transform: rotate(-135deg);
+}
+
+.uo-order__panel {
+    margin: 0 clamp(16px, 2vw, 24px);
+    padding: 18px 0 clamp(18px, 2vw, 24px);
+    border-top: 1px solid var(--uo-line);
+    animation: uo-open .28s ease both;
+}
+
+@keyframes uo-open {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
 /* позначка статусу */
 .uo-status {
     display: inline-flex;
@@ -216,7 +298,7 @@
 
 .uo .uo-empty h3 {
     margin: 0;
-    font-family: 'Playfair Display', 'Ledger', Georgia, serif;
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: clamp(22px, 2.4vw, 28px);
     font-weight: 700;
     color: var(--hm-ink);
@@ -251,6 +333,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .uo-order__panel {
+        animation: none;
+    }
+
     .uo-order, .uo-empty__btn {
         transition: none;
     }

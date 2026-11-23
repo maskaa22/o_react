@@ -44,7 +44,7 @@ export function Records() {
                 <div className={'adm-pager'} role={'group'} aria-label={'Перемикач місяців'}>
                     <button type={'button'} className={'adm-btn'} onClick={() => prevHandler(setToday)}>Назад</button>
                     <button type={'button'} className={'adm-btn adm-btn--current'}
-                            onClick={() => todayHandler(setToday)}>Сьогодення
+                            onClick={() => todayHandler(setToday)}>Сьогодні
                     </button>
                     <button type={'button'} className={'adm-btn'} onClick={() => nextHandler(setToday)}>Вперед</button>
                 </div>

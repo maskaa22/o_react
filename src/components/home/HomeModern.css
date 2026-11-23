@@ -12,8 +12,8 @@
     --hm-radius: 20px;
     --hm-shadow: 0 10px 30px rgba(var(--hm-deep-rgb), 0.08);
     --hm-shadow-lg: 0 24px 60px rgba(var(--hm-deep-rgb), 0.16);
-    --hm-font-body: 'Manrope', 'Ledger', system-ui, sans-serif;
-    --hm-font-head: 'Playfair Display', 'Ledger', Georgia, serif;
+    --hm-font-body: 'Manrope', system-ui, sans-serif;
+    --hm-font-head: 'Playfair Display', Georgia, serif;
 
     font-family: var(--hm-font-body);
     color: var(--hm-ink);

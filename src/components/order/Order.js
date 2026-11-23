@@ -22,8 +22,9 @@ const STATUS_OPTIONS = [WORD_EXPECTED, WORD_ACCEPTED, WORD_PROCESSING, WORD_SEND
     .map(status => ({value: status, label: status}));
 
 /*
- * Одна картка замовлення в адмінці. Власний стан вибору статусу в кожної картки: раніше він був
- * спільним для всього списку, тож вибір статусу в одному замовленні "обирався" в усіх.
+ * Одна картка замовлення в адмінці у вигляді акордеона: у згорнутому стані видно лише шапку
+ * ("Замовлення № …" і статус), по натисканню картка розкривається. Так усі картки в списку однакової висоти.
+ * Власний стан вибору статусу в кожної картки: раніше він був спільним для всього списку.
  *
  * mode = 'active'  — сторінка "Замовлення": змінити статус або, коли готово, перенести в архів;
  * mode = 'archive' — сторінка "Архів": лише видалення.
@@ -31,79 +32,90 @@ const STATUS_OPTIONS = [WORD_EXPECTED, WORD_ACCEPTED, WORD_PROCESSING, WORD_SEND
 function OrderCard({order, number, mode, setNewStatus, setFlag, setDeleteOrder}) {
 
     const [status, setStatus] = React.useState('');
+    const [open, setOpen] = React.useState(false);
 
     // Логіка як і була: коли замовлення вже "готово" або обрано статус "готово" — показуємо "В архів"
     const toArchive = status === WORD_READY || order.status === WORD_READY;
 
     const date = new Date(order.createdAt);
+    const panelId = `order-panel-${order._id}`;
 
     return (
-        <article className={'ao-card'}>
-            <header className={'ao-card__head'}>
-                <h3 className={'ao-card__title'}>Замовлення № {number}</h3>
-                <span className={`uo-status uo-status--${STATUS_TONE[order.status] || 'default'}`}>
-                    {order.status}
-                </span>
-            </header>
+        <article className={`ao-card${open ? ' is-open' : ''}`}>
+            <h3 className={'ao-card__head'}>
+                <button type={'button'} className={'ao-card__toggle'} aria-expanded={open}
+                        aria-controls={panelId} onClick={() => setOpen(isOpen => !isOpen)}>
+                    <span className={'ao-card__title'}>Замовлення № {number}</span>
+                    <span className={`uo-status uo-status--${STATUS_TONE[order.status] || 'default'}`}>
+                        {order.status}
+                    </span>
+                    <span className={'ao-card__chev'} aria-hidden={'true'}/>
+                </button>
+            </h3>
 
-            <ul className={'ao-meta'}>
-                <li><FaRegUser aria-hidden={'true'}/><span>{order.user_name} {order.surname}</span></li>
-                <li><FaPhoneAlt aria-hidden={'true'}/><span>{order.phone}</span></li>
-                <li><FaMapMarkerAlt aria-hidden={'true'}/>
-                    <span>м. {order.nameSity}, відділ. №{order.nameDepartment}</span></li>
-            </ul>
+            {open &&
+                <div className={'ao-card__panel'} id={panelId}>
+                    <ul className={'ao-meta'}>
+                        <li><FaRegUser aria-hidden={'true'}/><span>{order.user_name} {order.surname}</span></li>
+                        <li><FaPhoneAlt aria-hidden={'true'}/><span>{order.phone}</span></li>
+                        <li><FaMapMarkerAlt aria-hidden={'true'}/>
+                            <span>м. {order.nameSity}, відділ. №{order.nameDepartment}</span></li>
+                    </ul>
 
-            <Cart cart={order.cart}/>
+                    <Cart cart={order.cart}/>
 
-            <div className={'ao-total'}>
-                <span>
-                    <FaRegCalendarAlt aria-hidden={'true'}/>
-                    {isNaN(date.getTime()) ? '' : date.toLocaleDateString('uk-UA')}
-                </span>
-                <strong>{order.summa} грн.</strong>
-            </div>
-
-            <div className={'ao-actions'}>
-                {mode === 'active' && order.status !== WORD_READY &&
-                    <div className={'ao-actions__select'}>
-                        <CustomSelect id={`status-${order._id}`} value={status} onChange={setStatus}
-                                      options={STATUS_OPTIONS} placeholder={'Вибрати статус'}/>
+                    <div className={'ao-total'}>
+                        <span>
+                            <FaRegCalendarAlt aria-hidden={'true'}/>
+                            {isNaN(date.getTime()) ? '' : date.toLocaleDateString('uk-UA')}
+                        </span>
+                        <strong>{order.summa} грн.</strong>
                     </div>
-                }
 
-                {mode === 'active' && (toArchive ?
-                    <button type={'button'} className={'adm-btn adm-btn--ghost'} onClick={() => {
-                        archiveOrder(order._id).then(req => {
-                            if (req) {
-                                setFlag(true);
-                            }
-                        });
-                    }}>В архів</button> :
-                    <button type={'button'} className={'adm-btn adm-btn--primary'} disabled={status === ''}
-                            onClick={() => {
-                                updateStatusOrder(order._id, status).then(req => {
+                    <div className={'ao-actions'}>
+                        {mode === 'active' && order.status !== WORD_READY &&
+                            <div className={'ao-actions__select'}>
+                                <CustomSelect id={`status-${order._id}`} value={status} onChange={setStatus}
+                                              options={STATUS_OPTIONS} placeholder={'Вибрати статус'}/>
+                            </div>
+                        }
+
+                        {mode === 'active' && (toArchive ?
+                            <button type={'button'} className={'adm-btn adm-btn--ghost'} onClick={() => {
+                                archiveOrder(order._id).then(req => {
                                     if (req) {
-                                        setNewStatus(req.status);
+                                        setFlag(true);
                                     }
                                 });
-                            }}>Змінити</button>
-                )}
+                            }}>В архів</button> :
+                            <button type={'button'} className={'adm-btn adm-btn--primary'} disabled={status === ''}
+                                    onClick={() => {
+                                        updateStatusOrder(order._id, status).then(req => {
+                                            if (req) {
+                                                setNewStatus(req.status);
+                                            }
+                                        });
+                                    }}>Змінити</button>
+                        )}
 
-                {mode === 'archive' &&
-                    <button type={'button'} className={'adm-btn adm-btn--ghost adm-btn--danger'} onClick={() => {
-                        // видалення з архіву незворотне — питаємо підтвердження
-                        if (!window.confirm(`Видалити замовлення № ${number} з архіву?`)) return;
+                        {mode === 'archive' &&
+                            <button type={'button'} className={'adm-btn adm-btn--ghost adm-btn--danger'}
+                                    onClick={() => {
+                                        // видалення з архіву незворотне — питаємо підтвердження
+                                        if (!window.confirm(`Видалити замовлення № ${number} з архіву?`)) return;
 
-                        deleteOrder(order._id).then(req => {
-                            if (req) {
-                                setDeleteOrder(true);
-                            }
-                        });
-                    }}>
-                        <FaRegTrashAlt aria-hidden={'true'}/> Видалити
-                    </button>
-                }
-            </div>
+                                        deleteOrder(order._id).then(req => {
+                                            if (req) {
+                                                setDeleteOrder(true);
+                                            }
+                                        });
+                                    }}>
+                                <FaRegTrashAlt aria-hidden={'true'}/> Видалити
+                            </button>
+                        }
+                    </div>
+                </div>
+            }
         </article>
     );
 }

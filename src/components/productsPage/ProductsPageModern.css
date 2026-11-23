@@ -46,7 +46,7 @@
 
 .pr .left-title {
     padding: 4px 8px 0;
-    font-family: 'Playfair Display', 'Ledger', Georgia, serif;
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: 20px;
     font-weight: 700;
     color: var(--hm-ink);
@@ -78,7 +78,7 @@
     border: 0;
     border-radius: 12px;
     color: var(--hm-ink);
-    font-family: 'Manrope', 'Ledger', system-ui, sans-serif;
+    font-family: 'Manrope', system-ui, sans-serif;
     font-size: 15px;
     font-weight: 600;
     text-align: left;
@@ -134,7 +134,7 @@
 
 .pr .filter-name > div {
     margin: 0 0 24px;
-    font-family: 'Playfair Display', 'Ledger', Georgia, serif;
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: clamp(26px, 3vw, 36px);
     font-weight: 700;
     line-height: 1.15;
@@ -176,7 +176,7 @@
     border: 1px solid var(--sv-line);
     border-radius: 999px;
     color: var(--hm-ink);
-    font-family: 'Manrope', 'Ledger', system-ui, sans-serif;
+    font-family: 'Manrope', system-ui, sans-serif;
     font-size: 15px;
     font-weight: 700;
     text-decoration: none;

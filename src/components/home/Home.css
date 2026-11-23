@@ -113,7 +113,7 @@
 }
 
 .h1-home {
-    font-family: 'Lobster', serif;
+    font-family: 'Manrope', system-ui, sans-serif;
     font-size: 5vw;
     margin: 5px;
 }
@@ -158,7 +158,7 @@
 }
 
 .name-studio {
-    font-family: 'Lobster', cursive;
+    font-family: 'Manrope', system-ui, sans-serif;
     padding: 0;
     margin: 0;
 }
@@ -168,7 +168,7 @@
     height: 100%;
     border-radius: 20px;
     box-shadow: 0 0 20px 10px var(--hm-accent-deep);
-    font-family: 'Ledger', serif;
+    font-family: 'Manrope', system-ui, sans-serif;
     animation: flashing-button 1.5s ease infinite;
     border: none;
     cursor: pointer;
@@ -179,7 +179,7 @@
 
 .title {
     width: 6ch;
-    font-family: 'Lobster', cursive;
+    font-family: 'Manrope', system-ui, sans-serif;
     font-size: 7vw;
     white-space: nowrap;
     overflow: hidden;
@@ -187,7 +187,7 @@
 }
 
 .title-for-logo {
-    font-family: 'Lobster', cursive;
+    font-family: 'Manrope', system-ui, sans-serif;
     white-space: nowrap;
     overflow: hidden;
 }

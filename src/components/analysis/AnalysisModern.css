@@ -84,7 +84,7 @@
 .adm .an-card__title {
     margin: 0;
     padding: 0;
-    font-family: 'Playfair Display', 'Ledger', Georgia, serif;
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: clamp(19px, 1.9vw, 24px);
     font-weight: 700;
     text-align: left;

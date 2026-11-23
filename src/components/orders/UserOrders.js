@@ -19,6 +19,42 @@ const STATUS_TONE = {
     'готово': 'done'
 };
 
+/*
+ * Одне замовлення у вигляді акордеона: у згорнутому стані видно лише шапку ("Замовлення № …" і статус),
+ * по натисканню розкриваються товари й сума. Так усі картки в списку однакової висоти.
+ */
+function OrderItem({order, number}) {
+
+    const [open, setOpen] = useState(false);
+    const panelId = `my-order-${order._id}`;
+
+    return (
+        <article className={`uo-order${open ? ' is-open' : ''}`}>
+            <h3 className={'uo-order__head'}>
+                <button type={'button'} className={'uo-order__toggle'} aria-expanded={open}
+                        aria-controls={panelId} onClick={() => setOpen(isOpen => !isOpen)}>
+                    <span className={'uo-order__title'}>Замовлення № {number}</span>
+                    <span className={`uo-status uo-status--${STATUS_TONE[order.status] || 'default'}`}>
+                        {order.status}
+                    </span>
+                    <span className={'uo-order__chev'} aria-hidden={'true'}/>
+                </button>
+            </h3>
+
+            {open &&
+                <div className={'uo-order__panel'} id={panelId}>
+                    <Cart cart={order.cart}/>
+
+                    <footer className={'uo-order__foot'}>
+                        <span>Загальна сума</span>
+                        <strong>{order.summa} грн.</strong>
+                    </footer>
+                </div>
+            }
+        </article>
+    );
+}
+
 export function UserOrders() {
 
     const [orders, setOrders] = useState([]);
@@ -52,21 +88,7 @@ export function UserOrders() {
             {orders.length !== 0 ?
                 <div className={'uo-list'}>
                     {numbered.map(({order, number}) => (
-                        <article key={order._id} className={'uo-order'}>
-                            <header className={'uo-order__head'}>
-                                <h3 className={'uo-order__title'}>Замовлення № {number}</h3>
-                                <span className={`uo-status uo-status--${STATUS_TONE[order.status] || 'default'}`}>
-                                    {order.status}
-                                </span>
-                            </header>
-
-                            <Cart cart={order.cart}/>
-
-                            <footer className={'uo-order__foot'}>
-                                <span>Загальна сума</span>
-                                <strong>{order.summa} грн.</strong>
-                            </footer>
-                        </article>
+                        <OrderItem key={order._id} order={order} number={number}/>
                     ))}
                 </div> :
                 <div className={'uo-empty'}>

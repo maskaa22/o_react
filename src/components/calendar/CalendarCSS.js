@@ -47,7 +47,7 @@ export const TextWrapper = styled.span`
 
 export const TitleWrapper = styled(TextWrapper)`
   margin-right: 10px;
-  font-family: 'Playfair Display', 'Ledger', Georgia, serif;
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: clamp(26px, 3.2vw, 38px);
   font-weight: 700;
   color: ${INK};
