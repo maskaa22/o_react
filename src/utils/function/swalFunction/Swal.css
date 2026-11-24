@@ -179,3 +179,94 @@
         transition: none;
     }
 }
+
+/* ==========================================================================
+   Вікно підтвердження (ConfirmDialog.js): "Видалити …?" з кнопками Скасувати / Видалити.
+   ========================================================================== */
+
+.swal2-container .swal2-popup.sw-popup.sw-confirm-popup {
+    width: min(26em, 92vw);
+}
+
+/* іконка кошика: м'який червоний кружечок замість стандартної іконки бібліотеки */
+.swal2-popup.sw-confirm-popup .swal2-icon.sw-confirm-icon {
+    display: flex;
+    width: 4.5em;
+    height: 4.5em;
+    margin: 0 auto 0.6em;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(217, 83, 79, 0.12);
+    color: #d9534f;
+}
+
+.swal2-popup.sw-confirm-popup .swal2-icon.sw-confirm-icon .swal2-icon-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1em;
+}
+
+.swal2-popup.sw-confirm-popup .swal2-actions.sw-confirm-actions {
+    gap: 12px;
+    width: 100%;
+    margin: 1.6em 0 0;
+}
+
+.swal2-popup.sw-confirm-popup button.sw-btn {
+    flex: 1 1 0;
+    min-width: 0;
+    margin: 0;
+    padding: 0.9em 1em;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 1em;
+    font-weight: 700;
+    line-height: 1.1;
+    cursor: pointer;
+    box-shadow: none;
+    transition: transform .2s ease, background-color .2s ease, box-shadow .2s ease, color .2s ease;
+}
+
+.swal2-popup.sw-confirm-popup button.sw-btn:hover {
+    transform: translateY(-1px);
+}
+
+.swal2-popup.sw-confirm-popup button.sw-btn:focus-visible {
+    outline: 3px solid var(--hm-accent);
+    outline-offset: 2px;
+    box-shadow: none;
+}
+
+.swal2-popup.sw-confirm-popup button.sw-btn--ghost {
+    border-color: rgba(var(--hm-purple-rgb), 0.2);
+    background: #fff;
+    color: var(--hm-ink);
+}
+
+.swal2-popup.sw-confirm-popup button.sw-btn--ghost:hover {
+    background: var(--hm-soft);
+}
+
+.swal2-popup.sw-confirm-popup button.sw-btn--danger {
+    background: #d9534f;
+    color: #fff;
+    box-shadow: 0 8px 22px rgba(217, 83, 79, 0.35);
+}
+
+.swal2-popup.sw-confirm-popup button.sw-btn--danger:hover {
+    background: #c8433f;
+}
+
+.swal2-popup.sw-confirm-popup button.sw-btn--primary {
+    background: var(--hm-grad-accent);
+    color: var(--hm-ink);
+    box-shadow: 0 8px 22px rgba(var(--hm-accent-rgb), 0.38);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .swal2-popup.sw-confirm-popup button.sw-btn {
+        transition: none;
+    }
+}

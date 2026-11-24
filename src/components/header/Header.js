@@ -26,7 +26,7 @@ import {ADMIN, CLIENT} from "../../config/homeConstants";
 import {logout} from "../../servises";
 import {closeToogleMenu, openToogleMenu} from "../../utils/function";
 import {delFilter} from "../../reducers/actionCreators";
-import Logo from "../../images/logo.png";   // повний логотип: значок + слово
+import Logo from "../../images/logo.webp";   // повний логотип: значок + слово
 import {WORLD_ADMIN, WORLD_AUTORIZATION, WORLD_USER} from "../../config/wordsConstants";
 
 export function Header() {

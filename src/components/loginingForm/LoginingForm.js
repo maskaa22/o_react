@@ -11,8 +11,8 @@ import {registration, login} from "../../servises";
 import {LOGIN, LOGIN_RESET_PASSWORD, REGISTRATION, THIS} from "../../config/headerConstants";
 import {StyleForPassword} from "../../utils/function";
 import {b_letters, digits, s_letters} from "../../config/functionConstants";
-import ManPhoto from "../../images/gallery/2.jpg";
-import WomanPhoto from "../../images/gallery/6.jpg";
+import ManPhoto from "../../images/gallery/2.webp";
+import WomanPhoto from "../../images/gallery/6.webp";
 import {
     WORD_AUTORIZ,
     WORD_AUTORIZATING,

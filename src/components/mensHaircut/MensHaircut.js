@@ -2,12 +2,12 @@ import {useDispatch} from "react-redux";
 import {useEffect} from "react";
 
 import {auth} from "../../servises";
-import Mens from '../../images/big-foto/Group 7.png';
+import Mens from '../../images/big-foto/Group 7.webp';
 import {ServicePage} from "../servicePage";
-import man1 from '../../images/servises/menHears/Group11.png';
-import man2 from '../../images/servises/menHears/Group12.png';
-import man3 from '../../images/servises/menHears/Group13.png';
-import smallFoto from '../../images/servises/menHears/1.png';
+import man1 from '../../images/servises/menHears/Group11.webp';
+import man2 from '../../images/servises/menHears/Group12.webp';
+import man3 from '../../images/servises/menHears/Group13.webp';
+import smallFoto from '../../images/servises/menHears/1.webp';
 import {WORD_TOKEN} from "../../config/wordsConstants";
 
 const PARAGRAPHS = [

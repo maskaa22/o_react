@@ -5,7 +5,7 @@ import {useEffect} from "react";
 
 import '../servicePage/ServicePage.css';   // спільні класи sv-*: герой, секції, заголовки, картка запису
 import './AboutAsPage.css';
-import About from '../../images/big-foto/Group 4.png';
+import About from '../../images/big-foto/Group 4.webp';
 import {AboutAs} from "./AboutAs";
 import {auth} from "../../servises";
 import {History} from "./History";

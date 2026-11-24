@@ -540,3 +540,77 @@
         animation: none;
     }
 }
+/* ---------- Список категорій у вікні видалення ---------- */
+
+.mm .mm-catlist {
+    display: grid;
+    gap: 8px;
+    max-height: min(50vh, 360px);
+    margin: 0;
+    padding: 0 4px 0 0;
+    overflow-y: auto;
+    list-style: none;
+}
+
+.mm .mm-catlist__item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0;
+    padding: 10px 10px 10px 16px;
+    border: 1px solid rgba(var(--hm-purple-rgb), 0.12);
+    border-radius: 14px;
+    background: #fff;
+}
+
+.mm .mm-catlist__name {
+    flex: 1;
+    min-width: 0;
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: capitalize;
+    color: var(--hm-ink);
+    overflow-wrap: anywhere;
+}
+
+.mm .mm-catlist__del {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    border: 1px solid rgba(var(--hm-purple-rgb), 0.14);
+    border-radius: 50%;
+    background: #fff;
+    font-size: 15px;
+    color: var(--hm-ink);
+    cursor: pointer;
+    transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+}
+
+.mm .mm-catlist__del:hover {
+    border-color: #d9534f;
+    background: #d9534f;
+    color: #fff;
+}
+
+.mm .mm-catlist__del:focus-visible {
+    outline: 3px solid var(--hm-accent);
+    outline-offset: 2px;
+}
+
+.mm .mm-catlist__empty,
+.mm .mm-catlist__hint {
+    margin: 14px 0 0;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--hm-ink-soft);
+}
+
+.mm .mm-catlist__empty {
+    margin: 0;
+    padding: 18px 0;
+    text-align: center;
+    font-size: 15px;
+}

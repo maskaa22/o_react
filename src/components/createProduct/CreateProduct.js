@@ -9,8 +9,9 @@ import './CreateProduct@media.css';
 import '../admin/AdminPagesModern.css';
 import {AUTH_URL} from "../../config/URL";
 import {deleteProduct, getCategories, getProducts} from "../../servises";
-import {ModalCreateCategory, ModalCreateProduct} from '../modal';
+import {ModalCreateCategory, ModalCreateProduct, ModalDeleteCategory} from '../modal';
 import {PaginationProductCategory} from "../pagination";
+import {confirmDialog} from "../../utils/function";
 
 export function CreateProduct() {
 
@@ -18,6 +19,7 @@ export function CreateProduct() {
 
     const [modalActiveProduct, setModalActiveProduct] = useState(false);
     const [modalActiveCategory, setModalActiveCategory] = useState(false);
+    const [modalDeleteCategory, setModalDeleteCategory] = useState(false);
     const [page, setPage] = useState([]);
     const [products, setProducts] = useState([]);
     const [paginate, setPaginate] = useState([]);
@@ -54,11 +56,16 @@ export function CreateProduct() {
         if (!value) refresh();
     };
 
+    const setDeleteCategoryModal = (value) => {
+        setModalDeleteCategory(value);
+        if (!value) refresh();
+    };
+
     const removeProduct = (product) => {
         // список тепер завжди на екрані, тож перед видаленням питаємо підтвердження
-        if (!window.confirm(`Видалити «${product.product_name}»?`)) return;
-
-        deleteProduct(product.inventoryNumber).then(refresh);
+        confirmDialog({title: 'Видалити товар?', text: `«${product.product_name}»`}).then(ok => {
+            if (ok) deleteProduct(product.inventoryNumber).then(refresh);
+        });
     };
 
     return (
@@ -72,6 +79,9 @@ export function CreateProduct() {
                 <div className={'adm-actions'}>
                     <button type={'button'} className={'adm-btn adm-btn--ghost'}
                             onClick={() => setModalActiveCategory(true)}>Додати категорію
+                    </button>
+                    <button type={'button'} className={'adm-btn adm-btn--ghost adm-btn--danger'}
+                            onClick={() => setModalDeleteCategory(true)}>Видалити категорію
                     </button>
                     <button type={'button'} className={'adm-btn adm-btn--primary'}
                             onClick={() => {
@@ -135,6 +145,7 @@ export function CreateProduct() {
             <ModalCreateProduct active={modalActiveProduct} setActive={setProductModal}
                                 categories={categories}/>
             <ModalCreateCategory active={modalActiveCategory} setActive={setCategoryModal}/>
+            <ModalDeleteCategory active={modalDeleteCategory} setActive={setDeleteCategoryModal}/>
         </section>
     );
 }

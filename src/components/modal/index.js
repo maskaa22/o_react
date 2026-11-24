@@ -4,3 +4,4 @@ export * from './ModalUser';
 export * from './ModalSendUser';
 export * from './ModalCalendar';
 export * from './ModalRegister';
+export * from './ModalDeleteCategory';

@@ -1,9 +1,9 @@
 import './HomeModern.css';
 import {ScrollReelTestimonials} from "./ScrollReelTestimonials";
-import Foto1 from "../../images/foto-1.jpg";
-import Foto2 from "../../images/foto-7.jpg";
-import Foto3 from "../../images/foto-5.png";
-import Foto4 from "../../images/foto-4.jpg";
+import Foto1 from "../../images/foto-1.webp";
+import Foto2 from "../../images/foto-7.webp";
+import Foto3 from "../../images/foto-5.webp";
+import Foto4 from "../../images/foto-4.webp";
 
 const COMMENTS = [
     {

@@ -8,7 +8,7 @@ import {useDispatch} from "react-redux";
 import '../servicePage/ServicePage.css';   // спільні класи sv-*: герой, секції, заголовки, кнопка
 import './Contacts.css';
 import {auth, sentEmail} from "../../servises";
-import Banner from '../../images/big-foto/Group 9.png';
+import Banner from '../../images/big-foto/Group 9.webp';
 import {THIS} from "../../config/headerConstants";
 import {WORD_TOKEN} from "../../config/wordsConstants";
 

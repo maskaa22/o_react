@@ -17,7 +17,7 @@ import {
     WOMENS_HAIRCUT
 } from "../../config/headerConstants";
 import {delFilter} from "../../reducers/actionCreators";
-import Logo from "../../images/logo.png";   // повний логотип: значок + слово
+import Logo from "../../images/logo.webp";   // повний логотип: значок + слово
 
 const SERVICES = [
     {to: MENS_HAIRCUT, label: 'Чоловічі стрижки'},

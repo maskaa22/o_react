@@ -7,6 +7,7 @@ import './OrderModern.css';
 import {deleteOrder, archiveOrder, updateStatusOrder} from "../../servises";
 import Cart from "../orders/Cart";
 import {CustomSelect} from "../modal/CustomSelect";
+import {confirmDialog} from "../../utils/function";
 import {WORD_ACCEPTED, WORD_EXPECTED, WORD_PROCESSING, WORD_READY, WORD_SEND} from "../../config/wordsConstants";
 
 // Колір позначки статусу — ті самі статуси, що й у кабінеті клієнта
@@ -102,12 +103,17 @@ function OrderCard({order, number, mode, setNewStatus, setFlag, setDeleteOrder})
                             <button type={'button'} className={'adm-btn adm-btn--ghost adm-btn--danger'}
                                     onClick={() => {
                                         // видалення з архіву незворотне — питаємо підтвердження
-                                        if (!window.confirm(`Видалити замовлення № ${number} з архіву?`)) return;
+                                        confirmDialog({
+                                            title: 'Видалити замовлення?',
+                                            text: `Замовлення № ${number} буде остаточно видалене з архіву.`
+                                        }).then(ok => {
+                                            if (!ok) return;
 
-                                        deleteOrder(order._id).then(req => {
-                                            if (req) {
-                                                setDeleteOrder(true);
-                                            }
+                                            deleteOrder(order._id).then(req => {
+                                                if (req) {
+                                                    setDeleteOrder(true);
+                                                }
+                                            });
                                         });
                                     }}>
                                 <FaRegTrashAlt aria-hidden={'true'}/> Видалити

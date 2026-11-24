@@ -1,10 +1,10 @@
 import './HomeModern.css';
-import One from '../../images/gallery/1.jpg';
-import Two from '../../images/gallery/2.jpg';
-import Three from '../../images/gallery/3.jpeg';
-import Four from '../../images/gallery/4.jpg';
-import Five from '../../images/gallery/5.jpg';
-import Six from '../../images/gallery/6.jpg';
+import One from '../../images/gallery/1.webp';
+import Two from '../../images/gallery/2.webp';
+import Three from '../../images/gallery/3.webp';
+import Four from '../../images/gallery/4.webp';
+import Five from '../../images/gallery/5.webp';
+import Six from '../../images/gallery/6.webp';
 
 // Порядок і класи hm-g1..hm-g6 задають "bento"-розкладку в HomeModern.css
 const WORKS = [

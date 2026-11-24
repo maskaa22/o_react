@@ -37,9 +37,9 @@ html, body {
 }
 
 /* Логотип: тьмяний силует + така сама фігура, що заливається кольором знизу вгору.
-   Форма береться з альфа-каналу logo-loader.png через CSS-маску. Це копія нового логотипа з
-   src/images/logo-header.png (552×724): лоадер працює до завантаження React, тож не може імпортувати
-   картинку з src, і копія лежить у public. Змінюєш логотип — скопіюй його сюди ще раз.
+   Форма береться з альфа-каналу logo-loader.webp через CSS-маску. Це копія нового логотипа з
+   логотипа сайту (552×724, зменшена до 336×441): лоадер працює до завантаження React, тож не може
+   імпортувати картинку з src, і копія лежить у public. Змінюєш логотип — оптимізуй і поклади сюди ще раз.
    Іконка вкладки браузера — окремий файл favicon.ico (див. public/index.html). */
 .loader__logo {
     position: relative;
@@ -52,8 +52,8 @@ html, body {
 .loader__fill {
     position: absolute;
     inset: 0;
-    -webkit-mask: url('/logo-loader.png') center / contain no-repeat;
-    mask: url('/logo-loader.png') center / contain no-repeat;
+    -webkit-mask: url('/logo-loader.webp') center / contain no-repeat;
+    mask: url('/logo-loader.webp') center / contain no-repeat;
 }
 
 .loader__base {

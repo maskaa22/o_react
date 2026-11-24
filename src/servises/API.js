@@ -175,6 +175,17 @@ export const createCategory = async (category_name) => {
         SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
     }
 };
+export const deleteCategory = async (_id) => {
+    try {
+        const response = await CategoryService.deleteCategory(_id);
+
+        SwalFunction(WORD_SWAL_READY, '', WORD_SWAL_SUCCESS, WORD_SWAL_OK, false, 3500);
+
+        return response.data;
+    } catch (e) {
+        SwalFunction(WORD_SWAL_TEXT_ERROR, e.response.data.message, WORD_SWAL_ERROR, WORD_SWAL_OK, true);
+    }
+};
 export const sentUser = async (text, userEmail, topic) => {
     try {
         const response = await UserService.sentUser(text, userEmail, topic);

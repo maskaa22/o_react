@@ -1,7 +1,7 @@
-import FirstMen from '../../images/teams/1.png';
-import FirstWomen from '../../images/teams/3.png';
-import SecondMen from '../../images/teams/2.png';
-import SecondWomen from '../../images/teams/4.png';
+import FirstMen from '../../images/teams/1.webp';
+import FirstWomen from '../../images/teams/3.webp';
+import SecondMen from '../../images/teams/2.webp';
+import SecondWomen from '../../images/teams/4.webp';
 
 const TEAM = [
     {photo: FirstMen, name: 'Андрій Шмигаль'},

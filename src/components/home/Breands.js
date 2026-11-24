@@ -1,9 +1,9 @@
 import './HomeModern.css';
-import One from '../../images/brends/1.png';
-import Two from '../../images/brends/2.png';
-import Three from '../../images/brends/3.png';
-import Four from '../../images/brends/4.png';
-import Five from '../../images/brends/5.png';
+import One from '../../images/brends/1.webp';
+import Two from '../../images/brends/2.webp';
+import Three from '../../images/brends/3.webp';
+import Four from '../../images/brends/4.webp';
+import Five from '../../images/brends/5.webp';
 
 const BRANDS = [
     {src: One, alt: 'Бренд 1'},
