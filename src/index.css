@@ -90,3 +90,37 @@ code {
 .main {
     flex: 1 1 auto;
 }
+
+/* ==========================================================================
+   Смуги прокрутки всередині сторінки (списки міст Нової пошти, випадаючі списки, модалки, таблиці):
+   тонкі, акцентного кольору, без темної доріжки й стрілок. Смуга самої сторінки прихована окремо
+   (public/index.css), тому тут `body *`: html і body цим правилом не зачіпаються.
+   Спеціальні випадки (напр. .cl-tabs зі scrollbar-width: none) перекривають це правило своєю специфічністю.
+   ========================================================================== */
+body * {
+    scrollbar-width: thin;                              /* Firefox і сучасний Chrome */
+    scrollbar-color: var(--hm-accent) transparent;      /* повзунок / доріжка */
+}
+
+body *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+body *::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+body *::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: var(--hm-accent);
+}
+
+body *::-webkit-scrollbar-thumb:hover {
+    background: var(--hm-accent-deep);
+}
+
+body *::-webkit-scrollbar-button,
+body *::-webkit-scrollbar-corner {
+    display: none;
+}
