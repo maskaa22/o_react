@@ -46,6 +46,11 @@ export function SwalFunction(title, text, icon, confirmButtonText, showConfirmBu
         return;
     }
 
+    // Якщо сервер відповів помилкою без тексту (напр., 500 з HTML-сторінкою), модалка не лишається порожньою
+    if (icon === 'error' && !text) {
+        text = 'Не вдалося виконати дію. Спробуйте пізніше.';
+    }
+
     Swal.fire({
         title: title,
         text: text,

@@ -550,6 +550,27 @@
     padding: 0 4px 0 0;
     overflow-y: auto;
     list-style: none;
+    /* Тонка смуга прокрутки в акцентному кольорі, без темної підложки. Колір на body (public/index.css)
+       успадковується і дає темну доріжку, тому тут задаємо свій. */
+    scrollbar-width: thin;
+    scrollbar-color: var(--hm-accent) transparent;
+}
+
+.mm .mm-catlist::-webkit-scrollbar {
+    width: 8px;
+}
+
+.mm .mm-catlist::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.mm .mm-catlist::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: var(--hm-accent);
+}
+
+.mm .mm-catlist::-webkit-scrollbar-button {
+    display: none;
 }
 
 .mm .mm-catlist__item {
@@ -613,4 +634,32 @@
     padding: 18px 0;
     text-align: center;
     font-size: 15px;
+}
+
+/* Така ж тонка акцентна смуга прокрутки для самого вікна й випадаючого списку (замість темної за замовчуванням) */
+.mm .mm-dialog,
+.mm .mm-select__list {
+    scrollbar-width: thin;
+    scrollbar-color: var(--hm-accent) transparent;
+}
+
+.mm .mm-dialog::-webkit-scrollbar,
+.mm .mm-select__list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.mm .mm-dialog::-webkit-scrollbar-track,
+.mm .mm-select__list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.mm .mm-dialog::-webkit-scrollbar-thumb,
+.mm .mm-select__list::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: var(--hm-accent);
+}
+
+.mm .mm-dialog::-webkit-scrollbar-button,
+.mm .mm-select__list::-webkit-scrollbar-button {
+    display: none;
 }
