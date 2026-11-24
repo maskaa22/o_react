@@ -17,7 +17,7 @@
 
 .autorization_btn {
     border: none;
-    background-color: #3b3bd2;
+    background-color: var(--hm-purple);
     border-radius: 8px;
     color: white;
     font-weight: 700;

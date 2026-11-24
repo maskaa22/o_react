@@ -1,3 +1,65 @@
+/* ==========================================================================
+   ПАЛІТРА САЙТУ — єдине місце, де міняються основні кольори.
+   (rgb-канали потрібні для напівпрозорих тіней, ліній і фонів)
+
+   ОРИГІНАЛЬНА ФІОЛЕТОВА ПАЛІТРА — щоб повернути, підставити ці значення:
+     --hm-purple: #47008e;        --hm-purple-rgb: 71, 0, 142;
+     --hm-purple-deep: #2a0a52;   --hm-deep-rgb: 42, 10, 82;
+     --hm-ink: #150a24;           --hm-ink-rgb: 21, 10, 36;
+     --hm-ink-soft: #3b2f4d;
+     --hm-surface: #faf8fd;       --hm-tint: #f6f2fc;   --hm-muted: #f1ecf8;
+     --hm-submenu: #e4def1;       --hm-submenu-hover: #efebf6;
+   Якщо повертаєш фіолетову — у src/components/analysis/*.js та
+   src/utils/function/swalFunction замість var(--hm-purple) стояв #47008e.
+
+   ОРИГІНАЛЬНИЙ М'ЯТНИЙ АКЦЕНТ — щоб повернути:
+     --hm-accent: #79cbb8;        --hm-accent-rgb: 121, 203, 184;
+     --hm-accent-hover: #8ad6c4;  --hm-accent-deep: #3f9d89;
+     --hm-accent-tint: #e6f6f1;
+     --hm-grad-accent: linear-gradient(90deg, #79cbb8, #47008e);
+     --hm-grad-dark: linear-gradient(120deg, #150a24, #2a0a52);
+   (у public/index.css лоадер: #79cbb8 і #428b87; логотипи брендів — це
+    PNG м'ятного кольору, перефарбовуються маскою в .hm-brands__logo)
+   ========================================================================== */
+:root {
+    /* ПОТОЧНА: коричнева на основі #2C1203 */
+    --hm-purple: #2c1203;
+    --hm-purple-rgb: 44, 18, 3;
+    --hm-purple-deep: #1c0b02;
+    --hm-deep-rgb: 28, 11, 2;
+    --hm-ink: #170a02;
+    --hm-ink-rgb: 23, 10, 2;
+    --hm-ink-soft: #5a4637;
+    --hm-surface: #fbf8f5;
+    --hm-tint: #f7f1ea;
+    --hm-muted: #f1e9e0;
+    --hm-submenu: #efe6dc;
+    --hm-submenu-hover: #f7f1ea;
+
+    /* Акцент: бірюзовий (м'ятний). Альтернатива — карамельно-золотий, див. нижче:
+         --hm-accent: #d9a566;  --hm-accent-rgb: 217, 165, 102;  --hm-accent-hover: #e6b97f;
+         --hm-accent-deep: #8a5d24;  --hm-accent-tint: #f6e9d6;
+         --hm-grad-accent: linear-gradient(90deg, #ecc794 0%, #d9a566 50%, #b9803f 100%);
+         + public/index.css (лоадер): #d9a566 і #8a5d24 */
+    --hm-accent: #79cbb8;
+    --hm-accent-rgb: 121, 203, 184;
+    --hm-accent-hover: #8ad6c4;
+    --hm-accent-deep: #3f9d89;      /* для тексту й дрібних елементів на світлому фоні */
+    --hm-accent-tint: #e6f6f1;
+
+    /* Градієнти */
+    --hm-grad-dark: linear-gradient(120deg, #170a02 0%, #2c1203 55%, #43200a 100%);
+    --hm-grad-accent: linear-gradient(90deg, #8ad6c4 0%, #79cbb8 50%, #4fae9a 100%);
+    /* Однотонна світло-коричнева заливка (іконки переваг, плашки записів у календарі).
+       Раніше тут був градієнт: linear-gradient(135deg, rgba(акцент, .35), rgba(purple, .1)) */
+    --hm-soft: #e9dac9;
+
+    /* Світло-коричневий для блоку відгуків (лапки, відблиск на фото, рамка фокуса) —
+       замість бірюзового акценту. */
+    --hm-brown-light: #c4a484;
+    --hm-brown-light-rgb: 196, 164, 132;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -5,12 +67,18 @@ html {
 body {
     margin: 0;
     height: 100%;
-    font-family: 'Ledger', serif
+    font-family: 'Manrope', system-ui, sans-serif
 }
 
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* Банер на всю ширину: його використовують сторінки "Про нас" і "Контакти".
+   Раніше це правило лежало в MansHaircut.css, який вони самі не імпортували. */
+.submenu-img {
+    width: 100%;
 }
 
 .wr {

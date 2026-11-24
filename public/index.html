@@ -10,28 +10,33 @@
       content="Web site created using create-react-app"
     />
     <meta name="google-site-verification" content="68q4y68OatC028cc6Jfath-aFdIk7tIxzVaMpFeocsc" />
-    <link href="./index.css" rel="stylesheet" type="text/css">
-    <link rel="icon" href="logo.png" type="images/png"/>
+    <link href="%PUBLIC_URL%/index.css" rel="stylesheet" type="text/css">
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" type="image/x-icon"/>
 
 <!--    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />-->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Ledger&family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap&subset=cyrillic" rel="stylesheet">
 
 
-    <title>Studio</title>
+    <title>Miraé</title>
   </head>
   <body>
 
   <div class="mask">
-    <div class="loader"></div>
+    <div class="loader" role="status" aria-label="Завантаження">
+      <div class="loader__logo">
+        <div class="loader__base"></div>
+        <div class="loader__fill"></div>
+      </div>
+      <div class="loader__text">Miraé</div>
+    </div>
   </div>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
 
-  <script src="./index.js"></script>
+  <script src="%PUBLIC_URL%/index.js"></script>
     <script src="https://use.fontawesome.com/66a13644b6.js"></script>
     <script src="https://checkout.stripe.com/checkout.js"></script>
 

@@ -1,10 +1,24 @@
+/* Вища шапка на комп'ютері (на телефоні лишається 50px — від цього залежать мобільні панелі).
+   Це значення дублюється у героя головної: --hm-header-h у HomeModern.css, тримати синхронно. */
+@media screen and (min-width: 800px) {
+    .header {
+        height: 64px;
+        padding: 0 var(--hd-pad);   /* вміст шапки — у колонці контенту */
+    }
+
+    .menu {
+        height: 64px;
+    }
+}
+
 @media screen and (min-width: 1920px) {
     .header {
         height: 80px;
     }
 
     .menu {
-        margin-top: 10px;
+        height: 80px;
+        margin-top: 0;
     }
 }
 
@@ -15,11 +29,11 @@
     }
 
     .menu a, .menu button, .div-admin {
-        font-size: 2.5vh;
+        font-size: 16px;   /* було 2.5vh (~27px на великому екрані) */
     }
 
     .active-menu {
-        border-color: #79CBB8FF;
+        border-color: var(--hm-accent);
     }
 
     .menu > li > .link-a {
@@ -32,8 +46,23 @@
         display: none;
     }
 
-    .active {
-        border-bottom: 2px solid white;
+    /* Підкреслення активного пункту — лише для пунктів верхнього рівня меню шапки (не для
+       посилань у випадаючому меню). Раніше це було глобальне правило .active, яке чіплялось
+       до будь-чого з таким класом (пагінація, модальні вікна, підменю). */
+    .menu > li > a.active {
+        border-bottom: 2px solid var(--hm-accent);
+    }
+
+    /* кнопка "Послуги" має border: none (.menu button), тож їй підкреслення задаємо окремо,
+       з вищою специфічністю */
+    .menu button.active {
+        border-bottom: 2px solid var(--hm-accent);
+    }
+
+    /* іконка акаунта на сторінках входу/реєстрації: змінює колір, без підкреслення */
+    .menu button.link-a.active {
+        border-bottom: 0;
+        color: var(--hm-accent);
     }
 
     .menu > li:hover > .submenu {
@@ -56,11 +85,11 @@
 
     .menu > li {
         position: relative;
-        padding: 0 1vw;
+        padding: 0 clamp(2px, 0.5vw, 10px);   /* було 1vw — пункти ближче один до одного */
     }
 
     .submenu li {
-        background-color: #e4def1;
+        background-color: var(--hm-submenu);
         color: black;
     }
 
@@ -70,11 +99,60 @@
     }
 
     .submenu li:hover {
-        background-color: #efebf6;
+        background-color: var(--hm-submenu-hover);
     }
 
     .submenu a {
         padding: 10px;
+    }
+
+    /* Дві іконки (акаунт і кошик / "Адмін") — поруч у правому куті.
+       Виводимо їх із потоку, тож решта пунктів, як і раніше, рівномірно розтягується
+       по шапці, а справа лишаємо запас, щоб "Контакти" не наїхали на іконки. */
+    .menu {
+        justify-content: flex-end;   /* пункти збиті справа, поруч з іконками */
+        padding-right: 150px;        /* відступ від іконок (акаунт + кошик займають ~105px справа) */
+    }
+
+    .menu > li:nth-last-child(-n+2) {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        padding: 0;
+    }
+
+    .menu > li:nth-last-child(-n+2) > .link-a {
+        padding: .5rem .65rem;
+    }
+
+    /* Випадаюче меню акаунта. Пункт тепер flex із align-items: center, а в такому
+       контейнері абсолютно позиціоноване підменю без top центрується по вертикалі
+       і "їде" вгору — тому позиція задана явно: одразу під іконкою (як у "Послуги"),
+       праворуч притиснута до іконки, щоб не виходити за край екрана. */
+    .menu > li:nth-last-child(-n+2) .submenu {
+        top: calc(50% + 26px);
+        left: auto;
+        right: 0;
+    }
+
+    .menu > li:last-child {
+        right: var(--hd-pad);
+    }
+
+    .menu > li:nth-last-child(2) {
+        right: calc(var(--hd-pad) + 48px);
+    }
+
+    /* немає другої іконки (гість / адмін без кошика) — акаунт стає в самий куток */
+    .menu > li:nth-last-child(2):has(+ li:empty) {
+        right: var(--hd-pad);
+    }
+
+    /* замість кошика напис "Адмін" — він ширший, тож відсуваємо акаунт далі */
+    .menu > li:nth-last-child(2):has(+ li > .div-admin) {
+        right: calc(var(--hd-pad) + 72px);
     }
 }
 
@@ -115,8 +193,14 @@
         width: 30px;
     }
 
+    /* у повноекранному меню на телефоні пункти підменю трохи більші, щоб зручно натискати */
+    .menu .submenu a {
+        font-size: 16px;
+        white-space: normal;
+    }
+
     .menu a:hover {
-        background-color: rgb(120 201 184 / 40%);
+        background-color: rgb(var(--hm-accent-rgb) / 40%);
     }
 
     .menu > li {
@@ -128,6 +212,11 @@
     .navbar-logo-position {
         position: absolute;
         left: 20px;
+    }
+
+    /* на телефоні шапка 50px, тож логотип нижчий, щоб не виходив за її межі */
+    .navbar-logo-img {
+        height: 36px;
     }
 
     .btn-menu {
@@ -170,7 +259,7 @@
         transition: .3s;
         list-style: none;
         position: relative;
-        background-color: #e4def1;
+        background-color: var(--hm-submenu);
         flex: 1 1 100%;
         margin: 20px 0 0 0;
     }

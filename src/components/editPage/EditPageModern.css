@@ -1,0 +1,490 @@
+/* ==========================================================================
+   Профіль у новому дизайні (префікс pf-). Старі стилі EditPage.css лишаються для інших сторінок
+   (там глобальні .full-center, .input-center-full, #block_check тощо). Усе тут стоїть під .pf
+   або має префікс, і не чіпає кабінет адміна, окрім самої форми профілю.
+   ========================================================================== */
+
+.pf {
+    --pf-line: rgba(var(--hm-purple-rgb), 0.12);
+
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    font-family: 'Manrope', system-ui, sans-serif;
+    color: var(--hm-ink);
+}
+
+.pf *, .pf *::before, .pf *::after {
+    box-sizing: border-box;
+}
+
+.pf-card {
+    min-width: 0;
+    padding: clamp(22px, 2.6vw, 32px);
+    background: #fff;
+    border: 1px solid var(--pf-line);
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(var(--hm-deep-rgb), 0.08);
+}
+
+.pf-card--photo,
+.pf-card--wide {
+    grid-column: 1 / -1;
+}
+
+.pf .pf-card__title {
+    margin: 0 0 20px;
+    padding: 0;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(21px, 2vw, 26px);
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: left;
+    color: var(--hm-ink);
+}
+
+/* ---------- Фото ---------- */
+
+.pf-card--photo {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: clamp(18px, 2.6vw, 32px);
+}
+
+.pf .pf-avatar {
+    flex: none;
+    border: 3px solid var(--hm-accent);
+    background: var(--hm-grad-accent);
+    color: var(--hm-ink);
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 44px;
+    font-weight: 700;
+    box-shadow: 0 10px 28px rgba(var(--hm-accent-rgb), 0.3);
+}
+
+.pf-photo__body {
+    flex: 1 1 260px;
+    min-width: 0;
+}
+
+.pf .pf-title {
+    margin: 0;
+    padding: 0;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(24px, 2.6vw, 32px);
+    font-weight: 700;
+    line-height: 1.15;
+    text-align: left;
+    color: var(--hm-ink);
+}
+
+.pf-lead {
+    max-width: 520px;
+    margin: 8px 0 18px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--hm-ink-soft);
+}
+
+.pf-upload {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 22px;
+    border: 1px solid var(--pf-line);
+    border-radius: 999px;
+    background: var(--hm-surface);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--hm-ink);
+    cursor: pointer;
+    transition: background-color .2s ease, border-color .2s ease;
+}
+
+.pf-upload:hover {
+    background: var(--hm-soft);
+}
+
+/* справжній input[type=file] лишається для клавіатури й скрінрідерів, але візуально прихований */
+.pf-file {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+}
+
+.pf-file:focus-visible + label,
+.pf-upload:focus-within {
+    outline: 3px solid var(--hm-accent);
+    outline-offset: 2px;
+}
+
+/* пошту не підтверджено */
+.pf .pf-warn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    max-width: 320px;
+    padding: 14px 18px;
+    border: 1px solid rgba(192, 57, 43, 0.35);
+    border-radius: 16px;
+    background: rgba(192, 57, 43, 0.06);
+    color: #a93226;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color .2s ease;
+}
+
+.pf .pf-warn:hover {
+    background: rgba(192, 57, 43, 0.12);
+}
+
+.pf-warn svg {
+    flex: none;
+    font-size: 22px;
+}
+
+.pf-warn small {
+    display: block;
+    margin-top: 2px;
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 0.85;
+}
+
+/* ---------- Поля ---------- */
+
+.pf-fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.pf-fields--stack {
+    grid-template-columns: 1fr;
+}
+
+.pf-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.pf-field label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--hm-ink-soft);
+}
+
+/* Перекриває глобальні правила для input (Input.css, EditPage.css) і ::placeholder */
+.pf .pf-input {
+    width: 100%;
+    margin: 0;
+    padding: 14px 16px;
+    background: #fff;
+    border: 1px solid rgba(var(--hm-purple-rgb), 0.18);
+    border-radius: 14px;
+    outline: none;
+    transform: none;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--hm-ink);
+    transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.pf .pf-input::placeholder {
+    font-weight: 500;
+    color: rgba(var(--hm-purple-rgb), 0.45);
+}
+
+.pf .pf-input:focus {
+    border-color: var(--hm-accent);
+    box-shadow: 0 0 0 4px rgba(var(--hm-accent-rgb), 0.22);
+}
+
+.pf .pf-input[readonly] {
+    background: var(--hm-surface);
+}
+
+.pf .pf-input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.pf .pf-input[type="number"]::-webkit-outer-spin-button,
+.pf .pf-input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* смужка надійності пароля; #block_check — сама смужка, її ширину й колір виставляє скрипт */
+.pf-strength {
+    height: 6px;
+    overflow: hidden;
+    border-radius: 6px;
+    background: rgba(var(--hm-purple-rgb), 0.08);
+}
+
+.pf .pf-strength #block_check {
+    position: static;
+    width: 0;
+    height: 100%;
+    border-radius: 6px;
+    transition: width .3s ease, background-color .3s ease;
+}
+
+.pf-repeat {
+    position: relative;
+}
+
+.pf-repeat .pf-input {
+    padding-right: 48px;
+}
+
+.pf .pf-ok {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    left: auto;
+    bottom: auto;
+    margin-top: -10px;
+    font-size: 20px;
+    color: var(--hm-accent-deep);
+}
+
+/* ---------- Доставка ---------- */
+
+.pf-delivery {
+    display: grid;
+    gap: 18px;
+}
+
+/* рядок з адресою: поточна (з профілю) і нова (щойно обрана) */
+.pf .pf-address {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 14px;
+    margin: 0;
+    padding: 14px 18px;
+    background: var(--hm-surface);
+    border: 1px solid var(--pf-line);
+    border-radius: 14px;
+}
+
+.pf-address__label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--hm-accent-deep);
+}
+
+.pf-address__value {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--hm-ink);
+}
+
+.pf .pf-address--new {
+    background: rgba(var(--hm-accent-rgb), 0.12);
+    border-color: rgba(var(--hm-accent-rgb), 0.5);
+}
+
+/* Вибір міста й відділення: корінь NewPochta — звичайний div із двома обгортками. Колонки авто:
+   поки поле відділення приховане, місто займає всю ширину; коли воно з'являється — два поруч. */
+.pf-delivery__select > div {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+    align-items: start;
+}
+
+.pf-delivery__select {
+    min-width: 0;
+}
+
+/* Вибір міста й відділення (react-select-search) — глобально стилізований у NewPochta.css, а ним
+   користуються й кошик та профіль. Тут перекриваємо лише всередині .pf. */
+.pf .select-search {
+    margin: 0;
+    font-family: inherit;
+}
+
+.pf .select-search__input {
+    height: auto;
+    padding: 14px 48px 14px 16px;
+    border: 1px solid rgba(var(--hm-purple-rgb), 0.18);
+    border-radius: 14px;
+    box-shadow: none;
+    font-family: inherit;
+    font-size: 16px;
+    line-height: 1.4;
+    color: var(--hm-ink);
+}
+
+.pf .select-search:not(.select-search--multiple) .select-search__input:hover,
+.pf .select-search__input:focus {
+    border-color: var(--hm-accent);
+}
+
+.pf .select-search__input:focus {
+    box-shadow: 0 0 0 4px rgba(var(--hm-accent-rgb), 0.22);
+}
+
+.pf .select-search__value::after {
+    box-sizing: border-box;
+    top: 50%;
+    right: 22px;
+    width: 9px;
+    height: 9px;
+    margin-top: -7px;
+    border-right: 2px solid var(--hm-ink-soft);
+    border-bottom: 2px solid var(--hm-ink-soft);
+    transform: rotate(45deg);
+    transition: transform .2s ease;
+}
+
+.pf .select-search.has-focus .select-search__value::after {
+    margin-top: -2px;
+    transform: rotate(-135deg);
+}
+
+.pf .select-search.is-loading .select-search__value::after {
+    width: 18px;
+    height: 18px;
+    margin-top: -9px;
+    right: 18px;
+    border: 0;
+    background-size: 18px;
+    transform: none;
+}
+
+.pf .select-search:not(.select-search--multiple) .select-search__select {
+    top: calc(100% + 6px);
+    border: 1px solid var(--pf-line);
+    border-radius: 14px;
+    box-shadow: 0 20px 50px rgba(var(--hm-deep-rgb), 0.2);
+}
+
+.pf .select-search__option,
+.pf .select-search__not-found {
+    height: auto;
+    padding: 11px 16px;
+    font-family: inherit;
+    font-size: 15px;
+    line-height: 1.35;
+}
+
+.pf .select-search__option.is-selected,
+.pf .select-search__option.is-highlighted.is-selected,
+.pf .select-search__option.is-selected:hover {
+    background: var(--hm-purple);
+    color: #fff;
+}
+
+.pf .select-search__option.is-highlighted,
+.pf .select-search__option:not(.is-selected):hover {
+    background: var(--hm-soft);
+}
+
+.pf .full-center,
+.pf .input-center-full {
+    display: block;
+    width: 100%;
+    margin: 0;
+}
+
+.pf .select-search-last {
+    margin-top: 0;   /* відступ між містом і відділенням тепер дає gap сітки вище */
+}
+
+/* Поле "№ відділення" з'являється лише після вибору міста: NewPochta вмикає клас visible-n-p, поки
+   місто не обране — hidden-n-p. Селектори довші за .pf .full-center { display: block } вище,
+   інакше це правило перебивало б приховування і обидва поля були б видні одразу. */
+.pf .full-center.hidden-n-p {
+    display: none;
+}
+
+.pf .full-center.visible-n-p {
+    display: block;
+}
+
+/* ---------- Кнопка ---------- */
+
+.pf-actions {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.pf .pf-save {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 16px 38px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--hm-grad-accent);
+    color: var(--hm-ink);
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(var(--hm-accent-rgb), 0.4);
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.pf .pf-save:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 36px rgba(var(--hm-accent-rgb), 0.55);
+}
+
+.pf .pf-save:focus-visible {
+    outline: 3px solid var(--hm-accent);
+    outline-offset: 3px;
+}
+
+/* ---------- Адаптив ---------- */
+
+@media (max-width: 900px) {
+    .pf {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .pf-fields {
+        grid-template-columns: 1fr;
+    }
+
+    .pf-card--photo {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .pf-actions {
+        justify-content: stretch;
+    }
+
+    .pf .pf-save {
+        width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pf *, .pf *::before, .pf *::after {
+        transition: none !important;
+    }
+}

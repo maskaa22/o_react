@@ -1,5 +1,4 @@
-import {GrFormNext, GrFormPrevious} from "react-icons/gr";
-import {MdToday} from "react-icons/md";
+import {FaChevronLeft, FaChevronRight} from "react-icons/fa";
 import React from 'react';
 
 import './CalendarMonitor.css';
@@ -15,11 +14,16 @@ const CalendarMonitor = ({today, prevHandler, todayHandler, nextHandler}) => {
                 <TextWrapper>{today.format('YYYY')}</TextWrapper>
             </div>
             <ButtonsWrapper>
-                <button className={'button-calendar'} onClick={prevHandler}><GrFormPrevious className=" icon-monitor"/>
+                <button className={'button-calendar button-calendar--icon'} onClick={prevHandler}
+                        aria-label={'Попередній місяць'}>
+                    <FaChevronLeft/>
                 </button>
-                <button className={'button-calendar'} onClick={todayHandler}><MdToday className=" icon-monitor"/>
+                <button className={'button-calendar button-calendar--today'} onClick={todayHandler}>
+                    Сьогодні
                 </button>
-                <button className={'button-calendar'} onClick={nextHandler}><GrFormNext className=" icon-monitor"/>
+                <button className={'button-calendar button-calendar--icon'} onClick={nextHandler}
+                        aria-label={'Наступний місяць'}>
+                    <FaChevronRight/>
                 </button>
             </ButtonsWrapper>
         </DivWrapper>

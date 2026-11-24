@@ -31,14 +31,14 @@
 
     .css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input.css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input.css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input {
         font-size: 2.5vh;
-        color: #47008e;
+        color: var(--hm-purple);
         font-weight: bolder;
     }
 
     li.MuiMenuItem-root.MuiMenuItem-gutters.MuiButtonBase-root.css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
         font-size: 2vh;
         font-weight: bold;
-        color: #47008e;
+        color: var(--hm-purple);
     }
 
     .add {
@@ -53,20 +53,20 @@
     .css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input.css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input.css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input,
     .css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
         font-size: 2.5vh;
-        color: #47008e;
+        color: var(--hm-purple);
         font-weight: bolder;
     }
 
     .css-1m7of93-MuiFormControl-root label,
     .css-1qn1dhn-MuiFormControl-root label {
         font-size: 2.5vh;
-        color: #47008e;
+        color: var(--hm-purple);
     }
 
     .css-jd1zyo-MuiSelect-select-MuiInputBase-input-MuiInput-input.css-jd1zyo-MuiSelect-select-MuiInputBase-input-MuiInput-input.css-jd1zyo-MuiSelect-select-MuiInputBase-input-MuiInput-input {
         font-size: 3vh;
         font-weight: 700;
-        color: #47008e;
+        color: var(--hm-purple);
     }
 
     .css-1m7of93-MuiFormControl-root {

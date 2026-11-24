@@ -4,7 +4,7 @@ import {BsBasket2} from "react-icons/bs";
 import {GiExitDoor} from "react-icons/gi";
 import {ImUserPlus} from "react-icons/im";
 import {IoMdExit} from "react-icons/io";
-import {NavLink, useNavigate} from "react-router-dom";
+import {NavLink, useLocation, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 
 import "./Header.css";
@@ -26,7 +26,7 @@ import {ADMIN, CLIENT} from "../../config/homeConstants";
 import {logout} from "../../servises";
 import {closeToogleMenu, openToogleMenu} from "../../utils/function";
 import {delFilter} from "../../reducers/actionCreators";
-import Logo from "../../images/logo-header.png";
+import Logo from "../../images/logo.webp";   // повний логотип: значок + слово
 import {WORLD_ADMIN, WORLD_AUTORIZATION, WORLD_USER} from "../../config/wordsConstants";
 
 export function Header() {
@@ -36,6 +36,16 @@ export function Header() {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    // "Послуги" — це кнопка, а не посилання, тож NavLink сам її не підсвітить.
+    // Підкреслюємо її, коли відкрита одна зі сторінок послуг.
+    const {pathname} = useLocation();
+    const servicesActive = [MENS_HAIRCUT, WOMENS_HAIRCUT, HAIR_STYLES, HAIR_COLOR]
+        .some(path => pathname === path || pathname === `${path}/`);
+
+    // Так само для іконки акаунта: підсвічуємо її на сторінках входу та реєстрації
+    const accountActive = [LOGIN, REGISTRATION]
+        .some(path => pathname === path || pathname === `${path}/`);
 
     const links = document.getElementsByClassName("navbar");
     let URL = window.location.pathname;
@@ -56,6 +66,17 @@ export function Header() {
         subLinkTwo.classList.toggle('active-sub-link-two');
     }
 
+    // Гість: клік по іконці одразу веде на вхід (меню з "Вхід / Реєстрація" на комп'ютері
+    // і далі з'являється при наведенні). Авторизований: клік відкриває меню кабінету/виходу.
+    function accountClick() {
+        if (!isAuth) {
+            closeHandler();
+            navigate(LOGIN);
+        } else {
+            openSubMenuTwo();
+        }
+    }
+
     function closeHandler() {
         closeToogleMenu('btn-menu', 'list-menu', 'active-menu-header',
             'no-scroll', 'sub-link-one', 'sub-link-two', 'active-sub-link-one', 'active-sub-link-two');
@@ -65,8 +86,7 @@ export function Header() {
         <div className={'all-container'}>
             <div className={'header'}>
                 <div className={'navbar-logo navbar-logo-position'}>
-                    <img src={Logo} className={'navbar-logo-img'} alt={'Logo'}/>
-                    <p className={'navbar-logo-p'}>Studio</p>
+                    <img src={Logo} className={'navbar-logo-img'} alt={'Miraé'}/>
                 </div>
                 <button className={'btn-menu'}
                         onClick={() => openToogleMenu('btn-menu', 'list-menu', 'active-menu-header', 'no-scroll')}
@@ -80,7 +100,8 @@ export function Header() {
                         <NavLink to={THIS} onClick={closeHandler}>Головна</NavLink>
                     </li>
                     <li>
-                        <button onClick={openSubMenuOne} className={'cursor-pointer'}>Послуги</button>
+                        <button onClick={openSubMenuOne}
+                                className={`cursor-pointer${servicesActive ? ' active' : ''}`}>Послуги</button>
                         <ul className={'submenu'} id={'sub-link-one'}>
                             <li>
                                 <NavLink to={MENS_HAIRCUT} onClick={closeHandler}>Чоловічі
@@ -113,7 +134,8 @@ export function Header() {
                         <NavLink to={CONTACT} onClick={closeHandler}>Контакти</NavLink>
                     </li>
                     <li>
-                        <button onClick={openSubMenuTwo} className={'link-a cursor-pointer'}><IoMdExit className=" icon_basket"/></button>
+                        <button onClick={accountClick}
+                                className={`link-a cursor-pointer${accountActive ? ' active' : ''}`}><IoMdExit className=" icon_basket"/></button>
                         <ul className={'submenu'} id={'sub-link-two'}>
                             {
                                 !isAuth &&

@@ -21,7 +21,7 @@
     font-weight: 700;
     font-size: 20px;
     align-items: center;
-    background-color: #79cbb8;
+    background-color: var(--hm-accent);
     border: none;
     cursor: pointer;
 }
@@ -32,7 +32,7 @@
 }
 
 .close i {
-    color: #47008e;
+    color: var(--hm-purple);
 }
 
 .newInput {
@@ -46,7 +46,7 @@
 
 h2 {
     text-align: center;
-    color: #47008e;
+    color: var(--hm-purple);
     font-size: 30px;
     margin: 0 10px;
     padding: 15px;
@@ -56,9 +56,9 @@ select {
     width: 93%;
     height: 20px;
     border: none;
-    color: #47008e;
+    color: var(--hm-purple);
     background-color: white;
-    border-bottom: 3px solid #47008e;
+    border-bottom: 3px solid var(--hm-purple);
     outline: none;
     font-weight: 700;
 }
@@ -83,24 +83,24 @@ option {
 }
 
 .select-product label {
-    color: #47008e;
+    color: var(--hm-purple);
     font-weight: bold;
     position: relative;
     top: 25px;
     left: 5px;
-    font-family: 'Noto Sans', sans-serif;
+    font-family: 'Manrope', system-ui, sans-serif;
 }
 
 .standard {
-    border-bottom: 2px solid #47008e;
+    border-bottom: 2px solid var(--hm-purple);
 }
 
 .standard:hover {
-    border-bottom: 1px solid #47008e;
+    border-bottom: 1px solid var(--hm-purple);
 }
 
 .select_label {
-    color: #47008e;
+    color: var(--hm-purple);
 }
 
 .btn-add {
@@ -108,9 +108,9 @@ option {
     height: 40px;
     border-radius: 5px;
     font-size: 20px;
-    color: #47008e;
+    color: var(--hm-purple);
     align-items: center;
-    background-color: #79cbb8;
+    background-color: var(--hm-accent);
     border: none;
     cursor: pointer;
 }
@@ -133,7 +133,7 @@ input[type="file"] {
     padding: 6px 12px;
     cursor: pointer;
     border-radius: 5px;
-    color: #47008e;
+    color: var(--hm-purple);
     margin-left: 5px;
 }
 
@@ -142,7 +142,7 @@ input[type="file"] {
     height: 100%;
     background-color: white;
     border-radius: 5px;
-    border: 2px solid #79cbb8;
+    border: 2px solid var(--hm-accent);
     margin: 20px auto;
 }
 
@@ -164,7 +164,7 @@ input[type="file"] {
     padding: 10px;
     font-size: 15px;
     font-weight: bolder;
-    color: #47008e;
+    color: var(--hm-purple);
     text-align: center;
 }
 

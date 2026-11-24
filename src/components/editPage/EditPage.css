@@ -30,11 +30,11 @@
     margin: 20px;
     border-radius: 5px;
     width: 40%;
-    color: #47008e;
+    color: var(--hm-purple);
     font-size: 20px;
     text-align: center;
     display: inline;
-    background-color: #79cbb8;
+    background-color: var(--hm-accent);
     border: none;
     cursor: pointer;
 }
@@ -56,7 +56,7 @@
 }
 
 ::-webkit-input-placeholder {
-    color: #47008e;
+    color: var(--hm-purple);
     font-weight: 700;
 }
 
@@ -70,7 +70,7 @@
 .icon_ok {
     position: relative;
     left: 10px;
-    color: #79cbb8;
+    color: var(--hm-accent);
     font-size: 20px;
 }
 
@@ -96,7 +96,7 @@
 
 .border-box {
     margin: 25px auto;
-    border: 2px solid #79cbb8;
+    border: 2px solid var(--hm-accent);
     width: 90%;
     border-radius: 5px;
 }

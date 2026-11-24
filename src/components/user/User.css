@@ -9,7 +9,7 @@
     height: 100%;
     background-color: white;
     border-radius: 5px;
-    border: 2px solid #79cbb8;
+    border: 2px solid var(--hm-accent);
     margin: 20px auto;
 }
 
@@ -40,7 +40,7 @@
     padding: 10px 0 10px;
     font-size: 15px;
     font-weight: bolder;
-    color: #47008e;
+    color: var(--hm-purple);
     text-align: center;
 }
 
@@ -55,7 +55,7 @@
     position: relative;
     top: -2px;
     align-items: center;
-    background-color: #79cbb8;
+    background-color: var(--hm-accent);
     border: none;
     cursor: pointer;
 }

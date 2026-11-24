@@ -36,7 +36,7 @@ const CalendarGrid = ({startDay, today, totalDays, events, openFormHandler, setT
             <GridWrapper>
                 {
                     daysArray.map((dayItem) => (
-                        <CellWrapper isBody
+                        <CellWrapper isBody isPast={dayItem.unix() <= moment().unix()}
                                      key={dayItem.unix()} isWeekend={dayItem.day() === 6 || dayItem.day() === 0}
                                      isSelectedMonth={isSelectedMonth(dayItem)} onClick={() => {
                             getFindEventInRow(dayItem.unix()).then(res => setTime(res));
@@ -53,11 +53,10 @@ const CalendarGrid = ({startDay, today, totalDays, events, openFormHandler, setT
                                     {
                                         events.filter(event => event.date >= dayItem.format('X') && event.date <= dayItem.clone().endOf(WORD_DAY).format('X'))
                                             .map(event => (
-                                                <div key={event.id}>
-                                                    <EventItemWrapper>
-                                                        {event.title} {event.time}
-                                                    </EventItemWrapper>
-                                                </div>
+                                                <EventItemWrapper key={event.id}
+                                                                  title={`${event.title} ${event.time}`}>
+                                                    {event.title} {event.time}
+                                                </EventItemWrapper>
                                             ))
                                     }
                                 </EventListWrapper>

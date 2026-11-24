@@ -1,12 +1,12 @@
 @keyframes flashing-button {
     0% {
-        box-shadow: 0 0 20px 5px #78c9b8;
+        box-shadow: 0 0 20px 5px var(--hm-accent);
     }
     50% {
         box-shadow: transparent;
     }
     100% {
-        box-shadow: 0 0 20px 20px #6eb8a9;
+        box-shadow: 0 0 20px 20px var(--hm-accent-deep);
     }
 }
 

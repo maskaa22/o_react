@@ -1,17 +1,18 @@
 import * as React from "react";
 import {useState} from "react";
-import {FiCheckCircle} from "react-icons/fi";
-import FormControl from "@mui/material/FormControl";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
+import {FaCreditCard, FaMoneyBillWave} from "react-icons/fa";
+import {MdClose} from "react-icons/md";
 import {useSelector} from "react-redux";
 
 import {editAdressData, editContactData} from "../../servises";
-import {Input} from "../../utils";
 import {NewPochta} from "../newPochta";
-import {WORD_CART, WORD_CART_UK, WORD_CASH, WORD_HIDEN, WORD_MONEY, WORD_SUCCESS} from "../../config/wordsConstants";
+import {WORD_CART, WORD_CART_UK, WORD_CASH, WORD_HIDEN, WORD_MONEY} from "../../config/wordsConstants";
 
+/*
+ * Три кроки оформлення: контактні дані, доставка (Нова пошта), оплата.
+ * Стани й виклики (editContactData, editAdressData, setPay) ті самі, що й були;
+ * змінилась тільки розмітка (класи bk-*, стилі в BasketPageModern.css).
+ */
 export function InfoForBuy({setPay}) {
 
     const [name, setName] = useState('');
@@ -22,14 +23,11 @@ export function InfoForBuy({setPay}) {
     const [stateInput, setStateInput] = useState(false);
     const [stateName, setStateName] = useState(true);
     const [stateNameAdress, setStateNameAdress] = useState(true);
-    // const [success, setSuccess] = useState(WORD_SUCCESS);
 
     const [surname, setSurname] = useState('');
     const [value, setValue] = React.useState('');
     const [visibleNumber, setVisibleNumber] = useState(WORD_HIDEN);
     const [visibleSity, setVisibleSity] = useState(WORD_HIDEN);
-
-    const success = WORD_SUCCESS;
 
     const currentUser = useSelector(state => state.user.currentUser);
 
@@ -43,125 +41,115 @@ export function InfoForBuy({setPay}) {
     };
 
     return (
-        <div>
-            <div className={'basket_check'}>
-                <div className={'flex__space__between'}>
-                    <p className={'data_name'}>Контактні дані</p>
-                    {
-                        stateName ? <button className={'update'} onClick={() => {
-                                setStateName(false);
-                                setStateInput(true);
-                            }}>Змінити
-                            </button> :
-                            <div className={'close-date'} onClick={() => {
-                                setStateInput(false);
-                                setStateName(true);
-                            }}><i className="fa fa-times" aria-hidden="true"/>
-                            </div>
+        <>
+            {/* ---------- 1. Контактні дані ---------- */}
+            <section className={'bk-card'}>
+                <header className={'bk-card__head'}>
+                    <h2 className={'bk-card__title'}><span className={'bk-step'}>1</span>Контактні дані</h2>
+                    {stateName ?
+                        <button type={'button'} className={'bk-edit'} onClick={() => {
+                            setStateName(false);
+                            setStateInput(true);
+                        }}>Змінити</button> :
+                        <button type={'button'} className={'bk-edit bk-edit--icon'} aria-label={'Закрити'}
+                                onClick={() => {
+                                    setStateInput(false);
+                                    setStateName(true);
+                                }}><MdClose/></button>
                     }
-                </div>
-                {
-                    stateName &&
-                    <div className={'data_div'}>
-                        <div> {currentUser.name} {currentUser.surname ? currentUser.surname : 'Введіть призвіще'}</div>
-                        <div>{currentUser.phone ? currentUser.phone : 'Введіть номер'} </div>
+                </header>
+
+                {stateName &&
+                    <div className={'bk-info'}>
+                        <div>{currentUser.name} {currentUser.surname ? currentUser.surname : 'Введіть призвіще'}</div>
+                        <div>{currentUser.phone ? currentUser.phone : 'Введіть номер'}</div>
                     </div>
                 }
-                {
-                    stateInput &&
-                    <div className={'data_input'}>
-                        <Input value={name} setValue={setName} placeholder={currentUser.name}
-                               className={'input-basket-update'}/>
-                        <Input value={surname} setValue={setSurname} placeholder={currentUser.surname ? currentUser.surname : 'Введіть призвіще'}
-                               className={'input-basket-update'}/>
-                        <Input value={phone} setValue={setPhone} placeholder={currentUser.phone ? currentUser.phone : 'Введіть номер'}
-                               className={'input-basket-update'}/>
-                        <div className={'d_flex edit-date-margin'}>
-                            <button className={'check save'} onClick={() => {
-                                editContactData(currentUser.id, name, surname, phone);
-                                setStateInput(false);
-                                setStateName(true);
-                            }}>Продовжити
-                            </button>
-                        </div>
+
+                {stateInput &&
+                    <div className={'bk-form'}>
+                        <input className={'bk-input'} value={name} onChange={e => setName(e.target.value)}
+                               placeholder={currentUser.name} aria-label={"Ім'я"}/>
+                        <input className={'bk-input'} value={surname} onChange={e => setSurname(e.target.value)}
+                               placeholder={currentUser.surname ? currentUser.surname : 'Введіть призвіще'}
+                               aria-label={'Прізвище'}/>
+                        <input className={'bk-input'} value={phone} onChange={e => setPhone(e.target.value)}
+                               placeholder={currentUser.phone ? currentUser.phone : 'Введіть номер'}
+                               aria-label={'Телефон'}/>
+                        <button type={'button'} className={'bk-save'} onClick={() => {
+                            editContactData(currentUser.id, name, surname, phone);
+                            setStateInput(false);
+                            setStateName(true);
+                        }}>Продовжити</button>
                     </div>
                 }
-            </div>
-            <div className={'basket_check'}>
-                <div className={'flex__space__between'}>
-                    <p className={'data_name'}>Доставка</p>
-                    {
-                        stateNameAdress ? <button className={'update'} onClick={() => {
-                                setStateNameAdress(false);
-                                setStateAdress(true);
-                            }}>Змінити
-                            </button> :
-                            <div className={'close'} onClick={() => {
-                                setStateNameAdress(true);
-                                setStateAdress(false);
-                            }}><i className="fa fa-times" aria-hidden="true"/>
-                            </div>
+            </section>
+
+            {/* ---------- 2. Доставка ---------- */}
+            <section className={'bk-card'}>
+                <header className={'bk-card__head'}>
+                    <h2 className={'bk-card__title'}><span className={'bk-step'}>2</span>Доставка</h2>
+                    {stateNameAdress ?
+                        <button type={'button'} className={'bk-edit'} onClick={() => {
+                            setStateNameAdress(false);
+                            setStateAdress(true);
+                        }}>Змінити</button> :
+                        <button type={'button'} className={'bk-edit bk-edit--icon'} aria-label={'Закрити'}
+                                onClick={() => {
+                                    setStateNameAdress(true);
+                                    setStateAdress(false);
+                                }}><MdClose/></button>
                     }
-                </div>
-                {
-                    stateNameAdress &&
-                    <div className={'data_div'}>м. {currentUser.nameSity}, відділення №
-                        - {currentUser.nameDepartment}</div>
+                </header>
+
+                {stateNameAdress &&
+                    <div className={'bk-info'}>
+                        м. {currentUser.nameSity}, відділення № - {currentUser.nameDepartment}
+                    </div>
                 }
-                {
-                    stateAdress &&
-                    <div>
-                        <div className={'flex_space_between data_input'}>
-                            <NewPochta setSity={setSity} setNumberNP={setNumberNP}
-                                       setVisibleSity={setVisibleSity} setVisibleNumber={setVisibleNumber}
-                            />
-                            <div>
-                                <div className={` ${visibleSity} label_input`}>
-                                    <input className="input-focus" value={`м. ${sity}`} readOnly={true}/>
-                                </div>
-                                <div className={` ${visibleNumber} label_input_last`}>
-                                    <input className="input-focus" value={`відділення № ${numberNP}`} readOnly={true}/>
-                                </div>
+
+                {stateAdress &&
+                    <div className={'bk-form bk-form--delivery'}>
+                        <NewPochta setSity={setSity} setNumberNP={setNumberNP}
+                                   setVisibleSity={setVisibleSity} setVisibleNumber={setVisibleNumber}/>
+                        {(visibleSity !== WORD_HIDEN || visibleNumber !== WORD_HIDEN) &&
+                            <div className={'bk-chosen'}>
+                                {visibleSity !== WORD_HIDEN && <span>м. {sity}</span>}
+                                {visibleNumber !== WORD_HIDEN && <span>відділення № {numberNP}</span>}
                             </div>
-                        </div>
-                        <div className={'d_flex edit-date-margin-last'}>
-                            <button className={'check save'} onClick={() => {
-                                editAdressData(currentUser.id, sity, numberNP);
-                                setStateNameAdress(true);
-                                setStateAdress(false);
-                                setVisibleSity(WORD_HIDEN);
-                                setVisibleNumber(WORD_HIDEN);
-                            }}>Продовжити
-                            </button>
-                        </div>
+                        }
+                        <button type={'button'} className={'bk-save'} onClick={() => {
+                            editAdressData(currentUser.id, sity, numberNP);
+                            setStateNameAdress(true);
+                            setStateAdress(false);
+                            setVisibleSity(WORD_HIDEN);
+                            setVisibleNumber(WORD_HIDEN);
+                        }}>Продовжити</button>
                     </div>
                 }
-            </div>
-            <div className={'basket_check'}>
-                <div className={'flex_space_between'}>
-                    <p className={'data_name byu-title'}>Оплата</p>
-                    <div className={`${success}`}>
-                        Сплачено <FiCheckCircle className=" icon_basket byu_ok"/>
-                    </div>
+            </section>
+
+            {/* ---------- 3. Оплата ---------- */}
+            <section className={'bk-card'}>
+                <header className={'bk-card__head'}>
+                    <h2 className={'bk-card__title'}><span className={'bk-step'}>3</span>Оплата</h2>
+                </header>
+                <div className={'bk-pay'} role={'radiogroup'} aria-label={'Спосіб оплати'}>
+                    {/* title потрібен, коли на планшеті підпис ховається і лишається тільки іконка */}
+                    <label className={`bk-pay__opt${value === WORD_CASH ? ' is-active' : ''}`} title={WORD_MONEY}>
+                        <input type={'radio'} name={'pay'} value={WORD_CASH} checked={value === WORD_CASH}
+                               onChange={handleChange}/>
+                        <FaMoneyBillWave aria-hidden={'true'}/>
+                        <span className={'bk-pay__label'}>{WORD_MONEY}</span>
+                    </label>
+                    <label className={`bk-pay__opt${value === WORD_CART ? ' is-active' : ''}`} title={WORD_CART_UK}>
+                        <input type={'radio'} name={'pay'} value={WORD_CART} checked={value === WORD_CART}
+                               onChange={handleChange}/>
+                        <FaCreditCard aria-hidden={'true'}/>
+                        <span className={'bk-pay__label'}>{WORD_CART_UK}</span>
+                    </label>
                 </div>
-                {
-                    success === WORD_SUCCESS &&
-                    <div className={'data_div'}>
-                        <FormControl>
-                            <RadioGroup
-                                aria-labelledby="demo-radio-buttons-group-label"
-                                name="radio-buttons-group"
-                                value={value}
-                                onChange={handleChange}
-                            >
-                                <FormControlLabel value={WORD_CASH} control={<Radio/>} label={WORD_MONEY}/>
-                                <FormControlLabel value={WORD_CART} control={<Radio/>
-                                } label={WORD_CART_UK}/>
-                            </RadioGroup>
-                        </FormControl>
-                    </div>
-                }
-            </div>
-        </div>
+            </section>
+        </>
     );
 }

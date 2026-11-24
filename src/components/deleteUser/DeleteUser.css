@@ -4,7 +4,7 @@
     border-radius: 12px;
     background-color: white;
     width: 350px;
-    color: #47008e;
+    color: var(--hm-purple);
 }
 
 .flex {
@@ -22,7 +22,7 @@
 }
 
 .close_del i {
-    color: #47008e;
+    color: var(--hm-purple);
 }
 
 .auto {

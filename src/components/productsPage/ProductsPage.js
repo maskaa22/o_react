@@ -1,10 +1,12 @@
-import {BsArrowUpCircle} from "react-icons/bs";
+import {BsArrowUp} from "react-icons/bs";
 import {MdClose, MdNavigateNext} from "react-icons/md";
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 
+import '../servicePage/ServicePage.css';   // спільні токени sv-* (шрифт, тіні, відступи) для класу .sv
 import './ProductsPage.css';
 import './ProductPage@media.css';
+import './ProductsPageModern.css';
 import {getProducts, auth, getCategories} from "../../servises";
 import {
     closeFilterName,
@@ -83,16 +85,15 @@ export function ProductsPage() {
     Up();
 
     return (
-        <div>
-            <div className={'upward'} onClick={scrollTopTop}><BsArrowUpCircle className="icon-up"/></div>
-            <div className={'product-flex'}>
-                <div className={'category-menu'} id={'category-menu'}
-                     onClick={() => openToogleMenu(WORD_CATEGORY_MENU, WORD_PRODUCT_MENU_BLOCK, WORD_ACTIVE_MENU_CATEGORY, WORD_NO_SCROLL)}>
-                    <span className={'category-menu-bar'}/>
-                    <span className={'category-menu-bar'}/>
-                    <span className={'category-menu-bar'}/>
-                </div>
-                <div className={'product-menu'} id={'product-menu-block'}>
+        <div className={'sv pr'}>
+            <button type={'button'} className={'upward'} onClick={scrollTopTop} aria-label={'Нагору'}>
+                <BsArrowUp className="icon-up"/>
+            </button>
+
+            <div className={'sv-container pr-layout'}>
+                {/* Категорії. Назви класів category / product-menu / active-menu* і id використовують скрипти
+                    (handleClick, openToogleMenu, closeToogleMenu), тому вони не змінені. */}
+                <aside className={'product-menu'} id={'product-menu-block'}>
                     <div className={'product-menu-container'}>
                         <div className={'menu-title'}>
                             <div className={'left-title'}>Категорії товарів</div>
@@ -122,24 +123,29 @@ export function ProductsPage() {
                             />)
                         }
                     </div>
-                </div>
-                <div className={'row'}>
-                    <div className={'row-container'}>
-                        <div className={'filter-name'}>
-                            <div>{categoriName}</div>
-                        </div>
-                        <div className={'courseContainer'}>
-                            {!filterFlag ?
-                                products.map(product => <ProductCart key={product._id} product={product}/>) :
-                                filter.map(product => <ProductCart key={product._id} product={product}/>)
-                            }
-                        </div>
+                </aside>
+
+                <div className={'pr-main'}>
+                    {/* кнопка відкриття меню категорій (видима лише на телефоні) */}
+                    <div className={'category-menu'} id={'category-menu'} role={'button'} tabIndex={0}
+                         aria-label={'Категорії товарів'}
+                         onClick={() => openToogleMenu(WORD_CATEGORY_MENU, WORD_PRODUCT_MENU_BLOCK, WORD_ACTIVE_MENU_CATEGORY, WORD_NO_SCROLL)}>
+                        <span className={'category-menu-bar'}/>
+                        <span className={'category-menu-bar'}/>
+                        <span className={'category-menu-bar'}/>
                     </div>
-                </div>
-            </div>
-            <div className={'product-flex'}>
-                <div className={'product-menu'}/>
-                <div className={'row'}>
+
+                    <div className={'filter-name'}>
+                        <div>{categoriName}</div>
+                    </div>
+
+                    <div className={'pr-grid'}>
+                        {!filterFlag ?
+                            products.map(product => <ProductCart key={product._id} product={product}/>) :
+                            filter.map(product => <ProductCart key={product._id} product={product}/>)
+                        }
+                    </div>
+
                     {!filterFlag ?
                         <PaginationProductCategory
                             paginate={paginate} thisPage={thisPage}

@@ -1,6 +1,6 @@
 .select-search {
     position: relative;
-    font-family: "Nunito Sans", sans-serif;
+    font-family: 'Manrope', system-ui, sans-serif;
     box-sizing: border-box;
     margin: auto 15px;
 }
@@ -35,10 +35,10 @@
     height: 36px;
     width: 100%;
     background: #fff;
-    border-bottom: 3px solid #47008e;
+    border-bottom: 3px solid var(--hm-purple);
     box-shadow: 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.15);
     outline: none;
-    font-family: "Noto Sans", sans-serif;
+    font-family: 'Manrope', system-ui, sans-serif;
     font-size: 2vh;
     text-align: left;
     text-overflow: ellipsis;
@@ -81,7 +81,7 @@
     background: #fff;
     border: none;
     outline: none;
-    font-family: "Noto Sans", sans-serif;
+    font-family: 'Manrope', system-ui, sans-serif;
     font-size: 14px;
     text-align: left;
     cursor: pointer;
@@ -92,7 +92,7 @@
 }
 
 .select-search__option.is-selected {
-    background: #a72fcc;
+    background: var(--hm-ink-soft);
     color: #fff;
 }
 
@@ -103,7 +103,7 @@
 
 .select-search__option.is-highlighted.is-selected,
 .select-search__option.is-selected:hover {
-    background: #a72fcc;
+    background: var(--hm-ink-soft);
     color: #fff;
 }
 
@@ -152,7 +152,7 @@
 }
 
 .select-search:not(.select-search--multiple) .select-search__input:hover {
-    border-color: #a72fcc;
+    border-color: var(--hm-ink-soft);
 }
 
 .select-search:not(.select-search--multiple) .select-search__select {

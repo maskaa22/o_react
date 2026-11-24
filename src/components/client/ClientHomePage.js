@@ -1,95 +1,56 @@
-import {Link, Route, Routes, useNavigate} from "react-router-dom";
-import React, {useEffect, useState} from "react";
-import {useDispatch} from "react-redux";
+import Avatar from "@mui/material/Avatar";
+import {NavLink, Route, Routes} from "react-router-dom";
+import React from "react";
 
-import {auth} from "../../servises";
+import '../servicePage/ServicePage.css';   // спільні токени sv-* (шрифт, тіні, відступи) для класу .sv
+import './ClientHomePageModern.css';
+import {AUTH_URL} from "../../config/URL";
 import {CLIENT, CLIENT_ORDERS, CLIENT_RECORDS, ORDERS, RECORDS, THIS} from "../../config/homeConstants";
-import {closeToogleMenu, handleClick, ifOpenPageAddActiveClass, openToogleMenu, ViewFunction} from "../../utils/function";
-import {MdNavigateNext} from "react-icons/md";
-import {
-    WORD_ACTIVE_MENU_CATEGORY,
-    WORD_CATEGORY_MENU,
-    WORD_NO_SCROLL,
-    WORD_SMALL_MENU_ADMIN_CLIENT,
-    WORD_TOKEN
-} from "../../config/wordsConstants";
-import {LOGIN} from "../../config/headerConstants";
 import {Edit} from "../editPage";
 import {UserOrders} from "../orders";
 import {ClientRecords} from "../clientRecords";
 
+/*
+ * Особистий кабінет клієнта: шапка з привітанням, вкладки "Профіль / Замовлення / Записи"
+ * і зона вмісту. Раніше це було бічне меню з кнопками й окремою мобільною панеллю, якою керували
+ * скрипти через класи; тепер звичайні вкладки (NavLink), що працюють однаково на всіх екранах.
+ */
 export function ClientHomePage({currentUser}) {
 
-    const [user, setUser] = useState([]);
-
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
- 
-
-    // useEffect(() => {
-        
-    //     if (localStorage.getItem(WORD_TOKEN)) {
-    //         // console.log(currentUser._id);
-    //          dispatch(auth()).then(req => {
-    //              console.log(req);
-    //            // if (req === undefined) {
-    //             //    navigate(LOGIN);
-    //            //} else {
-    //                 setUser(req.id);
-    //            // }
-    //         })
-    //     }
-    // }, [dispatch, navigate]);
-
-    ViewFunction();
-
-    const container = document.querySelector('.home-menu');
-
-    if (container) {
-        ifOpenPageAddActiveClass();
-        container.addEventListener('click', handleClick, false);
-    }
-
-    function closeMenuHome() {
-        closeToogleMenu(WORD_CATEGORY_MENU, WORD_SMALL_MENU_ADMIN_CLIENT, WORD_ACTIVE_MENU_CATEGORY, WORD_NO_SCROLL);
-    }
+    const name = currentUser.name || '';
+    const initial = name ? name.charAt(0).toUpperCase() : '?';
 
     return (
-        <div className={'adminHomePage'}>
-            <div className={'home-menu'}>
-                <div className={'category-menu'} id={'category-menu'}
-                     onClick={() => openToogleMenu(WORD_CATEGORY_MENU, WORD_SMALL_MENU_ADMIN_CLIENT, WORD_ACTIVE_MENU_CATEGORY, WORD_NO_SCROLL)}>
-                    <span className={'category-menu-bar'}/>
-                    <span className={'category-menu-bar'}/>
-                    <span className={'category-menu-bar'}/>
+        <div className={'sv cl'}>
+            <div className={'sv-container cl-wrap'}>
+                <header className={'cl-hero'}>
+                    <Avatar className={'cl-hero__avatar'}
+                            src={currentUser.foto ? AUTH_URL + '/' + currentUser.foto : undefined}
+                            alt={name}
+                            sx={{width: 76, height: 76}}>
+                        {initial}
+                    </Avatar>
+                    <div className={'cl-hero__text'}>
+                        <span className={'cl-hero__eyebrow'}>Особистий кабінет</span>
+                        <h1 className={'cl-hero__title'}>Привіт{name ? `, ${name}` : ''}</h1>
+                        {currentUser.email && <p className={'cl-hero__email'}>{currentUser.email}</p>}
+                    </div>
+                </header>
+
+                {/* у шляхах замовлень і записів двокрапка перед id — так було задано в маршрутах, не змінюю */}
+                <nav className={'cl-tabs'} aria-label={'Розділи кабінету'}>
+                    <NavLink end to={CLIENT} className={'cl-tab'}>Профіль</NavLink>
+                    <NavLink to={`${CLIENT_ORDERS}/:${currentUser._id}`} className={'cl-tab'}>Замовлення</NavLink>
+                    <NavLink to={`${CLIENT_RECORDS}/:${currentUser._id}`} className={'cl-tab'}>Записи</NavLink>
+                </nav>
+
+                <div className={'cl-content'}>
+                    <Routes>
+                        <Route path={THIS} element={<Edit/>}/>
+                        <Route path={`${ORDERS}/:${currentUser._id}`} element={<UserOrders/>}/>
+                        <Route path={`${RECORDS}/:${currentUser._id}`} element={<ClientRecords/>}/>
+                    </Routes>
                 </div>
-                <div className={'small-menu-admin-client'} id={'small-menu-admin-client'}>
-                    <div className={'padding padding-last'}>
-                        <Link to={CLIENT} className={'color_purple click-item'}>
-                            <button className={'home_item click-item category'}
-                                    onClick={closeMenuHome}>Профіль<MdNavigateNext className={'non-icon'}/></button>
-                        </Link>
-                    </div>
-                    <div className={'padding'}>
-                        <Link to={`${CLIENT_ORDERS}/:${currentUser._id}`} className={'color_purple click-item'}>
-                            <button className={'home_item click-item category'}
-                                    onClick={closeMenuHome}>Замовлення<MdNavigateNext className={'non-icon'}/></button>
-                        </Link>
-                    </div>
-                    <div className={'padding'}>
-                        <Link to={`${CLIENT_RECORDS}/:${currentUser._id}`} className={'color_purple click-item'}>
-                            <button className={'home_item click-item category'}
-                                    onClick={closeMenuHome}>Записи<MdNavigateNext className={'non-icon'}/></button>
-                        </Link>
-                    </div>
-                </div>
-            </div>
-            <div className={'home-page'}>
-                <Routes>
-                    <Route path={THIS} element={<Edit/>}/>
-                    <Route path={`${ORDERS}/:${currentUser._id}`} element={<UserOrders/>}/>
-                    <Route path={`${RECORDS}/:${currentUser._id}`} element={<ClientRecords/>}/>
-                </Routes>
             </div>
         </div>
     );

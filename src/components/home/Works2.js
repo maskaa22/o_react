@@ -1,30 +1,31 @@
-import './Home.css';
-import './Home@media.css';
-import One from '../../images/gallery/1.jpg';
-import Four from '../../images/gallery/4.jpg';
-import Five from '../../images/gallery/5.jpg';
-import Six from '../../images/gallery/6.jpg';
-import Three from '../../images/gallery/3.jpeg';
-import Two from '../../images/gallery/2.jpg';
+import './HomeModern.css';
+import One from '../../images/gallery/1.webp';
+import Two from '../../images/gallery/2.webp';
+import Three from '../../images/gallery/3.webp';
+import Four from '../../images/gallery/4.webp';
+import Five from '../../images/gallery/5.webp';
+import Six from '../../images/gallery/6.webp';
+
+// Порядок і класи hm-g1..hm-g6 задають "bento"-розкладку в HomeModern.css
+const WORKS = [
+    {src: Two, cls: 'hm-g1'},
+    {src: Three, cls: 'hm-g2'},
+    {src: Five, cls: 'hm-g3'},
+    {src: One, cls: 'hm-g4'},
+    {src: Four, cls: 'hm-g5'},
+    {src: Six, cls: 'hm-g6'}
+];
 
 export function Works2() {
 
     return (
-        <div className={'works-gallery'}>
-            <div className={'works-gallery-items box1'}>
-                <img src={One} alt={'One'} className={'margin-img-gallery'}/>
-                <img src={Two} alt={'Two'} className={'margin-img-gallery'}/>
-            </div>
-            <div className={'works-gallery-items gallery-items-center'}>
-                <img src={Three} alt={'Three'} className={'gallery-items-small margin-img-gallery'}/>
-            </div>
-            <div className={'works-gallery-items gallery-items-center box3'}>
-                <img src={Four} alt={'Four'} className={'gallery-items-small margin-img-gallery'}/>
-            </div>
-            <div className={'works-gallery-items box4'}>
-                <img src={Five} alt={'Five'} className={'margin-img-gallery'}/>
-                <img src={Six} alt={'Six'} className={'margin-img-gallery'}/>
-            </div>
+        <div className={'hm-gallery'}>
+            {WORKS.map((work, index) => (
+                <figure key={work.cls} className={`hm-gallery__item hm-reveal ${work.cls}`}
+                        style={{'--hm-delay': `${index * 90}ms`}}>
+                    <img src={work.src} alt={`Робота студії ${index + 1}`} loading={'lazy'}/>
+                </figure>
+            ))}
         </div>
     );
 }

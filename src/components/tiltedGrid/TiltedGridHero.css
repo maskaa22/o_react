@@ -1,0 +1,42 @@
+/* TiltedGridHero — CSS-частина (замість Tailwind-класів оригінального компонента) */
+
+.tgh {
+    position: relative;
+    overflow: hidden;
+}
+
+.tgh__band {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.tgh__tile {
+    position: absolute;
+}
+
+.tgh__strip {
+    position: absolute;
+    top: 0;
+    overflow: hidden;
+    background: var(--hm-muted, #f1e9e0);
+}
+
+.tgh__strip--first {
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.tgh__strip--last {
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+.tgh__img {
+    position: absolute;
+    top: 0;
+    max-width: none;
+    object-fit: cover;
+    user-select: none;
+}

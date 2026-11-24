@@ -10,13 +10,13 @@
     .css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input.css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input.css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input,
     .css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
         font-size: 2.5vh;
-        color: #47008e;
+        color: var(--hm-purple);
         font-weight: bolder;
     }
 
     .select_status_label label, .select_value label {
         font-size: 2.5vh;
-        color: #47008e;
+        color: var(--hm-purple);
     }
 
     .check_order {

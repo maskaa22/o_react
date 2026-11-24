@@ -1,0 +1,343 @@
+/* ==========================================================================
+   "Мої замовлення" у кабінеті клієнта (префікс uo-). Старі стилі Orders.css лишаються
+   для адмінського списку замовлень і сторінки створення товару.
+   ========================================================================== */
+
+.uo {
+    --uo-line: rgba(var(--hm-purple-rgb), 0.12);
+    font-family: 'Manrope', system-ui, sans-serif;
+    color: var(--hm-ink);
+}
+
+.uo *, .uo *::before, .uo *::after {
+    box-sizing: border-box;
+}
+
+.uo-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.uo .uo-head__title {
+    display: block;           /* у старих стилях .orders-h2 на десктопі прихований */
+    margin: 0;
+    padding: 0;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(24px, 2.6vw, 32px);
+    font-weight: 700;
+    line-height: 1.15;
+    text-align: left;
+    color: var(--hm-ink);
+}
+
+.uo-head__count {
+    display: grid;
+    place-items: center;
+    min-width: 30px;
+    height: 30px;
+    padding: 0 10px;
+    border-radius: 999px;
+    background: var(--hm-grad-accent);
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--hm-ink);
+}
+
+/* ---------- Список замовлень ---------- */
+
+.uo-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr));
+    gap: 20px;
+    align-items: start;
+}
+
+/* Картка-акордеон: згорнута — лише шапка (однакової висоти в усіх карток), розкрита — товари й сума. */
+.uo-order {
+    background: #fff;
+    border: 1px solid var(--uo-line);
+    border-radius: 22px;
+    box-shadow: var(--sv-shadow);
+    transition: box-shadow .25s ease, border-color .25s ease;
+}
+
+.uo-order:hover,
+.uo-order.is-open {
+    box-shadow: var(--sv-shadow-lg);
+}
+
+.uo-order.is-open {
+    border-color: rgba(var(--hm-accent-rgb), 0.55);
+}
+
+.uo .uo-order__head {
+    margin: 0;
+    padding: 0;
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+/* вся шапка — кнопка розкриття */
+.uo .uo-order__toggle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 76px;
+    padding: 18px clamp(16px, 2vw, 24px);
+    border: 0;
+    border-radius: 22px;
+    background: transparent;
+    font-family: inherit;
+    text-align: left;
+    color: var(--hm-ink);
+    cursor: pointer;
+    transition: background-color .2s ease;
+}
+
+.uo .uo-order__toggle:hover {
+    background: rgba(var(--hm-accent-rgb), 0.07);
+}
+
+.uo .uo-order__toggle:focus-visible {
+    outline: 3px solid var(--hm-accent);
+    outline-offset: -3px;
+}
+
+.uo .uo-order__title {
+    flex: 1;
+    min-width: 0;
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: clamp(17px, 1.5vw, 19px);
+    font-weight: 800;
+    font-variant-numeric: lining-nums;
+    line-height: 1.25;
+    color: var(--hm-ink);
+}
+
+/* стрілка-шеврон у колі; при розкритті перевертається */
+.uo-order__chev {
+    position: relative;
+    flex: none;
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--uo-line);
+    border-radius: 50%;
+    background: #fff;
+    transition: background-color .2s ease, border-color .2s ease;
+}
+
+.uo-order__chev::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    margin: -6px 0 0 -4px;
+    border-right: 2px solid var(--hm-ink);
+    border-bottom: 2px solid var(--hm-ink);
+    transform: rotate(45deg);
+    transition: transform .25s ease, margin .25s ease;
+}
+
+.uo-order.is-open .uo-order__chev {
+    background: var(--hm-purple);
+    border-color: var(--hm-purple);
+}
+
+.uo-order.is-open .uo-order__chev::after {
+    margin-top: -2px;
+    border-color: #fff;
+    transform: rotate(-135deg);
+}
+
+.uo-order__panel {
+    margin: 0 clamp(16px, 2vw, 24px);
+    padding: 18px 0 clamp(18px, 2vw, 24px);
+    border-top: 1px solid var(--uo-line);
+    animation: uo-open .28s ease both;
+}
+
+@keyframes uo-open {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+/* позначка статусу */
+.uo-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    background: var(--hm-soft);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: capitalize;
+    color: var(--hm-ink);
+}
+
+.uo-status::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.uo-status--wait { background: rgba(224, 164, 88, 0.2); color: #8a5a12; }
+.uo-status--accepted { background: rgba(var(--hm-accent-rgb), 0.18); color: var(--hm-accent-deep); }
+.uo-status--processing { background: rgba(100, 141, 165, 0.2); color: #3d6177; }
+.uo-status--sent { background: rgba(var(--hm-purple-rgb), 0.1); color: var(--hm-purple); }
+.uo-status--done { background: rgba(46, 160, 110, 0.18); color: #1f7a52; }
+
+/* ---------- Товари замовлення ---------- */
+
+.uo-items {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.uo-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.uo-item__img {
+    flex: none;
+    width: 48px;
+    height: 48px;
+    overflow: hidden;
+    border-radius: 12px;
+    background: var(--hm-muted);
+}
+
+.uo .uo-item__img img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: none;
+}
+
+.uo-item__name {
+    flex: 1;
+    min-width: 0;
+    line-height: 1.35;
+}
+
+.uo-item__qty {
+    flex: none;
+    font-weight: 800;
+    font-variant-numeric: lining-nums;
+    color: var(--hm-ink-soft);
+}
+
+.uo-order__foot {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--uo-line);
+}
+
+.uo-order__foot span {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--hm-ink-soft);
+}
+
+.uo-order__foot strong {
+    font-size: 20px;
+    font-weight: 800;
+    font-variant-numeric: lining-nums;
+}
+
+/* ---------- Порожній стан ---------- */
+
+.uo-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: clamp(36px, 6vw, 72px) 20px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid var(--uo-line);
+    border-radius: 24px;
+    box-shadow: var(--sv-shadow);
+}
+
+.uo-empty__icon {
+    display: grid;
+    place-items: center;
+    width: 88px;
+    height: 88px;
+    margin-bottom: 4px;
+    border-radius: 50%;
+    background: var(--hm-soft);
+    font-size: 38px;
+    color: var(--hm-purple);
+}
+
+.uo .uo-empty h3 {
+    margin: 0;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(22px, 2.4vw, 28px);
+    font-weight: 700;
+    color: var(--hm-ink);
+}
+
+.uo-empty p {
+    max-width: 360px;
+    margin: 0 0 6px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--hm-ink-soft);
+}
+
+.uo-empty__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    border-radius: 999px;
+    background: var(--hm-grad-accent);
+    color: var(--hm-ink);
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 10px 28px rgba(var(--hm-accent-rgb), 0.38);
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.uo-empty__btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 34px rgba(var(--hm-accent-rgb), 0.5);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .uo-order__panel {
+        animation: none;
+    }
+
+    .uo-order, .uo-empty__btn {
+        transition: none;
+    }
+}

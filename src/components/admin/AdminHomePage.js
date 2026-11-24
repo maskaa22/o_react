@@ -1,10 +1,15 @@
-import {Link, Outlet, useNavigate} from "react-router-dom";
-import {MdNavigateNext} from "react-icons/md";
+import Avatar from "@mui/material/Avatar";
+import {NavLink, Outlet, useNavigate} from "react-router-dom";
 import React, {useEffect} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
+// Старі стилі лишаються підключеними: їхні глобальні класи (.padding, .non-icon тощо) використовують інші сторінки
 import "./AdminHomePage.css";
 import './AdminHomePage@media.css';
+import '../servicePage/ServicePage.css';        // спільні токени sv-* (шрифт, тіні, відступи) для класу .sv
+import '../client/ClientHomePageModern.css';    // шапка й вкладки кабінету — ті самі, що й у клієнта
+import './AdminHomePageModern.css';
+import {AUTH_URL} from "../../config/URL";
 import {
     ADMIN,
     ADMIN_ANALYSIS,
@@ -15,27 +20,30 @@ import {
     ADMIN_USERS
 } from "../../config/homeConstants";
 import {auth, getUsers} from "../../servises";
-import {
-    closeToogleMenu,
-    handleClick,
-    ifOpenPageAddActiveClass,
-    openToogleMenu,
-    ViewFunction
-} from "../../utils/function";
 import {LOGIN} from "../../config/headerConstants";
-import {
-    WORD_ACTIVE_MENU_CATEGORY,
-    WORD_CATEGORY_MENU,
-    WORD_NO_SCROLL,
-    WORD_SMALL_MENU_ADMIN_CLIENT,
-    WORD_TOKEN
-} from "../../config/wordsConstants";
+import {WORD_TOKEN} from "../../config/wordsConstants";
 
+const TABS = [
+    {to: ADMIN, label: 'Профіль', end: true},
+    {to: ADMIN_USERS, label: 'Клієнти'},
+    {to: ADMIN_RECORDS, label: 'Записи'},
+    {to: ADMIN_PRODUCT, label: 'Товари'},
+    {to: ADMIN_ORDERS, label: 'Замовлення'},
+    {to: ADMIN_ARCHIVE_ORDERS, label: 'Архів'},
+    {to: ADMIN_ANALYSIS, label: 'Звіти'}
+];
+
+/*
+ * Кабінет адміністратора: шапка з привітанням, вкладки розділів і зона вмісту (Outlet).
+ * Раніше це було бічне меню з кнопками й окремою мобільною панеллю, якою керували скрипти через
+ * класи; тепер звичайні вкладки (NavLink). Завантаження клієнтів і перевірка авторизації — ті самі.
+ */
 export function AdminHomePage({setUsers, setDelUser, delUser}) {
 
     const dispatch = useDispatch();
-
     const navigate = useNavigate();
+
+    const currentUser = useSelector(state => state.user.currentUser);
 
     useEffect(() => {
         if (localStorage.getItem(WORD_TOKEN)) {
@@ -53,82 +61,33 @@ export function AdminHomePage({setUsers, setDelUser, delUser}) {
         }
     }, [dispatch, navigate, setUsers, delUser, setDelUser]);
 
-    ViewFunction();
-
-    const container = document.querySelector('.home-menu');
-
-    if (container) {
-        ifOpenPageAddActiveClass();
-        container.addEventListener('click', handleClick, false);
-    }
-
-    function closeMenuHome() {
-        closeToogleMenu(WORD_CATEGORY_MENU, WORD_SMALL_MENU_ADMIN_CLIENT, WORD_ACTIVE_MENU_CATEGORY, WORD_NO_SCROLL);
-    }
+    const name = currentUser.name || '';
+    const initial = name ? name.charAt(0).toUpperCase() : '?';
 
     return (
-        <div className={'adminHomePage'}>
-            <div className={'home-menu'}>
-                <div className={'category-menu'} id={'category-menu'}
-                     onClick={() => openToogleMenu(WORD_CATEGORY_MENU, WORD_SMALL_MENU_ADMIN_CLIENT, WORD_ACTIVE_MENU_CATEGORY, WORD_NO_SCROLL)}>
-                    <span className={'category-menu-bar'}/>
-                    <span className={'category-menu-bar'}/>
-                    <span className={'category-menu-bar'}/>
-                </div>
-                <div className={'small-menu-admin-client'} id={'small-menu-admin-client'}>
-                    <div className={'padding padding-last'}>
-                        <Link to={ADMIN} className={'color_purple click-item'}>
-                            <button className={'home_item click-item category'}
-                                    onClick={closeMenuHome}>Редагувати <MdNavigateNext className={'non-icon'}/>
-                            </button>
-                        </Link>
+        <div className={'sv cl ad'}>
+            <div className={'sv-container cl-wrap'}>
+                <header className={'cl-hero'}>
+                    <Avatar className={'cl-hero__avatar'}
+                            src={currentUser.foto ? AUTH_URL + '/' + currentUser.foto : undefined}
+                            alt={name}
+                            sx={{width: 76, height: 76}}>
+                        {initial}
+                    </Avatar>
+                    <div className={'cl-hero__text'}>
+                        <span className={'cl-hero__eyebrow'}>Панель адміністратора</span>
+                        <h1 className={'cl-hero__title'}>Привіт{name ? `, ${name}` : ''}</h1>
+                        {currentUser.email && <p className={'cl-hero__email'}>{currentUser.email}</p>}
                     </div>
-                    <div className={'padding'}>
-                        <Link to={ADMIN_USERS} className={'color_purple click-item'}>
-                            <button className={'home_item click-item category'} onClick={() => {
-                                closeMenuHome();
-                            }}>Клієнти <MdNavigateNext className={'non-icon'}/></button>
-                        </Link>
-                    </div>
-                    <div className={'padding'}>
-                        <Link to={ADMIN_RECORDS} className={'color_purple click-item'}>
-                            <button className={'home_item click-item category'}
-                                    onClick={closeMenuHome}>Записи <MdNavigateNext className={'non-icon'}/>
-                            </button>
-                        </Link>
-                    </div>
-                    <div className={'padding'}>
-                        <Link to={ADMIN_PRODUCT} className={'color_purple click-item'}>
-                            <button className={'home_item click-item category'}
-                                    onClick={closeMenuHome}>Товари <MdNavigateNext className={'non-icon'}/>
-                            </button>
-                        </Link>
-                    </div>
-                    <div className={'padding'}>
-                        <Link to={ADMIN_ORDERS} className={'color_purple click-item'}>
-                            <button className={'home_item click-item category'}
-                                    onClick={closeMenuHome}>Замовлення <MdNavigateNext className={'non-icon'}/>
-                            </button>
-                        </Link>
-                    </div>
-                    <div className={'padding'}>
-                        <Link to={ADMIN_ARCHIVE_ORDERS} className={'color_purple click-item'}>
-                            <button className={'home_item click-item category'}
-                                    onClick={closeMenuHome}>Архів <MdNavigateNext className={'non-icon'}/>
-                            </button>
-                        </Link>
-                    </div>
-                    <div className={'padding'}>
-                        <Link to={ADMIN_ANALYSIS} className={'color_purple click-item'}>
-                            <button className={'home_item click-item category'}
-                                    onClick={closeMenuHome}>Звіти <MdNavigateNext className={'non-icon'}/>
-                            </button>
-                        </Link>
-                    </div>
-                </div>
-            </div>
-            <div className={'home-page'}>
-                <div className={'small-content-admin-client'}>
+                </header>
+
+                <nav className={'cl-tabs cl-tabs--many'} aria-label={'Розділи адмін-панелі'}>
+                    {TABS.map(tab => (
+                        <NavLink key={tab.to} to={tab.to} end={tab.end} className={'cl-tab'}>{tab.label}</NavLink>
+                    ))}
+                </nav>
+
+                <div className={'cl-content ad-content'}>
                     <Outlet/>
                 </div>
             </div>

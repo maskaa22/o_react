@@ -1,5 +1,5 @@
 .analyze {
-    border: 2px solid #47008e;
+    border: 2px solid var(--hm-purple);
     padding: 10px;
     width: 90%;
     height: 100%;
@@ -11,7 +11,7 @@
 
 h4 {
     text-align: center;
-    color: #47008e;
+    color: var(--hm-purple);
     font-size: 15px;
     margin: 0 10px;
 }
@@ -30,7 +30,7 @@ h4 {
     color: white;
     padding: 5px;
     align-items: center;
-    background-color: #79cbb8;
+    background-color: var(--hm-accent);
     border: none;
     cursor: pointer;
 }

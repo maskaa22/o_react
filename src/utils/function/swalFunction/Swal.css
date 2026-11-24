@@ -1,0 +1,272 @@
+/* ==========================================================================
+   Спливаючі повідомлення SweetAlert2 у дизайні сайту.
+   Класи sw-* додає SwalFunction.js через customClass. Правила подвоєні
+   (.swal2-popup.sw-popup тощо), щоб надійно перекрити стандартні стилі бібліотеки.
+   Кольори — з палітри на :root (src/index.css).
+   ========================================================================== */
+
+.swal2-container .swal2-popup.sw-popup {
+    width: min(24em, 92vw);
+    padding: 2.25em 1.75em 2em;
+    border-radius: 26px;
+    /* білий, а не кремовий: деталі анімації галочки "підмальовані" білим під колір попапа */
+    background: #fff;
+    box-shadow: 0 30px 80px rgba(var(--hm-deep-rgb), 0.35);
+    font-family: 'Manrope', system-ui, sans-serif;
+}
+
+.swal2-popup.sw-popup .swal2-title.sw-title {
+    margin: 0.2em 0 0;
+    padding: 0;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.7em;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--hm-ink);
+}
+
+.swal2-popup.sw-popup .swal2-html-container.sw-text {
+    margin: 0.9em 0 0;
+    padding: 0;
+    font-size: 1em;
+    line-height: 1.6;
+    color: var(--hm-ink-soft);
+}
+
+/* Значок успіху: колір акценту сайту замість стандартного зеленого */
+.swal2-popup.sw-popup .swal2-icon.swal2-success {
+    border-color: var(--hm-accent);
+    color: var(--hm-accent);
+}
+
+.swal2-popup.sw-popup .swal2-icon.swal2-success [class^='swal2-success-line'] {
+    background-color: var(--hm-accent);
+}
+
+.swal2-popup.sw-popup .swal2-icon.swal2-success .swal2-success-ring {
+    border-color: rgba(var(--hm-accent-rgb), 0.3);
+}
+
+/* Значок помилки: приглушений червоний */
+.swal2-popup.sw-popup .swal2-icon.swal2-error {
+    border-color: #d9534f;
+    color: #d9534f;
+}
+
+.swal2-popup.sw-popup .swal2-icon.swal2-error [class^='swal2-x-mark-line'] {
+    background-color: #d9534f;
+}
+
+/* Кнопка */
+.swal2-popup.sw-popup .swal2-actions {
+    margin-top: 1.6em;
+}
+
+.swal2-popup.sw-popup .swal2-confirm.sw-confirm {
+    padding: 0.85em 2.4em;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 1em;
+    font-weight: 700;
+    box-shadow: none;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.swal2-popup.sw-popup .swal2-confirm.sw-confirm:hover {
+    transform: translateY(-1px);
+}
+
+.swal2-popup.sw-popup .swal2-confirm.sw-confirm:focus {
+    box-shadow: 0 0 0 4px rgba(var(--hm-accent-rgb), 0.35);
+}
+
+/* Смужка таймера внизу картки */
+.swal2-popup.sw-popup .swal2-timer-progress-bar-container {
+    height: 0.3em;
+    overflow: hidden;
+    border-radius: 0 0 26px 26px;
+}
+
+.swal2-popup.sw-popup .swal2-timer-progress-bar.sw-timer {
+    background: var(--hm-grad-accent);
+}
+
+/* ==========================================================================
+   Плашка (toast) для коротких повідомлень про успіх: "Товар доданий" тощо.
+   Темна, у кольорах шапки й футера; галочка в акцентному кружечку.
+   ========================================================================== */
+
+.swal2-container .swal2-popup.sw-toast {
+    width: auto;
+    min-width: 17em;
+    max-width: min(92vw, 28em);
+    margin: 0;
+    padding: 0.9em 1.3em 0.9em 0.9em;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 18px;
+    background: var(--hm-grad-dark);
+    box-shadow: 0 18px 50px rgba(var(--hm-deep-rgb), 0.45), 0 0 0 1px rgba(var(--hm-accent-rgb), 0.28);
+    font-family: 'Manrope', system-ui, sans-serif;
+}
+
+/* Контейнер плашки: відступ згори дорівнює висоті шапки + невеликий запас, щоб плашка
+   не закривала іконки акаунта й кошика (висота шапки: 50px телефон, 64px комп'ютер, 80px від 1920px) */
+.swal2-container.sw-toast-container {
+    padding-top: 72px;
+    padding-right: 20px;
+}
+
+@media (min-width: 800px) {
+    .swal2-container.sw-toast-container {
+        padding-top: 84px;
+    }
+}
+
+@media (min-width: 1920px) {
+    .swal2-container.sw-toast-container {
+        padding-top: 100px;
+    }
+}
+/* галочка: акцентний кружечок із темною галочкою */
+.swal2-container .swal2-popup.sw-toast .swal2-icon.sw-toast__icon {
+    width: 2.5em;
+    min-width: 2.5em;
+    height: 2.5em;
+    margin: 0 0.9em 0 0;
+    border: 0;
+    border-radius: 50%;
+    background: var(--hm-grad-accent);
+    color: var(--hm-ink);
+}
+
+.swal2-container .swal2-popup.sw-toast .swal2-icon.sw-toast__icon .swal2-icon-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1em;
+}
+
+.swal2-container .swal2-popup.sw-toast .swal2-title.sw-toast__title {
+    margin: 0;
+    padding: 0;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.15em;
+    font-weight: 700;
+    line-height: 1.25;
+    text-align: left;
+    color: #fff;
+}
+
+.swal2-container .swal2-popup.sw-toast .swal2-html-container.sw-toast__text {
+    margin: 0.25em 0 0;
+    padding: 0;
+    font-size: 0.9em;
+    text-align: left;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.swal2-container .swal2-popup.sw-toast .swal2-timer-progress-bar-container {
+    height: 0.25em;
+}
+
+.swal2-container .swal2-popup.sw-toast .swal2-timer-progress-bar.sw-toast__timer {
+    background: var(--hm-grad-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .swal2-popup.sw-popup .swal2-confirm.sw-confirm {
+        transition: none;
+    }
+}
+
+/* ==========================================================================
+   Вікно підтвердження (ConfirmDialog.js): "Видалити …?" з кнопками Скасувати / Видалити.
+   ========================================================================== */
+
+.swal2-container .swal2-popup.sw-popup.sw-confirm-popup {
+    width: min(26em, 92vw);
+}
+
+/* іконка кошика: м'який червоний кружечок замість стандартної іконки бібліотеки */
+.swal2-popup.sw-confirm-popup .swal2-icon.sw-confirm-icon {
+    display: flex;
+    width: 4.5em;
+    height: 4.5em;
+    margin: 0 auto 0.6em;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(217, 83, 79, 0.12);
+    color: #d9534f;
+}
+
+.swal2-popup.sw-confirm-popup .swal2-icon.sw-confirm-icon .swal2-icon-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1em;
+}
+
+.swal2-popup.sw-confirm-popup .swal2-actions.sw-confirm-actions {
+    gap: 12px;
+    width: 100%;
+    margin: 1.6em 0 0;
+}
+
+.swal2-popup.sw-confirm-popup button.sw-btn {
+    flex: 1 1 0;
+    min-width: 0;
+    margin: 0;
+    padding: 0.9em 1em;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 1em;
+    font-weight: 700;
+    line-height: 1.1;
+    cursor: pointer;
+    box-shadow: none;
+    transition: transform .2s ease, background-color .2s ease, box-shadow .2s ease, color .2s ease;
+}
+
+.swal2-popup.sw-confirm-popup button.sw-btn:hover {
+    transform: translateY(-1px);
+}
+
+.swal2-popup.sw-confirm-popup button.sw-btn:focus-visible {
+    outline: 3px solid var(--hm-accent);
+    outline-offset: 2px;
+    box-shadow: none;
+}
+
+.swal2-popup.sw-confirm-popup button.sw-btn--ghost {
+    border-color: rgba(var(--hm-purple-rgb), 0.2);
+    background: #fff;
+    color: var(--hm-ink);
+}
+
+.swal2-popup.sw-confirm-popup button.sw-btn--ghost:hover {
+    background: var(--hm-soft);
+}
+
+.swal2-popup.sw-confirm-popup button.sw-btn--danger {
+    background: #d9534f;
+    color: #fff;
+    box-shadow: 0 8px 22px rgba(217, 83, 79, 0.35);
+}
+
+.swal2-popup.sw-confirm-popup button.sw-btn--danger:hover {
+    background: #c8433f;
+}
+
+.swal2-popup.sw-confirm-popup button.sw-btn--primary {
+    background: var(--hm-grad-accent);
+    color: var(--hm-ink);
+    box-shadow: 0 8px 22px rgba(var(--hm-accent-rgb), 0.38);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .swal2-popup.sw-confirm-popup button.sw-btn {
+        transition: none;
+    }
+}

@@ -31,7 +31,7 @@
 }
 
 .count_up, .count_down, .clear-btn {
-    background-color: #79cbb8;
+    background-color: var(--hm-accent);
     border: none;
     width: 6vh;
     height: 4vh;

@@ -1,7 +1,14 @@
 .header {
+    /* бічний відступ, що вирівнює вміст шапки по колонці контенту сторінки
+       (та сама ширина, що в .hm-container: до 1160px, мінімум 24px з боків) */
+    --hd-pad: max(24px, calc((100% - 1160px) / 2));
+
+    box-sizing: border-box;
     width: 100%;
     height: 50px;
-    background: linear-gradient(to right, #78c9b8 46%, #47008e 100%);
+    background: var(--hm-grad-dark);
+    box-shadow: 0 2px 16px rgba(var(--hm-deep-rgb), 0.25);
+    z-index: 5;
     color: white;
     display: flex;
     justify-content: center;
@@ -29,7 +36,7 @@
 .menu button {
     background-color: transparent;
     border: none;
-    font-family: 'Ledger', serif;
+    font-family: 'Manrope', system-ui, sans-serif;
 }
 
 .cursor-pointer {
@@ -43,15 +50,11 @@
 }
 
 .navbar-logo-img {
-    width: 40px;
-    height: 40px;
+    /* повний горизонтальний логотип (2172×724, значок + слово): задаємо лише висоту, ширина — за пропорцією.
+       Окремий текстовий напис біля логотипа не потрібен — слово є в самому зображенні. */
+    width: auto;
+    height: 46px;
     margin: 0.5vw;
-}
-
-.navbar-logo-p {
-    font-family: 'Lobster', cursive;
-    margin-left: -10px;
-    font-size: 40px;
 }
 
 a {
@@ -59,5 +62,38 @@ a {
 }
 
 .div-admin {
-    color: #78c9b8;
+    color: var(--hm-accent);
+}
+
+/* Верхній рівень меню (Головна, Послуги, Товари…): теж основний шрифт сайту. Раніше посилання успадковували
+   серифний шрифт від body, а кнопка "Послуги" мала його прописаним прямо (.menu button). Розмір не змінюється:
+   його задає 2.5vh у Header@media.css. Правило стоїть нижче за `.menu button`, тому перекриває його. */
+.menu > li > a,
+.menu > li > button,
+.div-admin {
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-weight: 600;
+}
+
+/* Пункти випадаючого меню (Послуги, акаунт): основний шрифт сайту й менший розмір, ніж у верхньому рівні меню.
+   Селектор довший за `.menu a` у Header@media.css, тому розмір 2.5vh звідти їх не зачіпає. */
+.menu .submenu a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.3;
+    white-space: nowrap;
+}
+
+/* Іконка перед текстом (меню акаунта: Кабінет, Вихід). У Header@media.css вона зсувалась `left: 35%`,
+   розрахованим на колишній великий текст, і з меншим шрифтом наїжджала на слово. Тут — у звичайному рядку. */
+.menu .submenu li svg {
+    position: static;
+    left: auto;
+    flex: none;
+    width: 16px;
+    height: 16px;
 }

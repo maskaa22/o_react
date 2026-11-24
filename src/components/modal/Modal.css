@@ -25,7 +25,7 @@
     width: 300px;
     transform: scale(0.5);
     transition: 0.4s all;
-    color: #47008e;
+    color: var(--hm-purple);
 }
 
 .modal-content.active {
@@ -38,7 +38,7 @@ textarea {
     margin-bottom: 10px;
     outline: none;
     font-size: 14px;
-    border: 1px solid #47008e;
+    border: 1px solid var(--hm-purple);
 }
 
 .flex_start {
@@ -57,7 +57,7 @@ textarea {
     border-radius: 12px;
     background-color: white;
     width: 350px;
-    color: #47008e;
+    color: var(--hm-purple);
 }
 
 .h2 {

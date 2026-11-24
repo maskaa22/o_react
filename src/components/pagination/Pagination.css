@@ -12,8 +12,8 @@
 }
 
 .pagination > .active > a {
-    background-color: #79CBB8FF;
-    border-color: #79CBB8FF;
+    background-color: var(--hm-accent);
+    border-color: var(--hm-accent);
     color: #fff;
 }
 
@@ -25,13 +25,13 @@
 }
 
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
-    background-color: #47008e;
-    border-color: #79CBB8FF;
+    background-color: var(--hm-purple);
+    border-color: var(--hm-accent);
     outline: none;
 }
 
 .pagination > li > a, .pagination > li > span {
-    color: #79CBB8FF;
+    color: var(--hm-accent);
 }
 
 .pagination > li:first-child > a, .pagination > li:first-child > span, .pagination > li:last-child > a, .pagination > li:last-child > span {

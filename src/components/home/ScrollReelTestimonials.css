@@ -1,0 +1,352 @@
+/* ScrollReelTestimonials — CSS-версія shadcn-компонента (без Tailwind).
+   Кольори беруться зі змінних головної (--hm-*), з запасними значеннями. */
+
+.sr {
+    --sr-fg: var(--hm-ink, #170a02);
+    --sr-fg-soft: var(--hm-ink-soft, #5a4637);
+    --sr-border: var(--hm-line, rgba(44, 18, 3, 0.12));
+    --sr-muted: var(--hm-muted, #f1e9e0);
+    --sr-ring: var(--hm-brown-light, #c4a484);
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    width: 100%;
+    max-width: 1060px;
+    margin-inline: auto;
+    overflow: hidden;
+    border: 1px solid var(--sr-border);
+    border-radius: 20px;
+    background: var(--sr-muted);
+    box-shadow: inset 0 2px 0 #fff, 0 24px 60px rgba(var(--hm-deep-rgb), 0.1);
+    outline: none;
+    box-sizing: border-box;
+}
+
+.sr *, .sr *::before, .sr *::after {
+    box-sizing: border-box;
+}
+
+.sr:focus-visible {
+    box-shadow: 0 0 0 3px var(--sr-ring), inset 0 2px 0 #fff;
+}
+
+/* ---------- Лента ---------- */
+
+.sr-reel {
+    position: relative;
+    flex: none;
+    align-self: stretch;
+    width: 100%;
+    height: 224px;
+    overflow: hidden;
+    -webkit-mask-image:
+        linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%),
+        linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+    mask-image:
+        linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%),
+        linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+}
+
+.sr-reel__stage {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.sr-col {
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    will-change: transform;
+}
+
+.sr-cell {
+    flex: none;
+    width: 121.33px;
+    height: 121.33px;
+    border: 1px solid var(--sr-border);
+    border-radius: 12px;
+    background: linear-gradient(180deg, var(--hm-tint), #fff);
+    filter: blur(1px);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0 2px 0 #fff;
+}
+
+.sr-featured {
+    position: relative;
+    flex: none;
+    width: 121.33px;
+    height: 121.33px;
+    overflow: hidden;
+    border-radius: 12px;
+    background: var(--sr-muted);
+    box-shadow:
+        0 1.008px 0.705px -0.563px rgba(0, 0, 0, 0.18),
+        0 2.389px 1.672px -1.125px rgba(0, 0, 0, 0.17),
+        0 4.357px 3.05px -1.688px rgba(0, 0, 0, 0.17),
+        0 7.244px 5.07px -2.25px rgba(0, 0, 0, 0.16),
+        0 11.698px 8.188px -2.813px rgba(0, 0, 0, 0.15),
+        0 19.148px 13.404px -3.375px rgba(0, 0, 0, 0.13),
+        0 32.972px 23.08px -3.938px rgba(0, 0, 0, 0.09),
+        0 60px 42px -4.5px rgba(0, 0, 0, 0.02),
+        inset 0 1px 0 rgba(255, 255, 255, 0.7),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.6);
+}
+
+.sr-featured__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+}
+
+/* знебарвлення через blend saturation */
+.sr-featured__desat {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background: #fff;
+    mix-blend-mode: saturation;
+}
+
+/* діагональний відблиск у кольорах бренду (фіолетовий -> м'ятний) */
+.sr-featured__sheen {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    filter: blur(6px);
+    mix-blend-mode: overlay;
+    background: linear-gradient(220.99deg,
+        rgba(var(--hm-purple-rgb), 0) 32%,
+        rgb(var(--hm-purple-rgb)) 41%,
+        rgb(var(--hm-brown-light-rgb)) 47%,
+        rgba(var(--hm-brown-light-rgb), 0.57) 54%,
+        rgba(var(--hm-brown-light-rgb), 0) 65%);
+}
+
+/* ---------- Текст ---------- */
+
+.sr-content {
+    flex: 1 1 0;
+    min-width: 0;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 28px 24px;
+}
+
+.sr-content__top {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.sr-quote-icon {
+    display: block;
+    width: 48px;
+    height: 48px;
+    color: var(--hm-brown-light, #c4a484);
+    opacity: 0.75;
+}
+
+.sr-stage {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    overflow: hidden;
+}
+
+.sr-ghost {
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 19px;
+    min-height: 140px;
+}
+
+.sr-live {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 19px;
+    will-change: transform, opacity;
+}
+
+.sr-quote {
+    margin: 0;
+    font-family: var(--hm-font-body, 'Manrope', system-ui, sans-serif);
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    color: var(--sr-fg);
+}
+
+.sr-author {
+    margin: 0;
+    font-family: var(--hm-font-body, 'Manrope', system-ui, sans-serif);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--sr-fg-soft);
+    opacity: 0.75;
+}
+
+.sr-word {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.sr-char {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(0.7em);
+    animation: sr-char-rise 420ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* поки блок зникає, анімацію символів знімаємо — це обриває ті, що ще "ростуть" */
+.sr-exit {
+    animation: sr-exit 240ms ease forwards;
+}
+
+.sr-exit .sr-char {
+    animation: none;
+    opacity: 1;
+    transform: none;
+}
+
+@keyframes sr-char-rise {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes sr-exit {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-12px);
+    }
+}
+
+/* ---------- Керування ---------- */
+
+.sr-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 24px;
+}
+
+.sr-btn {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: 1px solid rgba(var(--hm-ink-rgb), 0.15);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--sr-fg);
+    cursor: pointer;
+    transition: opacity .2s cubic-bezier(0.22, 1, 0.36, 1), transform .2s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color .2s ease;
+}
+
+.sr-btn svg {
+    width: 14px;
+    height: 14px;
+    opacity: 0.75;
+}
+
+.sr-btn:hover:not(:disabled) {
+    transform: scale(1.08);
+    background: #fff;
+}
+
+.sr-btn:active:not(:disabled) {
+    transform: scale(0.94);
+}
+
+.sr-btn:disabled {
+    cursor: default;
+    opacity: 0.4;
+}
+
+.sr-btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--sr-ring);
+}
+
+.sr-counter {
+    margin-left: 8px;
+    font-family: var(--hm-font-body, 'Manrope', system-ui, sans-serif);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--sr-fg-soft);
+    opacity: 0.6;
+}
+
+/* ---------- Десктоп ---------- */
+
+@media (min-width: 768px) {
+    .sr {
+        flex-direction: row;
+        min-height: 320px;
+    }
+
+    .sr-reel {
+        width: 380px;
+        height: auto;
+    }
+
+    .sr-content {
+        padding: 40px 32px 40px 12px;
+    }
+
+    .sr-quote {
+        font-size: 22px;
+    }
+
+    .sr-controls {
+        margin-top: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sr-col {
+        transition: none !important;
+    }
+
+    .sr-char {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+
+    .sr-exit {
+        animation: none;
+        opacity: 0;
+    }
+}

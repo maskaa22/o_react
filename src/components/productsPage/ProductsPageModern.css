@@ -1,0 +1,388 @@
+/* ==========================================================================
+   Сторінка "Товари" в новому дизайні. Усі правила під .pr або з префіксом pr-,
+   тому вони не зачіпають адмінку/кабінет, які ще користуються старими стилями
+   ProductsPage.css (.padding, .non-icon, .category-menu*).
+   Старі стилі лишаються підключеними, а нові перекривають їх вищою специфічністю.
+   ========================================================================== */
+
+.pr {
+    min-height: 60vh;
+}
+
+.pr-layout {
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: clamp(24px, 3vw, 40px);
+    align-items: start;
+    padding: clamp(32px, 4vw, 56px) 0 clamp(48px, 6vw, 96px);
+}
+
+/* ---------- Бічне меню категорій ---------- */
+
+.pr .product-menu {
+    position: sticky;
+    top: 24px;
+    width: auto;
+    padding: 0;
+}
+
+.pr .product-menu-container {
+    display: block;
+    width: auto;
+    margin: 0;
+    padding: 18px;
+    background: #fff;
+    border: 1px solid var(--sv-line);
+    border-radius: 22px;
+    box-shadow: var(--sv-shadow);
+}
+
+.pr .menu-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.pr .left-title {
+    padding: 4px 8px 0;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--hm-ink);
+}
+
+/* хрестик закриття потрібен лише в мобільній панелі */
+.pr .right-title {
+    display: none;
+}
+
+.pr .hr {
+    display: none;
+}
+
+.pr .padding {
+    padding: 2px 0;
+}
+
+.pr .category {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+    height: auto;
+    padding: 12px 14px;
+    background: transparent;
+    border: 0;
+    border-radius: 12px;
+    color: var(--hm-ink);
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color .2s ease, color .2s ease;
+}
+
+.pr .category:hover {
+    background: var(--hm-soft);
+}
+
+/* активна категорія (клас active-menu додає скрипт handleClick) */
+.pr .category.active-menu {
+    background: var(--hm-purple);
+    color: #fff;
+}
+
+.pr .non-icon {
+    display: block;
+    position: static;
+    flex: none;
+    font-size: 20px;
+    opacity: 0.45;
+}
+
+.pr .category.active-menu .non-icon {
+    opacity: 0.9;
+}
+
+/* ---------- Основна колонка ---------- */
+
+.pr-main {
+    min-width: 0;
+}
+
+/* кнопка меню категорій — лише на телефоні */
+.pr .category-menu {
+    display: none;
+}
+
+/* Назва вибраної категорії над сіткою. Класи filter-name / filter-name-no
+   перемикає скрипт: "Усі" ховає заголовок, вибір категорії показує. */
+.pr .filter-name {
+    display: block;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+.pr .filter-name.filter-name-no {
+    display: none;
+}
+
+.pr .filter-name > div {
+    margin: 0 0 24px;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(26px, 3vw, 36px);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--hm-ink);
+}
+
+.pr .filter-name > div:empty {
+    display: none;
+}
+
+.pr-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 24px;
+}
+
+/* ---------- Пагінація (лише на цій сторінці; сторінка створення товару не чіпається) ---------- */
+
+.pr .paginate {
+    margin-top: 40px;
+}
+
+.pr .pagination {
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.pr .pagination > li > a {
+    display: grid;
+    place-items: center;
+    box-sizing: border-box;
+    min-width: 42px;
+    height: 42px;
+    padding: 0 12px;
+    background: #fff;
+    border: 1px solid var(--sv-line);
+    border-radius: 999px;
+    color: var(--hm-ink);
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+}
+
+.pr .pagination > li > a:hover {
+    background: var(--hm-soft);
+}
+
+.pr .pagination > li.active > a,
+.pr .pagination > li.active > a:hover,
+.pr .pagination > li.active > a:focus {
+    background: var(--hm-purple);
+    border-color: var(--hm-purple);
+    color: #fff;
+}
+
+.pr .pagination > li.disabled > a {
+    opacity: 0.35;
+    cursor: default;
+}
+
+.pr .pagination > li:first-child > a,
+.pr .pagination > li:last-child > a {
+    border-radius: 999px;
+}
+
+/* ==========================================================================
+   Планшет (601–860px): категорії — рядок "чіпів" над сіткою
+   ========================================================================== */
+
+@media (max-width: 860px) {
+    .pr-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .pr .product-menu {
+        position: static;
+        width: auto;
+    }
+
+    .pr .product-menu-container {
+        padding: 0;
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .pr .menu-title {
+        display: none;
+    }
+
+    .pr .padding {
+        flex: none;
+        padding: 0;
+    }
+
+    .pr .category {
+        padding: 10px 18px;
+        background: #fff;
+        border: 1px solid var(--sv-line);
+        border-radius: 999px;
+    }
+
+    .pr .non-icon {
+        display: none;
+    }
+}
+
+/* ==========================================================================
+   Телефон (до 600px): категорії відкриваються повноекранною панеллю,
+   її перемикають скрипти через класи active-menu-category / no-scroll
+   ========================================================================== */
+
+@media (max-width: 600px) {
+    .pr-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+    }
+
+    .pr .pc {
+        padding: 10px;
+        gap: 12px;
+    }
+
+    .pr .pc__foot {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .pr .pc__buy {
+        justify-content: center;
+    }
+
+    /* кнопка відкриття меню — кругла, у потоці над сіткою */
+    .pr .category-menu {
+        position: relative;
+        display: grid;
+        place-content: center;
+        gap: 4px;
+        width: 48px;
+        height: 48px;
+        margin: 0 0 20px;
+        background: #fff;
+        border: 1px solid var(--sv-line);
+        border-radius: 50%;
+        box-shadow: var(--sv-shadow);
+        cursor: pointer;
+    }
+
+    .pr .category-menu-bar {
+        width: 20px;
+        height: 2px;
+        margin: 0;
+        border-radius: 2px;
+        background-color: var(--hm-purple);
+    }
+
+    /* панель категорій (старий механізм: left: -100% -> 0 з класом active-menu-category) */
+    .pr .product-menu {
+        position: fixed;
+        top: 50px;
+        left: -100%;
+        z-index: 40;
+        width: 100%;
+        height: calc(100% - 50px);
+        padding: 0;
+        overflow: auto;
+        background: var(--hm-surface);
+        transition: left .3s ease;
+    }
+
+    .pr .product-menu.active-menu-category {
+        left: 0;
+    }
+
+    .pr .product-menu-container {
+        display: block;
+        min-height: 100%;
+        padding: 12px 20px 32px;
+        background: var(--hm-surface);
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .pr .menu-title {
+        display: flex;
+        margin-bottom: 0;
+    }
+
+    .pr .left-title {
+        padding: 8px 0;
+        font-size: 26px;
+    }
+
+    .pr .right-title {
+        display: grid;
+        place-items: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: #fff;
+        border: 1px solid var(--sv-line);
+        font-size: 22px;
+        cursor: pointer;
+    }
+
+    .pr .hr {
+        display: block;
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid var(--sv-line);
+        transform: none;
+    }
+
+    .pr .padding {
+        padding: 2px 0;
+    }
+
+    .pr .category {
+        padding: 16px 14px;
+        background: transparent;
+        border: 0;
+        border-radius: 12px;
+        font-size: 20px;
+    }
+
+    .pr .category.active-menu {
+        background: var(--hm-purple);
+        color: #fff;
+    }
+
+    .pr .non-icon {
+        display: block;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pr .product-menu,
+    .pr .category {
+        transition: none;
+    }
+}

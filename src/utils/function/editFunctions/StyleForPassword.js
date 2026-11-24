@@ -2,6 +2,9 @@ import {b_letters, digits, s_letters} from "../../../config/functionConstants";
 
 export function StyleForPassword(number, block_check) {
 
+    // смужки може не бути на сторінці (або вона ще не намальована) — тоді нічого не робимо
+    if (!block_check) return;
+
     let is_s = false;
     let is_b = false;
     let is_d = false;
@@ -27,24 +30,24 @@ export function StyleForPassword(number, block_check) {
     }
     if (number.length < 6 && rating < 3) {
         block_check.style.width = "10%";
-        block_check.style.backgroundColor = '#ff89f7';
+        block_check.style.backgroundColor = '#d9534f';
     } else if (number.length < 6 && rating >= 3) {
         block_check.style.width = "50%";
-        block_check.style.backgroundColor = '#b266ff';
+        block_check.style.backgroundColor = '#e0a458';
     } else if (number.length >= 8 && rating < 3) {
         block_check.style.width = "50%";
-        block_check.style.backgroundColor = '#b266ff';
+        block_check.style.backgroundColor = '#e0a458';
     } else if (number.length >= 8 && rating >= 3) {
         block_check.style.width = "93%";
-        block_check.style.backgroundColor = '#79cbb8';
+        block_check.style.backgroundColor = 'var(--hm-accent)';
     } else if (number.length >= 6 && rating === 1) {
         block_check.style.width = "10%";
-        block_check.style.backgroundColor = '#ff89f7';
+        block_check.style.backgroundColor = '#d9534f';
     } else if (number.length >= 6 && rating > 1 && rating < 4) {
         block_check.style.width = "50%";
-        block_check.style.backgroundColor = '#b266ff';
+        block_check.style.backgroundColor = '#e0a458';
     } else if (number.length >= 6 && rating === 4) {
         block_check.style.width = "93%";
-        block_check.style.backgroundColor = '#79cbb8';
+        block_check.style.backgroundColor = 'var(--hm-accent)';
     }
 }

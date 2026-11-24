@@ -1,10 +1,10 @@
 input {
     border: none;
-    border-bottom: #47008e solid 3px;
+    border-bottom: var(--hm-purple) solid 3px;
     background: transparent;
     width: 100%;
     padding: 3px;
-    color: #47008e;
+    color: var(--hm-purple);
     font-weight: 700;
 }
 
@@ -14,7 +14,7 @@ input {
 }
 
 ::-webkit-input-placeholder {
-    color: #47008e;
+    color: var(--hm-purple);
     font-weight: 700;
 }
 

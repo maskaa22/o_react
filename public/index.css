@@ -1,28 +1,109 @@
+/* ==========================================================================
+   Лоадер. Працює ще до завантаження React, тому змінні сайту (:root з src/index.css)
+   тут недоступні — кольори прописані літералами.
+
+   КОЛІР ЗАЛИВКИ — міняти тут:
+     бірюзовий (зараз):   #8ad6c4, #79cbb8, #4fae9a   (світіння rgba(121,203,184,.3))
+     золотий (варіант):   #ecc794, #d9a566, #b9803f   (світіння rgba(217,165,102,.3))
+   ========================================================================== */
+
+/* Скидання відступу одразу, а не після завантаження основних стилів */
+html, body {
+    margin: 0;
+}
+
 .mask {
-    width: 100%;
-    height: 100%;
-    background: #fff;
+    --ld-fill: linear-gradient(180deg, #8ad6c4 0%, #79cbb8 50%, #4fae9a 100%);
+    --ld-glow: rgba(121, 203, 184, 0.3);
+
+    /* inset: 0 замість width/height: 100% + top: 0 — інакше без left лоадер сідає на
+       "статичну" позицію й зсувається на стандартний відступ body (8px), поки не
+       підвантажився src/index.css; звідси була світла смужка зліва */
     position: fixed;
-    top: 0;
+    inset: 0;
+    background: linear-gradient(120deg, #170a02 0%, #2c1203 55%, #43200a 100%);
     z-index: 150;
-    transition: 0.6s;
+    transition: 0.4s;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .loader {
-    width: 75px;
-    height: 75px;
-    border: 10px solid #79cbb8;
-    border-radius: 50%;
-    border-left-color: #428b87;
-    animation: loader 1.3s linear infinite;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
 }
-@keyframes loader {
-    100% {
-        transform: rotate(360deg);
-    }
+
+/* Логотип: тьмяний силует + така сама фігура, що заливається кольором знизу вгору.
+   Форма береться з альфа-каналу logo-loader.webp через CSS-маску. Це копія нового логотипа з
+   логотипа сайту (552×724, зменшена до 336×441): лоадер працює до завантаження React, тож не може
+   імпортувати картинку з src, і копія лежить у public. Змінюєш логотип — оптимізуй і поклади сюди ще раз.
+   Іконка вкладки браузера — окремий файл favicon.ico (див. public/index.html). */
+.loader__logo {
+    position: relative;
+    width: 112px;
+    aspect-ratio: 552 / 724;
+    filter: drop-shadow(0 0 16px var(--ld-glow));
 }
+
+.loader__base,
+.loader__fill {
+    position: absolute;
+    inset: 0;
+    -webkit-mask: url('/logo-loader.webp') center / contain no-repeat;
+    mask: url('/logo-loader.webp') center / contain no-repeat;
+}
+
+.loader__base {
+    background: rgba(255, 255, 255, 0.14);
+}
+
+.loader__fill {
+    background: var(--ld-fill);
+    /* відсоток заповнення виставляє public/index.js (inline clip-path) */
+    -webkit-clip-path: inset(100% 0 0 0);
+    clip-path: inset(100% 0 0 0);
+    transition: clip-path 0.35s ease-out, -webkit-clip-path 0.35s ease-out;
+}
+
+.loader__text {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    color: #fff;
+    opacity: 0.9;
+    animation: loader-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes loader-pulse {
+    0%, 100% { opacity: 0.55; }
+    50% { opacity: 1; }
+}
+
 .hide {
     opacity: 0;
+}
+
+/* Смуга прокрутки сторінки (та, що праворуч у вікні) прихована. Прокручувати можна як і раніше:
+   колесом миші, тачпадом, клавішами й пальцем — просто смуга не показується.
+   Внутрішні смуги (списки, вікна з довгим вмістом) лишаються, але в кольорах сайту: scrollbar-color
+   на body успадковується вкладеними елементами. Щоб повернути смугу сторінки — прибери блок html нижче. */
+html {
+    scrollbar-width: none;            /* Firefox */
+    -ms-overflow-style: none;         /* старий Edge */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;                    /* Chrome, Edge, Safari */
+    width: 0;
+    height: 0;
+}
+
+body {
+    scrollbar-color: #c4a484 #1c0b02;   /* повзунок / доріжка внутрішніх смуг */
 }

@@ -107,6 +107,10 @@ export class CategoryService {
         return api.post(CATEGORY, {category_name})
     }
 
+    static async deleteCategory(_id) {
+        return api.delete(`${CATEGORY}/${_id}`)
+    }
+
     static async filtreCategories(checkCategory, page, limit) {
         return api.post(`${CATEGORY}/${checkCategory}`, {checkCategory}, {params: {page, limit}})
     }

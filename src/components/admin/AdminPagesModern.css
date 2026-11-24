@@ -1,0 +1,439 @@
+/* ==========================================================================
+   Спільні стилі підсторінок адмінки: заголовок із кнопками, картка з таблицею, порожній стан
+   (префікс adm-). Використовують сторінки "Клієнти" та "Записи". Старі таблиці з User.css лишаються
+   для решти адмін-сторінок (товари, замовлення, архів).
+   ========================================================================== */
+
+.adm {
+    --adm-line: rgba(var(--hm-purple-rgb), 0.12);
+    font-family: 'Manrope', system-ui, sans-serif;
+    color: var(--hm-ink);
+}
+
+.adm *, .adm *::before, .adm *::after {
+    box-sizing: border-box;
+}
+
+/* текст лише для скрінрідерів (напр. заголовок колонки з кнопками) */
+.adm .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+/* ---------- Заголовок і кнопки ---------- */
+
+.adm-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px 20px;
+    margin-bottom: 20px;
+}
+
+.adm-head__title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.adm .adm-title {
+    margin: 0;
+    padding: 0;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(24px, 2.6vw, 32px);
+    font-weight: 700;
+    line-height: 1.15;
+    text-align: left;
+    color: var(--hm-ink);
+}
+
+.adm-title small {
+    margin-left: 8px;
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 0.55em;
+    font-weight: 700;
+    color: var(--hm-accent-deep);
+}
+
+.adm-count {
+    display: grid;
+    place-items: center;
+    min-width: 30px;
+    height: 30px;
+    padding: 0 10px;
+    border-radius: 999px;
+    background: var(--hm-grad-accent);
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--hm-ink);
+}
+
+.adm-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.adm .adm-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 12px 22px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+    transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease, border-color .2s ease, color .2s ease;
+}
+
+.adm .adm-btn--primary {
+    background: var(--hm-grad-accent);
+    color: var(--hm-ink);
+    box-shadow: 0 8px 22px rgba(var(--hm-accent-rgb), 0.35);
+}
+
+.adm .adm-btn--primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(var(--hm-accent-rgb), 0.5);
+}
+
+.adm .adm-btn--ghost {
+    background: #fff;
+    border-color: var(--adm-line);
+    color: var(--hm-ink);
+}
+
+.adm .adm-btn--ghost:hover {
+    background: var(--hm-soft);
+}
+
+/* небезпечна дія (видалення) — червоніє при наведенні */
+.adm .adm-btn--danger:hover {
+    background: #c0392b;
+    border-color: #c0392b;
+    color: #fff;
+}
+
+.adm .adm-btn:focus-visible,
+.adm .adm-icon-btn:focus-visible {
+    outline: 3px solid var(--hm-accent);
+    outline-offset: 2px;
+}
+
+/* перемикач місяців: три кнопки в одній "пілюлі" */
+.adm-pager {
+    display: inline-flex;
+    gap: 4px;
+    padding: 4px;
+    background: #fff;
+    border: 1px solid var(--adm-line);
+    border-radius: 999px;
+    box-shadow: var(--sv-shadow);
+}
+
+.adm .adm-pager .adm-btn {
+    padding: 10px 18px;
+    background: transparent;
+}
+
+.adm .adm-pager .adm-btn:hover {
+    background: var(--hm-soft);
+}
+
+.adm .adm-pager .adm-btn--current {
+    background: var(--hm-purple);
+    color: #fff;
+}
+
+.adm .adm-pager .adm-btn--current:hover {
+    background: var(--hm-purple-deep);
+}
+
+/* ---------- Картка з таблицею ---------- */
+
+.adm-card {
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid var(--adm-line);
+    border-radius: 22px;
+    box-shadow: var(--sv-shadow);
+}
+
+.adm-scroll {
+    overflow-x: auto;
+}
+
+.adm-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+}
+
+.adm-table th {
+    padding: 16px 20px;
+    background: var(--hm-surface);
+    border-bottom: 1px solid var(--adm-line);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-align: left;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--hm-accent-deep);
+}
+
+.adm-table td {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--adm-line);
+    vertical-align: middle;
+    overflow-wrap: anywhere;
+}
+
+.adm-table tbody tr {
+    transition: background-color .15s ease;
+}
+
+.adm-table tbody tr:hover {
+    background: rgba(var(--hm-accent-rgb), 0.07);
+}
+
+.adm-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.adm-table .adm-cell--strong {
+    font-weight: 700;
+}
+
+.adm-table .adm-cell--num,
+.adm-table .adm-cell--action {
+    width: 1%;
+    white-space: nowrap;
+}
+
+.adm-table .adm-cell--muted {
+    color: var(--hm-ink-soft);
+}
+
+.adm-time {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: var(--hm-soft);
+    font-weight: 800;
+    font-variant-numeric: lining-nums;
+}
+
+.adm .adm-icon-btn {
+    display: inline-grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    border: 1px solid var(--adm-line);
+    border-radius: 50%;
+    background: #fff;
+    color: var(--hm-ink);
+    font-size: 17px;
+    cursor: pointer;
+    transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+}
+
+.adm .adm-icon-btn:hover {
+    background: var(--hm-purple);
+    border-color: var(--hm-purple);
+    color: #fff;
+}
+
+/* кнопка видалення — червоніє при наведенні */
+.adm .adm-icon-btn--danger:hover {
+    background: #c0392b;
+    border-color: #c0392b;
+    color: #fff;
+}
+
+/* назва товару з мініатюрою */
+.adm-product {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.adm-product img {
+    flex: none;
+    width: 44px;
+    height: 44px;
+    object-fit: cover;
+    border-radius: 12px;
+    background: var(--hm-muted);
+}
+
+/* ---------- Пагінація під таблицею (ту саму пагінацію використовує й каталог) ---------- */
+
+.adm .paginate {
+    margin-top: 24px;
+}
+
+.adm .pagination {
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.adm .pagination > li > a {
+    display: grid;
+    place-items: center;
+    min-width: 42px;
+    height: 42px;
+    padding: 0 12px;
+    background: #fff;
+    border: 1px solid var(--adm-line);
+    border-radius: 999px;
+    color: var(--hm-ink);
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color .2s ease;
+}
+
+.adm .pagination > li > a:hover {
+    background: var(--hm-soft);
+}
+
+.adm .pagination > li.active > a,
+.adm .pagination > li.active > a:hover,
+.adm .pagination > li.active > a:focus {
+    background: var(--hm-purple);
+    border-color: var(--hm-purple);
+    color: #fff;
+}
+
+.adm .pagination > li.disabled > a {
+    opacity: 0.35;
+    cursor: default;
+}
+
+.adm .pagination > li:first-child > a,
+.adm .pagination > li:last-child > a {
+    border-radius: 999px;
+}
+
+/* ---------- Порожній стан ---------- */
+
+.adm-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: clamp(32px, 5vw, 60px) 20px;
+    text-align: center;
+}
+
+.adm-empty__icon {
+    display: grid;
+    place-items: center;
+    width: 72px;
+    height: 72px;
+    margin-bottom: 4px;
+    border-radius: 50%;
+    background: var(--hm-soft);
+    font-size: 30px;
+    color: var(--hm-purple);
+}
+
+.adm .adm-empty h3 {
+    margin: 0;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.adm-empty p {
+    margin: 0;
+    max-width: 360px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--hm-ink-soft);
+}
+
+/* ---------- Телефон: рядки таблиці стають картками з підписами ---------- */
+
+@media (max-width: 760px) {
+    .adm-table thead {
+        display: none;
+    }
+
+    .adm-table,
+    .adm-table tbody,
+    .adm-table tr,
+    .adm-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .adm-table tbody tr {
+        padding: 12px 18px;
+        border-bottom: 1px solid var(--adm-line);
+    }
+
+    .adm-table tbody tr:last-child {
+        border-bottom: 0;
+    }
+
+    .adm-table td,
+    .adm-table .adm-cell--num,
+    .adm-table .adm-cell--action {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        width: 100%;
+        padding: 7px 0;
+        border-bottom: 0;
+        text-align: right;
+        white-space: normal;
+    }
+
+    /* підпис колонки береться з data-label */
+    .adm-table td::before {
+        content: attr(data-label);
+        flex: none;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-align: left;
+        text-transform: uppercase;
+        color: var(--hm-accent-deep);
+    }
+
+    /* у клітинки з кнопкою підпис не потрібен */
+    .adm-table td.adm-cell--action::before {
+        content: none;
+    }
+
+    .adm-table td.adm-cell--action {
+        justify-content: flex-end;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .adm .adm-btn, .adm .adm-icon-btn, .adm-table tbody tr {
+        transition: none;
+    }
+}
